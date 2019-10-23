@@ -58,14 +58,35 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Label fx:id="cin_valid" layoutX="432.0" layoutY="41.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
-                  <Label fx:id="nom_valid" layoutX="432.0" layoutY="76.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
-                  <Label fx:id="sex_valid" layoutX="432.0" layoutY="238.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
-                  <Label fx:id="pass_valid" layoutX="432.0" layoutY="196.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
-                  <Label fx:id="email_valid" layoutX="432.0" layoutY="157.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
-                  <Label fx:id="prenom_valid" layoutX="432.0" layoutY="113.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
-                  <Label fx:id="tel_valid" layoutX="432.0" layoutY="328.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
-                  <Label fx:id="date_valid" layoutX="432.0" layoutY="284.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+                  <Label fx:id="cin_valid" layoutX="432.0" layoutY="41.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#1e1113">
+                     <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                     </font></Label>
+                  <Label fx:id="nom_valid" layoutX="432.0" layoutY="76.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides">
+                     <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                     </font></Label>
+                  <Label fx:id="sex_valid" layoutX="432.0" layoutY="238.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#030303">
+                     <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                     </font></Label>
+                  <Label fx:id="pass_valid" layoutX="432.0" layoutY="196.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#171616">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font></Label>
+                  <Label fx:id="email_valid" layoutX="432.0" layoutY="157.0" prefHeight="28.0" prefWidth="140.0" text="Eamil is Incorrect" textFill="#1b1a1a">
+                     <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                     </font></Label>
+                  <Label fx:id="prenom_valid" layoutX="432.0" layoutY="113.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#171717">
+                     <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                     </font></Label>
+                  <Label fx:id="tel_valid" layoutX="432.0" layoutY="328.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#252424">
+                     <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                     </font></Label>
+                  <Label fx:id="date_valid" layoutX="432.0" layoutY="284.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#222020" />
                </children></AnchorPane>
       </content>
     </Tab>

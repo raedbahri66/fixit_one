@@ -116,7 +116,7 @@ public class PosteurgestionController implements Initializable {
     private TextField cinsupp_t;
     @FXML
     private Label nom_valid11;
-    public boolean canInscription= true;
+    public boolean canInscription=true;
     public boolean valid= true;
     public boolean valid1= true;
     
@@ -218,39 +218,38 @@ public class PosteurgestionController implements Initializable {
     private void btn_ajouterposteur(ActionEvent event) {
         ControleSaisie C= new ControleSaisie();
         if(!C.cinisValid(id_p.getText()) ){
-            cin_valid.setText("Cin must contain 8 numbers");
-            canInscription = false;
-        }
-            if(C.isCintUsed(Integer.parseInt(id_p.getText())))
-            {
-            canInscription = false;
-            cin_valid.setText("Cin is already used");
-            }
+            canInscription = false;;
+           
+        } else cin_valid.setText("Cin must contain 8 numbers");
         
-        else if(C.cinisValid(id_p.getText()) )   cin_valid.setText("Accepted");
+        
+        if (C.cinisValid(id_p.getText()) )   cin_valid.setText("Accepted");
 
         if(nom_p.getText().isEmpty()){
-         
             canInscription = false;
-        }
+        } else nom_valid.setText("Accepted");
+
         if(prenom_p.getText().isEmpty()){
             canInscription = false;
-        }
-        if(email_p.getText().isEmpty()){
+        } else prenom_valid.setText("Accepted");
+
+        if(!C.emailisValid(email_p.getText())){
             canInscription = false;
-        }
+        } else email_valid.setText("Email is correct");
         if(pass_p.getText().isEmpty()){
+            
             canInscription = false;
-        }
-        if(tel_p.getText().isEmpty()){
+        } else pass_valid.setText("Accepted");
+        if(!C.cinisValid(tel_p.getText())){
             canInscription = false;
-        }
+        } else tel_valid.setText("Accepted");
         if(date_p.getValue().toString().isEmpty()){
             canInscription = false;
         }
+            else date_valid.setText("Accepted");
         if(sexe_p.getValue().toString().isEmpty()){
             canInscription = false;
-        }
+        } else             sex_valid.setText("Accepted");
         
 
        if(canInscription){
@@ -267,8 +266,7 @@ public class PosteurgestionController implements Initializable {
 
            Posteur P1= new Posteur(cin,nom,prenom,email,sexe,password,date,tel);
            PosteurService p = new PosteurService();
-              p.creerPosteur(P1);
-              JOptionPane.showMessageDialog(null, "Account Created Successfull");
+           p.creerPosteur(P1);
 
        }
        else
