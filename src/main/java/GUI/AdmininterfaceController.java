@@ -108,11 +108,11 @@ public class AdmininterfaceController implements Initializable {
 
     @FXML
     private void ajouterArticle(ActionEvent event) {
-        table.setItems(data);
-      nom.setCellValueFactory(new PropertyValueFactory <Article,String>("nom"));
-     cat.setCellValueFactory(new PropertyValueFactory <Article,String>("cat"));
-     dat.setCellValueFactory(new PropertyValueFactory <Article,String>("dat"));
-     sou.setCellValueFactory(new PropertyValueFactory <Article,String>("sou"));
+     table.setItems(data);
+      nom.setCellValueFactory(new PropertyValueFactory <Article,String>("nom_article"));
+     cat.setCellValueFactory(new PropertyValueFactory <Article,String>("categorie"));
+     dat.setCellValueFactory(new PropertyValueFactory <Article,String>("date_article"));
+     sou.setCellValueFactory(new PropertyValueFactory <Article,String>("source"));
         if(nomarticle.getText().isEmpty()){
            nomarticle.setVisible(true);
             canInscription = false;
@@ -146,6 +146,7 @@ public class AdmininterfaceController implements Initializable {
 
     @FXML
     private void afficherarticle(ActionEvent event) {
+        
     }
     
 }

@@ -55,7 +55,7 @@ public class Article {
         this.categorie = categorie;
     }
 
-    public void setSources(String source) {
+    public void setSources(String sources) {
         this.sources = sources;
     }
 
@@ -104,7 +104,8 @@ public class Article {
         this.descriptionarticle = descriptionarticle;
     }
 
-  
+   
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -114,11 +115,15 @@ public class Article {
             return false;
         }
         final Article other = (Article) obj;
-        if (!Objects.equals(this.nom_article, other.nom_article)) {
+        if (this.id != other.id) {
             return false;
         }
         return true;
     }
+
+  
+    
+    
 /*
     @Override
     public String toString() {
