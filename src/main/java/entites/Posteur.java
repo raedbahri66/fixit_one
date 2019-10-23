@@ -17,6 +17,10 @@ public class Posteur extends Personne{
     public Posteur() {
     }
 
+    public Posteur(int cin, String nom, String prenom, String email, Date date_naissance, int tel) {
+        super(cin, nom, prenom, email, date_naissance, tel);
+    }
+
     public Posteur( int id, int cin, String nom, String prenom, String email, String password, String sexe, Date date_naissance, int tel, String etat, String role) {
         super(id, cin, nom, prenom, email,  sexe, password, date_naissance, tel, etat);
         this.role = role;

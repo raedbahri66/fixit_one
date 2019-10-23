@@ -39,6 +39,16 @@ public class Personne {
         this.etat = etat;
     }
 
+    public Personne(int cin, String nom, String prenom, String email, Date date_naissance, int tel) {
+        this.cin = cin;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.date_naissance = date_naissance;
+        this.tel = tel;
+    }
+    
+
     public Personne(int cin, String nom, String prenom, String email, String sexe, String password, Date date_naissance, int tel, String etat) {
         this.cin = cin;
         this.nom = nom;
