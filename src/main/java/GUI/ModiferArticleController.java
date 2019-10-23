@@ -111,7 +111,7 @@ public class ModiferArticleController implements Initializable {
         // TODO
      Article a = new Article();
         
-       dateajout1.setValue(a.getDate_article().toLocalDate());
+     dateajout1.setValue(NOW_LOCAL_DATE());
       categories1.setValue("Bricolage");
       categories1.setItems(categoriesList);
       table_article.setItems(data);

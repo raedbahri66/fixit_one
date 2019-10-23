@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import static GUI.ModiferArticleController.NOW_LOCAL_DATE;
 import entites.Article;
 import entites.Service;
 import entites.Posteur;
@@ -12,8 +13,11 @@ import service.gestion_service;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -74,7 +78,12 @@ public class AdmininterfaceController implements Initializable {
     private DatePicker dateajout;
     @FXML
     private TextField source;
-
+    /****date de aujourdhui****/
+ public static final LocalDate NOW_LOCAL_DATE (){
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate localDate = LocalDate.parse(date , formatter);
+        return localDate;}
     /**
      * Initializes the controller class.
      */
@@ -91,6 +100,7 @@ public class AdmininterfaceController implements Initializable {
         ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteur();
         // TODO
         /******ayeeeeed***///
+         dateajout.setValue(NOW_LOCAL_DATE());
          categories.setValue("Bricolage");
       categories.setItems(categoriesList);
       table.setItems(data);
