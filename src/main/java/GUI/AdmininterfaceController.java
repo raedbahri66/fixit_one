@@ -158,7 +158,14 @@ public class AdmininterfaceController implements Initializable {
     }
     }
        @FXML
-    void Afficher_service(ActionEvent event) {
+    void Afficher_service(ActionEvent event)throws IOException {
+        Parent page = FXMLLoader.load(getClass().getResource("/fxml/Interface_afficher_service.fxml"));
+                Scene scene = new Scene(page);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
+        
 
     }
     @FXML

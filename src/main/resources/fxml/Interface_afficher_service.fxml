@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="723.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_afficher_serviceController">
+   <children>
+      <Label layoutX="123.0" layoutY="23.0" text="Liste des services" textFill="#2127a8">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Label>
+      <Button fx:id="Btn_modifier_service" layoutX="566.0" layoutY="300.0" mnemonicParsing="false" onAction="#Modifier_service" text="Modifier " />
+      <TableView fx:id="Table_service" layoutX="85.0" layoutY="87.0" onSort="#a" prefHeight="200.0" prefWidth="337.0">
+        <columns>
+          <TableColumn fx:id="Column_nom" prefWidth="75.0" text="Nom" />
+          <TableColumn fx:id="Column_description" prefWidth="261.0" text="Description" />
+            <TableColumn fx:id="Column_id" minWidth="0.0" prefWidth="0.0" text="id" visible="false" />
+        </columns>
+      </TableView>
+      <TextField fx:id="Label_nom1" layoutX="504.0" layoutY="87.0" prefHeight="25.0" prefWidth="189.0" />
+      <TextArea fx:id="Label_description1" layoutX="502.0" layoutY="136.0" prefHeight="120.0" prefWidth="189.0" />
+      <Label layoutX="504.0" layoutY="36.0" text="Modifier un Service" textFill="#3242b5">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Label_id" disable="true" layoutX="29.0" layoutY="343.0" prefHeight="26.0" prefWidth="78.0" visible="false" />
+      <Button fx:id="Btn_supprimer_service" layoutX="476.0" layoutY="300.0" mnemonicParsing="false" onAction="#SupprimerService" text="Supprimer" />
+   </children>
+</Pane>
