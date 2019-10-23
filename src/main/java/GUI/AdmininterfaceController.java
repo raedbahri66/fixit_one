@@ -6,6 +6,7 @@
 package GUI;
 
 import entites.Article;
+import entites.Posteur;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -30,6 +31,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import service.Articlegestion;
+import service.PosteurService;
 
 /**
  * FXML Controller class
@@ -70,6 +72,8 @@ public class AdmininterfaceController implements Initializable {
   observableArrayList("Bricolage","jardinage","informatique");
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+            PosteurService p= new PosteurService();
+        ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteur();
         // TODO
         /******ayeeeeed***///
          categories.setValue("Bricolage");
