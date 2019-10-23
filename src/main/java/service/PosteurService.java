@@ -192,6 +192,30 @@ try {
         
        return role; 
     }
+
+    @Override
+    public void modifierProfil(Posteur p) {
+        try {
+            String update = "UPDATE posteur SET  cin = ? , nom = ? , prenom = ? , email = ?, date_naissance = ? , tel = ? WHERE cin = ? ";
+            PreparedStatement st2 = c.prepareStatement(update);
+            st2.setInt(1, p.getCin());
+            st2.setString(2, p.getNom());
+            st2.setString(3, p.getPrenom());
+            st2.setString(4, p.getEmail());
+            st2.setDate(5, p.getDate_naissance());
+            st2.setInt(6, p.getTel());
+            st2.setInt(7, p.getCin());
+
+
+            st2.executeUpdate();
+            System.out.println("" + p.getCin() + " successfully modified!");
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            System.err.println("" + p.getCin() + " error modification!!");
+        }
+    
+    }
             
     
     

@@ -17,4 +17,6 @@ public interface iPosteur {
     public void modifierPosteur(Posteur p);
     public void supprimerPosteur(Posteur p);
     public List<Posteur> afficherPosteur();
+    public void modifierProfil(Posteur p);
+
 }
