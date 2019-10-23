@@ -122,7 +122,6 @@ try {
                       p.setPrenom(res.getString("prenom"));
                       p.setEmail(res.getString("email"));
                       p.setSexe(res.getString("sexe"));
-
                       p.setPassword(res.getString("password"));
                       p.setDate_naissance(res.getDate("date_naissance"));
                       p.setTel(res.getInt("tel"));

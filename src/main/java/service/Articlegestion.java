@@ -48,7 +48,7 @@ public class Articlegestion implements IArticle{
             try{ PreparedStatement ste = c.prepareStatement(req1);
             ste.setString(1,A.getNom_article());
             ste.setString(2,A.getDescriptionarticle());
-            ste.setString(3,A.getDate_article());
+             ste.setDate(3, (Date) A.getDate_article());
             ste.setString(4,A.getCategorie());
             ste.setString(5,A.getSources());
               ste.executeUpdate();
@@ -71,8 +71,8 @@ public class Articlegestion implements IArticle{
             ste.setInt(1,A.getId());
             ste.setString(2,A.getNom_article());
             ste.setString(3,A.getDescriptionarticle());
-            ste.setString(4,A.getDate_article());
-            ste.setString(5,A.getCategorie());
+            ste.setDate(5,A.getDate_article());
+            ste.setString(4,A.getCategorie());
             ste.setString(6,A.getSources());
             ste.setInt(7,A.getId());
             ste.executeUpdate();
@@ -81,7 +81,7 @@ public class Articlegestion implements IArticle{
         catch (SQLException ex) {
             System.out.println(ex.getMessage());
             System.err.println("" + A.getNom_article()+ " error modification!!");
-        }; //To change body of generated methods, choose Tools | Templates.
+        } //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -113,7 +113,7 @@ public class Articlegestion implements IArticle{
                 a.setId(res.getInt(1));
                 a.setNom_article(res.getString(2));
                 a.setDescriptionarticle(res.getString(3));
-                a.setDate_article(res.getString("date_article"));
+                a.setDate_article(res.getDate("date_article"));
                 a.setCategorie(res.getString("categorie"));
                 a.setSources(res.getString("source"));
  articles.add(a);  
