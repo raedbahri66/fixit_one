@@ -5,8 +5,10 @@
  */
 package GUI;
 
+import entites.Posteur;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import service.PosteurService;
 
 /**
  * FXML Controller class
@@ -55,6 +58,8 @@ public class AdmininterfaceController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+            PosteurService p= new PosteurService();
+        ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteur();
         // TODO
     }    
 
