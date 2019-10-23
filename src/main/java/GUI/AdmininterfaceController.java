@@ -6,7 +6,9 @@
 package GUI;
 
 import entites.Article;
+import entites.Service;
 import entites.Posteur;
+import service.gestion_service;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -21,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
@@ -39,6 +42,17 @@ import service.PosteurService;
  * @author lenovo
  */
 public class AdmininterfaceController implements Initializable {
+     @FXML
+    private Button Btn_ajouter_service;
+
+    @FXML
+    private TextArea Label_description;
+
+    @FXML
+    private TextField Label_nom;
+
+    @FXML
+    private Button Btn_afficher_service;
     @FXML
     private TableView <Article>table;
     @FXML
@@ -88,7 +102,7 @@ public class AdmininterfaceController implements Initializable {
 
     @FXML
     private void btn_posteurgestion(ActionEvent event) throws IOException {
-        Parent root=FXMLLoader.load(getClass().getResource("../fxml/Posteur_gestion.fxml"));
+        Parent root=FXMLLoader.load(getClass().getResource("/fxml/Posteur_gestion.fxml"));
         Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();
@@ -98,7 +112,7 @@ public class AdmininterfaceController implements Initializable {
 
     @FXML
     private void btn_jobeurgestion(ActionEvent event) throws IOException {
-        Parent root=FXMLLoader.load(getClass().getResource("../fxml/Jobeur_gestion.fxml"));
+        Parent root=FXMLLoader.load(getClass().getResource("/fxml/Jobeur_gestion.fxml"));
         Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();
@@ -142,6 +156,43 @@ public class AdmininterfaceController implements Initializable {
    Articlegestion a1=new Articlegestion();
    a1.ajouterArticle(a);
     }
+    }
+       @FXML
+    void Afficher_service(ActionEvent event)throws IOException {
+        Parent page = FXMLLoader.load(getClass().getResource("/fxml/Interface_afficher_service.fxml"));
+                Scene scene = new Scene(page);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
+        
+
+    }
+    @FXML
+    void ajouter_service(ActionEvent event) {
+        if(Label_nom.getText().isEmpty()){
+            canInscription = false;}
+        
+        if(Label_description.getText().isEmpty()){
+            canInscription = false;}
+        
+        
+        if(canInscription){
+            String NomService;
+        NomService = Label_nom.getText();
+        String Description = Label_description.getText();
+           Service S1= new Service(NomService,Description);
+           gestion_service g = new gestion_service();
+              g.creerService(S1);
+              JOptionPane.showMessageDialog(null, "Account Created Successfull");
+    }
+    else
+       {
+              JOptionPane.showMessageDialog(null, "Please fill all cases");
+                          canInscription = true;
+
+       }
+
     }
 
     @FXML

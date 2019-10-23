@@ -27,7 +27,7 @@ import service.PosteurService;
  * @author lenovo
  */
 public class AcceuilController implements Initializable {
-
+            
     @FXML
     private Button Btn_SignIn;
     @FXML
@@ -38,6 +38,8 @@ public class AcceuilController implements Initializable {
     private Button Btn_formulaire_posteur;
     @FXML
     private Button Btn_fromulaire_jobeur;
+
+    public static int cinlogin;
 
     /**
      * Initializes the controller class.
@@ -50,6 +52,7 @@ public class AcceuilController implements Initializable {
     @FXML
     private void Btn_SignIn(ActionEvent event) throws IOException {
      int cin = Integer.parseInt(label_UserName.getText());
+     cinlogin=cin;
      String password= Label_Password.getText();
      String role;
      PosteurService p = new PosteurService();

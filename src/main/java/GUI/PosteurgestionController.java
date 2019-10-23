@@ -34,6 +34,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javax.swing.JOptionPane;
+import service.ControleSaisie;
 import service.PosteurService;
 
 /**
@@ -163,16 +164,16 @@ public class PosteurgestionController implements Initializable {
         PosteurService p= new PosteurService();
         ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteur();
         ObservableList<Posteur> obs=FXCollections.observableArrayList(pers);
-        /*table_post.setItems(obs);
+        table_post.setItems(obs);
         c1_cinp.setCellValueFactory(new PropertyValueFactory<>("cin") );
         c2_nomp.setCellValueFactory(new PropertyValueFactory<>("nom") );
         c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
         c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
         c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
-        c_sexep.setCellValueFactory(new PropertyValueFactory<>("Sexe") );*/
+        c_sexep.setCellValueFactory(new PropertyValueFactory<>("Sexe") );
+      
         
-        
-/*    table_post.setOnMouseClicked((MouseEvent event) -> {
+    table_post.setOnMouseClicked((MouseEvent event) -> {
             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
                 Posteur p0 = new Posteur();
                p0=(Posteur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
@@ -192,7 +193,7 @@ public class PosteurgestionController implements Initializable {
                tabpane1.getSelectionModel().select(supp_posttab);
                 cinsupp_t.setText(Integer.toString(p0.getCin()));
             }
-        });*/
+        });
 
         
         // TODO
@@ -203,22 +204,33 @@ public class PosteurgestionController implements Initializable {
         PosteurService p= new PosteurService();
         ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteur();
         ObservableList<Posteur> obs=FXCollections.observableArrayList(pers);
-        /*table_post.getItems().clear();
+        table_post.getItems().clear();
         table_post.setItems(obs);
         c1_cinp.setCellValueFactory(new PropertyValueFactory<>("cin") );
         c2_nomp.setCellValueFactory(new PropertyValueFactory<>("nom") );
         c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
         c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
         c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
-        c_sexep.setCellValueFactory(new PropertyValueFactory<>("Sexe") );*/
+        c_sexep.setCellValueFactory(new PropertyValueFactory<>("Sexe") );
     }
 
     @FXML
     private void btn_ajouterposteur(ActionEvent event) {
-        if(id_p.getText().isEmpty()){
+        ControleSaisie C= new ControleSaisie();
+        if(!C.cinisValid(id_p.getText()) ){
+            cin_valid.setText("Cin must contain 8 numbers");
             canInscription = false;
         }
+            if(C.isCintUsed(Integer.parseInt(id_p.getText())))
+            {
+            canInscription = false;
+            cin_valid.setText("Cin is already used");
+            }
+        
+        else if(C.cinisValid(id_p.getText()) )   cin_valid.setText("Accepted");
+
         if(nom_p.getText().isEmpty()){
+         
             canInscription = false;
         }
         if(prenom_p.getText().isEmpty()){
