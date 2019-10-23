@@ -163,16 +163,16 @@ public class PosteurgestionController implements Initializable {
         PosteurService p= new PosteurService();
         ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteur();
         ObservableList<Posteur> obs=FXCollections.observableArrayList(pers);
-        /*table_post.setItems(obs);
+        table_post.setItems(obs);
         c1_cinp.setCellValueFactory(new PropertyValueFactory<>("cin") );
         c2_nomp.setCellValueFactory(new PropertyValueFactory<>("nom") );
         c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
         c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
         c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
-        c_sexep.setCellValueFactory(new PropertyValueFactory<>("Sexe") );*/
+        c_sexep.setCellValueFactory(new PropertyValueFactory<>("Sexe") );
+      
         
-        
-/*    table_post.setOnMouseClicked((MouseEvent event) -> {
+    table_post.setOnMouseClicked((MouseEvent event) -> {
             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
                 Posteur p0 = new Posteur();
                p0=(Posteur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
@@ -192,7 +192,7 @@ public class PosteurgestionController implements Initializable {
                tabpane1.getSelectionModel().select(supp_posttab);
                 cinsupp_t.setText(Integer.toString(p0.getCin()));
             }
-        });*/
+        });
 
         
         // TODO

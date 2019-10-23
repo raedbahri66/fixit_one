@@ -88,7 +88,7 @@ public class AdmininterfaceController implements Initializable {
 
     @FXML
     private void btn_posteurgestion(ActionEvent event) throws IOException {
-        Parent root=FXMLLoader.load(getClass().getResource("../fxml/Posteur_gestion.fxml"));
+        Parent root=FXMLLoader.load(getClass().getResource("/fxml/Posteur_gestion.fxml"));
         Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();
@@ -98,7 +98,7 @@ public class AdmininterfaceController implements Initializable {
 
     @FXML
     private void btn_jobeurgestion(ActionEvent event) throws IOException {
-        Parent root=FXMLLoader.load(getClass().getResource("../fxml/Jobeur_gestion.fxml"));
+        Parent root=FXMLLoader.load(getClass().getResource("/fxml/Jobeur_gestion.fxml"));
         Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();
