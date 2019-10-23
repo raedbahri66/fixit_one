@@ -5,9 +5,14 @@
  */
 package GUI;
 
+import entites.Article;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +26,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
+import service.Articlegestion;
 
 /**
  * FXML Controller class
@@ -30,21 +38,21 @@ import javafx.stage.Stage;
  */
 public class AdmininterfaceController implements Initializable {
     @FXML
-    private TableView<?> table;
+    private TableView <Article>table;
     @FXML
-    private TableColumn<?, ?> nom;
+    private TableColumn <Article,String> nom;
     @FXML
-    private TableColumn<?, ?> cat;
+    private TableColumn <Article,String>cat;
     @FXML
-    private TableColumn<?, ?> dat;
+    private TableColumn <Article,String>dat;
     @FXML
-    private TableColumn<?, ?> sou;
+    private TableColumn <Article,String>sou;
     @FXML
     private TextField nomarticle;
     @FXML
     private TextArea descriptionarticle;
     @FXML
-    private ChoiceBox<?> categories;
+    private ChoiceBox categories;
     @FXML
     private DatePicker dateajout;
     @FXML
@@ -53,9 +61,25 @@ public class AdmininterfaceController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    /**ayed**/
+  Boolean canInscription = true;
+  Articlegestion art = new Articlegestion();
+  ArrayList<Article> articles= (ArrayList<Article>) art.afficherArticle();  
+  public ObservableList<Article> data = FXCollections.observableArrayList(articles);
+  ObservableList<String> categoriesList= FXCollections.
+  observableArrayList("Bricolage","jardinage","informatique");
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        /******ayeeeeed***///
+         categories.setValue("Bricolage");
+      categories.setItems(categoriesList);
+      table.setItems(data);
+      nom.setCellValueFactory(new PropertyValueFactory <Article,String>("nom_article"));
+     cat.setCellValueFactory(new PropertyValueFactory <Article,String>("categorie"));
+     dat.setCellValueFactory(new PropertyValueFactory <Article,String>("date_article"));
+     sou.setCellValueFactory(new PropertyValueFactory <Article,String>("source"));
+  
     }    
 
     @FXML
@@ -80,6 +104,40 @@ public class AdmininterfaceController implements Initializable {
 
     @FXML
     private void ajouterArticle(ActionEvent event) {
+        table.setItems(data);
+      nom.setCellValueFactory(new PropertyValueFactory <Article,String>("nom"));
+     cat.setCellValueFactory(new PropertyValueFactory <Article,String>("cat"));
+     dat.setCellValueFactory(new PropertyValueFactory <Article,String>("dat"));
+     sou.setCellValueFactory(new PropertyValueFactory <Article,String>("sou"));
+        if(nomarticle.getText().isEmpty()){
+           nomarticle.setVisible(true);
+            canInscription = false;
+           JOptionPane.showMessageDialog (null,"il faut un nom pour l'article");
+        }
+         if(descriptionarticle.getText().isEmpty())
+         {
+            canInscription = false;
+           JOptionPane.showMessageDialog (null," ajouter voter article");
+        }
+         if(source.getText().isEmpty())
+         {
+            canInscription = false;
+           JOptionPane.showMessageDialog (null," remplire le champ source ");
+        }
+        
+        
+        if(canInscription){
+    String nom=nomarticle.getText();
+   String descriptionart=descriptionarticle.getText();
+   LocalDate date_article =dateajout.getValue();
+   String date = date_article.toString();
+   String sources= source.getText();
+   String categorie=(String) categories.getValue();
+   
+   Article a = new Article(nom,descriptionart,date,categorie,sources);
+   Articlegestion a1=new Articlegestion();
+   a1.ajouterArticle(a);
+    }
     }
 
     @FXML
