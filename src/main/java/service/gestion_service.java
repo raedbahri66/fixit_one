@@ -122,14 +122,7 @@ public class gestion_service  implements IService{
      // TODO
     }    
     
-       public List<Service> Remplirliste_vide() {
-        
-               List<Service> service_vide = new ArrayList<>();
-               Service a = new Service() ;
-               service_vide.add(a);
-return service_vide;    
-    
-}
+      
   }
         
     

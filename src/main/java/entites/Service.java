@@ -13,9 +13,7 @@ import javafx.scene.control.TextField;
  */
 public class Service {
 
-    public static void add(Service a) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
     private String nom_service;
     private String description_service;
     private String id;

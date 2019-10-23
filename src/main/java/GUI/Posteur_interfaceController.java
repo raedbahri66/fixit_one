@@ -7,16 +7,26 @@ package GUI;
 
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
 import entites.Posteur;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import service.PosteurService;
 
@@ -26,6 +36,10 @@ import service.PosteurService;
  * @author lenovo
  */
 public class Posteur_interfaceController implements Initializable {
+    
+    @FXML
+    private Button Btn_electricite;
+    
 
     @FXML
     private Label nomp_1;
@@ -47,6 +61,16 @@ public class Posteur_interfaceController implements Initializable {
     private TextField tf_tel1;
     @FXML
     private DatePicker df_date1;
+    @FXML
+    void Electricite(ActionEvent event) throws IOException {
+         Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service.fxml"));
+        Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();  
+
+    }
     
     public boolean canModif=true;
     /**

@@ -72,18 +72,14 @@ public class Interface_afficher_serviceController implements Initializable {
     /**
      * Initializes the controller class.
      */
-   /* public void ActualiserTab_service()
-    { 
+    public void ActualiserTab_service()
+    {        data.clear();
+             gs.afficherService();
+         ArrayList Service = (ArrayList)gs.afficherService(); 
+        data= FXCollections.observableArrayList(Service);
+        Table_service.setItems(data);
       
-       
-      gs.Remplirliste_vide();
-      Table_service.setItems(data1);
-     Column_nom.setCellValueFactory(new PropertyValueFactory <Service,String>("nom_service"));
-      Column_description.setCellValueFactory(new PropertyValueFactory <Service,String>("description_service"));
-      Column_id.setCellValueFactory(new PropertyValueFactory <Service,String>("id"));
-      
-      
-    }*/
+    }
     public void afficherTab_service()
     {
         
@@ -96,10 +92,10 @@ public class Interface_afficher_serviceController implements Initializable {
     }
     gestion_service gs = new gestion_service();
     ArrayList service= (ArrayList) gs.afficherService();
-    ArrayList service_vide= (ArrayList) gs.Remplirliste_vide();
+    
     
     public ObservableList data = FXCollections.observableArrayList(service);
-    public ObservableList data1 = FXCollections.observableArrayList(service_vide);
+ 
     
     public void a() {
      Table_service.setOnMouseClicked(new EventHandler<MouseEvent>()
@@ -141,7 +137,7 @@ public class Interface_afficher_serviceController implements Initializable {
                     JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
                  if(canInscription)
                  gs.modifierService(S);
-                 //ActualiserTab_service();
+                 ActualiserTab_service();
                  
                  
                 
@@ -180,8 +176,8 @@ public class Interface_afficher_serviceController implements Initializable {
          
               
              gs.supprimerService(S);
-             //ActualiserTab_service();
-             //afficherTab_service();
+             ActualiserTab_service();
+            
              
              
              JOptionPane.showMessageDialog(null,"le Service est supprimé !");
