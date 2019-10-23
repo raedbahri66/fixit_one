@@ -15,6 +15,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -23,6 +29,26 @@ import javafx.stage.Stage;
  * @author lenovo
  */
 public class AdmininterfaceController implements Initializable {
+    @FXML
+    private TableView<?> table;
+    @FXML
+    private TableColumn<?, ?> nom;
+    @FXML
+    private TableColumn<?, ?> cat;
+    @FXML
+    private TableColumn<?, ?> dat;
+    @FXML
+    private TableColumn<?, ?> sou;
+    @FXML
+    private TextField nomarticle;
+    @FXML
+    private TextArea descriptionarticle;
+    @FXML
+    private ChoiceBox<?> categories;
+    @FXML
+    private DatePicker dateajout;
+    @FXML
+    private TextField source;
 
     /**
      * Initializes the controller class.
@@ -44,6 +70,14 @@ public class AdmininterfaceController implements Initializable {
 
     @FXML
     private void btn_jobeurgestion(ActionEvent event) {
+    }
+
+    @FXML
+    private void ajouterArticle(ActionEvent event) {
+    }
+
+    @FXML
+    private void afficherarticle(ActionEvent event) {
     }
     
 }
