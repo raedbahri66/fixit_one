@@ -82,7 +82,7 @@ public class AdmininterfaceController implements Initializable {
       nom.setCellValueFactory(new PropertyValueFactory <Article,String>("nom_article"));
      cat.setCellValueFactory(new PropertyValueFactory <Article,String>("categorie"));
      dat.setCellValueFactory(new PropertyValueFactory <Article,String>("date_article"));
-     sou.setCellValueFactory(new PropertyValueFactory <Article,String>("source"));
+     sou.setCellValueFactory(new PropertyValueFactory <Article,String>("sources"));
   
     }    
 
@@ -109,7 +109,7 @@ public class AdmininterfaceController implements Initializable {
     @FXML
     private void ajouterArticle(ActionEvent event) {
      table.setItems(data);
-      nom.setCellValueFactory(new PropertyValueFactory <Article,String>("nom_article"));
+     nom.setCellValueFactory(new PropertyValueFactory <Article,String>("nom_article"));
      cat.setCellValueFactory(new PropertyValueFactory <Article,String>("categorie"));
      dat.setCellValueFactory(new PropertyValueFactory <Article,String>("date_article"));
      sou.setCellValueFactory(new PropertyValueFactory <Article,String>("source"));
@@ -145,8 +145,15 @@ public class AdmininterfaceController implements Initializable {
     }
 
     @FXML
-    private void afficherarticle(ActionEvent event) {
-        
+    private void afficherarticle(ActionEvent event) throws IOException {
+       
+        Parent page = FXMLLoader.load(getClass().getResource("/fxml/modifierArticle.fxml"));
+                Scene scene = new Scene(page);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
+    }
     }
     
-}
+

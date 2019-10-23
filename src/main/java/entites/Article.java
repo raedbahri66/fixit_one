@@ -24,6 +24,15 @@ public class Article {
       public Article() {
     }
 
+    public Article(int id, String nom_article, String descriptionarticle, String date_article, String categorie, String sources) {
+        this.id = id;
+        this.nom_article = nom_article;
+        this.descriptionarticle = descriptionarticle;
+        this.date_article = date_article;
+        this.categorie = categorie;
+        this.sources = sources;
+    }
+ 
     public void setDate_article(String date_article) {
         this.date_article = date_article;
     }
@@ -35,21 +44,15 @@ public class Article {
         this.categorie = categorie;
         this.sources = sources;
     }
-    
+    /*
     public Article(String nom_article, String date_article, String categorie, String sources) {
         this.nom_article = nom_article;
         this.date_article = date_article;
         this.categorie = categorie;
         this.sources = sources;
-    }
+    }*/
 
-    public Article(int id, String nom_article, String descriptionarticle, String date_article, String sources) {
-        this.id = id;
-        this.nom_article = nom_article;
-        this.descriptionarticle = descriptionarticle;
-        this.date_article = date_article;
-        this.sources = sources;
-    }
+ 
 
     public void setCategorie(String categorie) {
         this.categorie = categorie;
@@ -74,8 +77,8 @@ public class Article {
     }
          
 
-    public Article(String nom_article) {
-        this.nom_article = nom_article;
+    public Article(int id) {
+        this.id= id;
     }
 
   

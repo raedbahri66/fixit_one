@@ -60,7 +60,7 @@ public class AcceuilController implements Initializable {
     }
     else
     {
-    Parent root=FXMLLoader.load(getClass().getResource("../GUI/"+role+".fxml"));
+    Parent root=FXMLLoader.load(getClass().getResource("/fxml/"+role+".fxml"));
         Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();
