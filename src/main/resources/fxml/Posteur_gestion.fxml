@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<TabPane fx:id="tabpane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="775.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PosteurgestionController">
+  <tabs>
+    <Tab text="List Posteurs">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="table_post" layoutX="14.0" layoutY="23.0" prefHeight="433.0" prefWidth="666.0">
+                    <columns>
+                      <TableColumn fx:id="c1_cinp" prefWidth="91.0" text="Identifiant" />
+                      <TableColumn fx:id="c2_nomp" prefWidth="94.0" text="Nom" />
+                        <TableColumn fx:id="c3_prenomp" prefWidth="91.0" text="Prenom" />
+                        <TableColumn fx:id="c4_emailp" prefWidth="178.0" text="Email" />
+                        <TableColumn fx:id="c5_telp" minWidth="0.0" prefWidth="114.0" text="Telephone" />
+                        <TableColumn fx:id="c_sexep" prefWidth="97.0" text="Sexe" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="680.0" layoutY="23.0" mnemonicParsing="false" onAction="#btn_actualiser" prefHeight="31.0" prefWidth="85.0" text="Actualiser" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Ajouter Posteur">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="55.0" layoutY="41.0" text="Identifiant(Cin):" />
+                  <Label layoutX="56.0" layoutY="79.0" text="Nom:" />
+                  <Label layoutX="56.0" layoutY="116.0" text="Prenom:" />
+                  <Label layoutX="57.0" layoutY="160.0" text="Email" />
+                  <Label layoutX="59.0" layoutY="241.0" text="Sexe:" />
+                  <Label layoutX="56.0" layoutY="199.0" text="Mot de Passe:" />
+                  <Label layoutX="57.0" layoutY="287.0" text="Date de naissance :" />
+                  <Label layoutX="57.0" layoutY="331.0" text="Telephone:" />
+                  <TextField fx:id="id_p" layoutX="213.0" layoutY="36.0" />
+                  <TextField fx:id="nom_p" layoutX="213.0" layoutY="74.0" />
+                  <TextField fx:id="prenom_p" layoutX="213.0" layoutY="111.0" />
+                  <TextField fx:id="email_p" layoutX="213.0" layoutY="155.0" />
+                  <TextField fx:id="tel_p" layoutX="213.0" layoutY="326.0" />
+                  <PasswordField fx:id="pass_p" layoutX="213.0" layoutY="194.0" />
+                  <ComboBox fx:id="sexe_p" layoutX="213.0" layoutY="236.0" prefHeight="31.0" prefWidth="186.0" />
+                  <DatePicker fx:id="date_p" layoutX="216.0" layoutY="282.0" prefHeight="31.0" prefWidth="185.0" />
+                  <Button layoutX="290.0" layoutY="399.0" mnemonicParsing="false" onAction="#btn_ajouterposteur" prefHeight="44.0" prefWidth="111.0" text="Ajouter">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="cin_valid" layoutX="432.0" layoutY="41.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+                  <Label fx:id="nom_valid" layoutX="432.0" layoutY="76.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+                  <Label fx:id="sex_valid" layoutX="432.0" layoutY="238.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+                  <Label fx:id="pass_valid" layoutX="432.0" layoutY="196.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+                  <Label fx:id="email_valid" layoutX="432.0" layoutY="157.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+                  <Label fx:id="prenom_valid" layoutX="432.0" layoutY="113.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+                  <Label fx:id="tel_valid" layoutX="432.0" layoutY="328.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+                  <Label fx:id="date_valid" layoutX="432.0" layoutY="284.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab fx:id="modif_posttab" text="Modifier Posteur">
+         <content>
+            <AnchorPane fx:id="ancho_modifp" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="55.0" layoutY="41.0" text="Identifiant(Cin):" />
+                  <Label layoutX="56.0" layoutY="79.0" text="Nom:" />
+                  <Label layoutX="56.0" layoutY="116.0" text="Prenom:" />
+                  <Label layoutX="57.0" layoutY="160.0" text="Email" />
+                  <Label layoutX="59.0" layoutY="241.0" text="Sexe:" />
+                  <Label layoutX="56.0" layoutY="199.0" text="Mot de Passe:" />
+                  <Label layoutX="57.0" layoutY="287.0" text="Date de naissance :" />
+                  <Label layoutX="57.0" layoutY="331.0" text="Telephone:" />
+                  <TextField fx:id="id_p1" layoutX="213.0" layoutY="36.0" />
+                  <TextField fx:id="nom_p1" layoutX="213.0" layoutY="74.0" />
+                  <TextField fx:id="prenom_p1" layoutX="213.0" layoutY="111.0" />
+                  <TextField fx:id="email_p1" layoutX="213.0" layoutY="155.0" />
+                  <TextField fx:id="tel_p1" layoutX="213.0" layoutY="326.0" />
+                  <PasswordField fx:id="pass_p1" layoutX="213.0" layoutY="194.0" />
+                  <ComboBox fx:id="sexe_p1" layoutX="213.0" layoutY="236.0" prefHeight="31.0" prefWidth="186.0" />
+                  <DatePicker fx:id="date_p1" layoutX="216.0" layoutY="282.0" prefHeight="31.0" prefWidth="185.0" />
+                  <Button layoutX="290.0" layoutY="399.0" mnemonicParsing="false" onAction="#btn_modifposteur" prefHeight="44.0" prefWidth="111.0" text="Modifier">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="cin_valid1" layoutX="432.0" layoutY="41.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+                  <Label fx:id="nom_valid1" layoutX="432.0" layoutY="76.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+                  <Label fx:id="sex_valid1" layoutX="432.0" layoutY="238.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+                  <Label fx:id="pass_valid1" layoutX="432.0" layoutY="196.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+                  <Label fx:id="email_valid1" layoutX="432.0" layoutY="157.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+                  <Label fx:id="prenom_valid1" layoutX="432.0" layoutY="113.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+                  <Label fx:id="tel_valid1" layoutX="432.0" layoutY="328.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+                  <Label fx:id="date_valid1" layoutX="432.0" layoutY="284.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+                  <Button layoutX="591.0" layoutY="40.0" mnemonicParsing="false" onAction="#btn_rechercher" text="Rechercher" />
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab fx:id="supp_posttab" text="Supprimer Posteur">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="45.0" layoutY="42.0" text="Identifiant(CIN) :">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="cinsupp_t" layoutX="258.0" layoutY="45.0" prefHeight="31.0" prefWidth="209.0" />
+                  <Label fx:id="nom_valid11" layoutX="507.0" layoutY="45.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+                  <Button layoutX="291.0" layoutY="94.0" mnemonicParsing="false" onAction="#btn_supprposteur" prefHeight="40.0" prefWidth="128.0" text="Supprimer">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+  </tabs>
+</TabPane>
