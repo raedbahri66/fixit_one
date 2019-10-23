@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="767.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ModiferArticleController">
+  <tabs>
+    <Tab text="gestion Article">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="407.0" prefWidth="653.0">
+               <children>
+                  <TableView fx:id="table_article" layoutX="316.0" layoutY="73.0" prefHeight="229.0" prefWidth="451.0">
+                     <columns>
+                        <TableColumn fx:id="id1" prefWidth="38.0" text="Id" visible="false" />
+                        <TableColumn fx:id="nom_art" prefWidth="64.0" text="Nom" />
+                        <TableColumn fx:id="descr_art" prefWidth="81.0" text="Description" />
+                        <TableColumn fx:id="cat1" prefWidth="102.0" text="Categorie" />
+                        <TableColumn fx:id="dat1" minWidth="0.0" text="date ajout" />
+                        <TableColumn fx:id="sou1" prefWidth="85.0" text="source" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="14.0" layoutY="56.0" text="Nom Article :">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="9.0" layoutY="102.0" text="Description :">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="217.0" text="Catégorie :">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="6.0" layoutY="265.0" text="Date d'ajout :">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="22.0" layoutY="316.0" prefHeight="19.0" prefWidth="50.0" text="Source :">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="nomarticle1" layoutX="105.0" layoutY="54.0" prefHeight="25.0" prefWidth="174.0" />
+                  <TextArea fx:id="descriptionarticle1" layoutX="105.0" layoutY="96.0" prefHeight="91.0" prefWidth="174.0" />
+                  <ChoiceBox fx:id="categories1" layoutX="105.0" layoutY="215.0" prefHeight="25.0" prefWidth="174.0" />
+                  <DatePicker fx:id="dateajout1" layoutX="105.0" layoutY="263.0" />
+                  <TextField fx:id="source1" layoutX="105.0" layoutY="314.0" prefHeight="25.0" prefWidth="174.0" />
+                  <Label layoutX="397.0" layoutY="14.0" text="Liste des articles " textFill="#2127a8">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="id_article" layoutX="105.0" layoutY="378.0" visible="false" />
+                  <Button layoutX="72.0" layoutY="440.0" mnemonicParsing="false" onAction="#modifierarticle" prefHeight="25.0" prefWidth="127.0" text="Modifier" />
+                  <Button layoutX="232.0" layoutY="440.0" mnemonicParsing="false" onAction="#supprimerarticle" prefHeight="25.0" prefWidth="120.0" text="Supprimer" />
+                  <Button layoutX="542.0" layoutY="440.0" mnemonicParsing="false" onAction="#retour" prefHeight="25.0" prefWidth="105.0" text="retour" />
+                  <Button layoutX="424.0" layoutY="440.0" mnemonicParsing="false" onAction="#actualiser" text="actualiser" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>

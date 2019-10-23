@@ -333,7 +333,6 @@ public class PosteurgestionController implements Initializable {
         String prenom= prenom_p1.getText();
         String email= email_p1.getText();
         String sexe= (String) sexe_p1.getValue();
-
         int tel= Integer.parseInt(tel_p1.getText());
         String password= pass_p1.getText();
         LocalDate locald = date_p1.getValue();

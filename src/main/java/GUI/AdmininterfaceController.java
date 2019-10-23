@@ -5,14 +5,19 @@
  */
 package GUI;
 
+import static GUI.ModiferArticleController.NOW_LOCAL_DATE;
 import entites.Article;
 import entites.Service;
 import entites.Posteur;
 import service.gestion_service;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -54,15 +59,15 @@ public class AdmininterfaceController implements Initializable {
     @FXML
     private Button Btn_afficher_service;
     @FXML
-    private TableView <Article>table;
+    private TableView table;
     @FXML
-    private TableColumn <Article,String> nom;
+    private TableColumn <?,?> nom;
     @FXML
-    private TableColumn <Article,String>cat;
+    private TableColumn <?,?>cat;
     @FXML
-    private TableColumn <Article,String>dat;
+    private TableColumn <?,?>dat;
     @FXML
-    private TableColumn <Article,String>sou;
+    private TableColumn <?,?>sou;
     @FXML
     private TextField nomarticle;
     @FXML
@@ -73,7 +78,12 @@ public class AdmininterfaceController implements Initializable {
     private DatePicker dateajout;
     @FXML
     private TextField source;
-
+    /****date de aujourdhui****/
+ public static final LocalDate NOW_LOCAL_DATE (){
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate localDate = LocalDate.parse(date , formatter);
+        return localDate;}
     /**
      * Initializes the controller class.
      */
@@ -90,13 +100,14 @@ public class AdmininterfaceController implements Initializable {
         ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteur();
         // TODO
         /******ayeeeeed***///
+         dateajout.setValue(NOW_LOCAL_DATE());
          categories.setValue("Bricolage");
       categories.setItems(categoriesList);
       table.setItems(data);
-      nom.setCellValueFactory(new PropertyValueFactory <Article,String>("nom_article"));
-     cat.setCellValueFactory(new PropertyValueFactory <Article,String>("categorie"));
-     dat.setCellValueFactory(new PropertyValueFactory <Article,String>("date_article"));
-     sou.setCellValueFactory(new PropertyValueFactory <Article,String>("source"));
+      nom.setCellValueFactory(new PropertyValueFactory <>("nom_article"));
+     cat.setCellValueFactory(new PropertyValueFactory <>("categorie"));
+     dat.setCellValueFactory(new PropertyValueFactory <>("date_article"));
+     sou.setCellValueFactory(new PropertyValueFactory <>("sources"));
   
     }    
 
@@ -122,11 +133,7 @@ public class AdmininterfaceController implements Initializable {
 
     @FXML
     private void ajouterArticle(ActionEvent event) {
-        table.setItems(data);
-      nom.setCellValueFactory(new PropertyValueFactory <Article,String>("nom"));
-     cat.setCellValueFactory(new PropertyValueFactory <Article,String>("cat"));
-     dat.setCellValueFactory(new PropertyValueFactory <Article,String>("dat"));
-     sou.setCellValueFactory(new PropertyValueFactory <Article,String>("sou"));
+    
         if(nomarticle.getText().isEmpty()){
            nomarticle.setVisible(true);
             canInscription = false;
@@ -148,14 +155,24 @@ public class AdmininterfaceController implements Initializable {
     String nom=nomarticle.getText();
    String descriptionart=descriptionarticle.getText();
    LocalDate date_article =dateajout.getValue();
-   String date = date_article.toString();
+   Date date = Date.valueOf(date_article);
    String sources= source.getText();
    String categorie=(String) categories.getValue();
    
    Article a = new Article(nom,descriptionart,date,categorie,sources);
    Articlegestion a1=new Articlegestion();
    a1.ajouterArticle(a);
+  
     }
+      Articlegestion art = new Articlegestion();
+    ArrayList<Article> articles= (ArrayList<Article>) art.afficherArticle();  
+    ObservableList<Article> data = FXCollections.observableArrayList(articles);
+     table.getItems().clear();
+     table.setItems(data);
+     nom.setCellValueFactory(new PropertyValueFactory <>("nom_article"));
+     cat.setCellValueFactory(new PropertyValueFactory <>("categorie"));
+     dat.setCellValueFactory(new PropertyValueFactory <>("date_article"));
+     sou.setCellValueFactory(new PropertyValueFactory <>("sources"));
     }
        @FXML
     void Afficher_service(ActionEvent event)throws IOException {
@@ -196,7 +213,15 @@ public class AdmininterfaceController implements Initializable {
     }
 
     @FXML
-    private void afficherarticle(ActionEvent event) {
+    private void afficherarticle(ActionEvent event) throws IOException {
+       
+        Parent page = FXMLLoader.load(getClass().getResource("/fxml/modifierArticle.fxml"));
+                Scene scene = new Scene(page);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
+    }
     }
     
-}
+
