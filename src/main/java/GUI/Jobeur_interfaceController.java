@@ -65,14 +65,15 @@ public class Jobeur_interfaceController implements Initializable {
     private TableColumn<?, ?> prenomjoubeurechanges;
 
     @FXML
-    private TableColumn<?, ?> nomechange;
+    private TableColumn<?, ?> nom_echange;
 
     @FXML
     private TableView<?> tablemonechange;
 
     @FXML
     private TableColumn<?, ?> idechange;
-
+    
+    
     @FXML
     private TableColumn<?, ?> Descriptionechange;
 
