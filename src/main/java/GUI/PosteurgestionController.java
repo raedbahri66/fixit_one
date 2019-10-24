@@ -6,6 +6,7 @@
 package GUI;
 
 import entites.Posteur;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -19,7 +20,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -33,6 +38,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import service.ControleSaisie;
 import service.PosteurService;
@@ -389,6 +395,16 @@ public class PosteurgestionController implements Initializable {
             //}
         });
     }*/
+
+    @FXML
+    private void logout_bt(ActionEvent event) throws IOException {
+        Parent root=FXMLLoader.load(getClass().getResource("/fxml/acceuil.fxml"));
+        Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
+    }
  
     
 }

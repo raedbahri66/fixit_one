@@ -29,7 +29,8 @@
                         <TableColumn fx:id="c_sexep" prefWidth="97.0" text="Sexe" />
                     </columns>
                   </TableView>
-                  <Button layoutX="680.0" layoutY="23.0" mnemonicParsing="false" onAction="#btn_actualiser" prefHeight="31.0" prefWidth="85.0" text="Actualiser" />
+                  <Button layoutX="680.0" layoutY="62.0" mnemonicParsing="false" onAction="#btn_actualiser" prefHeight="31.0" prefWidth="85.0" text="Actualiser" />
+                  <Button layoutX="696.0" layoutY="8.0" mnemonicParsing="false" onAction="#logout_bt" text="logout" />
                </children></AnchorPane>
       </content>
     </Tab>

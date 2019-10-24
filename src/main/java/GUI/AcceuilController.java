@@ -42,10 +42,6 @@ public class AcceuilController implements Initializable {
     private TextField label_UserName;
     @FXML
     private TextField Label_Password;
-    @FXML
-    private Button Btn_formulaire_posteur;
-    @FXML
-    private Button Btn_fromulaire_jobeur;
 
     public static int cinlogin;
     @FXML
@@ -102,6 +98,30 @@ public class AcceuilController implements Initializable {
                 stage.setScene(scene);
                 stage.show();        
     }
+    }
+
+    @FXML
+    private void Btn_formulaire_posteur(ActionEvent event) throws IOException {
+            Parent root=FXMLLoader.load(getClass().getResource("/fxml/InscrirePosteur.fxml"));
+        Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
+    }
+
+    @FXML
+    private void Btn_fromulaire_jobeur(ActionEvent event) {
+    }
+
+    @FXML
+    private void retour_bt(ActionEvent event) throws IOException {
+        Parent root=FXMLLoader.load(getClass().getResource("/fxml/acceuil.fxml"));
+        Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
     }
 
     
