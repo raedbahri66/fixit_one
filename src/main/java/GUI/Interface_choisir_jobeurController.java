@@ -5,18 +5,30 @@
  */
 package GUI;
 
+import static GUI.AcceuilController.A1;
+import entites.Article;
 import entites.Jobeur;
 import entites.Service;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import service.Gestion_tableau_jobeur;
 import service.gestion_service;
 
@@ -44,6 +56,9 @@ public class Interface_choisir_jobeurController implements Initializable {
     private TableColumn<Jobeur,Integer> Column_tel;
     @FXML
     private TableColumn<Jobeur,String> Column_job;
+    @FXML
+    private TableColumn<Jobeur,Integer> column_cin;
+  
 
     /**
      * Initializes the controller class.
@@ -51,16 +66,19 @@ public class Interface_choisir_jobeurController implements Initializable {
      public void afficherTab_service()
     {
         
-        gt.afficherJobeur();
-        Table_Jobeur.setItems(data);
+     gt.afficherJobeur();
+     Table_Jobeur.setItems(data);
      Column_nomj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("nom"));
      Column_prenomj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("prenom"));
      Column_emailj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("email"));
      Column_sexej.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("sexe"));
      Column_tel.setCellValueFactory(new PropertyValueFactory <Jobeur,Integer>("tel"));
      Column_job.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("job"));
+     column_cin.setCellValueFactory(new PropertyValueFactory <Jobeur,Integer>("cin"));
+
    
     }
+     public static Jobeur j1;
      
      Gestion_tableau_jobeur gt = new Gestion_tableau_jobeur();
     ArrayList jobeur= (ArrayList) gt.afficherJobeur();
@@ -70,7 +88,27 @@ public class Interface_choisir_jobeurController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         afficherTab_service();
+        Table_Jobeur.setOnMouseClicked((MouseEvent event) -> {
+            if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
+         Jobeur A=new Jobeur();
+          A = (Jobeur) Table_Jobeur.getItems().get(Table_Jobeur.getSelectionModel().getSelectedIndex());
+         j1=A;
+          Parent root = null;
+                System.out.println(A);
+                try {
+                    root = FXMLLoader.load(getClass().getResource("/fxml/affiche_profilJobeur.fxml"));
+                } catch (IOException ex) {
+                    Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show(); 
+                
+         }});
+    }
         // TODO
     }    
     
-}
+

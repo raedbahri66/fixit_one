@@ -39,12 +39,12 @@ public class Gestion_tableau_jobeur {
                 
             
      
-      try {String req="select * from jobeur ";
+      try {String req="select * from jobeur";
           PreparedStatement ste = c.prepareStatement(req);
           ResultSet res= ste.executeQuery(req);
           while (res.next()) { 
                Jobeur a = new Jobeur() ;
-               
+                a.setCin(res.getInt("cin"));
                 a.setNom(res.getString("nom"));
                 a.setPrenom(res.getString("prenom"));
                 a.setEmail(res.getString("email"));

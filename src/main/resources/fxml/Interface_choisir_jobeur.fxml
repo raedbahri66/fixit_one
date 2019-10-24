@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_choisir_jobeurController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_choisir_jobeurController">
    <children>
       <TableView fx:id="Table_Jobeur" prefHeight="400.0" prefWidth="600.0">
         <columns>
@@ -14,6 +14,7 @@
             <TableColumn fx:id="Column_sexej" prefWidth="75.0" text="Sexe" />
             <TableColumn fx:id="Column_tel" prefWidth="101.0" text="Num télephone" />
             <TableColumn fx:id="Column_job" prefWidth="110.0" text="Spécialité" />
+            <TableColumn fx:id="column_cin" prefWidth="75.0" text="Cin" />
         </columns>
       </TableView>
    </children>
