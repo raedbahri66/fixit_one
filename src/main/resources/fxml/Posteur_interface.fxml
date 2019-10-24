@@ -21,66 +21,78 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="Btn_electricite" layoutX="85.0" layoutY="154.0" mnemonicParsing="false" onAction="#Electricite" text="Electricité">
+                  <Button fx:id="Btn_electricite" layoutX="24.0" layoutY="16.0" mnemonicParsing="false" onAction="#Electricite">
                      <font>
                         <Font size="14.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="129.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/Electricite.JPG" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button layoutX="90.0" layoutY="329.0" mnemonicParsing="false" text="Ménage">
+                  <Button layoutX="20.0" layoutY="181.0" mnemonicParsing="false">
                      <font>
                         <Font size="14.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="132.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/Ménage.JPG" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button layoutX="251.0" layoutY="154.0" mnemonicParsing="false" text="Plomberie">
+                  <Button layoutX="213.0" layoutY="16.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="184.0">
                      <font>
                         <Font size="14.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="167.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/Plomberie.JPG" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button layoutX="250.0" layoutY="328.0" mnemonicParsing="false" text="Peinture d'intérieur">
+                  <Button layoutX="222.0" layoutY="185.0" mnemonicParsing="false">
                      <font>
                         <Font size="14.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="125.0" fitWidth="187.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/Peinture.JPG" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button layoutX="451.0" layoutY="328.0" mnemonicParsing="false" text="Conciergerie">
+                  <Button layoutX="429.0" layoutY="180.0" mnemonicParsing="false">
                      <font>
                         <Font size="14.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="131.0" fitWidth="186.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/Conciergerie.JPG" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button layoutX="449.0" layoutY="153.0" mnemonicParsing="false" text="Jardinage">
+                  <Button layoutX="417.0" layoutY="16.0" mnemonicParsing="false">
                      <font>
                         <Font size="14.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="130.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/Jardinage.JPG" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <ImageView fitHeight="129.0" fitWidth="185.0" layoutX="41.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Image/Electricite.JPG" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="167.0" fitWidth="172.0" layoutX="224.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Image/Plomberie.JPG" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="130.0" fitWidth="185.0" layoutX="403.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Image/Jardinage.JPG" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="132.0" fitWidth="177.0" layoutX="37.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Image/Ménage.JPG" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="125.0" fitWidth="187.0" layoutX="220.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Image/Peinture.JPG" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="131.0" fitWidth="186.0" layoutX="413.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Image/Conciergerie.JPG" />
-                     </image>
-                  </ImageView>
                </children></AnchorPane>
       </content>
     </Tab>
