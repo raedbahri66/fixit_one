@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="717.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdmininterfaceController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="717.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdmininterfaceController">
   <tabs>
     <Tab text="Gestion User">
       <content>
@@ -63,14 +63,14 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="209.0" layoutY="116.0" prefHeight="25.0" prefWidth="179.0" />
-                  <TextArea layoutX="209.0" layoutY="160.0" prefHeight="116.0" prefWidth="182.0" />
-                  <Button layoutX="220.0" layoutY="284.0" mnemonicParsing="false" text="Ajouter ce Service">
+                  <TextField fx:id="Label_nom" layoutX="209.0" layoutY="116.0" prefHeight="25.0" prefWidth="179.0" />
+                  <TextArea fx:id="Label_description" layoutX="209.0" layoutY="160.0" prefHeight="116.0" prefWidth="182.0" />
+                  <Button fx:id="Btn_ajouter_service" layoutX="220.0" layoutY="284.0" mnemonicParsing="false" onAction="#ajouter_service" text="Ajouter ce Service">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="380.0" layoutY="284.0" mnemonicParsing="false" text="Afficher les Services existant">
+                  <Button fx:id="Btn_afficher_service" layoutX="380.0" layoutY="284.0" mnemonicParsing="false" onAction="#Afficher_service" text="Afficher les Services existant">
                      <font>
                         <Font size="14.0" />
                      </font>
