@@ -25,14 +25,14 @@
                         <Image url="@../Image/bricolage-810x540.jpg" />
                      </image>
                   </ImageView>
-                  <TableView fx:id="table_article" layoutX="315.0" layoutY="298.0" prefHeight="150.0" prefWidth="411.0">
+                  <TableView fx:id="table_article" layoutX="191.0" layoutY="296.0" prefHeight="160.0" prefWidth="541.0">
                      <columns>
                         <TableColumn fx:id="id1" prefWidth="38.0" text="Id" visible="false" />
-                        <TableColumn fx:id="nom_art" prefWidth="64.0" text="Nom" />
-                        <TableColumn fx:id="descr_art" prefWidth="81.0" text="Description" />
-                        <TableColumn fx:id="cat1" prefWidth="102.0" text="Categorie" />
-                        <TableColumn fx:id="dat1" minWidth="0.0" text="date ajout" />
-                        <TableColumn fx:id="sou1" prefWidth="85.0" text="source" />
+                        <TableColumn fx:id="nom_art" minWidth="30.0" prefWidth="250.0" text="Nom" />
+                        <TableColumn fx:id="descr_art" prefWidth="81.0" text="Description" visible="false" />
+                        <TableColumn fx:id="cat1" minWidth="0.0" text="Categorie" />
+                        <TableColumn fx:id="dat1" minWidth="0.0" prefWidth="79.0" text="date ajout" />
+                        <TableColumn fx:id="sou1" prefWidth="131.0" text="source" />
                      </columns>
                   </TableView>
                   <Text fill="WHITE" fontSmoothingType="LCD" layoutX="321.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Besoin de conseils ?" underline="true" wrappingWidth="346.13671875">
