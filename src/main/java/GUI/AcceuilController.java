@@ -136,17 +136,18 @@ public class AcceuilController implements Initializable {
     }
 
     @FXML
-    private void Btn_fromulaire_jobeur(ActionEvent event) {
-    }
-
-    @FXML
-    private void retour_bt(ActionEvent event) throws IOException {
-        Parent root=FXMLLoader.load(getClass().getResource("/fxml/acceuil.fxml"));
+    private void Btn_fromulaire_jobeur(ActionEvent event) throws IOException {
+        Parent root=FXMLLoader.load(getClass().getResource("/fxml/InscrireJobeur.fxml"));
         Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();
                 stage.setScene(scene);
                 stage.show();
+    }
+
+    @FXML
+    private void retour_bt(ActionEvent event) throws IOException {
+        
     }
 
     
