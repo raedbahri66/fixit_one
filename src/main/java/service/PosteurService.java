@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import utils.ConnexionBD;
 
 /**
@@ -57,8 +58,11 @@ public class PosteurService implements iPosteur{
 
             ste.executeUpdate();
             System.out.println("Ajout Complete");
+            JOptionPane.showMessageDialog(null, "Account Created Successfull");
+
         } catch (SQLException ex) {
             Logger.getLogger(PosteurService.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Cin is already used by another ones");
         }
     }
 
