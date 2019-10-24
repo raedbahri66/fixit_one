@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package GUI;
+import service.GestionProduit;
 import entites.Produit;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
 import entites.Posteur;
