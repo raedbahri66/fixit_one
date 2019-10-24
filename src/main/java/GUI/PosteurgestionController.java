@@ -6,6 +6,7 @@
 package GUI;
 
 import entites.Posteur;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -19,7 +20,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -33,6 +38,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import service.ControleSaisie;
 import service.PosteurService;
@@ -116,7 +122,7 @@ public class PosteurgestionController implements Initializable {
     private TextField cinsupp_t;
     @FXML
     private Label nom_valid11;
-    public boolean canInscription= true;
+    public boolean canInscription=true;
     public boolean valid= true;
     public boolean valid1= true;
     
@@ -218,39 +224,38 @@ public class PosteurgestionController implements Initializable {
     private void btn_ajouterposteur(ActionEvent event) {
         ControleSaisie C= new ControleSaisie();
         if(!C.cinisValid(id_p.getText()) ){
-            cin_valid.setText("Cin must contain 8 numbers");
-            canInscription = false;
-        }
-            if(C.isCintUsed(Integer.parseInt(id_p.getText())))
-            {
-            canInscription = false;
-            cin_valid.setText("Cin is already used");
-            }
+            canInscription = false;;
+           
+        } else cin_valid.setText("Cin must contain 8 numbers");
         
-        else if(C.cinisValid(id_p.getText()) )   cin_valid.setText("Accepted");
+        
+        if (C.cinisValid(id_p.getText()) )   cin_valid.setText("Accepted");
 
         if(nom_p.getText().isEmpty()){
-         
             canInscription = false;
-        }
+        } else nom_valid.setText("Accepted");
+
         if(prenom_p.getText().isEmpty()){
             canInscription = false;
-        }
-        if(email_p.getText().isEmpty()){
+        } else prenom_valid.setText("Accepted");
+
+        if(!C.emailisValid(email_p.getText())){
             canInscription = false;
-        }
+        } else email_valid.setText("Email is correct");
         if(pass_p.getText().isEmpty()){
+            
             canInscription = false;
-        }
-        if(tel_p.getText().isEmpty()){
+        } else pass_valid.setText("Accepted");
+        if(!C.cinisValid(tel_p.getText())){
             canInscription = false;
-        }
+        } else tel_valid.setText("Accepted");
         if(date_p.getValue().toString().isEmpty()){
             canInscription = false;
         }
+            else date_valid.setText("Accepted");
         if(sexe_p.getValue().toString().isEmpty()){
             canInscription = false;
-        }
+        } else             sex_valid.setText("Accepted");
         
 
        if(canInscription){
@@ -267,8 +272,7 @@ public class PosteurgestionController implements Initializable {
 
            Posteur P1= new Posteur(cin,nom,prenom,email,sexe,password,date,tel);
            PosteurService p = new PosteurService();
-              p.creerPosteur(P1);
-              JOptionPane.showMessageDialog(null, "Account Created Successfull");
+           p.creerPosteur(P1);
 
        }
        else
@@ -391,6 +395,16 @@ public class PosteurgestionController implements Initializable {
             //}
         });
     }*/
+
+    @FXML
+    private void logout_bt(ActionEvent event) throws IOException {
+        Parent root=FXMLLoader.load(getClass().getResource("/fxml/acceuil.fxml"));
+        Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
+    }
  
     
 }

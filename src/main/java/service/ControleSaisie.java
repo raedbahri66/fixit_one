@@ -63,10 +63,12 @@ public class ControleSaisie {
     public boolean isCintUsed(int cin1)
     {
         
+        
         String req1="select * from Posteur where cin="+cin1 ;   
         String req2="select * from Jobeur where cin="+cin1;
         String req3="select * from admin where cin="+cin1;   
         boolean etat= false;
+        etat = cinisValid((Integer.toString(cin1)));
         try {
           ResultSet res=  ste.executeQuery(req1);
           if (res.next()) { 
