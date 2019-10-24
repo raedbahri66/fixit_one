@@ -4,15 +4,19 @@
  * and open the template in the editor.
  */
 package GUI;
-
+import entites.Produit;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
 import entites.Posteur;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,9 +24,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
@@ -61,6 +70,214 @@ public class Posteur_interfaceController implements Initializable {
     private TextField tf_tel1;
     @FXML
     private DatePicker df_date1;
+    
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
+    private TextField nom_produit;
+
+    @FXML
+    private TextField prix_produit;
+
+    @FXML
+    private TextArea description_produit;
+
+    @FXML
+    private Button button_ajouter;
+    
+    @FXML
+    private Label statut;
+    @FXML
+    private Label label_statut;
+
+    
+     @FXML
+    private TableView<Produit> table1;
+    @FXML
+    private TableColumn<Produit,String> table_nom1;
+    @FXML
+    private TableColumn<Produit,String> table_prix1;
+    @FXML
+    private TableColumn<Produit,String> table_categorie1;
+    @FXML
+    private TableColumn<Produit,String> table_numero1;
+    @FXML
+    private TableColumn<Produit,String> table_etat_vente;
+    @FXML
+    private TableColumn<Produit,String> table_etat_validation;
+    @FXML
+    private TableColumn<Produit,String> table_description1;
+    @FXML
+    private TableColumn<Produit,String> table_id1;
+    
+    
+    @FXML
+    private TableView<Produit> table;
+    @FXML
+    private TableColumn<Produit,String> table_nom;
+    @FXML
+    private TableColumn<Produit,String> table_prix;
+    @FXML
+    private TableColumn<Produit,String> table_description;
+    @FXML
+    private TableColumn<Produit,String> table_id;
+    @FXML
+    private TableColumn<Produit,String> table_categorie;
+    @FXML
+    private TableColumn<Produit,String> table_numero;
+
+   
+    @FXML
+    private TextField numero;
+    
+    @FXML
+    private TextField nom2;
+
+    @FXML
+    private TextField prix2;
+
+    @FXML
+    private Button modifier;
+    @FXML
+    private TextArea description2;
+    @FXML
+    private Label label_id;
+    @FXML
+    private Label statut2;
+    @FXML
+    private ComboBox<String> categorie_produit;
+    
+    @FXML
+    private TextField numero1;
+    @FXML
+    private ComboBox<String> categorie_produit2;
+    @FXML
+    private ComboBox<String> categorie_produit3;
+   
+       
+    public ObservableList<Produit> data;
+    public ObservableList<Produit> data1;
+    
+    
+   
+   
+   
+    
+ 
+    
+    
+    @FXML
+    void addaction(ActionEvent event) {
+        String nom=nom_produit.getText();
+        String desc=description_produit.getText();
+        String prix=prix_produit.getText();
+        String categorie=categorie_produit.getValue().toString();
+        String num=numero.getText();
+        String etatvente="non_vendu";
+        String etatvalidation="non_valider";
+        Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation);
+        GestionProduit gs = new  GestionProduit();
+        gs.ajouterProduit(E);
+        statut.setText("Produit Ajouter avec succée");
+        nom_produit.setText("");
+        prix_produit.setText("");
+        description_produit.setText("");
+        numero.setText("");
+        categorie_produit.setValue("");
+        refrech();
+    }
+
+     @FXML
+    void modifierAction(ActionEvent event) {
+        
+   String nom=nom2.getText();
+   String description=description2.getText();
+   String prix=prix2.getText();
+   String id=label_id.getText();
+   String num=numero1.getText();
+   String statut=label_statut.getText();
+   String categorie=categorie_produit2.getValue().toString();
+   String etat=categorie_produit3.getValue().toString();
+   Produit E = new Produit(id,nom,prix,description,categorie,num,etat,statut);
+   GestionProduit gs = new  GestionProduit();
+   try{
+   gs.modifierProduit(E);
+   statut2.setText("Modification avec succée");
+   nom2.setText("");
+   prix2.setText("");
+   description2.setText("");
+   categorie_produit2.setValue("");
+   categorie_produit3.setValue("");
+   numero1.setText("");
+   refrech();
+    }catch(Exception e)
+    {
+       System.out.println(e.getMessage());  
+    }
+    }
+   
+        @FXML
+    void SupprimerAction(ActionEvent event) {
+        
+   String id=label_id.getText();
+   Produit E = new Produit(id);
+   GestionProduit gs = new  GestionProduit();
+   try{
+   gs.supprimerProduit(E);
+   statut2.setText("Supprimer avec succée");
+   nom2.setText("");
+   prix2.setText("");
+   description2.setText("");
+   categorie_produit2.setValue("");
+   categorie_produit3.setValue("");
+   numero1.setText("");
+   refrech();
+    }catch(Exception e)
+    {
+       System.out.println(e.getMessage());  
+    }
+    }
+    
+  
+    
+    
+          public void setValueformtableviewtotext()
+    {
+         table1.setOnMouseClicked(new EventHandler<MouseEvent>()
+         {
+             @Override
+             public void handle(MouseEvent event) {
+                Produit E=table1.getItems().get(table1.getSelectionModel().getSelectedIndex());
+                nom2.setText(E.getNom());
+                description2.setText(E.getDescription());
+                label_id.setText(E.getId());
+                prix2.setText(E.getPrix());
+                numero1.setText(E.getNumero());
+                categorie_produit2.setValue(E.getCategorie());
+                categorie_produit3.setValue(E.getEtatVente());
+                statut2.setText("");
+             }
+         });
+                 }
+   
+  public void refrech(){
+      data.clear();
+      data1.clear();
+      GestionProduit GS = new GestionProduit();
+   ArrayList Produit1= (ArrayList)GS.afficherProduit();
+   GestionProduit GS1= new GestionProduit();
+    ArrayList Produit2= (ArrayList)GS1.afficherProduit1();
+   data= FXCollections.observableArrayList(Produit1);
+   data1= FXCollections.observableArrayList(Produit2);
+         table.setItems(data);
+          table1.setItems(data1);
+    }
+  
+  
     @FXML
     void Electricite(ActionEvent event) throws IOException {
          Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service.fxml"));
@@ -92,6 +309,40 @@ public class Posteur_interfaceController implements Initializable {
         telp_1.setText(Integer.toString(p1.getTel()));
          datep_1.setText(p1.getDate_naissance().toString());
 
+         
+         
+                GestionProduit GS = new GestionProduit();
+   ArrayList Produit1= (ArrayList)GS.afficherProduit();
+   GestionProduit GS1= new GestionProduit();
+    ArrayList Produit2= (ArrayList)GS1.afficherProduit1();
+   data= FXCollections.observableArrayList(Produit1);
+   data1= FXCollections.observableArrayList(Produit2);
+        table.setItems(data);
+        table_nom.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom"));
+         table_id.setCellValueFactory(new PropertyValueFactory<Produit,String>("id"));
+            table_description.setCellValueFactory(new PropertyValueFactory<Produit,String>("description"));
+                table_prix.setCellValueFactory(new PropertyValueFactory<Produit,String>("prix"));
+                table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
+                table_numero.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
+                setValueformtableviewtotext();
+                
+        table1.setItems(data1);
+          table_nom1.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom"));
+          table_id1.setCellValueFactory(new PropertyValueFactory<Produit,String>("id"));
+            table_description1.setCellValueFactory(new PropertyValueFactory<Produit,String>("description"));
+                 table_prix1.setCellValueFactory(new PropertyValueFactory<Produit,String>("prix"));
+                   table_categorie1.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
+                 table_numero1.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
+                 table_etat_vente.setCellValueFactory(new PropertyValueFactory<Produit,String>("etatVente"));
+                 table_etat_validation.setCellValueFactory(new PropertyValueFactory<Produit,String>("etatValidation"));
+                 setValueformtableviewtotext();
+ 
+                 categorie_produit.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
+                 categorie_produit2.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
+                 categorie_produit3.getItems().addAll("non_vendu","vendu");
+                 
+                 
+         
     }    
 
     @FXML
