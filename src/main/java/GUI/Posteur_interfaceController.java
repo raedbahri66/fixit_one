@@ -200,7 +200,7 @@ public class Posteur_interfaceController implements Initializable {
         Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation,idposteur,idjobeur);
         GestionProduit gs = new  GestionProduit();
         gs.ajouterProduit(E);
-        statut.setText("Produit Ajouter avec succée");
+          JOptionPane.showMessageDialog(null, "Produit Ajouter avec succée");
         nom_produit.setText("");
         prix_produit.setText("");
         description_produit.setText("");       
@@ -224,7 +224,7 @@ public class Posteur_interfaceController implements Initializable {
    GestionProduit gs = new  GestionProduit();
    try{
    gs.modifierProduit(E);
-   statut2.setText("Modification avec succée");
+   JOptionPane.showMessageDialog(null, "Modification avec succée");
    nom2.setText("");
    prix2.setText("");
    description2.setText("");
@@ -246,7 +246,7 @@ public class Posteur_interfaceController implements Initializable {
    GestionProduit gs = new  GestionProduit();
    try{
    gs.supprimerProduit(E);
-   statut2.setText("Supprimer avec succée");
+   JOptionPane.showMessageDialog(null, "Supprimer avec succée");
    nom2.setText("");
    prix2.setText("");
    description2.setText("");
