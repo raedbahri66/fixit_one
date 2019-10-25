@@ -103,8 +103,8 @@ Connection c = ConnexionBD.getInstanceConnexionBD().getConnection();
                 a.setId(res.getInt("id"));
                 a.setId_jobeur(res.getInt("idjobeur_fg"));
                 a.setId_posteur(res.getInt("idposteur_fg"));
-                a.setNomp(res.getString("nom_fg"));
-                a.setPrenomp(res.getString("prenom_fg"));
+                a.setNomp(res.getString("nomp_fg"));
+                a.setPrenomp(res.getString("prenomp_fg"));
                 a.setDescription(res.getString("description_com"));
  commentaires.add(a);  
           }
