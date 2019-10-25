@@ -104,16 +104,19 @@
             <Button layoutX="23.0" layoutY="357.0" mnemonicParsing="false" onAction="#Ajouter_C" opacity="0.9" prefHeight="25.0" prefWidth="68.0" text="ajouter" />
             <Button layoutX="105.0" layoutY="357.0" mnemonicParsing="false" onAction="#Modifier_c" opacity="0.9" text="modfier" />
             <Button layoutX="176.0" layoutY="357.0" mnemonicParsing="false" onAction="#Supprimer_C" opacity="0.9" text="supprimer" />
-            <Button layoutX="615.0" layoutY="16.0" mnemonicParsing="false" onAction="#Retour" prefHeight="25.0" prefWidth="70.0" text="retour" />
-            <TableView layoutX="400.0" layoutY="232.0" opacity="0.79" prefHeight="150.0" prefWidth="300.0">
+            <Button layoutX="626.0" layoutY="16.0" mnemonicParsing="false" onAction="#Retour" prefHeight="25.0" prefWidth="70.0" text="retour" />
+            <TableView layoutX="273.0" layoutY="232.0" opacity="0.79" prefHeight="150.0" prefWidth="433.0">
               <columns>
                 <TableColumn fx:id="Id_C" prefWidth="75.0" text="ID" visible="false" />
                 <TableColumn fx:id="Nom_Pc" prefWidth="75.0" text="Nom" />
                   <TableColumn fx:id="Prenom_PC" prefWidth="75.0" text="Prenom" />
-                  <TableColumn fx:id="Avis_PC" prefWidth="143.0" text="Avis" />
+                  <TableColumn fx:id="Avis_PC" prefWidth="142.0" text="Avis" />
+                  <TableColumn fx:id="Cin_P" prefWidth="64.0" text="CIN_P" />
+                  <TableColumn fx:id="Cin_J" prefWidth="87.0" text="CIN_J" />
               </columns>
             </TableView>
-            <Button layoutX="35.0" layoutY="16.0" mnemonicParsing="false" onAction="#favoris" prefHeight="25.0" prefWidth="70.0" text="favoris" />
+            <Button layoutX="545.0" layoutY="16.0" mnemonicParsing="false" onAction="#favoris" prefHeight="25.0" prefWidth="70.0" text="favoris" />
+            <Button layoutX="14.0" layoutY="25.0" mnemonicParsing="false" onAction="#Demander_Service" text="demander" />
       </children>
     </AnchorPane>
   </children>

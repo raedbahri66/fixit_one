@@ -11,8 +11,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 
@@ -46,6 +48,11 @@ public class Affiche_porfilejobeurController implements Initializable {
     private TableColumn<?, ?> Prenom_PC;
     @FXML
     private TableColumn<?, ?> Avis_PC;
+    @FXML
+    private TableColumn <?, ?> Cin_J;
+    @FXML
+    private TableColumn<?, ?> Cin_P;
+    
 
     /**
      * Initializes the controller class.
@@ -87,6 +94,10 @@ public class Affiche_porfilejobeurController implements Initializable {
 
     @FXML
     private void favoris(ActionEvent event) {
+    }
+
+    @FXML
+    private void Demander_Service(ActionEvent event) {
     }
 
    
