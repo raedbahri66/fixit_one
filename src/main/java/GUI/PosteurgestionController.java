@@ -18,6 +18,8 @@ import java.util.Calendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,6 +30,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -38,6 +41,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import static javafx.scene.input.KeyEvent.KEY_TYPED;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -162,73 +169,83 @@ public class PosteurgestionController implements Initializable {
      * Initializes the controller class.
      */
     static int cin;
+                private BooleanProperty upPressed = new SimpleBooleanProperty();
+    @FXML
+    private Button btn_text;
+    @FXML
+    private TextField filter_field;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        sexe_p.setValue("Homme");
-        sexe_p.setItems(sexelist);
-        date_p.setValue(NOW_LOCAL_DATE());
-        sexe_p1.setValue("Homme");
-        sexe_p1.setItems(sexelist);
-        date_p1.setValue(NOW_LOCAL_DATE());
-        ////////////////Afficher///////////
-        PosteurService p= new PosteurService();
-        ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteur();
-        ObservableList<Posteur> obs=FXCollections.observableArrayList(pers);
-        table_post.setItems(obs);
-        c1_cinp.setCellValueFactory(new PropertyValueFactory<>("cin") );
-        c2_nomp.setCellValueFactory(new PropertyValueFactory<>("nom") );
-        c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
-        c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
-        c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
-        c_sexep.setCellValueFactory(new PropertyValueFactory<>("Sexe") );
-      
-        
-    table_post.setOnMouseClicked((MouseEvent event) -> {
-            if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
-                Posteur p0 = new Posteur();
-               p0=(Posteur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
-               tabpane1.getSelectionModel().select(modif_posttab);
-               nom_p1.setText(p0.getNom());
-                prenom_p1.setText(p0.getPrenom());
-                sexe_p1.setValue(p0.getSexe());
-                date_p1.setValue(p0.getDate_naissance().toLocalDate());
-                email_p1.setText(p0.getEmail());
-                pass_p1.setText(p0.getPassword());
-                tel_p1.setText(Integer.toString(p0.getTel()));
-                id_p1.setText(Integer.toString(p0.getCin()));
-            }
-            else if (event.getButton().equals(MouseButton.SECONDARY) && event.getClickCount() == 1){
-                Posteur p0 = new Posteur();
-               p0=(Posteur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
-               tabpane1.getSelectionModel().select(supp_posttab);
-                cinsupp_t.setText(Integer.toString(p0.getCin()));
-            }
-            else if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 1){
-                Posteur p0 = new Posteur();
-               p0=(Posteur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
-                int cin1=p0.getCin();
-                cin=cin1;
-                Parent root = null;
-                try {
-                   root= FXMLLoader.load(getClass().getResource("/fxml/Profil_Posteur.fxml"));
-                } catch (IOException ex) {
-                    Logger.getLogger(PosteurgestionController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                                Stage stage = new Stage();
-
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-               /* Stage stag1 = new Stage(root);*/
-                stage.show();
-            }
-        });
-
-        
-        // TODO
+            
+                sexe_p.setValue("Homme");
+                sexe_p.setItems(sexelist);
+                date_p.setValue(NOW_LOCAL_DATE());
+                sexe_p1.setValue("Homme");
+                sexe_p1.setItems(sexelist);
+                date_p1.setValue(NOW_LOCAL_DATE());
+                ////////////////Afficher///////////
+                PosteurService p= new PosteurService();
+                ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteur();
+                ObservableList<Posteur> obs=FXCollections.observableArrayList(pers);
+                table_post.setItems(obs);
+                c1_cinp.setCellValueFactory(new PropertyValueFactory<>("cin") );
+                c2_nomp.setCellValueFactory(new PropertyValueFactory<>("nom") );
+                c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
+                c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
+                c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
+                c_sexep.setCellValueFactory(new PropertyValueFactory<>("Sexe") );
+                
+                
+                
+                table_post.setOnMouseClicked((MouseEvent event) -> {
+                    if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
+                        Posteur p0 = new Posteur();
+                        p0=(Posteur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
+                        tabpane1.getSelectionModel().select(modif_posttab);
+                        nom_p1.setText(p0.getNom());
+                        prenom_p1.setText(p0.getPrenom());
+                        sexe_p1.setValue(p0.getSexe());
+                        date_p1.setValue(p0.getDate_naissance().toLocalDate());
+                        email_p1.setText(p0.getEmail());
+                        pass_p1.setText(p0.getPassword());
+                        tel_p1.setText(Integer.toString(p0.getTel()));
+                        id_p1.setText(Integer.toString(p0.getCin()));
+                    }
+                    else if (event.getButton().equals(MouseButton.SECONDARY) && event.getClickCount() == 1){
+                        Posteur p0 = new Posteur();
+                        p0=(Posteur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
+                        tabpane1.getSelectionModel().select(supp_posttab);
+                        cinsupp_t.setText(Integer.toString(p0.getCin()));
+                    }
+                    
+                    else if (event.getButton().equals(MouseButton.MIDDLE) && event.getClickCount() == 1){
+                        Posteur p0 = new Posteur();
+                        p0=(Posteur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
+                        int cin1=p0.getCin();
+                        cin=cin1;
+                        Parent root = null;
+                        try {
+                            root= FXMLLoader.load(getClass().getResource("/fxml/Profil_Posteur.fxml"));
+                        } catch (IOException ex) {
+                            Logger.getLogger(PosteurgestionController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        Stage stage1 = new Stage();
+                        
+                        Scene scene = new Scene(root);
+                        stage1.setScene(scene);
+                        /* Stage stag1 = new Stage(root);*/
+                        stage1.show();
+                    }
+                });
+                
+                
+                // TODO
+            
     }    
 
     @FXML
-    private void btn_actualiser(ActionEvent event) {
+    private void btn_actualiser() {
         PosteurService p= new PosteurService();
         ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteur();
         ObservableList<Posteur> obs=FXCollections.observableArrayList(pers);
@@ -427,6 +444,46 @@ public class PosteurgestionController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
     }
- 
-    
+
+    @FXML
+    private void Textchanged_flnom(InputMethodEvent event) {
+  
+}
+
+    @FXML
+    private void Onkeyfilter(KeyEvent event) {
+       
+    }
+    String ab="";
+    @FXML
+    private void OnkeyTypedfilter(KeyEvent event) {
+         ab=ab+event.getCharacter();
+        PosteurService p= new PosteurService();
+        
+            
+        System.out.println(ab);
+        ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteurbynNom(ab);
+        ObservableList<Posteur> obs=FXCollections.observableArrayList(pers);
+        table_post.getItems().clear();
+        table_post.setItems(obs);
+        c1_cinp.setCellValueFactory(new PropertyValueFactory<>("cin") );
+        c2_nomp.setCellValueFactory(new PropertyValueFactory<>("nom") );
+        c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
+        c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
+        c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
+        c_sexep.setCellValueFactory(new PropertyValueFactory<>("Sexe") );
+        if(ab.equals("%'"))
+        {
+          System.out.println("prob");
+
+            btn_actualiser();
+        }
+        
+    }
+
+    @FXML
+    private void Clearmouse_text(MouseEvent event) {
+        ab="";
+        filter_field.clear();
+    }
 }

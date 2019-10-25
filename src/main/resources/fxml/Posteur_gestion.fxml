@@ -15,24 +15,30 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane fx:id="tabpane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="775.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PosteurgestionController">
+<TabPane fx:id="tabpane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="823.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PosteurgestionController">
   <tabs>
     <Tab text="List Posteurs">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" onKeyTyped="#Onkeyfilter" prefHeight="503.0" prefWidth="803.0">
                <children>
-                  <TableView fx:id="table_post" layoutX="14.0" layoutY="23.0" prefHeight="433.0" prefWidth="666.0">
+                  <TableView fx:id="table_post" layoutX="14.0" layoutY="23.0" prefHeight="433.0" prefWidth="645.0">
                     <columns>
                       <TableColumn fx:id="c1_cinp" prefWidth="91.0" text="Identifiant" />
-                      <TableColumn fx:id="c2_nomp" prefWidth="94.0" text="Nom" />
-                        <TableColumn fx:id="c3_prenomp" prefWidth="91.0" text="Prenom" />
-                        <TableColumn fx:id="c4_emailp" prefWidth="178.0" text="Email" />
-                        <TableColumn fx:id="c5_telp" minWidth="0.0" prefWidth="114.0" text="Telephone" />
-                        <TableColumn fx:id="c_sexep" prefWidth="97.0" text="Sexe" />
+                      <TableColumn fx:id="c2_nomp" prefWidth="87.0" text="Nom" />
+                        <TableColumn fx:id="c3_prenomp" prefWidth="98.0" text="Prenom" />
+                        <TableColumn fx:id="c4_emailp" prefWidth="165.0" text="Email" />
+                        <TableColumn fx:id="c5_telp" minWidth="0.0" prefWidth="115.0" text="Telephone" />
+                        <TableColumn fx:id="c_sexep" prefWidth="109.0" text="Sexe" />
                     </columns>
                   </TableView>
-                  <Button layoutX="680.0" layoutY="62.0" mnemonicParsing="false" onAction="#btn_actualiser" prefHeight="31.0" prefWidth="85.0" text="Actualiser" />
-                  <Button layoutX="696.0" layoutY="8.0" mnemonicParsing="false" onAction="#logout_bt" text="logout" />
+                  <Button fx:id="btn_text" layoutX="659.0" layoutY="8.0" mnemonicParsing="false" onAction="#btn_actualiser" prefHeight="31.0" prefWidth="85.0" text="Actualiser" />
+                  <Button layoutX="748.0" layoutY="8.0" mnemonicParsing="false" onAction="#logout_bt" prefHeight="31.0" prefWidth="68.0" text="logout" />
+                  <Label layoutX="702.0" layoutY="62.0" text="Filter">
+                     <font>
+                        <Font name="Copperplate Gothic Light" size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="filter_field" layoutX="659.0" layoutY="116.0" onInputMethodTextChanged="#Textchanged_flnom" onKeyTyped="#OnkeyTypedfilter" onMouseReleased="#Clearmouse_text" prefHeight="31.0" prefWidth="165.0" promptText="Selon Nom" />
                </children></AnchorPane>
       </content>
     </Tab>
