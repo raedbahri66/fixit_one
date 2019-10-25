@@ -105,7 +105,7 @@
             <Button layoutX="105.0" layoutY="357.0" mnemonicParsing="false" onAction="#Modifier_c" opacity="0.9" text="modfier" />
             <Button layoutX="176.0" layoutY="357.0" mnemonicParsing="false" onAction="#Supprimer_C" opacity="0.9" text="supprimer" />
             <Button layoutX="626.0" layoutY="16.0" mnemonicParsing="false" onAction="#Retour" prefHeight="25.0" prefWidth="70.0" text="retour" />
-            <TableView layoutX="273.0" layoutY="232.0" opacity="0.79" prefHeight="150.0" prefWidth="433.0">
+            <TableView fx:id="tab_comment" layoutX="273.0" layoutY="232.0" opacity="0.79" prefHeight="150.0" prefWidth="433.0">
               <columns>
                 <TableColumn fx:id="Id_C" prefWidth="75.0" text="ID" visible="false" />
                 <TableColumn fx:id="Nom_Pc" prefWidth="75.0" text="Nom" />
