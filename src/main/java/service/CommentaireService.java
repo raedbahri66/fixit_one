@@ -61,11 +61,13 @@ Connection c = ConnexionBD.getInstanceConnexionBD().getConnection();
     @Override
     public void modifierCommentaire(Commentaire A) {
     
-    String req = "UPDATE  commentaire SET description_com= ? WHERE id= ?";
+    String req = "UPDATE  commentaire SET id= ?,description_com= ? WHERE id= ?";
     
      try { PreparedStatement ste = c.prepareStatement(req);
-            ste.setString(1,A.getDescription());
-            ste.setInt(2,A.getId());
+            ste.setInt(1,A.getId());
+            ste.setString(2,A.getDescription());
+            ste.setInt(3,A.getId());
+            ste.executeUpdate();
             System.out.println(" successfully modified!");
             } 
         catch (SQLException ex) {
