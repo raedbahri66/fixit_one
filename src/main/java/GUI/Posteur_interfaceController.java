@@ -194,9 +194,9 @@ public class Posteur_interfaceController implements Initializable {
         statut.setText("Produit Ajouter avec succée");
         nom_produit.setText("");
         prix_produit.setText("");
-        description_produit.setText("");
-        numero.setText("");
+        description_produit.setText("");       
         categorie_produit.setValue("");
+        numero.setText(Integer.toString(p1.getTel()));
         refrech();
     }
 
@@ -318,7 +318,7 @@ public class Posteur_interfaceController implements Initializable {
         telp_1.setText(Integer.toString(p1.getTel()));
          datep_1.setText(p1.getDate_naissance().toString());
 
-         
+         numero.setText(Integer.toString(p1.getTel()));
          
                 GestionProduit GS = new GestionProduit();
    ArrayList Produit1= (ArrayList)GS.afficherProduit();
@@ -381,6 +381,7 @@ public class Posteur_interfaceController implements Initializable {
         emailp_1.setText(p1.getEmail());
         telp_1.setText(Integer.toString(p1.getTel()));
          datep_1.setText(p1.getDate_naissance().toString());
+         numero.setText(Integer.toString(p1.getTel()));
         }
         else 
         {
