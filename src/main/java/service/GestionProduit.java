@@ -30,8 +30,8 @@ public class GestionProduit {
          
     public void ajouterProduit(Produit E) {
         String req1="INSERT INTO `produit` "
-                    + "(`nomproduit`, `prix`,`description`, `categorie`, `num`, `etat_vente`, `etat_validation`) "
-                    + "VALUES (?,?,?,?,?,?,?)";
+                    + "(`nomproduit`, `prix`,`description`, `categorie`, `num`, `etat_vente`, `etat_validation`, `idposteur_fg`, `idjobeur_fg`) "
+                    + "VALUES (?,?,?,?,?,?,?,?,?)";
             try{
                 PreparedStatement ste = c.prepareStatement(req1);
             
@@ -43,6 +43,8 @@ public class GestionProduit {
             ste.setString(5, E.getNumero());
             ste.setString(6, E.getEtatVente());
             ste.setString(7, E.getEtatValidation());
+            ste.setInt(8, E.getIdPosteurfg());
+            ste.setInt(9, E.getIdJobeurfg());
               ste.executeUpdate();
             System.out.println("Ajouter avec sucées ");
                     // JOptionPane.showMessageDialog(null,"requete execute correctement"); 
