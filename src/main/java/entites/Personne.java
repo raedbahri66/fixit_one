@@ -17,13 +17,17 @@ public class Personne {
     private String nom;
     private String prenom;
     private String email;
-        private String sexe;
+    private String sexe;
     private String password;
     private Date date_naissance;
     private int tel;
     private String etat;
 
     public Personne() {
+    }
+
+    public Personne(int id) {
+        this.id = id;
     }
 
     public Personne(int id, int cin, String nom, String prenom, String email, String sexe, String password, Date date_naissance, int tel, String etat) {
@@ -81,6 +85,15 @@ public class Personne {
         this.sexe = sexe;
         this.password = password;
         this.date_naissance = date_naissance;
+        this.tel = tel;
+    }
+      public Personne(String nom, String prenom, String email, String sexe, int tel) {
+        
+       
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.sexe = sexe;
         this.tel = tel;
     }
 

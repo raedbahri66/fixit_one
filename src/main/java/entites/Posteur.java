@@ -17,6 +17,10 @@ public class Posteur extends Personne{
     public Posteur() {
     }
 
+    public Posteur(int id) {
+        super(id);
+    }
+
     public Posteur(int cin, String nom, String prenom, String email, Date date_naissance, int tel) {
         super(cin, nom, prenom, email, date_naissance, tel);
     }

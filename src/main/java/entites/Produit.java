@@ -15,12 +15,12 @@ public class Produit {
     private String numero;
     private String etatVente;
     private String etatValidation;
-    private String idPosteurfg;
-    private String idJobeurfg;
+    private int idPosteurfg;
+    private int idJobeurfg;
     public Produit() {
     }
 
-    public Produit(String id, String nom, String prix, String description, String categorie, String numero, String etatVente, String etatValidation, String idPosteurfg, String idJobeurfg) {
+    public Produit(String id, String nom, String prix, String description, String categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg) {
         this.id = id;
         this.nom = nom;
         this.prix = prix;
@@ -50,6 +50,18 @@ public class Produit {
         this.numero = numero;
         this.etatVente = etatVente;
         this.etatValidation = etatValidation;
+    }
+
+    public Produit(String nom, String prix, String description, String categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg) {
+        this.nom = nom;
+        this.prix = prix;
+        this.description = description;
+        this.categorie = categorie;
+        this.numero = numero;
+        this.etatVente = etatVente;
+        this.etatValidation = etatValidation;
+        this.idPosteurfg = idPosteurfg;
+        this.idJobeurfg = idJobeurfg;
     }
 
     public Produit(String id, String nom, String prix, String description, String categorie, String numero, String etatVente, String etatValidation) {
@@ -214,19 +226,19 @@ public class Produit {
         this.etatValidation = etatValidation;
     }
 
-    public String getIdPosteurfg() {
+    public int getIdPosteurfg() {
         return idPosteurfg;
     }
 
-    public void setIdPosteurfg(String idPosteurfg) {
+    public void setIdPosteurfg(int idPosteurfg) {
         this.idPosteurfg = idPosteurfg;
     }
 
-    public String getIdJobeurfg() {
+    public int getIdJobeurfg() {
         return idJobeurfg;
     }
 
-    public void setIdJobeurfg(String idJobeurfg) {
+    public void setIdJobeurfg(int idJobeurfg) {
         this.idJobeurfg = idJobeurfg;
     }
 

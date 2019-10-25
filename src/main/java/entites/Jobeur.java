@@ -16,6 +16,7 @@ public class Jobeur extends Personne{
     private int idequipe_fg;
     private String nomequipe_fg;
      private String role;
+     
 
 
     public Jobeur() {
@@ -39,6 +40,11 @@ public class Jobeur extends Personne{
         super(cin, nom, prenom, email, sexe, password, date_naissance, tel, etat);
         this.job = job;
         this.role = role;
+    }
+    public Jobeur(String job, String role, String nom, String prenom, String email, String sexe, int tel) {
+        super(nom, prenom, email, sexe, tel);
+        this.job = job;
+        
     }
 
     

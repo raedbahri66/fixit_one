@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_choisir_jobeurController">
+   <children>
+      <TableView fx:id="Table_Jobeur" layoutX="-6.0" layoutY="-2.0" prefHeight="411.0" prefWidth="655.0">
+        <columns>
+          <TableColumn fx:id="Column_nomj" prefWidth="75.0" text="Nom" />
+          <TableColumn fx:id="Column_prenomj" prefWidth="75.0" text="Prenom" />
+            <TableColumn fx:id="Column_emailj" prefWidth="75.0" text="Email" />
+            <TableColumn fx:id="Column_sexej" prefWidth="75.0" text="Sexe" />
+            <TableColumn fx:id="Column_tel" prefWidth="125.0" text="Num télephone" />
+            <TableColumn fx:id="Column_job" prefWidth="102.0" text="Spécialité" />
+            <TableColumn fx:id="Date_naissanceJ" prefWidth="124.0" text="Date_naissance" />
+            <TableColumn fx:id="column_cin" minWidth="0.0" prefWidth="23.0" text="Cin" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>

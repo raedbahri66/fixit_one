@@ -182,22 +182,30 @@ public class Posteur_interfaceController implements Initializable {
     
     @FXML
     void addaction(ActionEvent event) {
+        
+        PosteurService p = new PosteurService();
+        Posteur p1= new Posteur();
+        p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+        
+        
+        int idposteur=p1.getId();
         String nom=nom_produit.getText();
         String desc=description_produit.getText();
         String prix=prix_produit.getText();
         String categorie=categorie_produit.getValue().toString();
         String num=numero.getText();
         String etatvente="non_vendu";
+        int idjobeur = 0;
         String etatvalidation="non_valider";
-        Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation);
+        Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation,idposteur,idjobeur);
         GestionProduit gs = new  GestionProduit();
         gs.ajouterProduit(E);
         statut.setText("Produit Ajouter avec succée");
         nom_produit.setText("");
         prix_produit.setText("");
-        description_produit.setText("");
-        numero.setText("");
+        description_produit.setText("");       
         categorie_produit.setValue("");
+        numero.setText(Integer.toString(p1.getTel()));
         refrech();
     }
 
@@ -362,6 +370,9 @@ public class Posteur_interfaceController implements Initializable {
          datep_1.setText(p1.getDate_naissance().toString());
         image_post.setImage(PosteurService.A1);
          System.out.println(PosteurService.A1);
+        datep_1.setText(p1.getDate_naissance().toString());
+
+         numero.setText(Integer.toString(p1.getTel()));
          
                 GestionProduit GS = new GestionProduit();
    ArrayList Produit1= (ArrayList)GS.afficherProduit();
@@ -425,6 +436,7 @@ public class Posteur_interfaceController implements Initializable {
         emailp_1.setText(p1.getEmail());
         telp_1.setText(Integer.toString(p1.getTel()));
          datep_1.setText(p1.getDate_naissance().toString());
+         numero.setText(Integer.toString(p1.getTel()));
         }
         else 
         {
