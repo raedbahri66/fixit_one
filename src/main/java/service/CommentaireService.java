@@ -40,12 +40,14 @@ Connection c = ConnexionBD.getInstanceConnexionBD().getConnection();
     public void ajoutercCommentaire(Commentaire A) {
         
             String req1="INSERT INTO `commentaire` "
-                    + "(`nomp`, `prenomp`,`description_com`) "
-                    + "VALUES (?,?,?)";
+                    + "(`idjobeur_fg`,`idposteur_fg`,`nomp`, `prenomp`,`description_com`) "
+                    + "VALUES (?,?,?,?,?)";
             try{ PreparedStatement ste = c.prepareStatement(req1);
-            ste.setString(1,A.getNomp());
-            ste.setString(2,A.getPrenomp());
-            ste.setString(3,A.getDescription());
+            ste.setInt(1,A.getId_jobeur());
+            ste.setInt(2,A.getId_posteur());
+            ste.setString(3,A.getNomp());
+            ste.setString(4,A.getPrenomp());
+            ste.setString(5,A.getDescription());
             ste.executeUpdate();
             JOptionPane.showMessageDialog(null," commentair ajouté "); 
 
@@ -94,7 +96,7 @@ Connection c = ConnexionBD.getInstanceConnexionBD().getConnection();
            Commentaire a = null ; 
      
       try {
-        String req="select * from article";
+        String req="select * from commentaire";
         ResultSet res= ste.executeQuery(req);
           while (res.next()) { 
                 a= new Commentaire();
