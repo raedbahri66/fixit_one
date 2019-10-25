@@ -174,7 +174,14 @@ public class PosteurgestionController implements Initializable {
     private Button btn_text;
     @FXML
     private TextField filter_field;
-
+    String ab="";
+    
+    ///
+            PosteurService p = new PosteurService();
+        ArrayList Posteur= (ArrayList)p.afficherPosteurbynNom(ab);
+         public ObservableList data= FXCollections.observableArrayList(Posteur);
+          public ObservableList data1= FXCollections.observableArrayList(Posteur);
+        //
     @Override
     public void initialize(URL url, ResourceBundle rb) {
             
@@ -454,36 +461,34 @@ public class PosteurgestionController implements Initializable {
     private void Onkeyfilter(KeyEvent event) {
        
     }
-    String ab="";
     @FXML
     private void OnkeyTypedfilter(KeyEvent event) {
-         ab=ab+event.getCharacter();
-        PosteurService p= new PosteurService();
-        
-            
+       String a=event.getCharacter();
+         ab=ab.concat(a);
+        PosteurService p= new PosteurService(); 
         System.out.println(ab);
-        ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteurbynNom(ab);
-        ObservableList<Posteur> obs=FXCollections.observableArrayList(pers);
-        table_post.getItems().clear();
-        table_post.setItems(obs);
+        data.clear();
+        table_post.setItems(data);
+            ArrayList Posteur= (ArrayList) p.afficherPosteurbynNom(ab);
+
+        p.afficherPosteurbynNom(ab);
         c1_cinp.setCellValueFactory(new PropertyValueFactory<>("cin") );
         c2_nomp.setCellValueFactory(new PropertyValueFactory<>("nom") );
         c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
         c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
         c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
         c_sexep.setCellValueFactory(new PropertyValueFactory<>("Sexe") );
-        if(ab.equals("%'"))
-        {
-          System.out.println("prob");
-
-            btn_actualiser();
-        }
         
     }
 
     @FXML
     private void Clearmouse_text(MouseEvent event) {
-        ab="";
-        filter_field.clear();
+       ab="";
+      filter_field.clear();
+    }
+
+    @FXML
+    private void OnKeyReleased(KeyEvent event) {
+        
     }
 }
