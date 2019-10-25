@@ -173,14 +173,22 @@ public class Posteur_interfaceController implements Initializable {
     
     @FXML
     void addaction(ActionEvent event) {
+        
+        PosteurService p = new PosteurService();
+        Posteur p1= new Posteur();
+        p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+        
+        
+        int idposteur=p1.getId();
         String nom=nom_produit.getText();
         String desc=description_produit.getText();
         String prix=prix_produit.getText();
         String categorie=categorie_produit.getValue().toString();
         String num=numero.getText();
         String etatvente="non_vendu";
+        int idjobeur = 0;
         String etatvalidation="non_valider";
-        Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation);
+        Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation,idposteur,idjobeur);
         GestionProduit gs = new  GestionProduit();
         gs.ajouterProduit(E);
         statut.setText("Produit Ajouter avec succée");
