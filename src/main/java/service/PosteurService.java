@@ -200,9 +200,9 @@ try {
                       OutputStream os = new FileOutputStream( new File("img.jpg"));
                       byte[] content = new byte[1024];
                       int size = 0;
-                      while((size = is.read(content)) != -1){
-                          os.write(content, 0, size);
-                        }
+//                      while((size = is.read(content)) != -1){
+                          //os.write(content, 0, size);
+                       // }
                         }
                Image image1=new Image("file:img.jpg");
                A1=image1;
