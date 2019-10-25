@@ -96,15 +96,15 @@ public class AdmininterfaceController implements Initializable {
   observableArrayList("Bricolage","jardinage","informatique");
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-            PosteurService p= new PosteurService();
+        PosteurService p= new PosteurService();
         ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteur();
         // TODO
         /******ayeeeeed***///
-         dateajout.setValue(NOW_LOCAL_DATE());
-         categories.setValue("Bricolage");
-      categories.setItems(categoriesList);
-      table.setItems(data);
-      nom.setCellValueFactory(new PropertyValueFactory <>("nom_article"));
+     dateajout.setValue(NOW_LOCAL_DATE());
+     categories.setValue("Bricolage");
+     categories.setItems(categoriesList);
+     table.setItems(data);
+     nom.setCellValueFactory(new PropertyValueFactory <>("nom_article"));
      cat.setCellValueFactory(new PropertyValueFactory <>("categorie"));
      dat.setCellValueFactory(new PropertyValueFactory <>("date_article"));
      sou.setCellValueFactory(new PropertyValueFactory <>("sources"));
@@ -151,8 +151,8 @@ public class AdmininterfaceController implements Initializable {
         }
         
         
-        if(canInscription){
-    String nom=nomarticle.getText();
+    if(canInscription){
+   String nom = nomarticle.getText();
    String descriptionart=descriptionarticle.getText();
    LocalDate date_article =dateajout.getValue();
    Date date = Date.valueOf(date_article);
@@ -164,7 +164,7 @@ public class AdmininterfaceController implements Initializable {
    a1.ajouterArticle(a);
   
     }
-      Articlegestion art = new Articlegestion();
+    Articlegestion art = new Articlegestion();
     ArrayList<Article> articles= (ArrayList<Article>) art.afficherArticle();  
     ObservableList<Article> data = FXCollections.observableArrayList(articles);
      table.getItems().clear();

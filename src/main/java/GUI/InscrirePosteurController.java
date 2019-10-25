@@ -6,6 +6,7 @@
 package GUI;
 
 import GUI.*;
+import java.awt.Desktop;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
 import entites.Posteur;
 import java.io.IOException;
@@ -27,10 +28,22 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import service.ControleSaisie;
 import service.PosteurService;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+
 
 /**
  * FXML Controller class
@@ -72,6 +85,19 @@ public class InscrirePosteurController implements Initializable {
     @FXML
     private Label date_valid;
     public boolean canInscription=true;
+    @FXML
+    private ImageView image_post;
+    @FXML
+    private TextField file_image_p;
+    
+
+    private Desktop desktop = Desktop.getDesktop();
+    @FXML
+    private Button image_p_btn;
+    private FileInputStream fis;
+    private File file;
+
+
     /**
      * Initializes the controller class.
      */
@@ -82,9 +108,43 @@ public class InscrirePosteurController implements Initializable {
         sexe_p.setValue("Homme");
         sexe_p.setItems(sexelist);
         date_p.setValue(NOW_LOCAL_DATE());
-        
+        Stage stage = new Stage();
+        image_p_btn.setOnAction(e->{
+                    stage.setTitle("File Chooser ");
+                    
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open image File");
+            
+                         file = fileChooser.showOpenDialog(stage);
+                        if (file != null) {
+                                file_image_p.setText(file.getAbsolutePath());
+                                System.out.println(file.getAbsolutePath()); 
+                        try {
+                            fis = new FileInputStream(file);// file is selected using filechooser which is in last tutorial
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+
+                        try {
+                            //     Image image=  new Image(file.toURI().toString());
+                            URL url1 = file.toURI().toURL();
+                            System.out.println(new Image(url1.toExternalForm()));
+                            image_post.setImage(new Image(url1.toExternalForm()));
+                        } catch (MalformedURLException ex) {
+                          
+                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                                
+
+    };
+            
+
+        });
         // TODO
-    }    
+        
+                }
 
     @FXML
     private void btn_inscrireposteur(ActionEvent event) {
@@ -138,7 +198,7 @@ public class InscrirePosteurController implements Initializable {
 
            Posteur P1= new Posteur(cin,nom,prenom,email,sexe,password,date,tel);
            PosteurService p = new PosteurService();
-           p.creerPosteur(P1);
+           p.creerPosteur(P1,fis,file);
 
        }
        else
@@ -158,5 +218,7 @@ public class InscrirePosteurController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
     }
+
+    
     
 }

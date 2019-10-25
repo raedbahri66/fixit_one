@@ -8,12 +8,19 @@ import service.GestionProduit;
 import entites.Produit;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
 import entites.Posteur;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,9 +40,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import service.PosteurService;
@@ -72,11 +81,6 @@ public class Posteur_interfaceController implements Initializable {
     @FXML
     private DatePicker df_date1;
     
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private TextField nom_produit;
@@ -87,8 +91,6 @@ public class Posteur_interfaceController implements Initializable {
     @FXML
     private TextArea description_produit;
 
-    @FXML
-    private Button button_ajouter;
     
     @FXML
     private Label statut;
@@ -122,14 +124,12 @@ public class Posteur_interfaceController implements Initializable {
     private TableColumn<Produit,String> table_nom;
     @FXML
     private TableColumn<Produit,String> table_prix;
-    @FXML
-    private TableColumn<Produit,String> table_description;
+  
     @FXML
     private TableColumn<Produit,String> table_id;
     @FXML
     private TableColumn<Produit,String> table_categorie;
-    @FXML
-    private TableColumn<Produit,String> table_numero;
+ 
 
    
     @FXML
@@ -153,6 +153,18 @@ public class Posteur_interfaceController implements Initializable {
     private ComboBox<String> categorie_produit;
     
     @FXML
+    private Label nom_proprietaire;
+    @FXML
+    private Label label_numero;
+    @FXML
+    private Label label_description;
+    @FXML
+    private ComboBox<String> combobox_filter;
+    @FXML
+    private TextField recherche_produit;
+    
+    
+    @FXML
     private TextField numero1;
     @FXML
     private ComboBox<String> categorie_produit2;
@@ -162,33 +174,48 @@ public class Posteur_interfaceController implements Initializable {
        
     public ObservableList<Produit> data;
     public ObservableList<Produit> data1;
-    
+    @FXML
+    private ImageView image_post;
+    @FXML
+    private Label nomp_11;
+    @FXML
+    private TextField file_image_p;
+    @FXML
+    private Button image_p_btn;
+     private FileInputStream fis;
+    private File file;
     
    
    
-   
-    
  
     
     
     @FXML
-    void addaction(ActionEvent event) {
+    void addaction(ActionEvent event) throws SQLException, IOException {
+        
+        PosteurService p = new PosteurService();
+        Posteur p1= new Posteur();
+        p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+        
+        
+        int idposteur=p1.getId();
         String nom=nom_produit.getText();
         String desc=description_produit.getText();
         String prix=prix_produit.getText();
         String categorie=categorie_produit.getValue().toString();
         String num=numero.getText();
         String etatvente="non_vendu";
+        int idjobeur = 0;
         String etatvalidation="non_valider";
-        Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation);
+        Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation,idposteur,idjobeur);
         GestionProduit gs = new  GestionProduit();
         gs.ajouterProduit(E);
-        statut.setText("Produit Ajouter avec succée");
+          JOptionPane.showMessageDialog(null, "Produit Ajouter avec succée");
         nom_produit.setText("");
         prix_produit.setText("");
-        description_produit.setText("");
-        numero.setText("");
+        description_produit.setText("");       
         categorie_produit.setValue("");
+        numero.setText(Integer.toString(p1.getTel()));
         refrech();
     }
 
@@ -207,7 +234,7 @@ public class Posteur_interfaceController implements Initializable {
    GestionProduit gs = new  GestionProduit();
    try{
    gs.modifierProduit(E);
-   statut2.setText("Modification avec succée");
+   JOptionPane.showMessageDialog(null, "Modification avec succée");
    nom2.setText("");
    prix2.setText("");
    description2.setText("");
@@ -229,7 +256,7 @@ public class Posteur_interfaceController implements Initializable {
    GestionProduit gs = new  GestionProduit();
    try{
    gs.supprimerProduit(E);
-   statut2.setText("Supprimer avec succée");
+   JOptionPane.showMessageDialog(null, "Supprimer avec succée");
    nom2.setText("");
    prix2.setText("");
    description2.setText("");
@@ -246,6 +273,7 @@ public class Posteur_interfaceController implements Initializable {
   
     
     
+    @FXML
           public void setValueformtableviewtotext()
     {
          table1.setOnMouseClicked(new EventHandler<MouseEvent>()
@@ -264,7 +292,14 @@ public class Posteur_interfaceController implements Initializable {
              }
          });
                  }
-   
+      
+          
+          @FXML
+    void btnsearchAction(ActionEvent event) {
+
+    }
+    
+    
   public void refrech(){
       data.clear();
       data1.clear();
@@ -297,20 +332,64 @@ public class Posteur_interfaceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        /////
+        Stage stage = new Stage();
+        image_p_btn.setOnAction(e->{
+                    stage.setTitle("File Chooser ");
+                    
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open image File");
+            
+                         file = fileChooser.showOpenDialog(stage);
+                        if (file != null) {
+                                file_image_p.setText(file.getAbsolutePath());
+                                System.out.println(file.getAbsolutePath()); 
+                        try {
+                            fis = new FileInputStream(file);// file is selected using filechooser which is in last tutorial
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+
+                        try {
+                            //     Image image=  new Image(file.toURI().toString());
+                            URL url1 = file.toURI().toURL();
+                            System.out.println(new Image(url1.toExternalForm()));
+                            image_post.setImage(new Image(url1.toExternalForm()));
+                        } catch (MalformedURLException ex) {
+                          
+                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                                
+
+    };
+            
+
+        });
         /////raed///
                 df_date1.setValue(NOW_LOCAL_DATE());
 
         System.err.println(AcceuilController.cinlogin);
         PosteurService p = new PosteurService();
         Posteur p1= new Posteur();
-        p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+        try {
+            p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+        } catch (SQLException | IOException ex) {
+            Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         nomp_1.setText(p1.getNom());
+        nomp_11.setText(p1.getNom());
         prenomp_1.setText(p1.getPrenom());
         emailp_1.setText(p1.getEmail());
         telp_1.setText(Integer.toString(p1.getTel()));
          datep_1.setText(p1.getDate_naissance().toString());
+        image_post.setImage(PosteurService.A1);
+         System.out.println(PosteurService.A1);
+        datep_1.setText(p1.getDate_naissance().toString());
 
-         
+         numero.setText(Integer.toString(p1.getTel()));
          
                 GestionProduit GS = new GestionProduit();
    ArrayList Produit1= (ArrayList)GS.afficherProduit();
@@ -321,10 +400,10 @@ public class Posteur_interfaceController implements Initializable {
         table.setItems(data);
         table_nom.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom"));
          table_id.setCellValueFactory(new PropertyValueFactory<Produit,String>("id"));
-            table_description.setCellValueFactory(new PropertyValueFactory<Produit,String>("description"));
+            //table_description.setCellValueFactory(new PropertyValueFactory<Produit,String>("description"));
                 table_prix.setCellValueFactory(new PropertyValueFactory<Produit,String>("prix"));
                 table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
-                table_numero.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
+               // table_numero.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
                 setValueformtableviewtotext();
                 
         table1.setItems(data1);
@@ -341,7 +420,7 @@ public class Posteur_interfaceController implements Initializable {
                  categorie_produit.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  categorie_produit2.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  categorie_produit3.getItems().addAll("non_vendu","vendu");
-                 
+                 combobox_filter.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  
          
     }    
@@ -366,13 +445,15 @@ public class Posteur_interfaceController implements Initializable {
         Date date = Date.valueOf(locald);
         PosteurService p = new PosteurService();
         Posteur p1= new Posteur(AcceuilController.cinlogin, tf_nom1.getText(), tf_prenom1.getText(), tef_email1.getText(), date, Integer.parseInt(tf_tel1.getText()));
-        p.modifierProfil(p1);
+        p.modifierProfil(p1,fis,file);
         JOptionPane.showMessageDialog(null, "Account edited Successfull");
         nomp_1.setText(p1.getNom());
+        nomp_11.setText(p1.getNom());
         prenomp_1.setText(p1.getPrenom());
         emailp_1.setText(p1.getEmail());
         telp_1.setText(Integer.toString(p1.getTel()));
          datep_1.setText(p1.getDate_naissance().toString());
+         numero.setText(Integer.toString(p1.getTel()));
         }
         else 
         {

@@ -26,6 +26,10 @@ public class Personne {
     public Personne() {
     }
 
+    public Personne(int id) {
+        this.id = id;
+    }
+
     public Personne(int id, int cin, String nom, String prenom, String email, String sexe, String password, Date date_naissance, int tel, String etat) {
         this.id = id;
         this.cin = cin;

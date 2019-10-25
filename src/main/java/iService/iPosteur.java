@@ -6,6 +6,9 @@
 package iService;
 
 import entites.Posteur;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -13,10 +16,10 @@ import java.util.List;
  * @author lenovo
  */
 public interface iPosteur {
-     public void creerPosteur(Posteur p);
-    public void modifierPosteur(Posteur p);
+public void creerPosteur(Posteur p,FileInputStream fis,File file);
+        public void modifierPosteur(Posteur p);
     public void supprimerPosteur(Posteur p);
     public List<Posteur> afficherPosteur();
-    public void modifierProfil(Posteur p);
+public void modifierProfil(Posteur p, InputStream fis, File file );
 
 }
