@@ -196,6 +196,8 @@ public class Affiche_porfilejobeurController implements Initializable {
     private void Supprimer_C(ActionEvent event) {
      String id=id_com.getText();
     int id3=Integer.parseInt(id);
+    
+
      Commentaire c = new Commentaire(id3);
      CommentaireService c1=new CommentaireService();
     
