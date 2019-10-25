@@ -19,11 +19,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javax.swing.JOptionPane;
 import service.EchangeGestion;
@@ -39,7 +42,7 @@ public class Jobeur_interfaceController implements Initializable {
     /**
      * Initializes the controller class.
      */
-     @FXML
+ @FXML
     private DatePicker dateajoute;
 
     @FXML
@@ -49,7 +52,10 @@ public class Jobeur_interfaceController implements Initializable {
     private TextArea Descriptionpro;
 
     @FXML
-    private TextField Nom_proposition;
+    private TextField apos;
+
+    @FXML
+    private TextField apof;
 
     @FXML
     private TableView<Echange> tableechanges;
@@ -58,10 +64,13 @@ public class Jobeur_interfaceController implements Initializable {
     private TableColumn<Echange, String> idechanges;
 
     @FXML
-    private TableColumn<Echange, String> nomechanges;
+    private TableColumn<Echange, String> propositionoff;
 
     @FXML
-    private TableColumn<Echange, String> Descriptionechanges;
+    private TableColumn<Echange, String> propositionsou;
+
+    @FXML
+    private TableColumn<Echange, String>Descriptionechanges;
 
     @FXML
     private TableColumn<Echange, String> dateechanges;
@@ -75,21 +84,23 @@ public class Jobeur_interfaceController implements Initializable {
     @FXML
     private TableColumn<Echange, String> prenomjoubeurechanges;
 
- 
+    @FXML
+    private Tab nomechange;
 
     @FXML
     private TableView<Echange> tablemonechange;
-    @FXML
-    private TextField idmp;
 
     @FXML
     private TableColumn<Echange, String> idechange;
+
     @FXML
-    private TableColumn<Echange, String> nom_echange;
-    
-    
+    private TableColumn<Echange, String> ctpf;
+
     @FXML
-    private TableColumn<Echange, String> Descriptionechange;
+    private TableColumn<Echange, String> ctps;
+
+    @FXML
+    private TableColumn<Echange, String>Descriptionechange;
 
     @FXML
     private TableColumn<Echange, String> dateechange;
@@ -98,13 +109,25 @@ public class Jobeur_interfaceController implements Initializable {
     private Button modifierechange;
 
     @FXML
-    private TextField mNom_proposition;
+    private Label propositionsouhaitee;
 
     @FXML
-    private TextArea mDescriptionpro;
+    private TextField mps;
 
     @FXML
-    private DatePicker mdateajout;
+    private TextArea mde;
+
+    @FXML
+    private DatePicker mda;
+
+    @FXML
+    private TextField idmp;
+
+    @FXML
+    private TextField mpf;
+
+
+
        Echange E=new Echange();
     
       EchangeGestion es = new  EchangeGestion();
@@ -114,14 +137,16 @@ public class Jobeur_interfaceController implements Initializable {
 
     @FXML
     void ajouterechange(ActionEvent event) {
-           String nom=Nom_proposition.getText();
-   String description=Descriptionpro.getText();
+          String nomo=apof.getText();
+     String nomf=apos.getText();
+       String description=Descriptionpro.getText();
+    
    
    
   
   LocalDate locald =dateajoute.getValue();
         String date =locald.toString();
-   Echange E = new Echange(nom,description,date);
+   Echange E = new Echange(nomo,nomf,description,date);
   EchangeGestion es = new  EchangeGestion();
    es.ajouterEchange(E);
    JOptionPane.showMessageDialog(null, "ajout avec succes");
@@ -133,13 +158,15 @@ public class Jobeur_interfaceController implements Initializable {
 
     @FXML
     void modifierechange(ActionEvent event) {
-              String id1=idmp.getText();
-   String nom1=mNom_proposition.getText();
-   String description=mDescriptionpro.getText();
-  LocalDate locald =mdateajout.getValue();
+             String id1=idmp.getText();
+   String nom1=mpf.getText();
+    String nom2=mps.getText();
+   
+   String description=mde.getText();
+  LocalDate locald =mda.getValue();
         String date1 =locald.toString();
         
-        Echange E = new Echange(id1,nom1,description,date1);
+        Echange E = new Echange(id1,nom1,nom2,description,date1);
    EchangeGestion es = new  EchangeGestion();
    try{
    es.modifierEchange(E);
@@ -148,14 +175,14 @@ public class Jobeur_interfaceController implements Initializable {
     {
        System.out.println(e.getMessage());  
     }
-   RefreshTable() ;
+   //RefreshTable() ;*/
    
 
     }
 
        public void RefreshTable() 
     {
-        data.clear();
+       data.clear();
    es.afficherEchange();
     ArrayList Echange= (ArrayList)es.afficherEchange(); 
         data= FXCollections.observableArrayList(Echange);
@@ -176,18 +203,20 @@ public class Jobeur_interfaceController implements Initializable {
     }
      public void setValueformtableviewtotext()
     {
-        tablemonechange.setOnMouseClicked(new EventHandler<MouseEvent>()
+       tablemonechange.setOnMouseClicked(new EventHandler<MouseEvent>()
          {
              @Override
              public void handle(MouseEvent event) {
                   Echange E=tablemonechange.getItems().get(tablemonechange.getSelectionModel().getSelectedIndex());
                 idmp.setText(E.getId());
-                 mNom_proposition.setText(E.getNom_echange());
-                 mDescriptionpro.setText(E.getDescription_echange());
+                mpf.setText(E.getPropositionofferte());
+         mps.setText(E.getPropositionsouhaitée());
+        
+                 mde.setText(E.getDescription_echange());
                 
                    String date1=E.getDate(); 
                    LocalDate date2 = LocalDate.parse(date1);
-                   mdateajout.setValue(date2);
+                   mda.setValue(date2);
      //String date1=date.toString();
         
                            
@@ -199,14 +228,17 @@ public class Jobeur_interfaceController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       tableechanges.setItems(data);
+       //tableechanges.setItems(data);
                          idechanges.setCellValueFactory(new PropertyValueFactory<Echange,String>("id"));
-         nomechanges.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_echange"));
+         propositionoff.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
+         propositionsou.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionsouhaitée"));
             Descriptionechanges.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
                  dateechanges.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
+                    tableechanges.setItems(data);
                  tablemonechange.setItems(data1);
                  idechange.setCellValueFactory(new PropertyValueFactory<Echange,String>("id"));
-                  nom_echange.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_echange"));
+                  ctpf.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
+                   ctps.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionsouhaitée"));
                   Descriptionechange.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
                   dateechange.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
                   setValueformtableviewtotext();
