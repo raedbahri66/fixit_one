@@ -11,6 +11,7 @@ import entites.Jobeur;
 import entites.Service;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -58,6 +59,8 @@ public class Interface_choisir_jobeurController implements Initializable {
     private TableColumn<Jobeur,String> Column_job;
     @FXML
     private TableColumn<Jobeur,Integer> column_cin;
+    @FXML
+    private TableColumn<Jobeur,Date> Date_naissanceJ;
   
 
     /**
@@ -74,6 +77,7 @@ public class Interface_choisir_jobeurController implements Initializable {
      Column_sexej.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("sexe"));
      Column_tel.setCellValueFactory(new PropertyValueFactory <Jobeur,Integer>("tel"));
      Column_job.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("job"));
+     Date_naissanceJ.setCellValueFactory(new PropertyValueFactory<Jobeur,Date>("date_naissance"));
      column_cin.setCellValueFactory(new PropertyValueFactory <Jobeur,Integer>("cin"));
 
    

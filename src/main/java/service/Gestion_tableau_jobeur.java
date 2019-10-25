@@ -49,6 +49,7 @@ public class Gestion_tableau_jobeur {
                 a.setPrenom(res.getString("prenom"));
                 a.setEmail(res.getString("email"));
                 a.setSexe(res.getString("sexe"));
+                a.setDate_naissance(res.getDate("date_naissance"));
                 a.setTel(res.getInt("tel"));
                 a.setJob(res.getString("job"));
                 

@@ -8,7 +8,13 @@ package GUI;
 import entites.Jobeur;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -16,6 +22,30 @@ import javafx.fxml.Initializable;
  * @author ASUS
  */
 public class Affiche_porfilejobeurController implements Initializable {
+    @FXML
+    private Label cin_J;
+    @FXML
+    private Label nom_J;
+    @FXML
+    private Label prenom_J;
+    @FXML
+    private Label datenaissance_J;
+    @FXML
+    private Label tele_J;
+    @FXML
+    private Label Email_J;
+    @FXML
+    private ImageView photo_profile;
+    @FXML
+    private TextArea Commentaire;
+    @FXML
+    private TableColumn<?, ?> Id_C;
+    @FXML
+    private TableColumn<?, ?> Nom_Pc;
+    @FXML
+    private TableColumn<?, ?> Prenom_PC;
+    @FXML
+    private TableColumn<?, ?> Avis_PC;
 
     /**
      * Initializes the controller class.
@@ -25,9 +55,40 @@ public class Affiche_porfilejobeurController implements Initializable {
         // TODO
         Jobeur A=new Jobeur();
         A=Interface_choisir_jobeurController.j1;
-       /* tiitre_article.setText(A.getNom_article());
-        desc_artcile.setText(A.getDescriptionarticle());*/
+        nom_J.setText(A.getNom());
+        prenom_J.setText(A.getPrenom());
+        String date=A.getDate_naissance().toLocalDate().toString();
+        datenaissance_J.setText(date);
+        String tele= String.valueOf(A.getTel());
+        tele_J.setText(tele);
+        Email_J.setText(A.getEmail());
+        String cin= String.valueOf(A.getCin());
+        cin_J.setText(cin);
+      
+        
         System.out.println(Interface_choisir_jobeurController.j1);
     }    
+
+    @FXML
+    private void Ajouter_C(ActionEvent event) {
+    }
+
+    @FXML
+    private void Modifier_c(ActionEvent event) {
+    }
+
+    @FXML
+    private void Supprimer_C(ActionEvent event) {
+    }
+
+    @FXML
+    private void Retour(ActionEvent event) {
+    }
+
+    @FXML
+    private void favoris(ActionEvent event) {
+    }
+
+   
     
 }
