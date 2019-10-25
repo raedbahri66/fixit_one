@@ -11,28 +11,27 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.InscrirePosteurController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.InscrirePosteurController">
    <children>
       <AnchorPane layoutX="14.0" layoutY="49.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
-            <ImageView fitHeight="511.0" fitWidth="754.0" layoutX="-16.0" layoutY="-46.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="599.0" fitWidth="837.0" layoutX="-16.0" layoutY="-46.0" opacity="0.46" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Image/forum-bricolage.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="55.0" layoutY="41.0" text="Identifiant(Cin):" textFill="WHITE">
+            <Label layoutX="55.0" layoutY="41.0" text="Identifiant(Cin):">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="56.0" layoutY="79.0" text="Nom:" textFill="WHITE" />
-            <Label layoutX="56.0" layoutY="116.0" text="Prenom:" textFill="WHITE" />
-            <Label layoutX="57.0" layoutY="160.0" text="Email" textFill="WHITE" />
-            <Label layoutX="59.0" layoutY="241.0" text="Sexe:" textFill="WHITE" />
-            <Label layoutX="56.0" layoutY="199.0" text="Mot de Passe:" textFill="WHITE" />
-            <Label layoutX="57.0" layoutY="287.0" text="Date de naissance :" textFill="WHITE" />
-            <Label layoutX="57.0" layoutY="331.0" text="Telephone:" textFill="WHITE" />
+            <Label layoutX="56.0" layoutY="79.0" text="Nom:" textFill="#171717" />
+            <Label layoutX="56.0" layoutY="116.0" text="Prenom:" />
+            <Label layoutX="57.0" layoutY="160.0" text="Email" textFill="#141414" />
+            <Label layoutX="59.0" layoutY="241.0" text="Sexe:" />
+            <Label layoutX="56.0" layoutY="199.0" text="Mot de Passe:" />
+            <Label layoutX="57.0" layoutY="287.0" text="Date de naissance :" />
+            <Label layoutX="57.0" layoutY="331.0" text="Telephone:" />
             <TextField fx:id="id_p" layoutX="213.0" layoutY="36.0" />
             <TextField fx:id="nom_p" layoutX="213.0" layoutY="74.0" />
             <TextField fx:id="prenom_p" layoutX="213.0" layoutY="111.0" />
@@ -83,12 +82,16 @@
                </font>
             </Label>
             <Button layoutX="650.0" layoutY="-34.0" mnemonicParsing="false" onAction="#retour_bt" text="Retour" />
+            <Button layoutX="596.0" layoutY="437.0" mnemonicParsing="false" onAction="#btn_inscrireposteur" prefHeight="44.0" prefWidth="127.0" text="S'inscrire">
+               <font>
+                  <Font name="System Italic" size="20.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="image_post" fitHeight="157.0" fitWidth="176.0" layoutX="584.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="57.0" layoutY="374.0" text="Photo de Profil:" />
+            <TextField fx:id="file_image_p" layoutX="214.0" layoutY="369.0" prefHeight="31.0" prefWidth="186.0" promptText="Choose Image" />
+            <Button fx:id="image_p_btn" layoutX="400.0" layoutY="369.0" mnemonicParsing="false" text="|||" />
          </children>
       </AnchorPane>
-      <Button layoutX="310.0" layoutY="435.0" mnemonicParsing="false" onAction="#btn_inscrireposteur" prefHeight="44.0" prefWidth="127.0" text="S'inscrire">
-         <font>
-            <Font name="System Italic" size="20.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>

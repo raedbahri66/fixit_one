@@ -9,12 +9,15 @@ import entites.Posteur;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -158,6 +161,7 @@ public class PosteurgestionController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    static int cin;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         sexe_p.setValue("Homme");
@@ -198,6 +202,24 @@ public class PosteurgestionController implements Initializable {
                p0=(Posteur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
                tabpane1.getSelectionModel().select(supp_posttab);
                 cinsupp_t.setText(Integer.toString(p0.getCin()));
+            }
+            else if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 1){
+                Posteur p0 = new Posteur();
+               p0=(Posteur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
+                int cin1=p0.getCin();
+                cin=cin1;
+                Parent root = null;
+                try {
+                   root= FXMLLoader.load(getClass().getResource("/fxml/Profil_Posteur.fxml"));
+                } catch (IOException ex) {
+                    Logger.getLogger(PosteurgestionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                                Stage stage = new Stage();
+
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+               /* Stage stag1 = new Stage(root);*/
+                stage.show();
             }
         });
 
@@ -272,7 +294,7 @@ public class PosteurgestionController implements Initializable {
 
            Posteur P1= new Posteur(cin,nom,prenom,email,sexe,password,date,tel);
            PosteurService p = new PosteurService();
-           p.creerPosteur(P1);
+          p.creerPosteur(P1);
 
        }
        else
@@ -359,7 +381,7 @@ public class PosteurgestionController implements Initializable {
     }
 
     @FXML
-    private void btn_rechercher(ActionEvent event) {
+    private void btn_rechercher(ActionEvent event) throws SQLException, IOException {
         if(id_p1.getText().isEmpty()){
              valid1 = false;
 
