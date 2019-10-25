@@ -51,13 +51,15 @@
                                           <Image url="@../Image/bricolage-810x540.jpg" />
                                        </image>
                                     </ImageView>
-                                    <DatePicker fx:id="dateajoute" layoutX="321.0" layoutY="235.0" prefHeight="25.0" prefWidth="199.0" />
-                                    <Label layoutX="173.0" layoutY="84.0" prefHeight="40.0" prefWidth="94.0" text="Description:" />
-                                    <Label layoutX="186.0" layoutY="239.0" text="Date d'ajout:" />
-                                    <Button fx:id="ajoutechange" layoutX="327.0" layoutY="351.0" mnemonicParsing="false" onAction="#ajouterechange" text="Ajouter les proposition d'echange" />
-                                    <Label layoutX="168.0" layoutY="21.0" prefHeight="37.0" prefWidth="103.0" text="Nom_proposition:" />
-                                    <TextArea fx:id="Descriptionpro" layoutX="321.0" layoutY="84.0" prefHeight="103.0" prefWidth="200.0" />
-                                    <TextField fx:id="Nom_proposition" layoutX="321.0" layoutY="27.0" prefHeight="25.0" prefWidth="201.0" />
+                                    <DatePicker fx:id="dateajoute" layoutX="308.0" layoutY="311.0" prefHeight="25.0" prefWidth="199.0" />
+                                    <Label layoutX="203.0" layoutY="155.0" prefHeight="40.0" prefWidth="94.0" text="Description:" />
+                                    <Label layoutX="203.0" layoutY="315.0" text="Date d'ajout:" />
+                                    <Button fx:id="ajoutechange" layoutX="310.0" layoutY="397.0" mnemonicParsing="false" onAction="#ajouterechange" text="Ajouter les proposition d'echange" />
+                                    <Label layoutX="158.0" layoutY="82.0" prefHeight="37.0" prefWidth="121.0" text="proposition souhaitée" />
+                                    <TextArea fx:id="Descriptionpro" layoutX="305.0" layoutY="155.0" prefHeight="103.0" prefWidth="200.0" />
+                                    <TextField fx:id="apos" layoutX="307.0" layoutY="88.0" prefHeight="25.0" prefWidth="201.0" />
+                                    <Label layoutX="153.0" layoutY="37.0" text="proposition offerte" />
+                                    <TextField fx:id="apof" layoutX="302.0" layoutY="33.0" prefHeight="25.0" prefWidth="203.0" />
                                  </children>
                               </AnchorPane>
                         </content>
@@ -71,15 +73,16 @@
                                           <Image url="@../Image/bricolage-810x540.jpg" />
                                        </image>
                                     </ImageView>
-                                    <TableView fx:id="tableechanges" layoutX="201.0" layoutY="110.0" prefHeight="200.0" prefWidth="281.0">
+                                    <TableView fx:id="tableechanges" layoutX="-23.0" layoutY="70.0" prefHeight="380.0" prefWidth="775.0">
                                       <columns>
-                                        <TableColumn fx:id="idechanges" prefWidth="20.0" text="id" visible="false" />
-                                        <TableColumn fx:id="nomechanges" prefWidth="105.0" text="Nom_proposition" />
-                                          <TableColumn fx:id="Descriptionechanges" prefWidth="100.0" text="Description" />
-                                          <TableColumn fx:id="dateechanges" prefWidth="75.0" text="Date d'ajout" />
-                                          <TableColumn fx:id="idjobeurechanges" prefWidth="75.0" text="idj" visible="false" />
-                                          <TableColumn fx:id="nomjoubeurechanges" prefWidth="104.0" text="Nom de jobeur" visible="false" />
-                                          <TableColumn fx:id="prenomjoubeurechanges" prefWidth="121.0" text="Prenom de jobeur" visible="false" />
+                                        <TableColumn fx:id="idechanges" prefWidth="20.0" text="id" />
+                                          <TableColumn fx:id="propositionoff" prefWidth="136.0" text="propositionofferte" />
+                                        <TableColumn fx:id="propositionsou" prefWidth="128.0" text="propositionsouhaitée" />
+                                          <TableColumn fx:id="Descriptionechanges" prefWidth="118.0" text="Description" />
+                                          <TableColumn fx:id="dateechanges" prefWidth="132.0" text="Date d'ajout" />
+                                          <TableColumn fx:id="idjobeurechanges" prefWidth="22.0" text="idj" />
+                                          <TableColumn fx:id="nomjoubeurechanges" prefWidth="89.0" text="Nom  jobeur" />
+                                          <TableColumn fx:id="prenomjoubeurechanges" prefWidth="189.0" text="Prenom  jobeur" />
                                       </columns>
                                     </TableView>
                                  </children>
@@ -95,23 +98,26 @@
                                           <Image url="@../Image/bricolage-810x540.jpg" />
                                        </image>
                                     </ImageView>
-                                    <TableView fx:id="tablemonechange" layoutX="133.0" layoutY="7.0" prefHeight="200.0" prefWidth="412.0">
+                                    <TableView fx:id="tablemonechange" layoutX="140.0" prefHeight="200.0" prefWidth="505.0">
                                       <columns>
-                                        <TableColumn fx:id="idechange" prefWidth="18.0" text="id" visible="false" />
-                                        <TableColumn fx:id="nom_echange" prefWidth="109.0" text="Nom_proposition" />
+                                        <TableColumn fx:id="idechange" prefWidth="18.0" text="id" />
+                                          <TableColumn fx:id="ctpf" prefWidth="109.0" text="propositionoffetre" />
+                                        <TableColumn fx:id="ctps" prefWidth="109.0" text="propositionproposition souhaitée" />
                                           <TableColumn fx:id="Descriptionechange" prefWidth="177.0" text="Description" />
                                           <TableColumn fx:id="dateechange" prefWidth="109.0" text="Date d'ajout" />
                                       </columns>
                                     </TableView>
-                                    <Button fx:id="modifierechange" layoutX="106.0" layoutY="455.0" mnemonicParsing="false" onAction="#modifierechange" text="Modifier une proposition d'echange" />
-                                    <Button layoutX="376.0" layoutY="455.0" mnemonicParsing="false" onAction="#supprimerechange" text="Supprimer une proposition d'echange" />
-                                    <Label layoutX="177.0" layoutY="223.0" text="Nom_proposition" />
-                                    <TextField fx:id="mNom_proposition" layoutX="299.0" layoutY="216.0" prefHeight="30.0" prefWidth="195.0" />
-                                    <Label layoutX="196.0" layoutY="269.0" text="Description" />
-                                    <TextArea fx:id="mDescriptionpro" layoutX="299.0" layoutY="269.0" prefHeight="93.0" prefWidth="200.0" />
-                                    <Label layoutX="194.0" layoutY="381.0" text="Date d'ajout" />
-                                    <DatePicker fx:id="mdateajout" layoutX="299.0" layoutY="383.0" prefHeight="30.0" prefWidth="202.0" />
+                                    <Button fx:id="modifierechange" layoutX="113.0" layoutY="474.0" mnemonicParsing="false" onAction="#modifierechange" text="Modifier une proposition d'echange" />
+                                    <Button layoutX="400.0" layoutY="468.0" mnemonicParsing="false" onAction="#supprimerechange" text="Supprimer une proposition d'echange" />
+                                    <Label fx:id="propositionsouhaitee" layoutX="180.0" layoutY="254.0" text="propositionsouhaitee" />
+                                    <TextField fx:id="mps" layoutX="300.0" layoutY="247.0" prefHeight="30.0" prefWidth="195.0" />
+                                    <Label layoutX="196.0" layoutY="299.0" text="Description" />
+                                    <TextArea fx:id="mde" layoutX="297.0" layoutY="299.0" prefHeight="93.0" prefWidth="200.0" />
+                                    <Label layoutX="194.0" layoutY="417.0" text="Date d'ajout" />
+                                    <DatePicker fx:id="mda" layoutX="299.0" layoutY="410.0" prefHeight="30.0" prefWidth="202.0" />
                                     <TextField fx:id="idmp" layoutX="32.0" layoutY="274.0" prefHeight="25.0" prefWidth="27.0" visible="false" />
+                                    <Label layoutX="178.0" layoutY="219.0" text="proposition offetre" />
+                                    <TextField fx:id="mpf" layoutX="302.0" layoutY="207.0" prefHeight="25.0" prefWidth="195.0" />
                                  </children>
                               </AnchorPane>
                           </content>
