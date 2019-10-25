@@ -124,14 +124,12 @@ public class Posteur_interfaceController implements Initializable {
     private TableColumn<Produit,String> table_nom;
     @FXML
     private TableColumn<Produit,String> table_prix;
-    @FXML
-    private TableColumn<Produit,String> table_description;
+  
     @FXML
     private TableColumn<Produit,String> table_id;
     @FXML
     private TableColumn<Produit,String> table_categorie;
-    @FXML
-    private TableColumn<Produit,String> table_numero;
+ 
 
    
     @FXML
@@ -153,6 +151,18 @@ public class Posteur_interfaceController implements Initializable {
     private Label statut2;
     @FXML
     private ComboBox<String> categorie_produit;
+    
+    @FXML
+    private Label nom_proprietaire;
+    @FXML
+    private Label label_numero;
+    @FXML
+    private Label label_description;
+    @FXML
+    private ComboBox<String> combobox_filter;
+    @FXML
+    private TextField recherche_produit;
+    
     
     @FXML
     private TextField numero1;
@@ -282,7 +292,14 @@ public class Posteur_interfaceController implements Initializable {
              }
          });
                  }
-   
+      
+          
+          @FXML
+    void btnsearchAction(ActionEvent event) {
+
+    }
+    
+    
   public void refrech(){
       data.clear();
       data1.clear();
@@ -383,10 +400,10 @@ public class Posteur_interfaceController implements Initializable {
         table.setItems(data);
         table_nom.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom"));
          table_id.setCellValueFactory(new PropertyValueFactory<Produit,String>("id"));
-            table_description.setCellValueFactory(new PropertyValueFactory<Produit,String>("description"));
+            //table_description.setCellValueFactory(new PropertyValueFactory<Produit,String>("description"));
                 table_prix.setCellValueFactory(new PropertyValueFactory<Produit,String>("prix"));
                 table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
-                table_numero.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
+               // table_numero.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
                 setValueformtableviewtotext();
                 
         table1.setItems(data1);
@@ -403,7 +420,7 @@ public class Posteur_interfaceController implements Initializable {
                  categorie_produit.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  categorie_produit2.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  categorie_produit3.getItems().addAll("non_vendu","vendu");
-                 
+                 combobox_filter.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  
          
     }    

@@ -29,14 +29,15 @@ public class EchangeGestion implements Iechange{
     @Override
     public void ajouterEchange(Echange E) {
                 String req1="INSERT INTO `echange` "
-                    + "(`nom_echange`, `description_echange`,`date`) "
-                    + "VALUES (?,?,?)";
+                    + "(`proposition offerte`,`proposition souhaitée` ,`description_echange`,`date`) "
+                    + "VALUES (?,?,?,?)";
             try{
                 PreparedStatement ste = c.prepareStatement(req1);
             
-            ste.setString(1,E.getNom_echange());
-            ste.setString(2,E.getDescription_echange());
-            ste.setString(3, E.getDate());
+            ste.setString(1,E.getPropositionofferte());
+            ste.setString(2,E.getPropositionsouhaitée());
+            ste.setString(3,E.getDescription_echange());
+            ste.setString(4, E.getDate());
               ste.executeUpdate();
             System.out.println("Ajout de l'echange ");
                     // JOptionPane.showMessageDialog(null,"requete execute correctement"); 
@@ -49,16 +50,17 @@ public class EchangeGestion implements Iechange{
 
     @Override
     public void modifierEchange(Echange E) {
-        String req= "update echange SET  nom_echange=?,description_echange=?,date=? Where id=?";
+        String req= "update echange SET  proposition offerte=?,proposition souhaitée=?,description_echange=?,date=? Where id=?";
     
    try { 
           PreparedStatement ste = c.prepareStatement(req);
           
           
-          ste.setString(1,E.getNom_echange());
-            ste.setString(2,E.getDescription_echange());
-            ste.setString(3,E.getDate());
-             ste.setString(4,E.getId());
+          ste.setString(1,E.getPropositionofferte());
+          ste.setString(2,E.getPropositionsouhaitée());
+            ste.setString(3,E.getDescription_echange());
+            ste.setString(4,E.getDate());
+             ste.setString(5,E.getId());
                     
              ste.executeUpdate();
            
@@ -99,9 +101,10 @@ public class EchangeGestion implements Iechange{
           while (res.next()) { 
               Echange e = new Echange();
               e.setId(res.getString(1));
-               e.setNom_echange(res.getString(2));
-                     e.setDescription_echange(res.getString(3));
-                         e.setDate(res.getString(10));
+               e.setPropositionofferte(res.getString(2));
+              e.setPropositionsouhaitée(res.getString(3));
+                     e.setDescription_echange(res.getString(4));
+                         e.setDate(res.getString(11));
                           echanges.add(e);
                            //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10)));
              
