@@ -117,6 +117,7 @@ public class Affiche_porfilejobeurController implements Initializable {
            Commentaire.setVisible(true);
             canAjout = false;
            JOptionPane.showMessageDialog (null,"votre avis svp");
+        }
            if(canAjout){
         Posteur p1= new Posteur();
                try {
@@ -142,8 +143,8 @@ public class Affiche_porfilejobeurController implements Initializable {
         CommentaireService c1=new CommentaireService();
         c1.ajoutercCommentaire(c);
       }}
-     
-    }
+
+    
 
 
    

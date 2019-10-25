@@ -40,7 +40,7 @@ Connection c = ConnexionBD.getInstanceConnexionBD().getConnection();
     public void ajoutercCommentaire(Commentaire A) {
         
             String req1="INSERT INTO `commentaire` "
-                    + "(`idjobeur_fg`,`idposteur_fg`,`nomp`, `prenomp`,`description_com`) "
+                    + "(`idjobeur_fg`,`idposteur_fg`,`nomp_fg`, `prenomp_fg`,`description_com`) "
                     + "VALUES (?,?,?,?,?)";
             try{ PreparedStatement ste = c.prepareStatement(req1);
             ste.setInt(1,A.getId_jobeur());
