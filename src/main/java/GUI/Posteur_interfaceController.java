@@ -181,7 +181,7 @@ public class Posteur_interfaceController implements Initializable {
     
     
     @FXML
-    void addaction(ActionEvent event) {
+    void addaction(ActionEvent event) throws SQLException, IOException {
         
         PosteurService p = new PosteurService();
         Posteur p1= new Posteur();
