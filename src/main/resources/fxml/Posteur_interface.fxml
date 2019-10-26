@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="834.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="834.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
   <tabs>
     <Tab text="Demander un service">
       <content>
@@ -160,7 +160,51 @@
       </Tab>
       <Tab text="Espace Troc">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TabPane layoutX="-2.0" prefHeight="585.0" prefWidth="762.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Ajouter une proposition d'echange">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="201.0" prefWidth="237.0">
+                                 <children>
+                                    <Label layoutX="107.0" layoutY="93.0" prefHeight="17.0" prefWidth="113.0" text="proposition offerte" />
+                                    <Label layoutX="107.0" layoutY="143.0" prefHeight="17.0" prefWidth="125.0" text="proposition souhaitée" />
+                                    <Label layoutX="121.0" layoutY="195.0" text="Description" />
+                                    <Label layoutX="121.0" layoutY="291.0" text="dated'ajout" />
+                                    <TextField fx:id="pofp" layoutX="261.0" layoutY="89.0" />
+                                    <TextField fx:id="posp" layoutX="261.0" layoutY="139.0" />
+                                    <TextArea fx:id="pdp" layoutX="262.0" layoutY="195.0" prefHeight="59.0" prefWidth="154.0" />
+                                    <DatePicker fx:id="dap" layoutX="262.0" layoutY="296.0" prefHeight="25.0" prefWidth="158.0" />
+                                    <Button fx:id="ajoutep" layoutX="316.0" layoutY="389.0" mnemonicParsing="false" onAction="#ajouterechangep" text="Ajouter" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="Consulter les propositions">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="tableechangesposteur" layoutX="36.0" layoutY="76.0" prefHeight="383.0" prefWidth="638.0">
+                                      <columns>
+                                        <TableColumn fx:id="tablepofp" prefWidth="120.0" text="proposition offerte" />
+                                        <TableColumn fx:id="tableposp" prefWidth="134.0" text="proposition souhaitee" />
+                                          <TableColumn fx:id="tablepdp" prefWidth="134.0" text="description" />
+                                          <TableColumn fx:id="tabledap" prefWidth="134.0" text="dateajout" />
+                                          <TableColumn fx:id="tablenpos" prefWidth="134.0" text="nom posteur" />
+                                      </columns>
+                                    </TableView>
+                                 </children></AnchorPane>
+                        </content>
+                      </Tab>
+                        <Tab text="consulter mes proposition d'echange">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="201.0" prefWidth="237.0" />
+                           </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children></AnchorPane>
          </content>
       </Tab>
       <Tab text="Reclamation">
