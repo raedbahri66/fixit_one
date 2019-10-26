@@ -30,8 +30,8 @@ public class GestionProduit {
          
     public void ajouterProduit(Produit E) {
         String req1="INSERT INTO `produit` "
-                    + "(`nomproduit`, `prix`,`description`, `categorie`, `num`, `etat_vente`, `etat_validation`, `idposteur_fg`, `idjobeur_fg`) "
-                    + "VALUES (?,?,?,?,?,?,?,?,?)";
+                    + "(`nomproduit`, `prix`,`description`, `categorie`, `num`, `etat_vente`, `etat_validation`, `idposteur_fg`, `idjobeur_fg`,`nom_proprietere`) "
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?)";
             try{
                 PreparedStatement ste = c.prepareStatement(req1);
             
@@ -45,6 +45,7 @@ public class GestionProduit {
             ste.setString(7, E.getEtatValidation());
             ste.setInt(8, E.getIdPosteurfg());
             ste.setInt(9, E.getIdJobeurfg());
+            ste.setString(10, E.getNomproprietere());
               ste.executeUpdate();
             System.out.println("Ajouter avec sucées ");
                     // JOptionPane.showMessageDialog(null,"requete execute correctement"); 
@@ -73,6 +74,7 @@ public class GestionProduit {
                        e.setDescription(res.getString(4));
                         e.setCategorie(res.getString(5));
                          e.setNumero(res.getString(6));
+                         e.setNomproprietere(res.getString(11));
                           echanges.add(e);
                            //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
           } 
@@ -109,6 +111,59 @@ public class GestionProduit {
       }   
      return table1;
     }
+     
+       public List<Produit> RechercheCategorie(String cat) {
+        
+       List<Produit> table1= new ArrayList<>();
+    //Echange e = null;
+      try {
+          if ("Tous()".equals(cat)){
+           String req2="select * from produit ";
+         PreparedStatement pstm = c.prepareStatement(req2);
+          ResultSet res=  pstm.executeQuery();
+          while (res.next()) { 
+              Produit e = new Produit();
+               e.setId(res.getString(1));
+                     e.setPrix(res.getString(3));
+                     e.setNom(res.getString(2));
+                       e.setDescription(res.getString(4));
+                        e.setCategorie(res.getString(5));
+                         e.setNumero(res.getString(6));
+                         e.setNomproprietere(res.getString(11));
+                          table1.add(e);
+                           //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
+          } 
+          
+          
+          }
+          else{
+         String req2="select * from produit Where categorie=? ";
+         PreparedStatement pstm = c.prepareStatement(req2);
+         pstm.setString(1,cat);
+          ResultSet res=  pstm.executeQuery();
+          while (res.next()) { 
+              Produit e = new Produit();
+               e.setId(res.getString(1));
+                     e.setPrix(res.getString(3));
+                     e.setNom(res.getString(2));
+                       e.setDescription(res.getString(4));
+                        e.setCategorie(res.getString(5));
+                         e.setNumero(res.getString(6));
+                         e.setNomproprietere(res.getString(11));
+                          table1.add(e);
+                           //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
+                           }
+          } 
+    }catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+      }   
+     return table1;
+    }
+     
+     
+     
+     
+     
      
      
      public void modifierProduit(Produit E) {

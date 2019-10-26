@@ -88,7 +88,9 @@ public class Affiche_porfilejobeurController implements Initializable {
      CommentaireService c1=new CommentaireService();
      ArrayList<Commentaire> commentaires= (ArrayList<Commentaire>) c1.afficherCommentaire();
      public  ObservableList<Commentaire>data = FXCollections.observableArrayList(commentaires); 
-    public boolean verfication(){
+   
+     
+       public boolean verfication(){
         String cin_p=cin_posteur.getText();
         int cin_p1 =Integer.parseInt(cin_p);
         int cinlog=AcceuilController.cinlogin;
@@ -125,7 +127,7 @@ public class Affiche_porfilejobeurController implements Initializable {
          }
      });
       } 
-     
+ 
     
     /**
      * Initializes the controller class.
@@ -134,7 +136,7 @@ public class Affiche_porfilejobeurController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-      afficher();
+        afficher();
         getid();
         Jobeur A=new Jobeur();
         A=Interface_choisir_jobeurController.j1;
@@ -259,6 +261,17 @@ public class Affiche_porfilejobeurController implements Initializable {
 
     @FXML
     private void favoris(ActionEvent event) {
+       Jobeur A=new Jobeur();
+       A=Interface_choisir_jobeurController.j1;
+       int cin_posteur=AcceuilController.cinlogin;
+       int cin_jobeur=A.getCin();
+       String nomj=A.getNom();
+       String prenomJ=A.getPrenom();
+       String date=A.getDate_naissance().toLocalDate().toString();
+       String tele= String.valueOf(A.getTel());
+       String mail=A.getEmail(); 
+       String specalité=A.getJob();
+       
         
     }
 
