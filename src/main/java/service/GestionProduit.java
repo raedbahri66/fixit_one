@@ -115,7 +115,7 @@ public class GestionProduit {
        List<Produit> table1= new ArrayList<>();
     //Echange e = null;
       try {
-          if ("".equals(cat)){
+          if ("Tous()".equals(cat)){
            String req2="select * from produit ";
          PreparedStatement pstm = c.prepareStatement(req2);
           ResultSet res=  pstm.executeQuery();
