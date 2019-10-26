@@ -94,6 +94,11 @@ public class Posteur_interfaceController implements Initializable {
 
     @FXML
     private TextArea description_produit;
+      @FXML
+    private TextField repos;
+
+    @FXML
+    private Button rechercherprop;
 
     
     @FXML
@@ -590,6 +595,25 @@ public class Posteur_interfaceController implements Initializable {
   EchangeGestion es = new  EchangeGestion();
    es.ajouterEchange(E);
    JOptionPane.showMessageDialog(null, "ajout avec succes");
+
+    }
+      @FXML
+    void rechercherechange(ActionEvent event) throws SQLException {
+        
+        dataeesp.clear();
+     String ech =repos.getText();
+       EchangeGestion ES = new EchangeGestion();
+   ArrayList Echange= (ArrayList) ES.Rechercheprpo(ech);
+    dataeesp= FXCollections.observableArrayList(Echange);
+   tableechangesposteur.setItems(dataeesp);
+        tablepofp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
+     tableposp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionsouhaitée"));
+            tablepdp.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
+                 tabledap.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
+                 tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
+                 //table.setItems(dataeesp);
+      
+
 
     }
     

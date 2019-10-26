@@ -580,4 +580,5 @@ public class PosteurgestionController implements Initializable {
         c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
         c_sexep.setCellValueFactory(new PropertyValueFactory<>("Sexe") );
     }
+
 }
