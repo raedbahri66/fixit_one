@@ -6,6 +6,7 @@
 package service;
 
 import entites.Echange;
+import entites.Produit;
 import iService.Iechange;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,7 +30,7 @@ public class EchangeGestion implements Iechange{
     @Override
     public void ajouterEchange(Echange E) {
                 String req1="INSERT INTO `echange` "
-                    + "(`proposition offerte`,`proposition souhaitée` ,`description_echange`,`idposteurfg`,`nomposteur`,`date`) "
+                    + "(`proposition offerte`,`proposition_souhaitée` ,`description_echange`,`idposteurfg`,`nomposteur`,`date`) "
                     + "VALUES (?,?,?,?,?,?)";
             try{
                 PreparedStatement ste = c.prepareStatement(req1);
@@ -55,7 +56,7 @@ public class EchangeGestion implements Iechange{
 
     @Override
     public void modifierEchange(Echange E) {
-        String req= "update echange SET  proposition offerte=?,proposition souhaitée=?,description_echange=?,date=? Where id=?";
+        String req= "update echange SET  proposition offerte=?,proposition_souhaitée=?,description_echange=?,date=? Where id=?";
     
    try { 
           PreparedStatement ste = c.prepareStatement(req);
@@ -126,6 +127,36 @@ public class EchangeGestion implements Iechange{
    
    
     }
+        public List<Echange> Rechercheprpo(String ech){
+       
+            List<Echange> tableechange= new ArrayList<>();
+     try{
+            
+        String req2="select * from echange Where proposition_souhaitée=? ";
+         PreparedStatement pstm = c.prepareStatement(req2);
+       pstm.setString(1,ech);
+          ResultSet res=  pstm.executeQuery();
+            //pstm.setString(1,ech);
+          while (res.next()) { 
+              Echange e = new Echange();
+              e.setId(res.getString(1));
+               e.setPropositionofferte(res.getString(2));
+              e.setPropositionsouhaitée(res.getString(3));
+                     e.setDescription_echange(res.getString(4));
+                     e.setNom_posteur(res.getString(10));
+                         e.setDate(res.getString(11));
+                          tableechange.add(e);
+                           //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
+          }                
+   
+      }   catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+     
+    }
+     return tableechange;
       }
+}
+
+
     
 
