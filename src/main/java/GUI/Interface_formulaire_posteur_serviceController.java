@@ -6,6 +6,7 @@
 package GUI;
 
 import entites.Offre;
+import entites.Posteur;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -23,7 +24,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import service.PosteurService;
 import service.gestion_offre_service;
+import java.sql.SQLException;
 
 /**
  * FXML Controller class
@@ -53,10 +56,18 @@ public class Interface_formulaire_posteur_serviceController implements Initializ
      * Initializes the controller class.
      */
     public boolean canInscription= true;
-    
+    Posteur p = new Posteur();
     
     @FXML
-    void Ajouter_offre_service(ActionEvent event) throws IOException {
+    void Ajouter_offre_service(ActionEvent event) throws SQLException, IOException {
+        PosteurService p = new PosteurService();
+        Posteur p1= new Posteur();
+        p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+        
+        
+        int idposteur=p1.getId();
+        String etatoffre="en-attente";
+        
         if(Label_adresse.getText().isEmpty()){
             canInscription = false;}
         
@@ -76,11 +87,12 @@ public class Interface_formulaire_posteur_serviceController implements Initializ
         String Tel = Label_tel.getText();
         String Heure =Label_heure.getText();
         LocalDate LCD =Label_date.getValue();
+        
          String date = LCD.toString();
-         Offre O = new Offre(adresse,date ,Heure ,Description,Tel);
+         Offre O = new Offre(adresse,date ,Heure ,Description,Tel,idposteur,etatoffre);
         gestion_offre_service g = new gestion_offre_service();
               g.creerOffre(O);
-              JOptionPane.showMessageDialog(null, "Account Created Successfull");
+              JOptionPane.showMessageDialog(null, "votre details du service sont enregistré");
                Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_choisir_jobeur.fxml"));
         Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

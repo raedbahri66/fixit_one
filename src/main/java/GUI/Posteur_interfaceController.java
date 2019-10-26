@@ -191,6 +191,28 @@ public class Posteur_interfaceController implements Initializable {
     private Button image_p_btn;
      private FileInputStream fis;
     private File file;
+    @FXML
+    private TextField pofp;
+    @FXML
+    private TextField posp;
+    @FXML
+    private TextArea pdp;
+    @FXML
+    private DatePicker dap;
+    @FXML
+    private Button ajoutep;
+    @FXML
+    private TableView<?> tableechangesposteur;
+    @FXML
+    private TableColumn<?, ?> tablepofp;
+    @FXML
+    private TableColumn<?, ?> tableposp;
+    @FXML
+    private TableColumn<?, ?> tablepdp;
+    @FXML
+    private TableColumn<?, ?> tabledap;
+    @FXML
+    private TableColumn<?, ?> tablenpos;
     
    
    
@@ -501,6 +523,10 @@ public class Posteur_interfaceController implements Initializable {
                           canModif = true;
         }
         
+    }
+
+    @FXML
+    private void ajouterechangep(ActionEvent event) {
     }
     
 }
