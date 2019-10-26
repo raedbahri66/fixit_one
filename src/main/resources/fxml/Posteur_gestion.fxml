@@ -5,10 +5,12 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -31,14 +33,22 @@
                         <TableColumn fx:id="c_sexep" prefWidth="109.0" text="Sexe" />
                     </columns>
                   </TableView>
-                  <Button fx:id="btn_text" layoutX="659.0" layoutY="8.0" mnemonicParsing="false" onAction="#btn_actualiser" prefHeight="31.0" prefWidth="85.0" text="Actualiser" />
-                  <Button layoutX="748.0" layoutY="8.0" mnemonicParsing="false" onAction="#logout_bt" prefHeight="31.0" prefWidth="68.0" text="logout" />
+                  <Button fx:id="btn_text" layoutX="659.0" layoutY="8.0" mnemonicParsing="false" onAction="#btn_actualiser" prefHeight="31.0" prefWidth="90.0" text="Actualiser" />
+                  <Button layoutX="751.0" layoutY="8.0" mnemonicParsing="false" onAction="#logout_bt" prefHeight="31.0" prefWidth="65.0" text="logout" />
                   <Label layoutX="702.0" layoutY="62.0" text="Filter">
                      <font>
                         <Font name="Copperplate Gothic Light" size="24.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="filter_field" layoutX="659.0" layoutY="116.0" onInputMethodTextChanged="#Textchanged_flnom" onKeyTyped="#OnkeyTypedfilter" onMouseReleased="#Clearmouse_text" prefHeight="31.0" prefWidth="165.0" promptText="Selon Nom" />
+                  <TextField fx:id="filter_field" layoutX="660.0" layoutY="176.0" onInputMethodTextChanged="#Textchanged_flnom" onKeyReleased="#OnKeyReleased" onKeyTyped="#OnkeyTypedfilter" onMouseReleased="#Clearmouse_text" prefHeight="31.0" prefWidth="165.0" promptText="Type Info..." />
+                  <ComboBox fx:id="combo_filter" layoutX="660.0" layoutY="123.0" prefWidth="150.0" />
+                  <RadioButton fx:id="active_filter" layoutX="703.0" layoutY="263.0" mnemonicParsing="false" onMouseClicked="#Active_filterBtn" prefHeight="21.0" prefWidth="91.0" text="Active" />
+                  <RadioButton fx:id="banned_filter" layoutX="702.0" layoutY="293.0" mnemonicParsing="false" onMouseClicked="#banned_btnfilter" prefHeight="21.0" prefWidth="148.0" text="Banned" />
+                  <Label layoutX="669.0" layoutY="217.0" prefHeight="46.0" prefWidth="99.0" text="Or Selon Etat">
+                     <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
       </content>
     </Tab>
@@ -147,11 +157,11 @@
             </AnchorPane>
          </content>
       </Tab>
-      <Tab fx:id="supp_posttab" text="Supprimer Posteur">
+      <Tab fx:id="supp_posttab" text="Supprimer/Bannir Posteur">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="521.0" fitWidth="791.0" layoutY="1.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="546.0" fitWidth="859.0" layoutY="1.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Image/Fotolia_71258241_S.jpg" />
                      </image>
@@ -162,10 +172,21 @@
                      </font>
                   </Label>
                   <TextField fx:id="cinsupp_t" layoutX="258.0" layoutY="45.0" prefHeight="31.0" prefWidth="209.0" />
-                  <Label fx:id="nom_valid11" layoutX="507.0" layoutY="45.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
-                  <Button layoutX="291.0" layoutY="94.0" mnemonicParsing="false" onAction="#btn_supprposteur" prefHeight="40.0" prefWidth="128.0" text="Supprimer">
+                  <Label fx:id="nom_valid11" layoutX="486.0" layoutY="45.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#f5173c" />
+                  <Button layoutX="647.0" layoutY="40.0" mnemonicParsing="false" onAction="#btn_supprposteur" prefHeight="40.0" prefWidth="128.0" text="Supprimer">
                      <font>
                         <Font size="19.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="45.0" layoutY="148.0" text="Raison de Bannir :">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="bannir_text" layoutX="245.0" layoutY="148.0" prefHeight="153.0" prefWidth="222.0" />
+                  <Button layoutX="506.0" layoutY="150.0" mnemonicParsing="false" onAction="#bannir_btn" prefHeight="50.0" prefWidth="122.0" text="Bannir">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
                      </font>
                   </Button>
                </children>

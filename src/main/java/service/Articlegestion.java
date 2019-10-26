@@ -7,6 +7,9 @@ package service;
 
 import entites.Article;
 import iService.IArticle;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -38,7 +41,29 @@ public class Articlegestion implements IArticle{
             System.out.println(ex);
         }
     }
-    
+     @Override
+    public void ajouterArticle(Article A, FileInputStream fis, File file) {
+         String req1="INSERT INTO `article` "
+                    + "(`nom_article`, `description_article`,`date_article`,`categorie`,`source`,`image_art`) "
+                    + "VALUES (?,?,?,?,?,?)";
+            try{ PreparedStatement ste = c.prepareStatement(req1);
+            ste.setString(1,A.getNom_article());
+            ste.setString(2,A.getDescriptionarticle());
+             ste.setDate(3, (Date) A.getDate_article());
+            ste.setString(4,A.getCategorie());
+            ste.setString(5,A.getSources());
+            ste.setBinaryStream(6, (InputStream)fis, (int)file.length());
+            
+            ste.executeUpdate();
+            System.out.println("Ajout article Complete");
+            JOptionPane.showMessageDialog(null," artcile ajouté "); 
+
+        } catch (SQLException e) {System.err.println(e);
+    JOptionPane.showMessageDialog(null,"veuillez changer le num id parce que est déja attribue pour un autre étudient ");
+        }    }
+         
+ 
+ 
    @Override
     public void ajouterArticle(Article A) {
  
@@ -125,7 +150,8 @@ public class Articlegestion implements IArticle{
         
         
     }
- 
+
+   
     
     
 }

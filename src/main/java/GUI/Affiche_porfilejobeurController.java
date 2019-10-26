@@ -8,7 +8,7 @@ package GUI;
 import entites.Article;
 import entites.Commentaire;
 import entites.Jobeur;
-import entites.Posteur;
+import entites.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +29,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -40,7 +41,7 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import service.Articlegestion;
 import service.CommentaireService;
-import service.PosteurService;
+import service.*;
 
 /**
  * FXML Controller class
@@ -80,12 +81,29 @@ public class Affiche_porfilejobeurController implements Initializable {
     private TableView tab_comment;
      @FXML
     private TextField id_com;
+     @FXML
+    private TextField cin_posteur;
+     @FXML
+    private RadioButton favoris_id;
+   
     
      Boolean canAjout = true;
      PosteurService p = new PosteurService();
      CommentaireService c1=new CommentaireService();
      ArrayList<Commentaire> commentaires= (ArrayList<Commentaire>) c1.afficherCommentaire();
      public  ObservableList<Commentaire>data = FXCollections.observableArrayList(commentaires); 
+    
+     
+       public boolean verfication(){
+        String cin_p=cin_posteur.getText();
+        int cin_p1 =Integer.parseInt(cin_p);
+        int cinlog=AcceuilController.cinlogin;
+        if(cinlog==cin_p1){
+            return true;
+        }
+        return false;
+        
+    }
      public void afficher(){
      CommentaireService c1=new CommentaireService();
      ArrayList<Commentaire> commentaires= (ArrayList<Commentaire>) c1.afficherCommentaire();
@@ -107,11 +125,16 @@ public class Affiche_porfilejobeurController implements Initializable {
          Commentaire c = (Commentaire) tab_comment.getItems().get(tab_comment.getSelectionModel().getSelectedIndex());
          id_com.setText( String.valueOf((c.getId())));
          Commentaire.setText(c.getDescription());
+         cin_posteur.setText(String.valueOf(c.getId_posteur()));
+         
                
          }
      });
       } 
-     
+   public void ajouterfa(){
+    
+}
+
     
     /**
      * Initializes the controller class.
@@ -120,7 +143,7 @@ public class Affiche_porfilejobeurController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-      afficher();
+        afficher();
         getid();
         Jobeur A=new Jobeur();
         A=Interface_choisir_jobeurController.j1;
@@ -135,6 +158,7 @@ public class Affiche_porfilejobeurController implements Initializable {
         String cin= String.valueOf(A.getCin());
         cin_J.setText(cin);
         System.out.println(Interface_choisir_jobeurController.j1);
+         
     }    
 
     @FXML
@@ -176,19 +200,25 @@ public class Affiche_porfilejobeurController implements Initializable {
     private void Modifier_c(ActionEvent event) {
     String id=id_com.getText();
     int id3=Integer.parseInt(id);
+    
     String comment=Commentaire.getText();
      Commentaire c = new Commentaire(id3,comment);
      CommentaireService c1=new CommentaireService();
+     if(verfication()){
       try { 
             if (JOptionPane.showConfirmDialog (null,"confirmer la modification","modification",
                  JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
-          
-                c1.modifierCommentaire(c);     
+                if(verfication())
+                c1.modifierCommentaire(c);  
+                else
+               JOptionPane.showMessageDialog(null,"choisir votre avis svp");
                 
             } 
         } catch (Exception e){JOptionPane.showMessageDialog(null,"erreur de modifier");
-        System.err.println(e);
-    }
+        System.err.println(e);}}
+        else
+               JOptionPane.showMessageDialog(null,"choisir votre avis svp");
+  
       afficher();
     }
 
@@ -200,21 +230,23 @@ public class Affiche_porfilejobeurController implements Initializable {
 
      Commentaire c = new Commentaire(id3);
      CommentaireService c1=new CommentaireService();
-    
+                    if(verfication()){
+
      
         try {
-             if(JOptionPane.showConfirmDialog(null,"attention vous avez supprimer artcile,est ce que tu et sure?"
+             if(JOptionPane.showConfirmDialog(null,"attention vous avez supprimer votre commentaire,est ce que tu et sure?"
                      ,"supprimer etudient",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
              {
              c1.supprimerCommentaire(c);
              JOptionPane.showMessageDialog(null,"commentaire supprimé");
              }
-            else { JOptionPane.showMessageDialog(null,"error!");}
+             
+            else { JOptionPane.showMessageDialog(null,"suppression annuler ");}
         
-        }catch (Exception e){JOptionPane.showMessageDialog(null,"erreur de supprimer \n"+e.getMessage());
-   
-
-    }
+        }catch (Exception e){JOptionPane.showMessageDialog(null,"erreur de supprimer \n"+e.getMessage());}
+                    }
+ else JOptionPane.showMessageDialog(null," attention choisissiez votre commenatire svp");
+    
         afficher();
     }
 
@@ -237,10 +269,45 @@ public class Affiche_porfilejobeurController implements Initializable {
 
     @FXML
     private void favoris(ActionEvent event) {
+       Jobeur A=new Jobeur();
+       
+       GestionFavoris f1=new GestionFavoris();
+       A=Interface_choisir_jobeurController.j1;
+       int cin_posteur=AcceuilController.cinlogin;
+       int cin_jobeur=A.getCin();
+       String nomj=A.getNom();
+       String prenomJ=A.getPrenom();
+       String date=A.getDate_naissance().toLocalDate().toString();
+       String tele= String.valueOf(A.getTel());
+       String mail=A.getEmail(); 
+       String specalité=A.getJob();
+     Favoris F =new Favoris(cin_posteur,cin_jobeur,nomj,prenomJ,date,tele,mail,specalité);
+     f1.ajouterFavoris(F); 
     }
 
     @FXML
     private void Demander_Service(ActionEvent event) {
+    }
+
+    @FXML
+    private void radio_favoris(ActionEvent event) {
+       Jobeur A=new Jobeur();
+       GestionFavoris f1=new GestionFavoris();
+       A=Interface_choisir_jobeurController.j1;
+       int cin_posteur=AcceuilController.cinlogin;
+       int cin_jobeur=A.getCin();
+       String nomj=A.getNom();
+       String prenomJ=A.getPrenom();
+       String date=A.getDate_naissance().toLocalDate().toString();
+       String tele= String.valueOf(A.getTel());
+       String mail=A.getEmail(); 
+       String specalité=A.getJob();
+     Favoris F =new Favoris(cin_posteur,cin_jobeur,nomj,prenomJ,date,tele,mail,specalité);
+     if(favoris_id.isSelected())
+     f1.ajouterFavoris(F); 
+     else
+     f1.supprimerFavoris(F);
+        
     }
 
    

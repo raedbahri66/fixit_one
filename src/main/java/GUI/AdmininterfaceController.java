@@ -9,8 +9,12 @@ import static GUI.ModiferArticleController.NOW_LOCAL_DATE;
 import entites.Article;
 import entites.Service;
 import entites.Posteur;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import service.gestion_service;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -19,6 +23,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,6 +42,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import service.Articlegestion;
@@ -78,6 +87,14 @@ public class AdmininterfaceController implements Initializable {
     private DatePicker dateajout;
     @FXML
     private TextField source;
+    @FXML
+    private TextField file_image_A;
+     @FXML
+    private Button image_a_btn;
+    @FXML
+    private ImageView image_article;
+    private FileInputStream fis;
+    private File file;
     /****date de aujourdhui****/
  public static final LocalDate NOW_LOCAL_DATE (){
         String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
@@ -94,10 +111,37 @@ public class AdmininterfaceController implements Initializable {
   public ObservableList<Article> data = FXCollections.observableArrayList(articles);
   ObservableList<String> categoriesList= FXCollections.
   observableArrayList("Bricolage","jardinage","informatique");
-    @Override
+   
+    
+   
     public void initialize(URL url, ResourceBundle rb) {
         PosteurService p= new PosteurService();
         ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteur();
+         Stage stage = new Stage();
+         
+    image_a_btn.setOnAction(e->{
+            stage.setTitle("File Chooser ");        
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open image File");
+            file = fileChooser.showOpenDialog(stage);
+            if (file != null) {
+            file_image_A.setText(file.getAbsolutePath());
+            System.out.println(file.getAbsolutePath()); 
+                try {
+                fis = new FileInputStream(file);// file is selected using filechooser which is in last tutorial
+                 } catch (FileNotFoundException ex) {
+            Logger.getLogger(AdmininterfaceController.class.getName()).log(Level.SEVERE, null, ex);
+                        } try {
+                     
+                            URL url1 = file.toURI().toURL();
+                            System.out.println(new Image(url1.toExternalForm()));
+                            image_article.setImage(new Image(url1.toExternalForm()));
+                        } catch (MalformedURLException ex) {
+                          
+                            Logger.getLogger(AdmininterfaceController.class.getName()).log(Level.SEVERE, null, ex);
+                        };
+            }});
+    
         // TODO
         /******ayeeeeed***///
      dateajout.setValue(NOW_LOCAL_DATE());
@@ -161,7 +205,7 @@ public class AdmininterfaceController implements Initializable {
    
    Article a = new Article(nom,descriptionart,date,categorie,sources);
    Articlegestion a1=new Articlegestion();
-   a1.ajouterArticle(a);
+   a1.ajouterArticle(a,fis,file);
   
     }
     Articlegestion art = new Articlegestion();

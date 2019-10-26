@@ -114,6 +114,10 @@ public class AcceuilController implements Initializable {
     {
         JOptionPane.showMessageDialog(null, "Please check your Cin and Password");
     }
+    else if("banned".equals(role))
+    {
+        JOptionPane.showMessageDialog(null, "Your Account has been banned beacuse of "+p.BannirRaison(cin, password));
+    }
     else
     {
     Parent root=FXMLLoader.load(getClass().getResource("/fxml/"+role+".fxml"));
