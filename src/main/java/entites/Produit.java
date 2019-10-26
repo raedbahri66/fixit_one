@@ -91,6 +91,8 @@ public class Produit {
         this.id = id;
     }
 
+
+
     public Produit(String id, String nom, String prix, String description) {
         this.id = id;
         this.nom = nom;

@@ -255,6 +255,27 @@ public class Posteur_interfaceController implements Initializable {
     }
     }
    
+    @FXML
+    void btnsearchAction(ActionEvent event) {
+        data.clear();
+     String cat =combobox_filter.getValue().toString();
+         GestionProduit GS = new GestionProduit();
+         // Produit E = new Produit(cat);
+   ArrayList Produit1= (ArrayList)GS.RechercheCategorie(cat);
+    data= FXCollections.observableArrayList(Produit1);
+      table.setItems(data);
+        table_nom.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom"));
+         table_id.setCellValueFactory(new PropertyValueFactory<Produit,String>("id"));
+            table_description.setCellValueFactory(new PropertyValueFactory<Produit,String>("description"));
+                table_prix.setCellValueFactory(new PropertyValueFactory<Produit,String>("prix"));
+                table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
+                table_num.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
+                clickedtable();   
+        
+    }
+    
+    
+    
         @FXML
     void SupprimerAction(ActionEvent event) {
         
@@ -316,16 +337,7 @@ public class Posteur_interfaceController implements Initializable {
                  }
           
           
-     
-          
-          
-          
-          @FXML
-    void btnsearchAction(ActionEvent event) {
-
-    }
-    
-    
+   
   public void refrech(){
       data.clear();
       data1.clear();
@@ -417,11 +429,11 @@ public class Posteur_interfaceController implements Initializable {
 
          numero.setText(Integer.toString(p1.getTel()));
 
-                GestionProduit GS = new GestionProduit();
+    GestionProduit GS = new GestionProduit();
    ArrayList Produit1= (ArrayList)GS.afficherProduit();
+    data= FXCollections.observableArrayList(Produit1);
    GestionProduit GS1= new GestionProduit();
     ArrayList Produit2= (ArrayList)GS1.afficherProduit1();
-   data= FXCollections.observableArrayList(Produit1);
    data1= FXCollections.observableArrayList(Produit2);
         table.setItems(data);
         table_nom.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom"));
@@ -446,7 +458,7 @@ public class Posteur_interfaceController implements Initializable {
                  categorie_produit.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  categorie_produit2.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  categorie_produit3.getItems().addAll("non_vendu","vendu");
-                 combobox_filter.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
+                 combobox_filter.getItems().addAll("","Jardinage","Electricité","Batimmant","Informatique","Electromenager");
     
     }    
 
