@@ -35,11 +35,14 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyCode;
@@ -60,6 +63,7 @@ import service.PosteurService;
  */
 public class PosteurgestionController implements Initializable {
         ObservableList<String> sexelist = FXCollections.observableArrayList("Homme","Femme");
+        ObservableList<String> filter_choix = FXCollections.observableArrayList("nom","email","cin");
 
 
     @FXML
@@ -178,12 +182,26 @@ public class PosteurgestionController implements Initializable {
     
     ///
             PosteurService p = new PosteurService();
-        ArrayList Posteur= (ArrayList)p.afficherPosteurbynNom(ab);
-         public ObservableList data= FXCollections.observableArrayList(Posteur);
-          public ObservableList data1= FXCollections.observableArrayList(Posteur);
+    @FXML
+    private ComboBox combo_filter;
+    @FXML
+    private TextArea bannir_text;
+    @FXML
+    private RadioButton active_filter;
+    @FXML
+    private RadioButton banned_filter;
+    
+    final ToggleGroup group = new ToggleGroup();
+
+       // ArrayList Posteur1= (ArrayList)p.afficherPosteurbynNom(ab);
+        // public ObservableList data= FXCollections.observableArrayList(Posteur1);
         //
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+                active_filter.setToggleGroup(group);
+                active_filter.setSelected(true);
+                banned_filter.setToggleGroup(group);
             
                 sexe_p.setValue("Homme");
                 sexe_p.setItems(sexelist);
@@ -191,6 +209,9 @@ public class PosteurgestionController implements Initializable {
                 sexe_p1.setValue("Homme");
                 sexe_p1.setItems(sexelist);
                 date_p1.setValue(NOW_LOCAL_DATE());
+                combo_filter.setValue("cin");
+                combo_filter.setItems(filter_choix);
+
                 ////////////////Afficher///////////
                 PosteurService p= new PosteurService();
                 ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteur();
@@ -226,7 +247,7 @@ public class PosteurgestionController implements Initializable {
                         cinsupp_t.setText(Integer.toString(p0.getCin()));
                     }
                     
-                    else if (event.getButton().equals(MouseButton.MIDDLE) && event.getClickCount() == 1){
+                    else if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 1){
                         Posteur p0 = new Posteur();
                         p0=(Posteur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
                         int cin1=p0.getCin();
@@ -253,6 +274,8 @@ public class PosteurgestionController implements Initializable {
 
     @FXML
     private void btn_actualiser() {
+              filter_field.clear();
+
         PosteurService p= new PosteurService();
         ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteur();
         ObservableList<Posteur> obs=FXCollections.observableArrayList(pers);
@@ -462,16 +485,16 @@ public class PosteurgestionController implements Initializable {
        
     }
     @FXML
-    private void OnkeyTypedfilter(KeyEvent event) {
+    private void OnkeyTypedfilter(KeyEvent event) throws SQLException {
+       String fil=combo_filter.getValue().toString();
        String a=event.getCharacter();
          ab=ab.concat(a);
         PosteurService p= new PosteurService(); 
-        System.out.println(ab);
-        data.clear();
-        table_post.setItems(data);
-            ArrayList Posteur= (ArrayList) p.afficherPosteurbynNom(ab);
+        ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteurbynNom(fil,ab);
+        ObservableList<Posteur> obs=FXCollections.observableArrayList(pers);
+        table_post.getItems().clear();
+        table_post.setItems(obs);
 
-        p.afficherPosteurbynNom(ab);
         c1_cinp.setCellValueFactory(new PropertyValueFactory<>("cin") );
         c2_nomp.setCellValueFactory(new PropertyValueFactory<>("nom") );
         c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
@@ -485,10 +508,76 @@ public class PosteurgestionController implements Initializable {
     private void Clearmouse_text(MouseEvent event) {
        ab="";
       filter_field.clear();
+      PosteurService p= new PosteurService(); 
+        ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteur();
+        ObservableList<Posteur> obs=FXCollections.observableArrayList(pers);
+        table_post.getItems().clear();
+        table_post.setItems(obs);
+
+        c1_cinp.setCellValueFactory(new PropertyValueFactory<>("cin") );
+        c2_nomp.setCellValueFactory(new PropertyValueFactory<>("nom") );
+        c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
+        c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
+        c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
+        c_sexep.setCellValueFactory(new PropertyValueFactory<>("Sexe") );
     }
 
     @FXML
     private void OnKeyReleased(KeyEvent event) {
         
+    }
+
+    @FXML
+    private void bannir_btn(ActionEvent event) {
+        int cin1= Integer.parseInt(cinsupp_t.getText());
+        String role = bannir_text.getText();
+        Posteur P1= new Posteur(cin1,role);
+        try { 
+            if (JOptionPane.showConfirmDialog (null,"confirmer la bannir","bannir",
+                 JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
+                 if(canInscription)
+       p.BannirPosteur(P1);
+                
+            } 
+        } catch (Exception e){JOptionPane.showMessageDialog(null,"erreur de modifier");
+        
+    }
+}
+
+    @FXML
+    private void Active_filterBtn(MouseEvent event) throws SQLException {
+        String fil= active_filter.getText();
+       
+        PosteurService p= new PosteurService(); 
+        ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteurbyEtat(fil);
+        ObservableList<Posteur> obs=FXCollections.observableArrayList(pers);
+        table_post.getItems().clear();
+        table_post.setItems(obs);
+
+        c1_cinp.setCellValueFactory(new PropertyValueFactory<>("cin") );
+        c2_nomp.setCellValueFactory(new PropertyValueFactory<>("nom") );
+        c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
+        c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
+        c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
+        c_sexep.setCellValueFactory(new PropertyValueFactory<>("Sexe") );
+        
+    }
+
+    @FXML
+    private void banned_btnfilter(MouseEvent event) throws SQLException {
+        String fil= banned_filter.getText();
+       
+        PosteurService p= new PosteurService(); 
+        ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteurbyEtat(fil);
+        ObservableList<Posteur> obs=FXCollections.observableArrayList(pers);
+        table_post.getItems().clear();
+        table_post.setItems(obs);
+
+        c1_cinp.setCellValueFactory(new PropertyValueFactory<>("cin") );
+        c2_nomp.setCellValueFactory(new PropertyValueFactory<>("nom") );
+        c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
+        c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
+        c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
+        c_sexep.setCellValueFactory(new PropertyValueFactory<>("Sexe") );
     }
 }

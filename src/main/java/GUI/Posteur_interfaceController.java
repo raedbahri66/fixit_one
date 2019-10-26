@@ -364,8 +364,7 @@ public class Posteur_interfaceController implements Initializable {
 
                                 
 
-    };
-            
+    }
 
         });
         /////raed///
@@ -420,7 +419,7 @@ public class Posteur_interfaceController implements Initializable {
                  categorie_produit.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  categorie_produit2.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  categorie_produit3.getItems().addAll("non_vendu","vendu");
-                 combobox_filter.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
+//                 combobox_filter.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  
          
     }    

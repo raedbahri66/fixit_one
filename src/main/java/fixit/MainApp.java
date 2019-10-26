@@ -17,7 +17,7 @@ public class MainApp extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
         
-        stage.setTitle("Accueil Fixit");
+        stage.setTitle("Fixit One");
         stage.setScene(scene);
         stage.show();
     }
