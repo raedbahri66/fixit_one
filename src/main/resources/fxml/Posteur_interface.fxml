@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="834.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="458.0" prefWidth="663.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
   <tabs>
     <Tab text="Demander un service">
       <content>
@@ -205,25 +205,6 @@
                     </tabs>
                   </TabPane>
                </children></AnchorPane>
-         </content>
-      </Tab>
-      <Tab text="Reclamation">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Label layoutX="9.0" layoutY="48.0" text="Saisie votre Reclamation :">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <TextArea layoutX="248.0" layoutY="63.0" prefHeight="184.0" prefWidth="333.0" />
-                  <Button layoutX="315.0" layoutY="265.0" mnemonicParsing="false" text="Envoyer votre reclamation">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
          </content>
       </Tab>
       <Tab text="Produit">
@@ -438,6 +419,24 @@
                      </children>
                   </AnchorPane>
                </children></AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="Favoris">
+         <content>
+            <AnchorPane prefHeight="341.0" prefWidth="546.0">
+               <children>
+                  <TableView fx:id="favrois" layoutX="14.0" layoutY="33.0" prefHeight="283.0" prefWidth="505.0">
+                    <columns>
+                      <TableColumn fx:id="c_nomj" prefWidth="75.0" text="Nom Jobeur" />
+                      <TableColumn fx:id="c_prenomj" prefWidth="100.0" text="Prenom Jobeur" />
+                        <TableColumn fx:id="c_datej" prefWidth="83.0" text="Date Jobeur" />
+                        <TableColumn fx:id="c_telej2" prefWidth="83.0" text="Tele Jobeur" />
+                        <TableColumn fx:id="c_email2" prefWidth="83.0" text="Email" />
+                        <TableColumn fx:id="c_specialite" prefWidth="83.0" text="Specialité" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
          </content>
       </Tab>
   </tabs>

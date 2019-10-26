@@ -15,5 +15,5 @@ public interface IFavoris {
     public void ajouterFavoris(Favoris A);
     public void supprimerFavoris(Favoris A);
     public List<Favoris> afficherfavoris();
-    
+    public List<Favoris> afficherfavoris(int cin_posteur1);
 }
