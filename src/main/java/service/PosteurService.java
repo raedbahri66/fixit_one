@@ -1,4 +1,7 @@
 /*
+
+
+
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -197,24 +200,12 @@ try {
                       p.setRole(res.getString("role"));
                       p.setEtat(res.getString("etat")); 
                       InputStream is = res.getBinaryStream("image_p");
-                      OutputStream os = new FileOutputStream( new File("img.jpg"));
-                      byte[] content = new byte[1024];
-                      int size = 0;
-<<<<<<< HEAD
-                      
-                      //while((size = is.read(content)) != -1){
-                          os.write(content, 0, size);
-                     //
-          
-                        }
-          
-=======
+
 //                      while((size = is.read(content)) != -1){
                           //os.write(content, 0, size);
                        // }
                         }
->>>>>>> origin/master
-               Image image1=new Image("file:img.jpg");
+/*
                A1=image1;
                System.out.println(A1);
           
