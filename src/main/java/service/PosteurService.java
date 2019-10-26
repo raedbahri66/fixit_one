@@ -132,6 +132,22 @@ try {
         }
     }
 
+    public void BannirPosteur(Posteur p) {
+try {
+            String update = "UPDATE posteur SET  cin = ?, etat = ?, role= ? WHERE cin = ? ";
+            PreparedStatement st2 = c.prepareStatement(update);
+            st2.setInt(1, p.getCin());
+            st2.setString(2, "banned");
+            st2.setString(3, p.getRole());
+            st2.setInt(4, p.getCin());
+            st2.executeUpdate();
+            System.out.println("" + p.getCin() + " successfully Bannned!");
+            JOptionPane.showMessageDialog(null, "Acc successfully Bannned");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            System.err.println("" + p.getCin() + " error bannir!!");
+        }
+    }
 
     @Override
     public void supprimerPosteur(Posteur p) {
@@ -199,15 +215,35 @@ try {
                       p.setTel(res.getInt("tel"));
                       p.setRole(res.getString("role"));
                       p.setEtat(res.getString("etat")); 
+                      
                       InputStream is = res.getBinaryStream("image_p");
 
 //                      while((size = is.read(content)) != -1){
                           //os.write(content, 0, size);
                        // }
                         }
-/*
+
+                      
+                      System.out.println(res.getBytes("image_p"));
+                      if(res.getBytes("image_p") != null)
+                      {
+                          InputStream is = res.getBinaryStream("image_p");
+                      OutputStream os = new FileOutputStream( new File("img.jpg"));
+                      byte[] content = new byte[2048];
+                      int size = 0;
+                     while((size = is.read(content)) != -1){
+                          os.write(content, 0, size);
+                      }
+                     Image image1=new Image("file:img.jpg");
+
                A1=image1;
                System.out.println(A1);
+                      
+                        }
+      
+          
+          
+               
           
       } catch (SQLException ex) {
           System.out.println(ex.getMessage());
@@ -227,10 +263,12 @@ try {
           ResultSet res=  ste.executeQuery(req1);
           if (res.next()) { 
               role= "Posteur_interface";
+              if(res.getString("etat").equals("banned")) role="banned";
               }   
           ResultSet res1=  ste.executeQuery(req2);
           if (res1.next()) { 
               role= "Jobeur_interface";
+              if(res.getString("etat").equals("banned")) role="banned";
               }
        ResultSet res2=  ste.executeQuery(req3);
           if (res2.next()) { 
@@ -241,10 +279,31 @@ try {
       } catch (SQLException ex) {
           System.out.println(ex.getMessage());
       } 
-        
+        System.out.println(role);
        return role; 
     }
 
+    
+    public String BannirRaison(int cin1,String password1)
+    {
+        String req1="select * from Posteur where cin="+cin1 +" and password="+password1;   
+        String req2="select * from Jobeur where cin="+cin1 +" and password="+password1;        
+        String raison = "fault";
+        try {
+          ResultSet res=  ste.executeQuery(req1);
+          if (res.next()) { 
+              if(res.getString("etat").equals("banned")) raison=res.getString("role");
+              }   
+          ResultSet res1=  ste.executeQuery(req2);
+          if (res1.next()) { 
+              if(res1.getString("etat").equals("banned")) raison=res.getString("role");
+              }     
+      } catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+      } 
+       return raison; 
+    }
+    
     @Override
     public void modifierProfil(Posteur p, InputStream fis, File file ) {
         try {
@@ -268,17 +327,17 @@ try {
         }
     
     }
-    public List<Posteur> afficherPosteurbynNom(String nom) {
+    public List<Posteur> afficherPosteurbynNom(String choix,String nom) throws SQLException {
         List<Posteur> posteurs = new ArrayList<>();
       Posteur p = null ;
       String nom1="";
       nom1="'"+nom+"%'";
      System.out.println(nom1);
 
-      String req2="select * from Posteur where nom LIKE "+nom1;
-      System.out.println(req2);
-      try {
-          ResultSet res=  ste.executeQuery(req2);
+      String req1="select * from Posteur where "+choix+" LIKE "+nom1;
+      System.out.println(req1);
+      ResultSet res=  ste.executeQuery(req1);
+          //ResultSet res=  ste.executeQuery(req2);
           while (res.next()) { 
               p = new Posteur();
                       p.setId( res.getInt("id"));
@@ -293,13 +352,35 @@ try {
                       p.setRole(res.getString("role"));
                       p.setEtat(res.getString("etat"));
  posteurs.add(p);
-             
-          }
-          
-      } catch (SQLException ex) {
-          System.out.println(ex.getMessage());
-      } 
+              System.out.println(posteurs);
         
+          }
+     return posteurs;
+    }
+    public List<Posteur> afficherPosteurbyEtat(String nom) throws SQLException {
+        List<Posteur> posteurs = new ArrayList<>();
+      Posteur p = null ;
+      String nom1="";
+      nom1="'"+nom+"%'";
+      String req1="select * from Posteur where etat LIKE "+nom1;
+      System.out.println(req1);
+      ResultSet res=  ste.executeQuery(req1);
+          //ResultSet res=  ste.executeQuery(req2);
+          while (res.next()) { 
+              p = new Posteur();
+                      p.setId( res.getInt("id"));
+                      p.setCin(res.getInt("cin") );
+                      p.setNom(res.getString("nom"));
+                      p.setPrenom(res.getString("prenom"));
+                      p.setEmail(res.getString("email"));
+                      p.setSexe(res.getString("sexe"));
+                      p.setPassword(res.getString("password"));
+                      p.setDate_naissance(res.getDate("date_naissance"));
+                      p.setTel(res.getInt("tel"));
+                      p.setRole(res.getString("role"));
+                      p.setEtat(res.getString("etat"));
+ posteurs.add(p);
+          }
      return posteurs;
     }
             
