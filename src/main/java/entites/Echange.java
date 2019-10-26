@@ -21,6 +21,77 @@ public class Echange {
     private String propositionsouhaitée;
     private String description_echange;
     private String  date;
+    private int id_posteurfg;
+    private String nom_posteur;
+    private String prenom_posteur;
+     private int id_jobeurfg;
+    
+
+    public Echange(String propositionofferte, String propositionsouhaitée, String description_echange, String date, int id_posteurfg, String nom_posteur,int id_jobeurfg) {
+        this.propositionofferte = propositionofferte;
+        this.propositionsouhaitée = propositionsouhaitée;
+        this.description_echange = description_echange;
+        this.date = date;
+        this.id_posteurfg = id_posteurfg;
+        this.nom_posteur = nom_posteur;
+        this.id_jobeurfg=id_jobeurfg;
+       
+       
+    }
+
+    public String getPrenom_posteur() {
+        return prenom_posteur;
+    }
+
+    public void setPrenom_posteur(String prenom_posteur) {
+        this.prenom_posteur = prenom_posteur;
+    }
+
+    public int getId_posteurfg() {
+        return id_posteurfg;
+    }
+
+    public void setId_posteurfg(int id_posteurfg) {
+        this.id_posteurfg = id_posteurfg;
+    }
+
+    public String getNom_posteur() {
+        return nom_posteur;
+    }
+
+    public void setNom_posteur(String nom_posteur) {
+        this.nom_posteur = nom_posteur;
+    }
+
+    public int getId_jobeurfg() {
+        return id_jobeurfg;
+    }
+
+    public void setId_jobeurfg(int id_jobeurfg) {
+        this.id_jobeurfg = id_jobeurfg;
+    }
+
+    public Echange(String id, String propositionofferte, String propositionsouhaitée, String description_echange, String date, int id_posteurfg, String nom_posteur, int id_jobeurfg) {
+        this.id = id;
+        this.propositionofferte = propositionofferte;
+        this.propositionsouhaitée = propositionsouhaitée;
+        this.description_echange = description_echange;
+        this.date = date;
+        this.id_posteurfg = id_posteurfg;
+        this.nom_posteur = nom_posteur;
+        this.id_jobeurfg = id_jobeurfg;
+    }
+
+    public Echange(String id, String propositionofferte, String propositionsouhaitée, String description_echange, String date, int id_posteurfg,String nom_posteur ) {
+       
+        this.propositionofferte = propositionofferte;
+        this.propositionsouhaitée = propositionsouhaitée;
+        this.description_echange = description_echange;
+        this.date = date;
+        this.id_posteurfg = 0;
+        this.nom_posteur=nom_posteur;
+    }
+    
  public Echange(){}
     public Echange(String id, String propositionofferte, String propositionsouhaitée, String description_echange, String date) {
         this.id = id;
@@ -36,6 +107,10 @@ public class Echange {
         this.description_echange = description_echange;
         this.date = date;
     }
+  
+ 
+    
+    
 
     public String getId() {
         return id;
