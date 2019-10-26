@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -63,6 +64,10 @@ public class InscrireJobeurController implements Initializable {
     private Label date_valid;
     @FXML
     private ComboBox<?> combo_j;
+    @FXML
+    private TextField file_image_p;
+    @FXML
+    private Button image_p_btn;
 
     /**
      * Initializes the controller class.

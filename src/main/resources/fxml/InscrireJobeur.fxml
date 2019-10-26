@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.InscrireJobeurController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.InscrireJobeurController">
    <children>
       <AnchorPane layoutX="14.0" layoutY="34.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
-            <ImageView fitHeight="541.0" fitWidth="786.0" layoutX="-15.0" layoutY="-55.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="564.0" fitWidth="881.0" layoutX="-15.0" layoutY="-55.0" opacity="0.38" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Image/bricolage-810x540.jpg" />
                </image>
@@ -81,18 +81,25 @@
                   <Font name="System Bold Italic" size="24.0" />
                </font>
             </Label>
-            <Button layoutX="650.0" layoutY="-34.0" mnemonicParsing="false" onAction="#retour_bt" text="Retour" />
+            <Button layoutX="659.0" layoutY="-31.0" mnemonicParsing="false" onAction="#retour_bt" text="Retour" />
             <Label layoutX="57.0" layoutY="368.0" text="Specialité" textFill="#fcfcfc">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Button layoutX="479.0" layoutY="413.0" mnemonicParsing="false" onAction="#btn_inscrirejobeur" prefHeight="44.0" prefWidth="127.0" text="S'inscrire">
+            <Button layoutX="596.0" layoutY="450.0" mnemonicParsing="false" onAction="#btn_inscrirejobeur" prefHeight="44.0" prefWidth="127.0" text="S'inscrire">
                <font>
                   <Font name="System Italic" size="20.0" />
                </font>
             </Button>
             <ComboBox fx:id="combo_j" layoutX="216.0" layoutY="366.0" prefHeight="31.0" prefWidth="185.0" />
+            <Label layoutX="51.0" layoutY="421.0" text="Photo de Profil:" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="file_image_p" layoutX="216.0" layoutY="416.0" prefHeight="31.0" prefWidth="186.0" promptText="Choose Image" />
+            <Button fx:id="image_p_btn" layoutX="402.0" layoutY="416.0" mnemonicParsing="false" text="|||" />
          </children>
       </AnchorPane>
    </children>
