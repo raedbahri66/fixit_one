@@ -9,7 +9,11 @@ import entites.Article;
 import iService.IArticle;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -23,6 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 import javax.swing.JOptionPane;
 import utils.ConnexionBD;
 
@@ -33,6 +38,7 @@ import utils.ConnexionBD;
 public class Articlegestion implements IArticle{
  Connection c = ConnexionBD.getInstanceConnexionBD().getConnection();
     Statement ste;
+    public static Image imgS;
     
     public Articlegestion() {
         try {
@@ -141,11 +147,30 @@ public class Articlegestion implements IArticle{
                 a.setDate_article(res.getDate("date_article"));
                 a.setCategorie(res.getString("categorie"));
                 a.setSources(res.getString("source"));
+               
+                      if(res.getBytes("image_art") != null)
+                      {
+                      InputStream is = res.getBinaryStream("image_p");
+                      OutputStream os = new FileOutputStream( new File("imgage_article.jpg"));
+                      byte[] content = new byte[2048];
+                      int size = 0;
+                      while((size = is.read(content)) != -1){
+                          os.write(content, 0, size);
+                      }
+                     Image image1=new Image("file:img_article.jpg");
+               imgS=image1;
+               
+                      
+                        }
  articles.add(a);  
           }
       } catch (SQLException ex) {
           System.out.println(ex.getMessage());
-      }    
+      } catch (FileNotFoundException ex) {    
+         Logger.getLogger(Articlegestion.class.getName()).log(Level.SEVERE, null, ex);
+     } catch (IOException ex) {
+         Logger.getLogger(Articlegestion.class.getName()).log(Level.SEVERE, null, ex);
+     }    
      return articles;
         
         
