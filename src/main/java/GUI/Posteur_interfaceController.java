@@ -965,8 +965,7 @@ public class Posteur_interfaceController implements Initializable {
 
                                 
 
-    };
-            
+    }
 
         });
         /////raed///

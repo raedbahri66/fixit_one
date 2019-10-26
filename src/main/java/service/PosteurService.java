@@ -55,7 +55,6 @@ public class PosteurService implements iPosteur{
     public void creerPosteur(Posteur p,FileInputStream fis,File file) {
             String req1 = "insert into posteur (cin, nom, prenom, email, sexe, password, date_naissance, tel, role, etat, image_p) values (?,?,?,?,?,?,?,?,?,?,?)";
         try {
-           
             PreparedStatement ste = c.prepareStatement(req1);
             ste.setInt(1, p.getCin());
             ste.setString(2, p.getNom());
@@ -216,14 +215,6 @@ try {
                       p.setRole(res.getString("role"));
                       p.setEtat(res.getString("etat")); 
                       
-                      InputStream is = res.getBinaryStream("image_p");
-
-//                      while((size = is.read(content)) != -1){
-                          //os.write(content, 0, size);
-                       // }
-                        }
-
-                      
                       System.out.println(res.getBytes("image_p"));
                       if(res.getBytes("image_p") != null)
                       {
@@ -235,13 +226,12 @@ try {
                           os.write(content, 0, size);
                       }
                      Image image1=new Image("file:img.jpg");
-
                A1=image1;
                System.out.println(A1);
                       
                         }
-      
-          
+                      
+          }
           
                
           
