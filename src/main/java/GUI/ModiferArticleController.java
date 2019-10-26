@@ -81,6 +81,20 @@ public class ModiferArticleController implements Initializable {
         LocalDate localDate = LocalDate.parse(date , formatter);
         return localDate;
     }  
+   
+   public void afficher_article(){
+  Articlegestion art = new Articlegestion();
+   ArrayList<Article> articles= (ArrayList<Article>) art.afficherArticle();  
+   ObservableList<Article> data = FXCollections.observableArrayList(articles);
+     table_article.getItems().clear();
+     table_article.setItems(data);
+     id1.setCellValueFactory(new PropertyValueFactory <>("id"));
+     nom_art.setCellValueFactory(new PropertyValueFactory <>("nom_article"));
+     descr_art.setCellValueFactory(new PropertyValueFactory <>("descriptionarticle"));
+     cat1.setCellValueFactory(new PropertyValueFactory <>("categorie"));
+     dat1.setCellValueFactory(new PropertyValueFactory <>("date_article"));
+     sou1.setCellValueFactory(new PropertyValueFactory <>("sources"));   
+   }
  public void a() {
      table_article.setOnMouseClicked(new EventHandler<MouseEvent>()
      {
@@ -147,19 +161,9 @@ public class ModiferArticleController implements Initializable {
             } 
         } catch (Exception e){JOptionPane.showMessageDialog(null,"erreur de modifier");
         System.err.println(e);
-         Articlegestion art = new Articlegestion();
-   ArrayList<Article> articles= (ArrayList<Article>) art.afficherArticle();  
-   ObservableList<Article> data = FXCollections.observableArrayList(articles);
-     table_article.getItems().clear();
-     table_article.setItems(data);
-     id1.setCellValueFactory(new PropertyValueFactory <>("id"));
-     nom_art.setCellValueFactory(new PropertyValueFactory <>("nom_article"));
-     descr_art.setCellValueFactory(new PropertyValueFactory <>("descriptionarticle"));
-     cat1.setCellValueFactory(new PropertyValueFactory <>("categorie"));
-     dat1.setCellValueFactory(new PropertyValueFactory <>("date_article"));
-     sou1.setCellValueFactory(new PropertyValueFactory <>("sources"));
+       
     }
-    
+    afficher_article();
     }
 
     @FXML
@@ -184,6 +188,7 @@ public class ModiferArticleController implements Initializable {
    
 
     }
+        afficher_article();
     }
 
     @FXML
@@ -199,17 +204,7 @@ public class ModiferArticleController implements Initializable {
 
     @FXML
     private void actualiser(ActionEvent event) {
-     Articlegestion art = new Articlegestion();
-    ArrayList<Article> articles= (ArrayList<Article>) art.afficherArticle();  
-   ObservableList<Article> data = FXCollections.observableArrayList(articles);
-   table_article.getItems().clear();
-     table_article.setItems(data);
-     id1.setCellValueFactory(new PropertyValueFactory <>("id"));
-     nom_art.setCellValueFactory(new PropertyValueFactory <>("nom_article"));
-     descr_art.setCellValueFactory(new PropertyValueFactory <>("descriptionarticle"));
-     cat1.setCellValueFactory(new PropertyValueFactory <>("categorie"));
-     dat1.setCellValueFactory(new PropertyValueFactory <>("date_article"));
-     sou1.setCellValueFactory(new PropertyValueFactory <>("sources"));
+      afficher_article();
     }
 
 

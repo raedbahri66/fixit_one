@@ -9,6 +9,7 @@ import entites.Article;
 import entites.Commentaire;
 import entites.Jobeur;
 import entites.Posteur;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -19,6 +20,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,8 +32,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import service.Articlegestion;
@@ -74,12 +78,41 @@ public class Affiche_porfilejobeurController implements Initializable {
     private TableColumn<?, ?> Cin_P;
      @FXML
     private TableView tab_comment;
+     @FXML
+    private TextField id_com;
     
      Boolean canAjout = true;
      PosteurService p = new PosteurService();
      CommentaireService c1=new CommentaireService();
      ArrayList<Commentaire> commentaires= (ArrayList<Commentaire>) c1.afficherCommentaire();
-     public  ObservableList<Commentaire>data = FXCollections.observableArrayList(commentaires);  
+     public  ObservableList<Commentaire>data = FXCollections.observableArrayList(commentaires); 
+     public void afficher(){
+     CommentaireService c1=new CommentaireService();
+     ArrayList<Commentaire> commentaires= (ArrayList<Commentaire>) c1.afficherCommentaire();
+     ObservableList<Commentaire>data = FXCollections.observableArrayList(commentaires); 
+     tab_comment.getItems().clear();
+     tab_comment.setItems(data);
+     Id_C.setCellValueFactory(new PropertyValueFactory <>("id"));
+     Nom_Pc.setCellValueFactory(new PropertyValueFactory <>("nomp"));
+     Prenom_PC.setCellValueFactory(new PropertyValueFactory <>("prenomp"));
+     Avis_PC.setCellValueFactory(new PropertyValueFactory <>("description"));
+     Cin_P.setCellValueFactory(new PropertyValueFactory <>("id_posteur"));
+     Cin_J.setCellValueFactory(new PropertyValueFactory <>("id_jobeur"));
+     }
+     public void getid() {
+     tab_comment.setOnMouseClicked(new EventHandler<MouseEvent>()
+     {
+         @Override
+         public void handle(MouseEvent event) {
+         Commentaire c = (Commentaire) tab_comment.getItems().get(tab_comment.getSelectionModel().getSelectedIndex());
+         id_com.setText( String.valueOf((c.getId())));
+         Commentaire.setText(c.getDescription());
+               
+         }
+     });
+      } 
+     
+    
     /**
      * Initializes the controller class.
      */
@@ -87,15 +120,8 @@ public class Affiche_porfilejobeurController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-     tab_comment.setItems(data);
-     Id_C.setCellValueFactory(new PropertyValueFactory <>("id"));
-     Nom_Pc.setCellValueFactory(new PropertyValueFactory <>("nomp"));
-     Prenom_PC.setCellValueFactory(new PropertyValueFactory <>("prenomp"));
-     Avis_PC.setCellValueFactory(new PropertyValueFactory <>("description"));
-     Cin_P.setCellValueFactory(new PropertyValueFactory <>("id_jobeur"));
-     Cin_J.setCellValueFactory(new PropertyValueFactory <>("id_jobeur"));
-       
-        
+      afficher();
+        getid();
         Jobeur A=new Jobeur();
         A=Interface_choisir_jobeurController.j1;
         nom_J.setText(A.getNom());
@@ -142,21 +168,54 @@ public class Affiche_porfilejobeurController implements Initializable {
         Commentaire c = new Commentaire(cin_j,cin_P,nom_P2,prenom_P,commentaire);
         CommentaireService c1=new CommentaireService();
         c1.ajoutercCommentaire(c);
-      }}
-
-    
-
-
-   
-        
-  
+      }
+    afficher();
+    }
 
     @FXML
     private void Modifier_c(ActionEvent event) {
+    String id=id_com.getText();
+    int id3=Integer.parseInt(id);
+    String comment=Commentaire.getText();
+     Commentaire c = new Commentaire(id3,comment);
+     CommentaireService c1=new CommentaireService();
+      try { 
+            if (JOptionPane.showConfirmDialog (null,"confirmer la modification","modification",
+                 JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
+          
+                c1.modifierCommentaire(c);     
+                
+            } 
+        } catch (Exception e){JOptionPane.showMessageDialog(null,"erreur de modifier");
+        System.err.println(e);
+    }
+      afficher();
     }
 
     @FXML
     private void Supprimer_C(ActionEvent event) {
+     String id=id_com.getText();
+    int id3=Integer.parseInt(id);
+    
+
+     Commentaire c = new Commentaire(id3);
+     CommentaireService c1=new CommentaireService();
+    
+     
+        try {
+             if(JOptionPane.showConfirmDialog(null,"attention vous avez supprimer artcile,est ce que tu et sure?"
+                     ,"supprimer etudient",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
+             {
+             c1.supprimerCommentaire(c);
+             JOptionPane.showMessageDialog(null,"commentaire supprimé");
+             }
+            else { JOptionPane.showMessageDialog(null,"error!");}
+        
+        }catch (Exception e){JOptionPane.showMessageDialog(null,"erreur de supprimer \n"+e.getMessage());
+   
+
+    }
+        afficher();
     }
 
     @FXML
