@@ -28,6 +28,10 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
  import java.net.URI;
+import java.sql.SQLException;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import service.Articlegestion;
 
 /**
  * FXML Controller class
@@ -43,19 +47,24 @@ public class Afficher_ArticleController implements Initializable {
     @FXML
     private Label lire;
     Article A=new Article();
+    @FXML
+    private ImageView image_article;
+    
+  
     
     private Desktop desktop = Desktop.getDesktop();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODo
         Article A=new Article();
         A=AcceuilController.A1;
+         int id=(A.getId());
+         Articlegestion a1=new Articlegestion();
+         image_article.setImage(new Image("file:/C:/Users/ASUS/Documents/NetBeansProjects/Fixit_one/imgage_article.jpg"));
+        System.out.println(A);
         tiitre_article.setText(A.getNom_article());
         desc_artcile.setText(A.getDescriptionarticle());
-        System.out.println(AcceuilController.A1);
-      
-
-    
     }
     @FXML
     private void retour_accuiel(ActionEvent event) {

@@ -29,6 +29,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javax.swing.JOptionPane;
+import static service.PosteurService.A1;
 import utils.ConnexionBD;
 
 /**
@@ -135,22 +136,37 @@ public class Articlegestion implements IArticle{
     public List<Article> afficherArticle() {
            List<Article> articles = new ArrayList<>();
            Article a = null ; 
-     
-      try {
         String req="select * from article";
-        ResultSet res= ste.executeQuery(req);
+        ResultSet res = null;
+     try {
+         res = ste.executeQuery(req);
+     } catch (SQLException ex) {
+         Logger.getLogger(Articlegestion.class.getName()).log(Level.SEVERE, null, ex);
+     }
+     try {
+         while (res.next()) {
+             a= new Article();
+             a.setId(res.getInt(1));
+             a.setNom_article(res.getString(2));
+             a.setDescriptionarticle(res.getString(3));
+             a.setDate_article(res.getDate("date_article"));
+             a.setCategorie(res.getString("categorie"));
+             a.setSources(res.getString("source"));
+             articles.add(a);
+         }
+     } catch (SQLException ex) {
+         Logger.getLogger(Articlegestion.class.getName()).log(Level.SEVERE, null, ex);
+     } 
+     return articles;  
+    }
+
+      public Image get_image (int id) throws SQLException, FileNotFoundException, IOException{
+        String req="select * from article where id="+id;
+          ResultSet res=  ste.executeQuery(req);
           while (res.next()) { 
-                a= new Article();
-                a.setId(res.getInt(1));
-                a.setNom_article(res.getString(2));
-                a.setDescriptionarticle(res.getString(3));
-                a.setDate_article(res.getDate("date_article"));
-                a.setCategorie(res.getString("categorie"));
-                a.setSources(res.getString("source"));
-               
-                      if(res.getBytes("image_art") != null)
-                      {
-                      InputStream is = res.getBinaryStream("image_p");
+          if(res.getBytes("image_art") != null)
+         {
+                      InputStream is = res.getBinaryStream("image_art");
                       OutputStream os = new FileOutputStream( new File("imgage_article.jpg"));
                       byte[] content = new byte[2048];
                       int size = 0;
@@ -158,25 +174,16 @@ public class Articlegestion implements IArticle{
                           os.write(content, 0, size);
                       }
                      Image image1=new Image("file:img_article.jpg");
-               imgS=image1;
-               
-                      
-                        }
- articles.add(a);  
-          }
-      } catch (SQLException ex) {
-          System.out.println(ex.getMessage());
-      } catch (FileNotFoundException ex) {    
-         Logger.getLogger(Articlegestion.class.getName()).log(Level.SEVERE, null, ex);
-     } catch (IOException ex) {
-         Logger.getLogger(Articlegestion.class.getName()).log(Level.SEVERE, null, ex);
-     }    
-     return articles;
-        
-        
-    }
-
-   
+                    imgS=image1;   
+                      System.out.println(imgS);
+                      }
     
-    
+          } return imgS;
+      }
 }
+          
+
+     
+ 
+     
+ 
