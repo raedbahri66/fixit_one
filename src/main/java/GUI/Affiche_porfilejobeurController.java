@@ -80,12 +80,24 @@ public class Affiche_porfilejobeurController implements Initializable {
     private TableView tab_comment;
      @FXML
     private TextField id_com;
+     @FXML
+    private TextField cin_posteur;
     
      Boolean canAjout = true;
      PosteurService p = new PosteurService();
      CommentaireService c1=new CommentaireService();
      ArrayList<Commentaire> commentaires= (ArrayList<Commentaire>) c1.afficherCommentaire();
      public  ObservableList<Commentaire>data = FXCollections.observableArrayList(commentaires); 
+    public boolean verfication(){
+        String cin_p=cin_posteur.getText();
+        int cin_p1 =Integer.parseInt(cin_p);
+        int cinlog=AcceuilController.cinlogin;
+        if(cinlog==cin_p1){
+            return true;
+        }
+        return false;
+        
+    }
      public void afficher(){
      CommentaireService c1=new CommentaireService();
      ArrayList<Commentaire> commentaires= (ArrayList<Commentaire>) c1.afficherCommentaire();
@@ -107,6 +119,8 @@ public class Affiche_porfilejobeurController implements Initializable {
          Commentaire c = (Commentaire) tab_comment.getItems().get(tab_comment.getSelectionModel().getSelectedIndex());
          id_com.setText( String.valueOf((c.getId())));
          Commentaire.setText(c.getDescription());
+         cin_posteur.setText(String.valueOf(c.getId_posteur()));
+         
                
          }
      });
@@ -176,19 +190,25 @@ public class Affiche_porfilejobeurController implements Initializable {
     private void Modifier_c(ActionEvent event) {
     String id=id_com.getText();
     int id3=Integer.parseInt(id);
+    
     String comment=Commentaire.getText();
      Commentaire c = new Commentaire(id3,comment);
      CommentaireService c1=new CommentaireService();
+     if(verfication()){
       try { 
             if (JOptionPane.showConfirmDialog (null,"confirmer la modification","modification",
                  JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
-          
-                c1.modifierCommentaire(c);     
+                if(verfication())
+                c1.modifierCommentaire(c);  
+                else
+               JOptionPane.showMessageDialog(null,"choisir votre avis svp");
                 
             } 
         } catch (Exception e){JOptionPane.showMessageDialog(null,"erreur de modifier");
-        System.err.println(e);
-    }
+        System.err.println(e);}}
+        else
+               JOptionPane.showMessageDialog(null,"choisir votre avis svp");
+  
       afficher();
     }
 
@@ -200,21 +220,23 @@ public class Affiche_porfilejobeurController implements Initializable {
 
      Commentaire c = new Commentaire(id3);
      CommentaireService c1=new CommentaireService();
-    
+                    if(verfication()){
+
      
         try {
-             if(JOptionPane.showConfirmDialog(null,"attention vous avez supprimer artcile,est ce que tu et sure?"
+             if(JOptionPane.showConfirmDialog(null,"attention vous avez supprimer votre commentaire,est ce que tu et sure?"
                      ,"supprimer etudient",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
              {
              c1.supprimerCommentaire(c);
              JOptionPane.showMessageDialog(null,"commentaire supprimé");
              }
-            else { JOptionPane.showMessageDialog(null,"error!");}
+             
+            else { JOptionPane.showMessageDialog(null,"suppression annuler ");}
         
-        }catch (Exception e){JOptionPane.showMessageDialog(null,"erreur de supprimer \n"+e.getMessage());
-   
-
-    }
+        }catch (Exception e){JOptionPane.showMessageDialog(null,"erreur de supprimer \n"+e.getMessage());}
+                    }
+ else JOptionPane.showMessageDialog(null," attention choisissiez votre commenatire svp");
+    
         afficher();
     }
 
@@ -237,6 +259,7 @@ public class Affiche_porfilejobeurController implements Initializable {
 
     @FXML
     private void favoris(ActionEvent event) {
+        
     }
 
     @FXML

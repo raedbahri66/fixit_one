@@ -6,6 +6,8 @@
 package iService;
 
 import entites.Article;
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 
 /**
@@ -13,6 +15,7 @@ import java.util.List;
  * @author ASUS
  */
 public interface IArticle {
+    public void ajouterArticle(Article A,FileInputStream fis,File file);
     public void ajouterArticle(Article A);
     public void modifierArticle(Article A);
     public void supprimerArticle(Article A);
