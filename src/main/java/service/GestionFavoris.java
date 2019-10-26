@@ -38,10 +38,10 @@ public class GestionFavoris implements IFavoris{
     public void ajouterFavoris(Favoris A) {
         
     
-      String req1="INSERT INTO `favoris` "
-                    + "(`cin_posteur`,`cin_jobeur`, `nomj`,'prenomj,`datej`,`telej`,`mailj`,`specialite`) "
-                    + "VALUES (?,?,?,?,?,?,?)";
-            try{ PreparedStatement ste = c.prepareStatement(req1);
+      String req="INSERT INTO `favoris` "
+                    + "(`cin_posteur`,`cin_jobeur`,`nomj`, `prenomj`,`datej`,`telej`,`mailj`,`specalite`) "
+                    + "VALUES (?,?,?,?,?,?,?,?)";
+            try{ PreparedStatement ste = c.prepareStatement(req);
             ste.setInt(1,A.getCin_posteur());
             ste.setInt(2,A.getCin_jobeur());
             ste.setString(3,A.getNomj());
@@ -51,7 +51,7 @@ public class GestionFavoris implements IFavoris{
             ste.setString(7,A.getMailj());
             ste.setString(8,A.getSpecalite());
             ste.executeUpdate();
-                     JOptionPane.showMessageDialog(null," jobuer ajouté à votre liste favoris "); 
+            JOptionPane.showMessageDialog(null," jobuer ajouté à votre liste favoris "); 
 
         } catch (SQLException e) {System.err.println(e);
     JOptionPane.showMessageDialog(null,"error ");

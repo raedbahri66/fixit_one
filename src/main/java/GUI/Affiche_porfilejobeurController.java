@@ -8,7 +8,7 @@ package GUI;
 import entites.Article;
 import entites.Commentaire;
 import entites.Jobeur;
-import entites.Posteur;
+import entites.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +29,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -40,7 +41,7 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import service.Articlegestion;
 import service.CommentaireService;
-import service.PosteurService;
+import service.*;
 
 /**
  * FXML Controller class
@@ -82,13 +83,16 @@ public class Affiche_porfilejobeurController implements Initializable {
     private TextField id_com;
      @FXML
     private TextField cin_posteur;
+     @FXML
+    private RadioButton favoris_id;
+   
     
      Boolean canAjout = true;
      PosteurService p = new PosteurService();
      CommentaireService c1=new CommentaireService();
      ArrayList<Commentaire> commentaires= (ArrayList<Commentaire>) c1.afficherCommentaire();
      public  ObservableList<Commentaire>data = FXCollections.observableArrayList(commentaires); 
-   
+    
      
        public boolean verfication(){
         String cin_p=cin_posteur.getText();
@@ -127,7 +131,10 @@ public class Affiche_porfilejobeurController implements Initializable {
          }
      });
       } 
- 
+   public void ajouterfa(){
+    
+}
+
     
     /**
      * Initializes the controller class.
@@ -151,6 +158,7 @@ public class Affiche_porfilejobeurController implements Initializable {
         String cin= String.valueOf(A.getCin());
         cin_J.setText(cin);
         System.out.println(Interface_choisir_jobeurController.j1);
+         
     }    
 
     @FXML
@@ -262,6 +270,8 @@ public class Affiche_porfilejobeurController implements Initializable {
     @FXML
     private void favoris(ActionEvent event) {
        Jobeur A=new Jobeur();
+       
+       GestionFavoris f1=new GestionFavoris();
        A=Interface_choisir_jobeurController.j1;
        int cin_posteur=AcceuilController.cinlogin;
        int cin_jobeur=A.getCin();
@@ -271,12 +281,33 @@ public class Affiche_porfilejobeurController implements Initializable {
        String tele= String.valueOf(A.getTel());
        String mail=A.getEmail(); 
        String specalité=A.getJob();
-       
-        
+     Favoris F =new Favoris(cin_posteur,cin_jobeur,nomj,prenomJ,date,tele,mail,specalité);
+     f1.ajouterFavoris(F); 
     }
 
     @FXML
     private void Demander_Service(ActionEvent event) {
+    }
+
+    @FXML
+    private void radio_favoris(ActionEvent event) {
+       Jobeur A=new Jobeur();
+       GestionFavoris f1=new GestionFavoris();
+       A=Interface_choisir_jobeurController.j1;
+       int cin_posteur=AcceuilController.cinlogin;
+       int cin_jobeur=A.getCin();
+       String nomj=A.getNom();
+       String prenomJ=A.getPrenom();
+       String date=A.getDate_naissance().toLocalDate().toString();
+       String tele= String.valueOf(A.getTel());
+       String mail=A.getEmail(); 
+       String specalité=A.getJob();
+     Favoris F =new Favoris(cin_posteur,cin_jobeur,nomj,prenomJ,date,tele,mail,specalité);
+     if(favoris_id.isSelected())
+     f1.ajouterFavoris(F); 
+     else
+     f1.supprimerFavoris(F);
+        
     }
 
    
