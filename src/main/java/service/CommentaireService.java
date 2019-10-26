@@ -61,11 +61,13 @@ Connection c = ConnexionBD.getInstanceConnexionBD().getConnection();
     @Override
     public void modifierCommentaire(Commentaire A) {
     
-    String req = "UPDATE  commentaire SET description_com= ? WHERE id= ?";
+    String req = "UPDATE  commentaire SET id= ?,description_com= ? WHERE id= ?";
     
      try { PreparedStatement ste = c.prepareStatement(req);
-            ste.setString(1,A.getDescription());
-            ste.setInt(2,A.getId());
+            ste.setInt(1,A.getId());
+            ste.setString(2,A.getDescription());
+            ste.setInt(3,A.getId());
+            ste.executeUpdate();
             System.out.println(" successfully modified!");
             } 
         catch (SQLException ex) {
@@ -103,8 +105,8 @@ Connection c = ConnexionBD.getInstanceConnexionBD().getConnection();
                 a.setId(res.getInt("id"));
                 a.setId_jobeur(res.getInt("idjobeur_fg"));
                 a.setId_posteur(res.getInt("idposteur_fg"));
-                a.setNomp(res.getString("nom_fg"));
-                a.setPrenomp(res.getString("prenom_fg"));
+                a.setNomp(res.getString("nomp_fg"));
+                a.setPrenomp(res.getString("prenomp_fg"));
                 a.setDescription(res.getString("description_com"));
  commentaires.add(a);  
           }

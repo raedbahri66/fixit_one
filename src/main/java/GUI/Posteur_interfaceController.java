@@ -126,7 +126,14 @@ public class Posteur_interfaceController implements Initializable {
     private TableColumn<Produit,String> table_nom;
     @FXML
     private TableColumn<Produit,String> table_prix;
-  
+    @FXML
+    private TableColumn<Produit,String> table_num;
+    @FXML
+    private TableColumn<Produit,String> table_description;
+    @FXML
+    private TableColumn<Produit,String> table_proprietere;
+    
+    
     @FXML
     private TableColumn<Produit,String> table_id;
     @FXML
@@ -157,9 +164,9 @@ public class Posteur_interfaceController implements Initializable {
     @FXML
     private Label nom_proprietaire;
     @FXML
-    private Label label_numero;
+    private Label label_num;
     @FXML
-    private Label label_description;
+    private Label label_description1;
     @FXML
     private ComboBox<String> combobox_filter;
     @FXML
@@ -303,7 +310,22 @@ public class Posteur_interfaceController implements Initializable {
     }
     }
     
-  
+   @FXML
+     public void clickedtable()
+    {
+        table.setOnMouseClicked(new EventHandler<MouseEvent>()
+         {
+             @Override
+             public void handle(MouseEvent event) {
+                Produit A=table.getItems().get(table.getSelectionModel().getSelectedIndex());
+                label_description1.setText(A.getDescription());
+                label_num.setText(A.getNumero());
+             
+                
+                
+             }
+         });
+                 }
     
     
     @FXML
@@ -321,11 +343,15 @@ public class Posteur_interfaceController implements Initializable {
                 numero1.setText(E.getNumero());
                 categorie_produit2.setValue(E.getCategorie());
                 categorie_produit3.setValue(E.getEtatVente());
-                statut2.setText("");
+               
              }
          });
                  }
-      
+          
+          
+     
+          
+          
           
           @FXML
     void btnsearchAction(ActionEvent event) {
@@ -436,7 +462,7 @@ public class Posteur_interfaceController implements Initializable {
         datep_1.setText(p1.getDate_naissance().toString());
 
          numero.setText(Integer.toString(p1.getTel()));
-         
+
                 GestionProduit GS = new GestionProduit();
    ArrayList Produit1= (ArrayList)GS.afficherProduit();
    GestionProduit GS1= new GestionProduit();
@@ -446,11 +472,11 @@ public class Posteur_interfaceController implements Initializable {
         table.setItems(data);
         table_nom.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom"));
          table_id.setCellValueFactory(new PropertyValueFactory<Produit,String>("id"));
-            //table_description.setCellValueFactory(new PropertyValueFactory<Produit,String>("description"));
+            table_description.setCellValueFactory(new PropertyValueFactory<Produit,String>("description"));
                 table_prix.setCellValueFactory(new PropertyValueFactory<Produit,String>("prix"));
                 table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
-               // table_numero.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
-                setValueformtableviewtotext();
+                table_num.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
+                clickedtable();
                 
         table1.setItems(data1);
           table_nom1.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom"));
@@ -466,9 +492,14 @@ public class Posteur_interfaceController implements Initializable {
                  categorie_produit.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  categorie_produit2.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  categorie_produit3.getItems().addAll("non_vendu","vendu");
+<<<<<<< HEAD
 //                 combobox_filter.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  
          
+=======
+                 combobox_filter.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
+    
+>>>>>>> origin/master
     }    
 
     @FXML

@@ -28,6 +28,15 @@ public class Commentaire {
         this.description = description;
     }
 
+    public Commentaire(int id) {
+        this.id = id;
+    }
+
+    public Commentaire(int id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
     public Commentaire(String nomp, String prenomp, String description) {
         this.nomp = nomp;
         this.prenomp = prenomp;
