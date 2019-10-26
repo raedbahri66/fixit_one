@@ -17,7 +17,21 @@ public class Produit {
     private String etatValidation;
     private int idPosteurfg;
     private int idJobeurfg;
+    private String nomproprietere;
     public Produit() {
+    }
+
+    public Produit(String nom, String prix, String description, String categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg, String nomproprietere) {
+        this.nom = nom;
+        this.prix = prix;
+        this.description = description;
+        this.categorie = categorie;
+        this.numero = numero;
+        this.etatVente = etatVente;
+        this.etatValidation = etatValidation;
+        this.idPosteurfg = idPosteurfg;
+        this.idJobeurfg = idJobeurfg;
+        this.nomproprietere = nomproprietere;
     }
 
     public Produit(String id, String nom, String prix, String description, String categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg) {
@@ -108,17 +122,18 @@ public class Produit {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.nom);
-        hash = 53 * hash + Objects.hashCode(this.prix);
-        hash = 53 * hash + Objects.hashCode(this.description);
-        hash = 53 * hash + Objects.hashCode(this.categorie);
-        hash = 53 * hash + Objects.hashCode(this.numero);
-        hash = 53 * hash + Objects.hashCode(this.etatVente);
-        hash = 53 * hash + Objects.hashCode(this.etatValidation);
-        hash = 53 * hash + Objects.hashCode(this.idPosteurfg);
-        hash = 53 * hash + Objects.hashCode(this.idJobeurfg);
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.nom);
+        hash = 97 * hash + Objects.hashCode(this.prix);
+        hash = 97 * hash + Objects.hashCode(this.description);
+        hash = 97 * hash + Objects.hashCode(this.categorie);
+        hash = 97 * hash + Objects.hashCode(this.numero);
+        hash = 97 * hash + Objects.hashCode(this.etatVente);
+        hash = 97 * hash + Objects.hashCode(this.etatValidation);
+        hash = 97 * hash + this.idPosteurfg;
+        hash = 97 * hash + this.idJobeurfg;
+        hash = 97 * hash + Objects.hashCode(this.nomproprietere);
         return hash;
     }
 
@@ -134,6 +149,12 @@ public class Produit {
             return false;
         }
         final Produit other = (Produit) obj;
+        if (this.idPosteurfg != other.idPosteurfg) {
+            return false;
+        }
+        if (this.idJobeurfg != other.idJobeurfg) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -158,11 +179,13 @@ public class Produit {
         if (!Objects.equals(this.etatValidation, other.etatValidation)) {
             return false;
         }
-        if (!Objects.equals(this.idPosteurfg, other.idPosteurfg)) {
+        if (!Objects.equals(this.nomproprietere, other.nomproprietere)) {
             return false;
         }
         return true;
     }
+
+   
 
     public String getId() {
         return id;
@@ -242,6 +265,14 @@ public class Produit {
 
     public void setIdJobeurfg(int idJobeurfg) {
         this.idJobeurfg = idJobeurfg;
+    }
+
+    public String getNomproprietere() {
+        return nomproprietere;
+    }
+
+    public void setNomproprietere(String nomprestataire) {
+        this.nomproprietere = nomprestataire;
     }
 
     

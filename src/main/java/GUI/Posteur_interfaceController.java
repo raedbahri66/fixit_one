@@ -213,8 +213,9 @@ public class Posteur_interfaceController implements Initializable {
         String num=numero.getText();
         String etatvente="non_vendu";
         int idjobeur = 0;
+        String nomproprietere=p1.getNom();
         String etatvalidation="non_valider";
-        Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation,idposteur,idjobeur);
+        Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation,idposteur,idjobeur,nomproprietere);
         GestionProduit gs = new  GestionProduit();
         gs.ajouterProduit(E);
           JOptionPane.showMessageDialog(null, "Produit Ajouter avec succée");
@@ -270,6 +271,7 @@ public class Posteur_interfaceController implements Initializable {
                 table_prix.setCellValueFactory(new PropertyValueFactory<Produit,String>("prix"));
                 table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
                 table_num.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
+                table_proprietere.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom_proprietere"));
                 clickedtable();   
         
     }
@@ -308,6 +310,7 @@ public class Posteur_interfaceController implements Initializable {
                 Produit A=table.getItems().get(table.getSelectionModel().getSelectedIndex());
                 label_description1.setText(A.getDescription());
                 label_num.setText(A.getNumero());
+                nom_proprietaire.setText(A.getNomproprietere());
              
                 
                 
@@ -442,6 +445,7 @@ public class Posteur_interfaceController implements Initializable {
                 table_prix.setCellValueFactory(new PropertyValueFactory<Produit,String>("prix"));
                 table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
                 table_num.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
+                table_proprietere.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom_proprietere"));
                 clickedtable();
                 
         table1.setItems(data1);
