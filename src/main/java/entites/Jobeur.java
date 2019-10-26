@@ -23,6 +23,19 @@ public class Jobeur extends Personne{
     public Jobeur() {
     }
 
+    public Jobeur(int cin, String role) {
+        super(cin);
+        this.role = role;
+    }
+    
+
+    public Jobeur(int cin, String nom, String prenom, String email, String sexe, String password, Date date_naissance, int tel,String job,String address) {
+        super(cin, nom, prenom, email, sexe, password, date_naissance, tel);
+        this.job = job;
+        this.address = address;
+    }
+    
+
     public Jobeur(String job, String role, String address, int id, int cin, String nom, String prenom, String email, String sexe, String password, Date date_naissance, int tel) {
         super(id, cin, nom, prenom, email, sexe, password, date_naissance, tel);
         this.job = job;
@@ -95,6 +108,14 @@ public class Jobeur extends Personne{
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     

@@ -82,7 +82,7 @@
                </font>
             </Label>
             <Button layoutX="659.0" layoutY="-31.0" mnemonicParsing="false" onAction="#retour_bt" text="Retour" />
-            <Label layoutX="57.0" layoutY="368.0" text="Specialité" textFill="#fcfcfc">
+            <Label layoutX="58.0" layoutY="369.0" text="Specialité" textFill="#fcfcfc">
                <font>
                   <Font size="17.0" />
                </font>
@@ -93,13 +93,25 @@
                </font>
             </Button>
             <ComboBox fx:id="combo_j" layoutX="216.0" layoutY="366.0" prefHeight="31.0" prefWidth="185.0" />
-            <Label layoutX="51.0" layoutY="421.0" text="Photo de Profil:" textFill="WHITE">
+            <Label layoutX="53.0" layoutY="460.0" text="Photo de Profil:" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="file_image_p" layoutX="216.0" layoutY="416.0" prefHeight="31.0" prefWidth="186.0" promptText="Choose Image" />
-            <Button fx:id="image_p_btn" layoutX="402.0" layoutY="416.0" mnemonicParsing="false" text="|||" />
+            <TextField fx:id="file_image_p" layoutX="216.0" layoutY="457.0" prefHeight="31.0" prefWidth="186.0" promptText="Choose Image" />
+            <Button fx:id="image_p_btn" layoutX="402.0" layoutY="457.0" mnemonicParsing="false" text="|||" />
+            <ImageView fx:id="image_post" fitHeight="157.0" fitWidth="176.0" layoutX="571.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="58.0" layoutY="417.0" text="Addresse" textFill="#fcfcfc">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="address_j" layoutX="216.0" layoutY="412.0" />
+            <Label fx:id="address_vali" layoutX="432.0" layoutY="416.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#252424">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
