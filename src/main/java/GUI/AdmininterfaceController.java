@@ -134,7 +134,8 @@ public class AdmininterfaceController implements Initializable {
                         } try {
                      
                             URL url1 = file.toURI().toURL();
-                            System.out.println(new Image(url1.toExternalForm()));
+                            System.out.println(url1);
+                            System.out.println(url1.toExternalForm());
                             image_article.setImage(new Image(url1.toExternalForm()));
                         } catch (MalformedURLException ex) {
                           

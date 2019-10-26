@@ -68,29 +68,31 @@ public class AcceuilController implements Initializable {
      * Initializes the controller class.
      */
     Articlegestion art = new Articlegestion();
-  ArrayList<Article> articles= (ArrayList<Article>) art.afficherArticle();  
+  ArrayList<Article> articles= (ArrayList<Article>)art.afficherArticle();  
   public ObservableList<Article> data = FXCollections.observableArrayList(articles);
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TOD
           
-        table_article.setItems(data);
-    id1.setCellValueFactory(new PropertyValueFactory <>("id"));
+     table_article.setItems(data);
+     id1.setCellValueFactory(new PropertyValueFactory <>("id"));
      nom_art.setCellValueFactory(new PropertyValueFactory <>("nom_article"));
      descr_art.setCellValueFactory(new PropertyValueFactory <>("descriptionarticle"));
      cat1.setCellValueFactory(new PropertyValueFactory <>("categorie"));
      dat1.setCellValueFactory(new PropertyValueFactory <>("date_article"));
      sou1.setCellValueFactory(new PropertyValueFactory <>("sources"));
     
-    table_article.setOnMouseClicked((MouseEvent event) -> {
-            if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
+     
+    
+         table_article.setOnMouseClicked((MouseEvent event) -> {
+         if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
          Article A=new Article();
          A = (Article) table_article.getItems().get(table_article.getSelectionModel().getSelectedIndex());
          A1=A;
           Parent root = null;
                 System.out.println(A);
                 try {
-                    root = FXMLLoader.load(getClass().getResource("/fxml/affiche_article.fxml"));
+                  root = FXMLLoader.load(getClass().getResource("/fxml/affiche_article.fxml"));
                 } catch (IOException ex) {
                     Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
                 }
