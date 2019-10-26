@@ -7,6 +7,7 @@ package GUI;
 import service.GestionProduit;
 import entites.Produit;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
+import entites.Echange;
 import entites.Posteur;
 import java.io.File;
 import java.io.FileInputStream;
@@ -47,6 +48,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import service.EchangeGestion;
 import service.PosteurService;
 
 /**
@@ -90,6 +92,11 @@ public class Posteur_interfaceController implements Initializable {
 
     @FXML
     private TextArea description_produit;
+      @FXML
+    private TextField repos;
+
+    @FXML
+    private Button rechercherprop;
 
     
     @FXML
@@ -202,17 +209,17 @@ public class Posteur_interfaceController implements Initializable {
     @FXML
     private Button ajoutep;
     @FXML
-    private TableView<?> tableechangesposteur;
+    private TableView<Echange> tableechangesposteur;
     @FXML
-    private TableColumn<?, ?> tablepofp;
+    private TableColumn<Echange,String> tablepofp;
     @FXML
-    private TableColumn<?, ?> tableposp;
+    private TableColumn<Echange, String> tableposp;
     @FXML
-    private TableColumn<?, ?> tablepdp;
+    private TableColumn<Echange, String> tablepdp;
     @FXML
-    private TableColumn<?, ?> tabledap;
+    private TableColumn<Echange, String> tabledap;
     @FXML
-    private TableColumn<?, ?> tablenpos;
+    private TableColumn<Echange, String> tablenpos;
     
    
    
@@ -392,11 +399,26 @@ public class Posteur_interfaceController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+      EchangeGestion es = new  EchangeGestion();
+       ArrayList Echange= (ArrayList)es.afficherEchange(); 
+    
+           public ObservableList dataeesp= FXCollections.observableArrayList(Echange);
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
         /////
+           tableechangesposteur.setItems(dataeesp);
+      
+                tablepofp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
+     tableposp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionsouhaitée"));
+            tablepdp.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
+                 tabledap.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
+                 tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
+                // tableechangesposteur.setItems(dataeesp);*/
+
         Stage stage = new Stage();
         image_p_btn.setOnAction(e->{
                     stage.setTitle("File Chooser ");
@@ -514,8 +536,8 @@ public class Posteur_interfaceController implements Initializable {
         prenomp_1.setText(p1.getPrenom());
         emailp_1.setText(p1.getEmail());
         telp_1.setText(Integer.toString(p1.getTel()));
-         datep_1.setText(p1.getDate_naissance().toString());
-         numero.setText(Integer.toString(p1.getTel()));
+        datep_1.setText(p1.getDate_naissance().toString());
+        numero.setText(Integer.toString(p1.getTel()));
         }
         else 
         {
@@ -526,7 +548,43 @@ public class Posteur_interfaceController implements Initializable {
     }
 
     @FXML
-    private void ajouterechangep(ActionEvent event) {
+    private void ajouterechangep(ActionEvent event) throws SQLException, IOException {
+        PosteurService p = new PosteurService();
+          Posteur p1= new Posteur();
+        p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+        int idposteur1=p1.getId();
+        String nomposteur =p1.getNom();
+        //String prenomposteur=p1.getPrenom();
+          String nomo=pofp.getText();
+     String nomf=posp.getText();
+       String description=pdp.getText();
+  LocalDate locald =dap.getValue();
+        String date =locald.toString();
+        int idjobeur=0;
+   Echange E = new Echange(nomo,nomf,description,date,idposteur1,nomposteur,idjobeur);
+  EchangeGestion es = new  EchangeGestion();
+   es.ajouterEchange(E);
+   JOptionPane.showMessageDialog(null, "ajout avec succes");
+
+    }
+      @FXML
+    void rechercherechange(ActionEvent event) throws SQLException {
+        
+        dataeesp.clear();
+     String ech =repos.getText();
+       EchangeGestion ES = new EchangeGestion();
+   ArrayList Echange= (ArrayList) ES.Rechercheprpo(ech);
+    dataeesp= FXCollections.observableArrayList(Echange);
+   tableechangesposteur.setItems(dataeesp);
+        tablepofp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
+     tableposp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionsouhaitée"));
+            tablepdp.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
+                 tabledap.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
+                 tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
+                 //table.setItems(dataeesp);
+      
+
+
     }
     
 }
