@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import service.PosteurService;
 import utils.ConnexionBD;
 
 /**
@@ -35,16 +36,21 @@ public class gestion_offre_service implements IOffre{
     }
 
     public void creerOffre(Offre O) {
-        String req1 = "insert into offre_service (adress,date,heure,tel,description_offre) values (?,?,?,?,?)";
+        String req1 = "insert into offre_service (adress,date,heure,description_offre,tel,idposteur_fg,etat_offre) values (?,?,?,?,?,?,?)";
         try {
-           
+        
             PreparedStatement ste = c.prepareStatement(req1);
             
             ste.setString(1, O.getAdresse());
             ste.setString(2, O.getDate_debut());
             ste.setString(3, O.getHeure());
-            ste.setString(4, O.getTel());
             ste.setString(5, O.getDescription_offre());
+            ste.setString(4, O.getTel());   
+            ste.setInt(6,O.getIposteurfg());
+            ste.setString(7, O.getEtatoffre());
+            
+             
+            
             
             
             
