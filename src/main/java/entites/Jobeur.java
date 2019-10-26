@@ -16,10 +16,26 @@ public class Jobeur extends Personne{
     private int idequipe_fg;
     private String nomequipe_fg;
      private String role;
+     private String address;
      
 
 
     public Jobeur() {
+    }
+
+    public Jobeur(String job, String role, String address, int id, int cin, String nom, String prenom, String email, String sexe, String password, Date date_naissance, int tel) {
+        super(id, cin, nom, prenom, email, sexe, password, date_naissance, tel);
+        this.job = job;
+        this.role = role;
+        this.address = address;
+    }
+    
+
+    public Jobeur(String job, String role, String nom, String prenom, String email, String sexe, int tel,String address) {
+        super(nom, prenom, email, sexe, tel);
+        this.job = job;
+        this.role = role;
+        this.address = address;
     }
 
     public Jobeur(String job, String role, int id, int cin, String nom, String prenom, String email, String sexe, String password, Date date_naissance, int tel, String etat) {
