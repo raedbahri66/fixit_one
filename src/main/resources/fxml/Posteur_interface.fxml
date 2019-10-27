@@ -105,8 +105,9 @@
                       <TableColumn fx:id="Column_adress" prefWidth="75.0" text="Adress" />
                       <TableColumn fx:id="Column_date" prefWidth="75.0" text="Date" />
                         <TableColumn fx:id="Column_heure" prefWidth="75.0" text="Heure" />
-                        <TableColumn fx:id="Column_description" prefWidth="75.0" text="Description " />
-                        <TableColumn fx:id="Column_etat" prefWidth="75.0" text="Etat d'offre" />
+                        <TableColumn fx:id="Column_description" prefWidth="103.0" text="Description " />
+                        <TableColumn fx:id="Column_etat" prefWidth="72.0" text="Etat d'offre" />
+                        <TableColumn fx:id="Column_Nomservice" prefWidth="117.0" text="Type de service" />
                     </columns>
                   </TableView>
                </children>

@@ -310,6 +310,8 @@ public class Posteur_interfaceController implements Initializable {
 
     @FXML
     private TableColumn<Offre, String> Column_etat;
+     @FXML
+    private TableColumn<Offre, String> Column_Nomservice;
 
     private TextField idme;
       @FXML
@@ -880,6 +882,7 @@ public class Posteur_interfaceController implements Initializable {
      Column_heure.setCellValueFactory(new PropertyValueFactory <Offre,String>("heure"));
      Column_description.setCellValueFactory(new PropertyValueFactory <Offre,String>("description_offre"));
      Column_etat.setCellValueFactory(new PropertyValueFactory <Offre,String>("etatoffre"));
+     Column_Nomservice.setCellValueFactory(new PropertyValueFactory <Offre,String>("Nomservice"));
    
     }
     gestion_offre_service gos = new gestion_offre_service();
