@@ -628,6 +628,10 @@ public class Posteur_interfaceController implements Initializable {
   EchangeGestion es = new  EchangeGestion();
    es.ajouterEchange(E);
    JOptionPane.showMessageDialog(null, "ajout avec succes");
+   pofp.setText("");
+   posp.setText("");
+   pdp.setText("");
+   //dap.setv("");
 
     }
       @FXML
