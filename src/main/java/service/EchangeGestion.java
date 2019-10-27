@@ -155,6 +155,40 @@ public class EchangeGestion implements Iechange{
     }
      return tableechange;
       }
+         public List<Echange> affichermesEchange(int id) {
+          List<Echange> echanges= new ArrayList<>();
+    //Echange e = null;
+      
+      
+      try {
+         String req2="select * from echange  where idposteurfg=? ";
+         PreparedStatement pstm = c.prepareStatement(req2);
+          pstm.setInt(1,id);
+        
+          ResultSet res=  pstm.executeQuery();
+          while (res.next()) { 
+              Echange e = new Echange();
+              e.setId(res.getString(1));
+               e.setPropositionofferte(res.getString(2));
+              e.setPropositionsouhaitée(res.getString(3));
+                     e.setDescription_echange(res.getString(4));
+                     //e.setNom_posteur(res.getString(10));
+                         e.setDate(res.getString(11));
+                       
+                       
+                          echanges.add(e);
+                           //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10)));
+             
+          }
+        
+    }catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+      } 
+        
+     return echanges;
+   
+   
+    }
 }
 
 

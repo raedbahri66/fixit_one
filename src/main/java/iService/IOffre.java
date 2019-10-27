@@ -15,6 +15,6 @@ import java.util.List;
  */
 public interface IOffre {
     public void creerOffre(Offre O);
-    public List<Service> afficherOffre();
+    public List<Offre> afficherOffre();
     
 }

@@ -57,6 +57,8 @@ import service.EchangeGestion;
 import service.GestionFavoris;
 import service.JobeurService;
 import service.PosteurService;
+import entites.Offre;
+import service.gestion_offre_service;
 
 /**
  * FXML Controller class
@@ -257,19 +259,21 @@ public class Posteur_interfaceController implements Initializable {
     @FXML
     private TableColumn<?, ?> c_email2;
     @FXML
-    private TableView<?> tablemesproposition;
+    private TableView<Echange> tablemesproposition;
+       @FXML
+    private TableColumn<Echange, String> tabid;
 
     @FXML
-    private TableColumn<?, ?> tabmpof;
+    private TableColumn<Echange, String> tabmpof;
 
     @FXML
-    private TableColumn<?, ?> tabmpos;
+    private TableColumn<Echange, String> tabmpos;
 
     @FXML
-    private TableColumn<?, ?> tabd;
+    private TableColumn<Echange, String> tabd;
 
     @FXML
-    private TableColumn<?, ?> tabdatem;
+    private TableColumn<Echange, String> tabdatem;
 
     @FXML
     private Label fileddaj;
@@ -288,6 +292,27 @@ public class Posteur_interfaceController implements Initializable {
 
     @FXML
     private Button supppro;
+     @FXML
+    private TableView<Offre> Table_panier_service;
+
+    @FXML
+    private TableColumn<Offre, String> Column_adress;
+
+    @FXML
+    private TableColumn<Offre, String> Column_date;
+
+    @FXML
+    private TableColumn<Offre, String> Column_heure;
+
+    @FXML
+    private TableColumn<Offre, String> Column_description;
+
+    @FXML
+    private TableColumn<Offre, String> Column_etat;
+
+    private TextField idme;
+      @FXML
+    private DatePicker textdat;
 
     
   
@@ -595,13 +620,37 @@ public class Posteur_interfaceController implements Initializable {
        ArrayList Echange= (ArrayList)es.afficherEchange(); 
     
            public ObservableList dataeesp= FXCollections.observableArrayList(Echange);
+          
+          @FXML
+   public void utilisertableechange() {
+        tablemesproposition.setOnMouseClicked(new EventHandler<MouseEvent>()
+         {
+             @Override
+             public void handle(MouseEvent event) {
+                Echange E=tablemesproposition.getItems().get(tablemesproposition.getSelectionModel().getSelectedIndex());
+               idme.setText(E.getId());
+                filedpof.setText(E.getPropositionofferte());
+                filedpos.setText(E.getPropositionsouhaitée());
+              fileddes.setText(E.getDescription_echange());
+                 String date1=E.getDate();
+                                   LocalDate date2 = LocalDate.parse(date1);
+                  textdat.setValue(date2);
+             }
+         });
+
+    }   
+           
+
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        afficher_panier_offre();
         // TODO
         /****ayed**///
         favoris();
         /////
+      
+        
 
            tableechangesposteur.setItems(dataeesp);
       
@@ -700,7 +749,17 @@ public class Posteur_interfaceController implements Initializable {
                  categorie_produit2.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  categorie_produit3.getItems().addAll("non_vendu","vendu");
                  combobox_filter.getItems().addAll("Tous()","Jardinage","Electricité","Batimmant","Informatique","Electromenager");
-    
+      
+        ArrayList Echange2= (ArrayList)es.affichermesEchange(id); 
+        ObservableList datames= FXCollections.observableArrayList(Echange2);
+            tablemesproposition.setItems(datames);
+            tabid.setCellValueFactory(new PropertyValueFactory<Echange,String>("id"));
+                 tabmpof.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
+     tabmpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionsouhaitée"));
+           tabd.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
+                tabdatem.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
+                 utilisertableechange();
+                // tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
     }    
 
     @FXML
@@ -763,6 +822,7 @@ public class Posteur_interfaceController implements Initializable {
    posp.setText("");
    pdp.setText("");
   dap.setValue(null);
+  refrechtabechange();
    
 
     }
@@ -785,6 +845,19 @@ public class Posteur_interfaceController implements Initializable {
 
 
     }
+     public void refrechtabechange(){
+         dataeesp.clear();
+            EchangeGestion es = new  EchangeGestion();
+       ArrayList Echange= (ArrayList)es.afficherEchange(); 
+    
+           ObservableList dataeesp= FXCollections.observableArrayList(Echange);
+            tableechangesposteur.setItems(dataeesp);
+         
+     }
+     
+   
+    
+    
     
     @FXML
     void suppmechange(ActionEvent event) {
@@ -794,5 +867,24 @@ public class Posteur_interfaceController implements Initializable {
     void modifiermechange(ActionEvent event) {
 
     }
+    //Oussama//
+    public void afficher_panier_offre()
+    {
+        
+        gos.afficherOffre();
+        Table_panier_service.setItems(data5);
+     Column_adress.setCellValueFactory(new PropertyValueFactory <Offre,String>("adresse"));
+     Column_date.setCellValueFactory(new PropertyValueFactory <Offre,String>("Date_debut"));
+     Column_heure.setCellValueFactory(new PropertyValueFactory <Offre,String>("heure"));
+     Column_description.setCellValueFactory(new PropertyValueFactory <Offre,String>("description_offre"));
+     Column_etat.setCellValueFactory(new PropertyValueFactory <Offre,String>("etatoffre"));
+   
+    }
+    gestion_offre_service gos = new gestion_offre_service();
+    ArrayList offre= (ArrayList) gos.afficherOffre();
+    
+    
+    public ObservableList data5 = FXCollections.observableArrayList(offre);
+    // Oussama//
     
 }
