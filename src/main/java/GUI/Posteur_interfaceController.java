@@ -632,6 +632,7 @@ public class Posteur_interfaceController implements Initializable {
    posp.setText("");
    pdp.setText("");
   dap.setValue(null);
+  refrechtabechange();
    
 
     }
@@ -654,6 +655,17 @@ public class Posteur_interfaceController implements Initializable {
 
 
     }
+     public void refrechtabechange(){
+         dataeesp.clear();
+            EchangeGestion es = new  EchangeGestion();
+       ArrayList Echange= (ArrayList)es.afficherEchange(); 
+    
+           ObservableList dataeesp= FXCollections.observableArrayList(Echange);
+            tableechangesposteur.setItems(dataeesp);
+         
+     }
+    
+    
     
     @FXML
     void suppmechange(ActionEvent event) {
