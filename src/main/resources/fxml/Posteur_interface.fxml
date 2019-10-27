@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="825.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="825.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
   <tabs>
     <Tab text="Demander un service">
       <content>
@@ -194,7 +194,7 @@
                                           <TableColumn fx:id="tablenpos" prefWidth="134.0" text="nom posteur" />
                                       </columns>
                                     </TableView>
-                                    <TextField fx:id="repos" layoutX="268.0" layoutY="53.0" text="Rechercher" />
+                                    <TextField fx:id="repos" layoutX="268.0" layoutY="53.0" promptText="Rechercher" />
                                     <Button fx:id="rechercherprop" layoutX="434.0" layoutY="51.0" mnemonicParsing="false" onAction="#rechercherechange" prefHeight="29.0" prefWidth="42.0">
                                        <graphic>
                                           <ImageView fitHeight="21.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
