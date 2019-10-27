@@ -33,7 +33,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="20.0" layoutY="181.0" mnemonicParsing="false">
+                  <Button fx:id="Btn_Menage" layoutX="20.0" layoutY="181.0" mnemonicParsing="false" onAction="#Menage">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -45,7 +45,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="213.0" layoutY="16.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="184.0">
+                  <Button fx:id="Btn_Plomberie" layoutX="213.0" layoutY="16.0" mnemonicParsing="false" onAction="#Plomberie" prefHeight="140.0" prefWidth="184.0">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -57,7 +57,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="222.0" layoutY="185.0" mnemonicParsing="false">
+                  <Button fx:id="Btn_Renovation" layoutX="222.0" layoutY="185.0" mnemonicParsing="false" onAction="#Renovation">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -69,7 +69,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="429.0" layoutY="180.0" mnemonicParsing="false">
+                  <Button fx:id="Btn_Conciergerie" layoutX="429.0" layoutY="180.0" mnemonicParsing="false" onAction="#Conciergerie">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -81,7 +81,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="417.0" layoutY="16.0" mnemonicParsing="false">
+                  <Button fx:id="Btn_Jardinage" layoutX="417.0" layoutY="16.0" mnemonicParsing="false" onAction="#Jardinage">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -185,7 +185,7 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView fx:id="tableechangesposteur" layoutX="62.0" layoutY="142.0" prefHeight="383.0" prefWidth="638.0">
+                                    <TableView fx:id="tableechangesposteur" layoutX="31.0" layoutY="98.0" prefHeight="383.0" prefWidth="638.0">
                                       <columns>
                                         <TableColumn fx:id="tablepofp" prefWidth="120.0" text="proposition offerte" />
                                         <TableColumn fx:id="tableposp" prefWidth="134.0" text="proposition souhaitee" />
@@ -194,8 +194,15 @@
                                           <TableColumn fx:id="tablenpos" prefWidth="134.0" text="nom posteur" />
                                       </columns>
                                     </TableView>
-                                    <TextField fx:id="repos" layoutX="268.0" layoutY="53.0" />
-                                    <Button fx:id="rechercherprop" layoutX="278.0" layoutY="102.0" mnemonicParsing="false" onAction="#rechercherechange" text="rechercher un proposition" />
+                                    <TextField fx:id="repos" layoutX="268.0" layoutY="53.0" text="Rechercher" />
+                                    <Button fx:id="rechercherprop" layoutX="434.0" layoutY="51.0" mnemonicParsing="false" onAction="#rechercherechange" prefHeight="29.0" prefWidth="42.0">
+                                       <graphic>
+                                          <ImageView fitHeight="21.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../imgage_article.jpg" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
                                  </children></AnchorPane>
                         </content>
                       </Tab>
