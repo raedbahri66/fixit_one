@@ -9,6 +9,7 @@ import entites.Produit;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
 import entites.Echange;
 import entites.Favoris;
+import entites.Jobeur;
 import entites.Posteur;
 import java.io.File;
 import java.io.FileInputStream;
@@ -41,16 +42,20 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import service.ControleSaisie;
 import service.EchangeGestion;
 import service.GestionFavoris;
+import service.JobeurService;
 import service.PosteurService;
 
 /**
@@ -160,7 +165,8 @@ public class Posteur_interfaceController implements Initializable {
     private TableColumn<Produit,String> table_categorie;
  
 
-   
+    @FXML
+    private Label validation_prix;
     @FXML
     private TextField numero;
     
@@ -203,6 +209,7 @@ public class Posteur_interfaceController implements Initializable {
        
     public ObservableList<Produit> data;
     public ObservableList<Produit> data1;
+    public ObservableList<Produit> data3;
     @FXML
     private ImageView image_post;
     @FXML
@@ -298,17 +305,56 @@ public class Posteur_interfaceController implements Initializable {
      c_specialite.setCellValueFactory(new PropertyValueFactory <>("specalite"));   
    }
    
+   
+   
+    
+    @FXML
+    private void OnkeyTypedfilter(KeyEvent event) throws SQLException {
+        //String fil=combo_filter.getValue().toString();
+       /*String a=event.getCharacter();
+         ab=ab.concat(a);*/
  
+         String msg = recherche_produit.getText().concat("%");
+   GestionProduit GS = new GestionProduit();
+   ArrayList Produit1= (ArrayList)GS.RechercheNom(msg);
+    data= FXCollections.observableArrayList(Produit1);
+
+        table.getItems().clear();
+        table.setItems(data);
+        table_nom.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom"));
+         table_id.setCellValueFactory(new PropertyValueFactory<Produit,String>("id"));
+            table_description.setCellValueFactory(new PropertyValueFactory<Produit,String>("description"));
+                table_prix.setCellValueFactory(new PropertyValueFactory<Produit,String>("prix"));
+                table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
+                table_num.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
+                table_proprietere.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom_proprietere"));
+
+    }
     
     
+    
+    
+    
+    
+    
+    
+    public boolean canInscription=true;
     @FXML
     void addaction(ActionEvent event) throws SQLException, IOException {
         
         PosteurService p = new PosteurService();
         Posteur p1= new Posteur();
         p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+          ControleSaisie C= new ControleSaisie();
+        if(!C.isInt(prix_produit.getText()) ){
+            canInscription = false; validation_prix.setText("Inccorect Prix");
+        } 
+       else
+       {
+        canInscription = true;
+       }
         
-        
+        if(canInscription){
         int idposteur=p1.getId();
         String nom=nom_produit.getText();
         String desc=description_produit.getText();
@@ -329,6 +375,9 @@ public class Posteur_interfaceController implements Initializable {
         categorie_produit.setValue("");
         numero.setText(Integer.toString(p1.getTel()));
         refrech();
+        validation_prix.setText("");
+        }
+
     }
 
      @FXML
@@ -546,13 +595,14 @@ public class Posteur_interfaceController implements Initializable {
        ArrayList Echange= (ArrayList)es.afficherEchange(); 
     
            public ObservableList dataeesp= FXCollections.observableArrayList(Echange);
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         /****ayed**///
         favoris();
         /////
+
            tableechangesposteur.setItems(dataeesp);
       
                 tablepofp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
@@ -563,37 +613,38 @@ public class Posteur_interfaceController implements Initializable {
                 // tableechangesposteur.setItems(dataeesp);*/
 
         Stage stage = new Stage();
-        image_p_btn.setOnAction(e->{
-                    stage.setTitle("File Chooser ");
+        image_p_btn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                stage.setTitle("File Chooser ");
+                
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Open image File");
+                
+                file = fileChooser.showOpenDialog(stage);
+                if (file != null) {
+                    file_image_p.setText(file.getAbsolutePath());
+                    System.out.println(file.getAbsolutePath());
+                    try {
+                        fis = new FileInputStream(file);// file is selected using filechooser which is in last tutorial
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Open image File");
-            
-                         file = fileChooser.showOpenDialog(stage);
-                        if (file != null) {
-                                file_image_p.setText(file.getAbsolutePath());
-                                System.out.println(file.getAbsolutePath()); 
-                        try {
-                            fis = new FileInputStream(file);// file is selected using filechooser which is in last tutorial
-                        } catch (FileNotFoundException ex) {
-                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                    
+                    try {
+                        //     Image image=  new Image(file.toURI().toString());
+                        URL url1 = file.toURI().toURL();
+                        System.out.println(new Image(url1.toExternalForm()));
+                        image_post.setImage(new Image(url1.toExternalForm()));
+                    } catch (MalformedURLException ex) {
+                        
+                        Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
-
-                        try {
-                            //     Image image=  new Image(file.toURI().toString());
-                            URL url1 = file.toURI().toURL();
-                            System.out.println(new Image(url1.toExternalForm()));
-                            image_post.setImage(new Image(url1.toExternalForm()));
-                        } catch (MalformedURLException ex) {
-                          
-                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                                
-
-    }
-
+                    
+                    
+                }       }
         });
         /////raed///
                 df_date1.setValue(NOW_LOCAL_DATE());

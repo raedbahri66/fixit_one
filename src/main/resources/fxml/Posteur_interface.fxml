@@ -275,7 +275,7 @@
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="recherche_produit" layoutX="542.0" layoutY="95.0" prefHeight="35.0" prefWidth="168.0" promptText="Recherhce" />
+                                          <TextField fx:id="recherche_produit" layoutX="542.0" layoutY="95.0" onKeyReleased="#OnkeyTypedfilter" prefHeight="35.0" prefWidth="168.0" promptText="Recherhce" />
                                           <Label layoutX="435.0" layoutY="200.0" prefHeight="38.0" prefWidth="87.0" text="Numero:">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
@@ -364,6 +364,11 @@
                                              </font>
                                           </Label>
                                           <TextField fx:id="numero" layoutX="140.0" layoutY="187.0" />
+                                          <Label fx:id="validation_prix" layoutX="141.0" layoutY="152.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
                                        </children>
                                     </AnchorPane>
                                  </content>
