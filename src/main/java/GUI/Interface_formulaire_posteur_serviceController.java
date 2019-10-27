@@ -66,6 +66,8 @@ public class Interface_formulaire_posteur_serviceController implements Initializ
         
         
         int idposteur=p1.getId();
+        String nomposteur=p1.getNom();
+        String prenomposteur=p1.getPrenom();
         String etatoffre="en-attente";
         
         if(Label_adresse.getText().isEmpty()){
@@ -89,7 +91,7 @@ public class Interface_formulaire_posteur_serviceController implements Initializ
         LocalDate LCD =Label_date.getValue();
         
          String date = LCD.toString();
-         Offre O = new Offre(adresse,date ,Heure ,Description,Tel,idposteur,etatoffre);
+         Offre O = new Offre(adresse,date ,Heure ,Description,Tel,idposteur,etatoffre,nomposteur,prenomposteur);
         gestion_offre_service g = new gestion_offre_service();
               g.creerOffre(O);
               JOptionPane.showMessageDialog(null, "votre details du service sont enregistré");
