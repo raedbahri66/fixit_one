@@ -27,7 +27,15 @@
             <Image url="@../Image/Fotolia_71258241_S.jpg" />
          </image>
       </ImageView>
-      <TextField fx:id="Label_recherche" layoutX="233.0" layoutY="31.0" />
-      <Button fx:id="Btn_recherche_jobeur" layoutX="418.0" layoutY="31.0" mnemonicParsing="false" onAction="#RechercheJobeur" text="Recherche" />
+      <TextField fx:id="Label_recherche" layoutX="233.0" layoutY="31.0" promptText="Recherche" />
+      <Button fx:id="Btn_recherche_jobeur" layoutX="403.0" layoutY="30.0" mnemonicParsing="false" onAction="#RechercheJobeur" prefHeight="25.0" prefWidth="25.0">
+         <graphic>
+            <ImageView fitHeight="19.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/search-icon%20(1).png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </Pane>
