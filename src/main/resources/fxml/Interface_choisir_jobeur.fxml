@@ -10,7 +10,12 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_choisir_jobeurController">
    <children>
-      <TableView fx:id="Table_Jobeur" layoutY="69.0" prefHeight="337.0" prefWidth="648.0">
+      <ImageView fitHeight="412.0" fitWidth="664.0" layoutX="5.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Image/peintre.jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="Table_Jobeur" layoutY="69.0" opacity="0.78" prefHeight="337.0" prefWidth="648.0">
         <columns>
           <TableColumn fx:id="Column_nomj" prefWidth="75.0" text="Nom" />
           <TableColumn fx:id="Column_prenomj" prefWidth="75.0" text="Prenom" />
@@ -22,11 +27,6 @@
             <TableColumn fx:id="column_cin" minWidth="0.0" prefWidth="23.0" text="Cin" />
         </columns>
       </TableView>
-      <ImageView fitHeight="413.0" fitWidth="705.0" layoutX="-6.0" layoutY="-5.0" opacity="0.39" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Image/Fotolia_71258241_S.jpg" />
-         </image>
-      </ImageView>
       <TextField fx:id="Label_recherche" layoutX="233.0" layoutY="31.0" promptText="Recherche" />
       <Button fx:id="Btn_recherche_jobeur" layoutX="403.0" layoutY="30.0" mnemonicParsing="false" onAction="#RechercheJobeur" prefHeight="25.0" prefWidth="25.0">
          <graphic>
