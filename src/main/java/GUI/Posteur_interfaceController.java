@@ -52,6 +52,8 @@ import javax.swing.JOptionPane;
 import service.EchangeGestion;
 import service.GestionFavoris;
 import service.PosteurService;
+import entites.Offre;
+import service.gestion_offre_service;
 
 /**
  * FXML Controller class
@@ -281,6 +283,24 @@ public class Posteur_interfaceController implements Initializable {
 
     @FXML
     private Button supppro;
+     @FXML
+    private TableView<Offre> Table_panier_service;
+
+    @FXML
+    private TableColumn<Offre, String> Column_adress;
+
+    @FXML
+    private TableColumn<Offre, String> Column_date;
+
+    @FXML
+    private TableColumn<Offre, String> Column_heure;
+
+    @FXML
+    private TableColumn<Offre, String> Column_description;
+
+    @FXML
+    private TableColumn<Offre, String> Column_etat;
+
 
     
   
@@ -549,6 +569,7 @@ public class Posteur_interfaceController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        afficher_panier_offre();
         // TODO
         /****ayed**///
         favoris();
@@ -755,5 +776,24 @@ public class Posteur_interfaceController implements Initializable {
     void modifiermechange(ActionEvent event) {
 
     }
+    //Oussama//
+    public void afficher_panier_offre()
+    {
+        
+        gos.afficherOffre();
+        Table_panier_service.setItems(data5);
+     Column_adress.setCellValueFactory(new PropertyValueFactory <Offre,String>("adresse"));
+     Column_date.setCellValueFactory(new PropertyValueFactory <Offre,String>("Date_debut"));
+     Column_heure.setCellValueFactory(new PropertyValueFactory <Offre,String>("heure"));
+     Column_description.setCellValueFactory(new PropertyValueFactory <Offre,String>("description_offre"));
+     Column_etat.setCellValueFactory(new PropertyValueFactory <Offre,String>("etatoffre"));
+   
+    }
+    gestion_offre_service gos = new gestion_offre_service();
+    ArrayList offre= (ArrayList) gos.afficherOffre();
+    
+    
+    public ObservableList data5 = FXCollections.observableArrayList(offre);
+    // Oussama//
     
 }

@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="825.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="825.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
   <tabs>
     <Tab text="Demander un service">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="397.0" prefWidth="628.0">
                <children>
                   <Button fx:id="Btn_electricite" layoutX="24.0" layoutY="16.0" mnemonicParsing="false" onAction="#Electricite">
                      <font>
@@ -96,6 +96,23 @@
                </children></AnchorPane>
       </content>
     </Tab>
+      <Tab text="Panier des service">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="Table_panier_service" layoutY="7.0" prefHeight="385.0" prefWidth="768.0">
+                    <columns>
+                      <TableColumn fx:id="Column_adress" prefWidth="75.0" text="Adress" />
+                      <TableColumn fx:id="Column_date" prefWidth="75.0" text="Date" />
+                        <TableColumn fx:id="Column_heure" prefWidth="75.0" text="Heure" />
+                        <TableColumn fx:id="Column_description" prefWidth="75.0" text="Description " />
+                        <TableColumn fx:id="Column_etat" prefWidth="75.0" text="Etat d'offre" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
     <Tab text="Profil">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">

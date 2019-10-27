@@ -17,6 +17,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import service.PosteurService;
 import utils.ConnexionBD;
+import entites.Offre;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -51,12 +54,6 @@ public class gestion_offre_service implements IOffre{
             ste.setString(8,O.getNomposteur());
             ste.setString(9,O.getPrenomposteur());
             
-            
-             
-            
-            
-            
-            
 
             ste.executeUpdate();
             
@@ -66,8 +63,28 @@ public class gestion_offre_service implements IOffre{
     }
 
     @Override
-    public List<Service> afficherOffre() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Offre> afficherOffre() {
+            List<Offre> offre = new ArrayList<>();
+                
+            
+     
+      try {String req="select * from offre_service ";
+          PreparedStatement ste = c.prepareStatement(req);
+          ResultSet res= ste.executeQuery(req);
+          while (res.next()) { 
+               Offre a = new Offre();
+               
+                a.setAdresse(res.getString("adress"));
+                a.setDate_debut(res.getString("date"));
+                a.setHeure(res.getString("heure"));
+                a.setDescription_offre(res.getString("description_offre"));
+                a.setEtatoffre(res.getString("etat_offre"));
+                
+              offre.add(a);
+          }
+      } catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+      } return offre; 
     }
     
     

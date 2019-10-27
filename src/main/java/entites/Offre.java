@@ -80,6 +80,11 @@ public class Offre {
     public String getPrenomposteur() {
         return prenomposteur;
     }
+    public Offre()
+            
+    {
+        super();
+    }
     
      public Offre(String adresse, String Date_debut , String heure ,String tel,String description_offre) {
         super();
