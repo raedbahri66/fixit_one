@@ -6,6 +6,7 @@
 package GUI;
 
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
+import static GUI.PosteurgestionController.cin;
 import entites.Jobeur;
 import entites.Posteur;
 import java.io.IOException;
@@ -15,11 +16,16 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -36,8 +42,10 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import service.ControleSaisie;
 import service.JobeurService;
@@ -168,6 +176,7 @@ public class JobeurgestionController implements Initializable{
     public boolean valid= true;
     public boolean valid1= true;
         final ToggleGroup group = new ToggleGroup();
+            static int cin;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -176,6 +185,7 @@ public class JobeurgestionController implements Initializable{
                 banned_filter.setToggleGroup(group);
         ObservableList<String> sexelist = FXCollections.observableArrayList("Homme","Femme");
         ObservableList<String> speclist = FXCollections.observableArrayList("Electricite","Plomberie","Jardinage","Menage","Conciergerie");
+        ObservableList<String> filter_choix = FXCollections.observableArrayList("nom","email","cin");
         sexe_p.setValue("Homme");
         sexe_p.setItems(sexelist);
         combo_j.setValue("Electricite");
@@ -186,6 +196,64 @@ public class JobeurgestionController implements Initializable{
         combo_j1.setValue("Electricite");
         combo_j1.setItems(speclist);
         date_p1.setValue(NOW_LOCAL_DATE());
+        combo_filter.setValue("cin");
+        combo_filter.setItems(filter_choix);
+        /////affiche//
+        JobeurService p= new JobeurService(); 
+        ArrayList<Jobeur> pers=(ArrayList<Jobeur>) p.afficherJobeur();
+        ObservableList<Jobeur> obs=FXCollections.observableArrayList(pers);
+        table_post.getItems().clear();
+        table_post.setItems(obs);
+
+        c1_cinp.setCellValueFactory(new PropertyValueFactory<>("cin") );
+        c2_nomp.setCellValueFactory(new PropertyValueFactory<>("nom") );
+        c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
+        c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
+        c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
+        c_spec.setCellValueFactory(new PropertyValueFactory<>("job") );
+        ///
+        table_post.setOnMouseClicked((MouseEvent event) -> {
+                    if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
+                        Jobeur p0 = new Jobeur();
+                        p0=(Jobeur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
+                        tabpane1.getSelectionModel().select(modif_posttab);
+                        nom_p1.setText(p0.getNom());
+                        prenom_p1.setText(p0.getPrenom());
+                        sexe_p1.setValue(p0.getSexe());
+                        date_p1.setValue(p0.getDate_naissance().toLocalDate());
+                        email_p1.setText(p0.getEmail());
+                        pass_p1.setText(p0.getPassword());
+                        tel_p1.setText(Integer.toString(p0.getTel()));
+                        id_p1.setText(Integer.toString(p0.getCin()));
+                        address_j1.setText(p0.getAddress());
+                        combo_j1.setValue(p0.getJob());
+                    }
+                    else if (event.getButton().equals(MouseButton.SECONDARY) && event.getClickCount() == 1){
+                        Jobeur p0 = new Jobeur();
+                        p0=(Jobeur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
+                        tabpane1.getSelectionModel().select(supp_posttab);
+                        cinsupp_t.setText(Integer.toString(p0.getCin()));
+                    }
+                    
+                    else if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 3){
+                        Jobeur p0 = new Jobeur();
+                        p0=(Jobeur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
+                        int cin1=p0.getCin();
+                        cin=cin1;
+                        Parent root = null;
+                        try {
+                            root= FXMLLoader.load(getClass().getResource("/fxml/Profil_Jobeur.fxml"));
+                        } catch (IOException ex) {
+                            Logger.getLogger(PosteurgestionController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        Stage stage1 = new Stage();
+                        
+                        Scene scene = new Scene(root);
+                        stage1.setScene(scene);
+                        /* Stage stag1 = new Stage(root);*/
+                        stage1.show();
+                    }
+                });
         
     }
     @FXML
@@ -222,11 +290,40 @@ public class JobeurgestionController implements Initializable{
     }
 
     @FXML
-    private void OnkeyTypedfilter(KeyEvent event) {
+    private void OnkeyTypedfilter(KeyEvent event) throws SQLException {
+        String fil=combo_filter.getValue().toString();
+       /*String a=event.getCharacter();
+         ab=ab.concat(a);*/
+         String msg = filter_field.getText().concat("%");
+
+        JobeurService p= new JobeurService(); 
+        ArrayList<Jobeur> pers=(ArrayList<Jobeur>) p.afficherJobeurbynNom(fil,msg);
+        ObservableList<Jobeur> obs=FXCollections.observableArrayList(pers);
+        table_post.getItems().clear();
+        table_post.setItems(obs);
+
+        c1_cinp.setCellValueFactory(new PropertyValueFactory<>("cin") );
+        c2_nomp.setCellValueFactory(new PropertyValueFactory<>("nom") );
+        c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
+        c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
+        c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
+        c_spec.setCellValueFactory(new PropertyValueFactory<>("job") );
     }
 
     @FXML
-    private void Active_filterBtn(MouseEvent event) {
+    private void Active_filterBtn(MouseEvent event) throws SQLException {
+        String msg = active_filter.getText().concat("%");
+        JobeurService p= new JobeurService();
+        ArrayList<Jobeur> pers=(ArrayList<Jobeur>) p.afficherJobeurbyEtat(msg);
+        ObservableList<Jobeur> obs=FXCollections.observableArrayList(pers);
+        table_post.getItems().clear();
+        table_post.setItems(obs);
+        c1_cinp.setCellValueFactory(new PropertyValueFactory<>("cin") );
+        c2_nomp.setCellValueFactory(new PropertyValueFactory<>("nom") );
+        c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
+        c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
+        c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
+        c_spec.setCellValueFactory(new PropertyValueFactory<>("job") );
     }
 
     @FXML

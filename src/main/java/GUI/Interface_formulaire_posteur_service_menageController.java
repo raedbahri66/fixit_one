@@ -33,33 +33,32 @@ import java.sql.SQLException;
  *
  * @author asus
  */
-public class Interface_formulaire_posteur_serviceController implements Initializable {
-      @FXML
-    private TextField Label_adresse;
+public class Interface_formulaire_posteur_service_menageController implements Initializable {
 
+    @FXML
+    private TextField Label_adresse;
     @FXML
     private DatePicker Label_date;
-
     @FXML
     private TextField Label_tel;
-
     @FXML
     private TextArea Label_description;
-
     @FXML
     private Button Btn_ajouter_service;
-
     @FXML
     private TextField Label_heure;
-
+public boolean canInscription= true;
+    Posteur p = new Posteur();
     /**
      * Initializes the controller class.
      */
-    public boolean canInscription= true;
-    Posteur p = new Posteur();
-    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
+
     @FXML
-    void Ajouter_offre_service(ActionEvent event) throws SQLException, IOException {
+    private void Ajouter_offre_service(ActionEvent event) throws SQLException,IOException {
         PosteurService p = new PosteurService();
         Posteur p1= new Posteur();
         p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
@@ -88,11 +87,11 @@ public class Interface_formulaire_posteur_serviceController implements Initializ
         String Description = Label_description.getText();
         String Tel = Label_tel.getText();
         String Heure =Label_heure.getText();
-        String Nomservice ="Electricité";
+        String Nomservice ="Menage";
         LocalDate LCD =Label_date.getValue();
         
          String date = LCD.toString();
-         Offre O = new Offre(adresse,date ,Heure ,Description,Tel,idposteur,etatoffre,nomposteur,prenomposteur,Nomservice);
+Offre O = new Offre(adresse,date ,Heure ,Description,Tel,idposteur,etatoffre,nomposteur,prenomposteur,Nomservice);
         gestion_offre_service g = new gestion_offre_service();
               g.creerOffre(O);
               JOptionPane.showMessageDialog(null, "votre details du service sont enregistré");
@@ -111,9 +110,5 @@ public class Interface_formulaire_posteur_serviceController implements Initializ
        }
 
     }
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
     
 }

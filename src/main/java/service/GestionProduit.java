@@ -85,13 +85,14 @@ public class GestionProduit {
     } 
     
           
-     public List<Produit> afficherProduit1() {
+     public List<Produit> afficherProduit1(int id) {
         
        List<Produit> table1= new ArrayList<>();
     //Echange e = null;
       try {
-         String req2="select * from produit ";
+         String req2="select * from produit Where idposteur_fg=? ";
          PreparedStatement pstm = c.prepareStatement(req2);
+        pstm.setInt(1,id);
           ResultSet res=  pstm.executeQuery();
           while (res.next()) { 
               Produit e = new Produit();
@@ -160,7 +161,33 @@ public class GestionProduit {
      return table1;
     }
      
-     
+      public List<Produit> RechercheNom(String nom) {
+        
+       List<Produit> table1= new ArrayList<>();
+    //Echange e = null;
+      try {
+         String req2="select * from produit Where nomproduit LIKE '"+nom+"'" ;
+         PreparedStatement pstm = c.prepareStatement(req2);
+         //pstm.setString(1,nom);
+          ResultSet res=  pstm.executeQuery();
+          while (res.next()) { 
+              Produit e = new Produit();
+               e.setId(res.getString(1));
+                     e.setPrix(res.getString(3));
+                     e.setNom(res.getString(2));
+                       e.setDescription(res.getString(4));
+                        e.setCategorie(res.getString(5));
+                         e.setNumero(res.getString(6));
+                         e.setNomproprietere(res.getString(11));
+                          table1.add(e);
+                           //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
+                           }
+          } 
+    catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+      }   
+     return table1;
+    }
      
      
      

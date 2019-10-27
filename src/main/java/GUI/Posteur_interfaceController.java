@@ -9,6 +9,7 @@ import entites.Produit;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
 import entites.Echange;
 import entites.Favoris;
+import entites.Jobeur;
 import entites.Posteur;
 import java.io.File;
 import java.io.FileInputStream;
@@ -41,17 +42,23 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import service.ControleSaisie;
 import service.EchangeGestion;
 import service.GestionFavoris;
+import service.JobeurService;
 import service.PosteurService;
+import entites.Offre;
+import service.gestion_offre_service;
 
 /**
  * FXML Controller class
@@ -59,10 +66,24 @@ import service.PosteurService;
  * @author lenovo
  */
 public class Posteur_interfaceController implements Initializable {
+    public String Service_choisi = "";
     
     @FXML
     private Button Btn_electricite;
-    
+    @FXML
+    private Button Btn_Menage;
+
+    @FXML
+    private Button Btn_Plomberie;
+
+    @FXML
+    private Button Btn_Renovation;
+
+    @FXML
+    private Button Btn_Conciergerie;
+
+    @FXML
+    private Button Btn_Jardinage;
 
     @FXML
     private Label nomp_1;
@@ -147,7 +168,8 @@ public class Posteur_interfaceController implements Initializable {
     private TableColumn<Produit,String> table_categorie;
  
 
-   
+    @FXML
+    private Label validation_prix;
     @FXML
     private TextField numero;
     
@@ -190,6 +212,7 @@ public class Posteur_interfaceController implements Initializable {
        
     public ObservableList<Produit> data;
     public ObservableList<Produit> data1;
+    public ObservableList<Produit> data3;
     @FXML
     private ImageView image_post;
     @FXML
@@ -236,6 +259,63 @@ public class Posteur_interfaceController implements Initializable {
     private TableColumn<?, ?> c_telej2;
     @FXML
     private TableColumn<?, ?> c_email2;
+    @FXML
+    private TableView<Echange> tablemesproposition;
+       @FXML
+    private TableColumn<Echange, String> tabid;
+
+    @FXML
+    private TableColumn<Echange, String> tabmpof;
+
+    @FXML
+    private TableColumn<Echange, String> tabmpos;
+
+    @FXML
+    private TableColumn<Echange, String> tabd;
+
+    @FXML
+    private TableColumn<Echange, String> tabdatem;
+
+    @FXML
+    private Label fileddaj;
+
+    @FXML
+    private TextField filedpof;
+
+    @FXML
+    private TextField filedpos;
+
+    @FXML
+    private TextArea fileddes;
+
+    @FXML
+    private Button modifierpro;
+
+    @FXML
+    private Button supppro;
+     @FXML
+    private TableView<Offre> Table_panier_service;
+
+    @FXML
+    private TableColumn<Offre, String> Column_adress;
+
+    @FXML
+    private TableColumn<Offre, String> Column_date;
+
+    @FXML
+    private TableColumn<Offre, String> Column_heure;
+
+    @FXML
+    private TableColumn<Offre, String> Column_description;
+
+    @FXML
+    private TableColumn<Offre, String> Column_etat;
+
+     @FXML
+    private TextField idme;
+      @FXML
+    private DatePicker textdat;
+
     
   
    public void favoris(){
@@ -252,17 +332,56 @@ public class Posteur_interfaceController implements Initializable {
      c_specialite.setCellValueFactory(new PropertyValueFactory <>("specalite"));   
    }
    
+   
+   
+    
+    @FXML
+    private void OnkeyTypedfilter(KeyEvent event) throws SQLException {
+        //String fil=combo_filter.getValue().toString();
+       /*String a=event.getCharacter();
+         ab=ab.concat(a);*/
  
+         String msg = recherche_produit.getText().concat("%");
+   GestionProduit GS = new GestionProduit();
+   ArrayList Produit1= (ArrayList)GS.RechercheNom(msg);
+    data= FXCollections.observableArrayList(Produit1);
+
+        table.getItems().clear();
+        table.setItems(data);
+        table_nom.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom"));
+         table_id.setCellValueFactory(new PropertyValueFactory<Produit,String>("id"));
+            table_description.setCellValueFactory(new PropertyValueFactory<Produit,String>("description"));
+                table_prix.setCellValueFactory(new PropertyValueFactory<Produit,String>("prix"));
+                table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
+                table_num.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
+                table_proprietere.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom_proprietere"));
+
+    }
     
     
+    
+    
+    
+    
+    
+    
+    public boolean canInscription=true;
     @FXML
     void addaction(ActionEvent event) throws SQLException, IOException {
         
         PosteurService p = new PosteurService();
         Posteur p1= new Posteur();
         p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+          ControleSaisie C= new ControleSaisie();
+        if(!C.isInt(prix_produit.getText()) ){
+            canInscription = false; validation_prix.setText("Inccorect Prix");
+        } 
+       else
+       {
+        canInscription = true;
+       }
         
-        
+        if(canInscription){
         int idposteur=p1.getId();
         String nom=nom_produit.getText();
         String desc=description_produit.getText();
@@ -283,6 +402,9 @@ public class Posteur_interfaceController implements Initializable {
         categorie_produit.setValue("");
         numero.setText(Integer.toString(p1.getTel()));
         refrech();
+        validation_prix.setText("");
+        }
+
     }
 
      @FXML
@@ -400,16 +522,27 @@ public class Posteur_interfaceController implements Initializable {
           
    
   public void refrech(){
-      data.clear();
-      data1.clear();
-      GestionProduit GS = new GestionProduit();
-   ArrayList Produit1= (ArrayList)GS.afficherProduit();
-   GestionProduit GS1= new GestionProduit();
-    ArrayList Produit2= (ArrayList)GS1.afficherProduit1();
-   data= FXCollections.observableArrayList(Produit1);
-   data1= FXCollections.observableArrayList(Produit2);
-         table.setItems(data);
-          table1.setItems(data1);
+        try {
+            data.clear();
+            data1.clear();
+            System.err.println(AcceuilController.cinlogin);
+            PosteurService p = new PosteurService();
+            Posteur p1= new Posteur();
+            p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+            GestionProduit GS = new GestionProduit();
+            ArrayList Produit1= (ArrayList)GS.afficherProduit();
+            GestionProduit GS1= new GestionProduit();
+            int id=p1.getId();
+            ArrayList Produit2= (ArrayList)GS1.afficherProduit1(id);
+            data= FXCollections.observableArrayList(Produit1);
+            data1= FXCollections.observableArrayList(Produit2);
+            table.setItems(data);
+            table1.setItems(data1);
+        } catch (SQLException ex) {
+            Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
   
   
@@ -421,8 +554,65 @@ public class Posteur_interfaceController implements Initializable {
                 stage.hide();
                 stage.setScene(scene);
                 stage.show();  
+                
 
     }
+     @FXML
+    void Jardinage(ActionEvent event)throws IOException {
+        Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service_jardinage.fxml"));
+        Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
+     
+          
+
+    }
+
+    @FXML
+    void Menage(ActionEvent event) throws IOException{
+        Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service_menage.fxml"));
+        Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
+
+    }
+
+    @FXML
+    void Plomberie(ActionEvent event)throws IOException {
+         Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service_plomberie.fxml"));
+         Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
+
+    }
+
+    @FXML
+    void Renovation(ActionEvent event)throws IOException {
+        Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service_renovation.fxml"));
+        Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
+
+    }
+     @FXML
+    void Conciergerie(ActionEvent event)throws IOException {
+         Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service_conciergerie.fxml"));
+         Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
+
+    }
+    
     
     public boolean canModif=true;
     /**
@@ -433,13 +623,38 @@ public class Posteur_interfaceController implements Initializable {
        ArrayList Echange= (ArrayList)es.afficherEchange(); 
     
            public ObservableList dataeesp= FXCollections.observableArrayList(Echange);
+          
+          @FXML
+   public void utilisertableechange() {
+        tablemesproposition.setOnMouseClicked(new EventHandler<MouseEvent>()
+         {
+             @Override
+             public void handle(MouseEvent event) {
+                Echange E=tablemesproposition.getItems().get(tablemesproposition.getSelectionModel().getSelectedIndex());
+               idme.setText(E.getId());
+                filedpof.setText(E.getPropositionofferte());
+                filedpos.setText(E.getPropositionsouhaitée());
+              fileddes.setText(E.getDescription_echange());
+                 String date1=E.getDate();
+                                   LocalDate date2 = LocalDate.parse(date1);
+                  textdat.setValue(date2);
+             }
+         });
 
+    }   
+           
+
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        afficher_panier_offre();
         // TODO
         /****ayed**///
         favoris();
         /////
+      
+        
+
            tableechangesposteur.setItems(dataeesp);
       
                 tablepofp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
@@ -450,37 +665,38 @@ public class Posteur_interfaceController implements Initializable {
                 // tableechangesposteur.setItems(dataeesp);*/
 
         Stage stage = new Stage();
-        image_p_btn.setOnAction(e->{
-                    stage.setTitle("File Chooser ");
+        image_p_btn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                stage.setTitle("File Chooser ");
+                
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Open image File");
+                
+                file = fileChooser.showOpenDialog(stage);
+                if (file != null) {
+                    file_image_p.setText(file.getAbsolutePath());
+                    System.out.println(file.getAbsolutePath());
+                    try {
+                        fis = new FileInputStream(file);// file is selected using filechooser which is in last tutorial
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Open image File");
-            
-                         file = fileChooser.showOpenDialog(stage);
-                        if (file != null) {
-                                file_image_p.setText(file.getAbsolutePath());
-                                System.out.println(file.getAbsolutePath()); 
-                        try {
-                            fis = new FileInputStream(file);// file is selected using filechooser which is in last tutorial
-                        } catch (FileNotFoundException ex) {
-                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                    
+                    try {
+                        //     Image image=  new Image(file.toURI().toString());
+                        URL url1 = file.toURI().toURL();
+                        System.out.println(new Image(url1.toExternalForm()));
+                        image_post.setImage(new Image(url1.toExternalForm()));
+                    } catch (MalformedURLException ex) {
+                        
+                        Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
-
-                        try {
-                            //     Image image=  new Image(file.toURI().toString());
-                            URL url1 = file.toURI().toURL();
-                            System.out.println(new Image(url1.toExternalForm()));
-                            image_post.setImage(new Image(url1.toExternalForm()));
-                        } catch (MalformedURLException ex) {
-                          
-                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                                
-
-    }
-
+                    
+                    
+                }       }
         });
         /////raed///
                 df_date1.setValue(NOW_LOCAL_DATE());
@@ -504,12 +720,12 @@ public class Posteur_interfaceController implements Initializable {
         datep_1.setText(p1.getDate_naissance().toString());
 
          numero.setText(Integer.toString(p1.getTel()));
-
+        int id=p1.getId();
     GestionProduit GS = new GestionProduit();
    ArrayList Produit1= (ArrayList)GS.afficherProduit();
     data= FXCollections.observableArrayList(Produit1);
    GestionProduit GS1= new GestionProduit();
-    ArrayList Produit2= (ArrayList)GS1.afficherProduit1();
+    ArrayList Produit2= (ArrayList)GS1.afficherProduit1(id);
    data1= FXCollections.observableArrayList(Produit2);
         table.setItems(data);
         table_nom.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom"));
@@ -536,8 +752,19 @@ public class Posteur_interfaceController implements Initializable {
                  categorie_produit2.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  categorie_produit3.getItems().addAll("non_vendu","vendu");
                  combobox_filter.getItems().addAll("Tous()","Jardinage","Electricité","Batimmant","Informatique","Electromenager");
+      
+        ArrayList Echange2= (ArrayList)es.affichermesEchange(id); 
+        ObservableList datames= FXCollections.observableArrayList(Echange2);
+            tablemesproposition.setItems(datames);
+            tabid.setCellValueFactory(new PropertyValueFactory<Echange,String>("id"));
+                 tabmpof.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
+     tabmpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionsouhaitée"));
+           tabd.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
+                tabdatem.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
+                 utilisertableechange();
+                // tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
+    }   
     
-    }    
 
     @FXML
     private void btn_modifprofil(ActionEvent event) {
@@ -595,6 +822,12 @@ public class Posteur_interfaceController implements Initializable {
   EchangeGestion es = new  EchangeGestion();
    es.ajouterEchange(E);
    JOptionPane.showMessageDialog(null, "ajout avec succes");
+   pofp.setText("");
+   posp.setText("");
+   pdp.setText("");
+  dap.setValue(null);
+  refrechtabechange();
+   
 
     }
       @FXML
@@ -616,5 +849,78 @@ public class Posteur_interfaceController implements Initializable {
 
 
     }
+     Posteur p1= new Posteur();
+    int id =p1.getId();
+     ArrayList Echange2= (ArrayList)es.affichermesEchange(id); 
+        ObservableList datames= FXCollections.observableArrayList(Echange2);
+            //tablemesproposition.setItems(datames);
+     public void refrechtabechange() {
+        
+         try
+         {
+           dataeesp.clear();
+           datames.clear();
+            System.err.println(AcceuilController.cinlogin);
+            PosteurService p = new PosteurService();
+            Posteur p1= new Posteur();
+            p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+           EchangeGestion eg= new EchangeGestion();
+            ArrayList Echange= (ArrayList)eg.afficherEchange();
+           
+            int id=p1.getId();
+            ArrayList Echange2= (ArrayList)eg.affichermesEchange(id);
+           dataeesp= FXCollections.observableArrayList(Echange);
+           datames= FXCollections.observableArrayList(Echange2);
+          tableechangesposteur.setItems(dataeesp);
+            tablemesproposition.setItems(datames);
+           } catch (SQLException ex) {
+            Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
+     
+   
+    
+    
+    
+    @FXML
+    void suppmechange(ActionEvent event) {
+         String id=idme.getText();
+Echange E = new Echange(id);
+   GestionProduit gs = new  GestionProduit();
+   
+   es.supprimerEchange(E);
+   JOptionPane.showMessageDialog(null, "Supprimer avec succée");
+   filedpof.setText("");
+   filedpos.setText("");
+   fileddes.setText("");
+   textdat.setValue(null);
+   refrechtabechange();
+
+    }
+      @FXML
+    void modifiermechange(ActionEvent event) {
+
+    }
+    //Oussama//
+    public void afficher_panier_offre()
+    {
+        
+        gos.afficherOffre();
+        Table_panier_service.setItems(data5);
+     Column_adress.setCellValueFactory(new PropertyValueFactory <Offre,String>("adresse"));
+     Column_date.setCellValueFactory(new PropertyValueFactory <Offre,String>("Date_debut"));
+     Column_heure.setCellValueFactory(new PropertyValueFactory <Offre,String>("heure"));
+     Column_description.setCellValueFactory(new PropertyValueFactory <Offre,String>("description_offre"));
+     Column_etat.setCellValueFactory(new PropertyValueFactory <Offre,String>("etatoffre"));
+   
+    }
+    gestion_offre_service gos = new gestion_offre_service();
+    ArrayList offre= (ArrayList) gos.afficherOffre();
+    
+    
+    public ObservableList data5 = FXCollections.observableArrayList(offre);
+    // Oussama//
     
 }

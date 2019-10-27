@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
+import entites.Jobeur;
 import entites.Posteur;
 import java.io.IOException;
 import java.net.URL;
@@ -15,14 +15,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import service.JobeurService;
 import service.PosteurService;
 
 /**
@@ -30,8 +28,12 @@ import service.PosteurService;
  *
  * @author lenovo
  */
-public class ProfilPosteurController implements Initializable {
+public class ProfilJobeurController implements Initializable {
 
+    @FXML
+    private Label datep_1;
+    @FXML
+    private Label spec_11;
     @FXML
     private Label nomp_11;
     @FXML
@@ -43,24 +45,18 @@ public class ProfilPosteurController implements Initializable {
     @FXML
     private Label telp_1;
     @FXML
-    private Label datep_1;
-    @FXML
     private ImageView image_post;
-    @FXML
-    private Label spec_11;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        //raed
-
-        PosteurService p = new PosteurService();
-        Posteur p1= new Posteur();
+        // TODO
+        JobeurService p = new JobeurService();
+        Jobeur p1= new Jobeur();
         try {
-            p1 = p.getPosteurInfobyCin(PosteurgestionController.cin);
+            p1 = p.getJobeurInfobyCin(JobeurgestionController.cin);
                      System.out.println(PosteurgestionController.cin);
 
         } catch (SQLException | IOException ex) {
@@ -72,17 +68,15 @@ public class ProfilPosteurController implements Initializable {
         emailp_1.setText(p1.getEmail());
         telp_1.setText(Integer.toString(p1.getTel()));
          datep_1.setText(p1.getDate_naissance().toString());
-        image_post.setImage(PosteurService.A1);
-         System.out.println(PosteurService.A1);
-        // TODO
+        image_post.setImage(JobeurService.A1);
+        spec_11.setText(p1.getJob());
+         System.out.println(JobeurService.A1);
     }    
 
     @FXML
-    private void close_bt(ActionEvent event) throws IOException {
-        
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    private void close_bt(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();
-                
     }
     
 }

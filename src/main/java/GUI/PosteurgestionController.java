@@ -247,7 +247,7 @@ public class PosteurgestionController implements Initializable {
                         cinsupp_t.setText(Integer.toString(p0.getCin()));
                     }
                     
-                    else if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 1){
+                    else if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 3){
                         Posteur p0 = new Posteur();
                         p0=(Posteur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
                         int cin1=p0.getCin();

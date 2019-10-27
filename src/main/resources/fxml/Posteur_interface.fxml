@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="458.0" prefWidth="663.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="825.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
   <tabs>
     <Tab text="Demander un service">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="397.0" prefWidth="628.0">
                <children>
                   <Button fx:id="Btn_electricite" layoutX="24.0" layoutY="16.0" mnemonicParsing="false" onAction="#Electricite">
                      <font>
@@ -33,7 +33,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="20.0" layoutY="181.0" mnemonicParsing="false">
+                  <Button fx:id="Btn_Menage" layoutX="20.0" layoutY="181.0" mnemonicParsing="false" onAction="#Menage">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -45,7 +45,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="213.0" layoutY="16.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="184.0">
+                  <Button fx:id="Btn_Plomberie" layoutX="213.0" layoutY="16.0" mnemonicParsing="false" onAction="#Plomberie" prefHeight="140.0" prefWidth="184.0">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -57,7 +57,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="222.0" layoutY="185.0" mnemonicParsing="false">
+                  <Button fx:id="Btn_Renovation" layoutX="222.0" layoutY="185.0" mnemonicParsing="false" onAction="#Renovation">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -69,7 +69,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="429.0" layoutY="180.0" mnemonicParsing="false">
+                  <Button fx:id="Btn_Conciergerie" layoutX="429.0" layoutY="180.0" mnemonicParsing="false" onAction="#Conciergerie">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -81,7 +81,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="417.0" layoutY="16.0" mnemonicParsing="false">
+                  <Button fx:id="Btn_Jardinage" layoutX="417.0" layoutY="16.0" mnemonicParsing="false" onAction="#Jardinage">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -96,6 +96,23 @@
                </children></AnchorPane>
       </content>
     </Tab>
+      <Tab text="Panier des service">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="Table_panier_service" layoutY="7.0" prefHeight="385.0" prefWidth="768.0">
+                    <columns>
+                      <TableColumn fx:id="Column_adress" prefWidth="75.0" text="Adress" />
+                      <TableColumn fx:id="Column_date" prefWidth="75.0" text="Date" />
+                        <TableColumn fx:id="Column_heure" prefWidth="75.0" text="Heure" />
+                        <TableColumn fx:id="Column_description" prefWidth="75.0" text="Description " />
+                        <TableColumn fx:id="Column_etat" prefWidth="75.0" text="Etat d'offre" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
     <Tab text="Profil">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -160,7 +177,7 @@
       </Tab>
       <Tab text="Espace Troc">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="510.0" prefWidth="700.0">
                <children>
                   <TabPane layoutX="-2.0" prefHeight="585.0" prefWidth="762.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
@@ -185,7 +202,7 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView fx:id="tableechangesposteur" layoutX="62.0" layoutY="142.0" prefHeight="383.0" prefWidth="638.0">
+                                    <TableView fx:id="tableechangesposteur" layoutX="31.0" layoutY="98.0" prefHeight="383.0" prefWidth="638.0">
                                       <columns>
                                         <TableColumn fx:id="tablepofp" prefWidth="120.0" text="proposition offerte" />
                                         <TableColumn fx:id="tableposp" prefWidth="134.0" text="proposition souhaitee" />
@@ -194,14 +211,43 @@
                                           <TableColumn fx:id="tablenpos" prefWidth="134.0" text="nom posteur" />
                                       </columns>
                                     </TableView>
-                                    <TextField fx:id="repos" layoutX="268.0" layoutY="53.0" />
-                                    <Button fx:id="rechercherprop" layoutX="278.0" layoutY="102.0" mnemonicParsing="false" onAction="#rechercherechange" text="rechercher un proposition" />
+                                    <TextField fx:id="repos" layoutX="268.0" layoutY="53.0" promptText="Rechercher" />
+                                    <Button fx:id="rechercherprop" layoutX="434.0" layoutY="51.0" mnemonicParsing="false" onAction="#rechercherechange" prefHeight="29.0" prefWidth="42.0">
+                                       <graphic>
+                                          <ImageView fitHeight="21.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../imgage_article.jpg" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
                                  </children></AnchorPane>
                         </content>
                       </Tab>
                         <Tab text="consulter mes proposition d'echange">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="201.0" prefWidth="237.0" />
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="201.0" prefWidth="237.0">
+                                 <children>
+                                    <TableView fx:id="tablemesproposition" layoutX="80.0" layoutY="14.0" onSort="#utilisertableechange" prefHeight="200.0" prefWidth="657.0">
+                                      <columns>
+                                          <TableColumn fx:id="tabid" minWidth="0.0" prefWidth="0.0" text="id" />
+                                        <TableColumn fx:id="tabmpof" prefWidth="240.0" text="propositionofferte" />
+                                        <TableColumn fx:id="tabmpos" prefWidth="152.0" text="proposition souhaitee" />
+                                          <TableColumn fx:id="tabd" prefWidth="152.0" text="description" />
+                                          <TableColumn fx:id="tabdatem" prefWidth="152.0" text="date d'ajout" />
+                                      </columns>
+                                    </TableView>
+                                    <Label layoutX="163.0" layoutY="222.0" text="propositionofferte" />
+                                    <Label layoutX="163.0" layoutY="270.0" text="propositionshouaitee" />
+                                    <Label layoutX="190.0" layoutY="320.0" text="description" />
+                                    <Label fx:id="fileddaj" layoutX="188.0" layoutY="414.0" text="date d'ajout" />
+                                    <TextField fx:id="filedpof" layoutX="295.0" layoutY="218.0" />
+                                    <TextField fx:id="filedpos" layoutX="295.0" layoutY="266.0" />
+                                    <TextArea fx:id="fileddes" layoutX="293.0" layoutY="314.0" prefHeight="65.0" prefWidth="178.0" />
+                                    <DatePicker fx:id="textdat" layoutX="295.0" layoutY="410.0" />
+                                    <Button fx:id="modifierpro" layoutX="227.0" layoutY="475.0" mnemonicParsing="false" onAction="#modifiermechange" text="modifier mes propositions" />
+                                    <Button fx:id="supppro" layoutX="442.0" layoutY="475.0" mnemonicParsing="false" onAction="#suppmechange" text="supprimer mes propositions" />
+                                    <TextField fx:id="idme" layoutX="14.0" layoutY="210.0" prefHeight="25.0" prefWidth="20.0" visible="false" />
+                                 </children></AnchorPane>
                            </content>
                         </Tab>
                     </tabs>
@@ -248,7 +294,7 @@
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="recherche_produit" layoutX="542.0" layoutY="95.0" prefHeight="35.0" prefWidth="168.0" promptText="Recherhce" />
+                                          <TextField fx:id="recherche_produit" layoutX="542.0" layoutY="95.0" onKeyReleased="#OnkeyTypedfilter" prefHeight="35.0" prefWidth="168.0" promptText="Recherhce" />
                                           <Label layoutX="435.0" layoutY="200.0" prefHeight="38.0" prefWidth="87.0" text="Numero:">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
@@ -337,6 +383,11 @@
                                              </font>
                                           </Label>
                                           <TextField fx:id="numero" layoutX="140.0" layoutY="187.0" />
+                                          <Label fx:id="validation_prix" layoutX="141.0" layoutY="152.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
                                        </children>
                                     </AnchorPane>
                                  </content>

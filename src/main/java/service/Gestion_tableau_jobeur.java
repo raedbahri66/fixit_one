@@ -60,6 +60,37 @@ public class Gestion_tableau_jobeur {
           System.out.println(ex.getMessage());
       } return jobeur;    
      // TODO
-    }    
+    }  
+    public List<Jobeur> RechercheJobeur(String nomj){
+       
+            List<Jobeur> tablejb= new ArrayList<>();
+     try{
+            
+        String req2="select * from jobeur Where nom=?";
+         PreparedStatement pstm = c.prepareStatement(req2);
+         pstm.setString(1,nomj);
+         //pstm.setString(2,prenomj);
+          ResultSet res=  pstm.executeQuery();
+            //pstm.setString(1,ech);
+          while (res.next()) { 
+              Jobeur j = new Jobeur();
+                j.setCin(res.getInt("cin"));
+                j.setNom(res.getString("nom"));
+                j.setPrenom(res.getString("prenom"));
+                j.setEmail(res.getString("email"));
+                j.setSexe(res.getString("sexe"));
+                j.setDate_naissance(res.getDate("date_naissance"));
+                j.setTel(res.getInt("tel"));
+                j.setJob(res.getString("job"));
+                          tablejb.add(j);
+                           //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
+          }                
+   
+      }   catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+     
+    }
+     return tablejb;
+      }
     
 }

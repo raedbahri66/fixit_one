@@ -5,12 +5,23 @@
  */
 package GUI;
 
+import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
 import entites.Echange;
+import entites.Jobeur;
+import entites.Posteur;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,10 +37,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import service.EchangeGestion;
+import service.JobeurService;
+import service.PosteurService;
 
 /**
  * FXML Controller class
@@ -125,7 +141,8 @@ public class Jobeur_interfaceController implements Initializable {
 
     @FXML
     private TextField mpf;
-
+    private FileInputStream fis;
+    private File file;
 
 
        Echange E=new Echange();
@@ -134,6 +151,35 @@ public class Jobeur_interfaceController implements Initializable {
        ArrayList Echange= (ArrayList)es.afficherEchange(); 
          public ObservableList data= FXCollections.observableArrayList(Echange);
           public ObservableList data1= FXCollections.observableArrayList(Echange);
+    @FXML
+    private Label nomp_1;
+    @FXML
+    private Label telp_1;
+    @FXML
+    private Label emailp_1;
+    @FXML
+    private Label prenomp_1;
+    @FXML
+    private Label datep_1;
+    @FXML
+    private TextField tf_nom1;
+    @FXML
+    private TextField tf_prenom1;
+    @FXML
+    private TextField tef_email1;
+    @FXML
+    private TextField tf_tel1;
+    @FXML
+    private DatePicker df_date1;
+    @FXML
+    private ImageView image_post;
+    @FXML
+    private Label nomp_11;
+    @FXML
+    private TextField file_image_p;
+    @FXML
+    private Button image_p_btn;
+    private boolean canModif=true;
 
     @FXML
     void ajouterechange(ActionEvent event) {
@@ -242,8 +288,100 @@ public class Jobeur_interfaceController implements Initializable {
                   Descriptionechange.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
                   dateechange.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
                   setValueformtableviewtotext();
-                  
+      //////////////////////////////////////////////Raed Bahri///////////////////////////////
+              Stage stage = new Stage();
+
+      image_p_btn.setOnAction(e->{
+                    stage.setTitle("File Chooser ");
+                    
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open image File");
+            
+                         file = fileChooser.showOpenDialog(stage);
+                        if (file != null) {
+                                file_image_p.setText(file.getAbsolutePath());
+                                System.out.println(file.getAbsolutePath()); 
+                        try {
+                            fis = new FileInputStream(file);// file is selected using filechooser which is in last tutorial
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+
+                        try {
+                            //     Image image=  new Image(file.toURI().toString());
+                            URL url1 = file.toURI().toURL();
+                            System.out.println(new Image(url1.toExternalForm()));
+                            image_post.setImage(new Image(url1.toExternalForm()));
+                        } catch (MalformedURLException ex) {
+                          
+                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                                
+
+    }
+
+        });
+      df_date1.setValue(NOW_LOCAL_DATE());
+
+        System.err.println(AcceuilController.cinlogin);
+        JobeurService p = new JobeurService();
+        Jobeur p1= new Jobeur();
+        try {
+            p1 = p.getJobeurInfobyCin(AcceuilController.cinlogin);
+        } catch (SQLException | IOException ex) {
+            Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        nomp_1.setText(p1.getNom());
+        nomp_11.setText(p1.getNom());
+        prenomp_1.setText(p1.getPrenom());
+        emailp_1.setText(p1.getEmail());
+        telp_1.setText(Integer.toString(p1.getTel()));
+         datep_1.setText(p1.getDate_naissance().toString());
+        image_post.setImage(JobeurService.A1);
+         System.out.println(JobeurService.A1);
+        datep_1.setText(p1.getDate_naissance().toString());
+
+         ///////////////////////////Raed bahri*//////////////////////////////////
                 
     }    
+
+    @FXML
+    private void btn_modifprofil(ActionEvent event) {
+        if(tf_nom1.getText().isEmpty()){
+            canModif = false;
+        }
+        if(tf_prenom1.getText().isEmpty()){
+            canModif = false;
+        }
+        if(tf_tel1.getText().isEmpty()){
+            canModif = false;
+        }
+        if(tef_email1.getText().isEmpty()){
+            canModif = false;
+        }
+        if(canModif)
+        {
+        LocalDate locald = df_date1.getValue();
+        Date date = Date.valueOf(locald);
+        JobeurService p = new JobeurService();
+        Jobeur p1= new Jobeur(AcceuilController.cinlogin, tf_nom1.getText(), tf_prenom1.getText(), tef_email1.getText(), date, Integer.parseInt(tf_tel1.getText()));
+        p.modifierProfil(p1,fis,file);
+        JOptionPane.showMessageDialog(null, "Account edited Successfull");
+        nomp_1.setText(p1.getNom());
+        nomp_11.setText(p1.getNom());
+        prenomp_1.setText(p1.getPrenom());
+        emailp_1.setText(p1.getEmail());
+        telp_1.setText(Integer.toString(p1.getTel()));
+        datep_1.setText(p1.getDate_naissance().toString());
+        //numero.setText(Integer.toString(p1.getTel()));
+        }
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "Please fill all cases");
+                          canModif = true;
+        }
+    }
     
 }
