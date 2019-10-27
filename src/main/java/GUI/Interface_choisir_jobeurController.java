@@ -18,14 +18,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -61,6 +64,29 @@ public class Interface_choisir_jobeurController implements Initializable {
     private TableColumn<Jobeur,Integer> column_cin;
     @FXML
     private TableColumn<Jobeur,Date> Date_naissanceJ;
+    @FXML
+    private TextField Label_recherche;
+
+    @FXML
+    private Button Btn_recherche_jobeur;
+    @FXML
+    void RechercheJobeur(ActionEvent event) {
+        data.clear();
+        String nom =Label_recherche.getText();
+      Gestion_tableau_jobeur gt = new Gestion_tableau_jobeur();
+      ArrayList Jobeur= (ArrayList) gt.RechercheJobeur(nom);
+      data= FXCollections.observableArrayList(Jobeur);
+     Table_Jobeur.setItems(data);
+     Column_nomj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("nom"));
+     Column_prenomj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("prenom"));
+     Column_emailj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("email"));
+     Column_sexej.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("sexe"));
+     Column_tel.setCellValueFactory(new PropertyValueFactory <Jobeur,Integer>("tel"));
+     Column_job.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("job"));
+     Date_naissanceJ.setCellValueFactory(new PropertyValueFactory<Jobeur,Date>("date_naissance"));
+     column_cin.setCellValueFactory(new PropertyValueFactory <Jobeur,Integer>("cin"));
+
+    }
   
 
     /**
