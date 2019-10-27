@@ -211,7 +211,7 @@
                                           <TableColumn fx:id="tablenpos" prefWidth="134.0" text="nom posteur" />
                                       </columns>
                                     </TableView>
-                                    <TextField fx:id="repos" layoutX="268.0" layoutY="53.0" text="Rechercher" />
+                                    <TextField fx:id="repos" layoutX="268.0" layoutY="53.0" promptText="Rechercher" />
                                     <Button fx:id="rechercherprop" layoutX="434.0" layoutY="51.0" mnemonicParsing="false" onAction="#rechercherechange" prefHeight="29.0" prefWidth="42.0">
                                        <graphic>
                                           <ImageView fitHeight="21.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">

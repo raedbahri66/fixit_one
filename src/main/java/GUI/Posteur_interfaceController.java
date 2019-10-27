@@ -252,19 +252,19 @@ public class Posteur_interfaceController implements Initializable {
     @FXML
     private TableColumn<?, ?> c_email2;
     @FXML
-    private TableView<?> tablemesproposition;
+    private TableView<Echange> tablemesproposition;
 
     @FXML
-    private TableColumn<?, ?> tabmpof;
+    private TableColumn<Echange, String> tabmpof;
 
     @FXML
-    private TableColumn<?, ?> tabmpos;
+    private TableColumn<Echange, String> tabmpos;
 
     @FXML
-    private TableColumn<?, ?> tabd;
+    private TableColumn<Echange, String> tabd;
 
     @FXML
-    private TableColumn<?, ?> tabdatem;
+    private TableColumn<Echange, String> tabdatem;
 
     @FXML
     private Label fileddaj;
@@ -566,6 +566,9 @@ public class Posteur_interfaceController implements Initializable {
        ArrayList Echange= (ArrayList)es.afficherEchange(); 
     
            public ObservableList dataeesp= FXCollections.observableArrayList(Echange);
+          
+            
+           
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -574,6 +577,8 @@ public class Posteur_interfaceController implements Initializable {
         /****ayed**///
         favoris();
         /////
+      
+        
            tableechangesposteur.setItems(dataeesp);
       
                 tablepofp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
@@ -670,7 +675,16 @@ public class Posteur_interfaceController implements Initializable {
                  categorie_produit2.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  categorie_produit3.getItems().addAll("non_vendu","vendu");
                  combobox_filter.getItems().addAll("Tous()","Jardinage","Electricité","Batimmant","Informatique","Electromenager");
-    
+      
+        ArrayList Echange2= (ArrayList)es.affichermesEchange(id); 
+        ObservableList datames= FXCollections.observableArrayList(Echange2);
+            tablemesproposition.setItems(datames);
+                 tabmpof.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
+     tabmpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionsouhaitée"));
+           tabd.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
+                tabdatem.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
+                
+                // tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
     }    
 
     @FXML
