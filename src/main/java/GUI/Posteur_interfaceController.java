@@ -901,6 +901,20 @@ Echange E = new Echange(id);
     }
       @FXML
     void modifiermechange(ActionEvent event) {
+       /* String pof=filedpof.getText();
+         String pos=filedpos.getText();
+        
+   String description=fileddes.getText();
+   String date=  textdat.getValue().toString();
+   
+ Echange E = new Echange(pof,pos,description,date);
+   EchangeGestion EG = new EchangeGestion();
+   try{
+   EG.modifierEchange(E);
+ }catch(Exception e)
+    {
+       System.out.println(e.getMessage());  
+    }*/
 
     }
     //Oussama//

@@ -30,7 +30,7 @@ public class EchangeGestion implements Iechange{
     @Override
     public void ajouterEchange(Echange E) {
                 String req1="INSERT INTO `echange` "
-                    + "(`proposition offerte`,`proposition_souhaitée` ,`description_echange`,`idposteurfg`,`nomposteur`,`date`) "
+                    + "(`proposition_offerte`,`proposition_souhaitée` ,`description_echange`,`idposteurfg`,`nomposteur`,`date`) "
                     + "VALUES (?,?,?,?,?,?)";
             try{
                 PreparedStatement ste = c.prepareStatement(req1);
@@ -56,12 +56,10 @@ public class EchangeGestion implements Iechange{
 
     @Override
     public void modifierEchange(Echange E) {
-        String req= "update echange SET  proposition offerte=?,proposition_souhaitée=?,description_echange=?,date=? Where id=?";
+        String req= "update echange SET  proposition_offerte=?,proposition_souhaitée=?,description_echange=?,date=? Where id=?";
     
    try { 
           PreparedStatement ste = c.prepareStatement(req);
-          
-          
           ste.setString(1,E.getPropositionofferte());
           ste.setString(2,E.getPropositionsouhaitée());
             ste.setString(3,E.getDescription_echange());
