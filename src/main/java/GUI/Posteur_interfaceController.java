@@ -251,6 +251,8 @@ public class Posteur_interfaceController implements Initializable {
     private TableColumn<?, ?> c_email2;
     @FXML
     private TableView<Echange> tablemesproposition;
+       @FXML
+    private TableColumn<Echange, String> tabid;
 
     @FXML
     private TableColumn<Echange, String> tabmpof;
@@ -281,6 +283,10 @@ public class Posteur_interfaceController implements Initializable {
 
     @FXML
     private Button supppro;
+     @FXML
+    private TextField idme;
+      @FXML
+    private DatePicker textdat;
 
     
   
@@ -547,7 +553,24 @@ public class Posteur_interfaceController implements Initializable {
     
            public ObservableList dataeesp= FXCollections.observableArrayList(Echange);
           
-            
+          @FXML
+   public void utilisertableechange() {
+        tablemesproposition.setOnMouseClicked(new EventHandler<MouseEvent>()
+         {
+             @Override
+             public void handle(MouseEvent event) {
+                Echange E=tablemesproposition.getItems().get(tablemesproposition.getSelectionModel().getSelectedIndex());
+               idme.setText(E.getId());
+                filedpof.setText(E.getPropositionofferte());
+                filedpos.setText(E.getPropositionsouhaitée());
+              fileddes.setText(E.getDescription_echange());
+                 String date1=E.getDate();
+                                   LocalDate date2 = LocalDate.parse(date1);
+                  textdat.setValue(date2);
+             }
+         });
+
+    }   
            
 
     @Override
@@ -658,11 +681,12 @@ public class Posteur_interfaceController implements Initializable {
         ArrayList Echange2= (ArrayList)es.affichermesEchange(id); 
         ObservableList datames= FXCollections.observableArrayList(Echange2);
             tablemesproposition.setItems(datames);
+            tabid.setCellValueFactory(new PropertyValueFactory<Echange,String>("id"));
                  tabmpof.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
      tabmpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionsouhaitée"));
            tabd.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
                 tabdatem.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
-                
+                 utilisertableechange();
                 // tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
     }    
 
@@ -758,6 +782,8 @@ public class Posteur_interfaceController implements Initializable {
             tableechangesposteur.setItems(dataeesp);
          
      }
+     
+   
     
     
     
