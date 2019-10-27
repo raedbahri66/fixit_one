@@ -61,6 +61,7 @@ import service.gestion_offre_service;
  * @author lenovo
  */
 public class Posteur_interfaceController implements Initializable {
+    public String Service_choisi = "";
     
     @FXML
     private Button Btn_electricite;
@@ -498,24 +499,25 @@ public class Posteur_interfaceController implements Initializable {
                 stage.hide();
                 stage.setScene(scene);
                 stage.show();  
+                
 
     }
      @FXML
     void Jardinage(ActionEvent event)throws IOException {
-        Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service.fxml"));
+        Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service_jardinage.fxml"));
         Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();
                 stage.setScene(scene);
                 stage.show();
      
-        
+          
 
     }
 
     @FXML
     void Menage(ActionEvent event) throws IOException{
-        Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service.fxml"));
+        Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service_menage.fxml"));
         Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();
@@ -526,7 +528,7 @@ public class Posteur_interfaceController implements Initializable {
 
     @FXML
     void Plomberie(ActionEvent event)throws IOException {
-         Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service.fxml"));
+         Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service_plomberie.fxml"));
          Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();
@@ -537,7 +539,7 @@ public class Posteur_interfaceController implements Initializable {
 
     @FXML
     void Renovation(ActionEvent event)throws IOException {
-        Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service.fxml"));
+        Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service_renovation.fxml"));
         Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();
@@ -547,7 +549,7 @@ public class Posteur_interfaceController implements Initializable {
     }
      @FXML
     void Conciergerie(ActionEvent event)throws IOException {
-         Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service.fxml"));
+         Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service_conciergerie.fxml"));
          Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();

@@ -39,7 +39,7 @@ public class gestion_offre_service implements IOffre{
     }
 
     public void creerOffre(Offre O) {
-        String req1 = "insert into offre_service (adress,date,heure,description_offre,tel,idposteur_fg,etat_offre,nomp_fg,prenomp_fg) values (?,?,?,?,?,?,?,?,?)";
+        String req1 = "insert into offre_service (adress,date,heure,description_offre,tel,idposteur_fg,etat_offre,nomp_fg,prenomp_fg,nomservice_fg) values (?,?,?,?,?,?,?,?,?,?)";
         try {
         
             PreparedStatement ste = c.prepareStatement(req1);
@@ -53,6 +53,8 @@ public class gestion_offre_service implements IOffre{
             ste.setString(7, O.getEtatoffre());
             ste.setString(8,O.getNomposteur());
             ste.setString(9,O.getPrenomposteur());
+            ste.setString(10,O.getNomservice());
+            
             
 
             ste.executeUpdate();
