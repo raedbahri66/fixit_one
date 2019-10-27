@@ -27,8 +27,16 @@ public class Jobeur extends Personne{
         super(cin);
         this.role = role;
     }
-    
 
+    public Jobeur(int cin, String nom, String prenom, String email, Date date_naissance, int tel) {
+        super(cin, nom, prenom, email, date_naissance, tel);
+    }
+
+    public Jobeur(String nom, String prenom, String email, String sexe, int tel) {
+        super(nom, prenom, email, sexe, tel);
+    }
+    
+    
     public Jobeur(int cin, String nom, String prenom, String email, String sexe, String password, Date date_naissance, int tel,String job,String address) {
         super(cin, nom, prenom, email, sexe, password, date_naissance, tel);
         this.job = job;
