@@ -227,9 +227,10 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="201.0" prefWidth="237.0">
                                  <children>
-                                    <TableView fx:id="tablemesproposition" layoutX="106.0" prefHeight="200.0" prefWidth="544.0">
+                                    <TableView fx:id="tablemesproposition" layoutX="80.0" layoutY="14.0" onSort="#utilisertableechange" prefHeight="200.0" prefWidth="657.0">
                                       <columns>
-                                        <TableColumn fx:id="tabmpof" prefWidth="120.0" text="propositionofferte" />
+                                          <TableColumn fx:id="tabid" minWidth="0.0" prefWidth="0.0" text="id" />
+                                        <TableColumn fx:id="tabmpof" prefWidth="240.0" text="propositionofferte" />
                                         <TableColumn fx:id="tabmpos" prefWidth="152.0" text="proposition souhaitee" />
                                           <TableColumn fx:id="tabd" prefWidth="152.0" text="description" />
                                           <TableColumn fx:id="tabdatem" prefWidth="152.0" text="date d'ajout" />
@@ -237,14 +238,15 @@
                                     </TableView>
                                     <Label layoutX="163.0" layoutY="222.0" text="propositionofferte" />
                                     <Label layoutX="163.0" layoutY="270.0" text="propositionshouaitee" />
-                                    <Label layoutX="190.0" layoutY="314.0" text="description" />
-                                    <Label fx:id="fileddaj" layoutX="188.0" layoutY="405.0" text="date d'ajout" />
-                                    <TextField fx:id="filedpof" layoutX="304.0" layoutY="218.0" />
-                                    <TextField fx:id="filedpos" layoutX="307.0" layoutY="266.0" />
-                                    <TextArea fx:id="fileddes" layoutX="307.0" layoutY="307.0" prefHeight="65.0" prefWidth="178.0" />
-                                    <DatePicker layoutX="300.0" layoutY="401.0" />
-                                    <Button fx:id="modifierpro" layoutX="227.0" layoutY="462.0" mnemonicParsing="false" onAction="#modifiermechange" text="modifier mes propositions" />
-                                    <Button fx:id="supppro" layoutX="441.0" layoutY="462.0" mnemonicParsing="false" onAction="#suppmechange" text="supprimer mes propositions" />
+                                    <Label layoutX="190.0" layoutY="320.0" text="description" />
+                                    <Label fx:id="fileddaj" layoutX="188.0" layoutY="414.0" text="date d'ajout" />
+                                    <TextField fx:id="filedpof" layoutX="295.0" layoutY="218.0" />
+                                    <TextField fx:id="filedpos" layoutX="295.0" layoutY="266.0" />
+                                    <TextArea fx:id="fileddes" layoutX="293.0" layoutY="314.0" prefHeight="65.0" prefWidth="178.0" />
+                                    <DatePicker fx:id="textdat" layoutX="295.0" layoutY="410.0" />
+                                    <Button fx:id="modifierpro" layoutX="227.0" layoutY="475.0" mnemonicParsing="false" onAction="#modifiermechange" text="modifier mes propositions" />
+                                    <Button fx:id="supppro" layoutX="442.0" layoutY="475.0" mnemonicParsing="false" onAction="#suppmechange" text="supprimer mes propositions" />
+                                    <TextField fx:id="idme" layoutX="14.0" layoutY="210.0" prefHeight="25.0" prefWidth="20.0" visible="false" />
                                  </children></AnchorPane>
                            </content>
                         </Tab>
@@ -292,7 +294,7 @@
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="recherche_produit" layoutX="542.0" layoutY="95.0" prefHeight="35.0" prefWidth="168.0" promptText="Recherhce" />
+                                          <TextField fx:id="recherche_produit" layoutX="542.0" layoutY="95.0" onKeyReleased="#OnkeyTypedfilter" prefHeight="35.0" prefWidth="168.0" promptText="Recherhce" />
                                           <Label layoutX="435.0" layoutY="200.0" prefHeight="38.0" prefWidth="87.0" text="Numero:">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
@@ -381,6 +383,11 @@
                                              </font>
                                           </Label>
                                           <TextField fx:id="numero" layoutX="140.0" layoutY="187.0" />
+                                          <Label fx:id="validation_prix" layoutX="141.0" layoutY="152.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
                                        </children>
                                     </AnchorPane>
                                  </content>
