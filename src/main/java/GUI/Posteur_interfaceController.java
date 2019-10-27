@@ -8,6 +8,7 @@ import service.GestionProduit;
 import entites.Produit;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
 import entites.Echange;
+import entites.Favoris;
 import entites.Posteur;
 import java.io.File;
 import java.io.FileInputStream;
@@ -49,6 +50,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import service.EchangeGestion;
+import service.GestionFavoris;
 import service.PosteurService;
 
 /**
@@ -220,8 +222,68 @@ public class Posteur_interfaceController implements Initializable {
     private TableColumn<Echange, String> tabledap;
     @FXML
     private TableColumn<Echange, String> tablenpos;
+    @FXML
+    private TableView favrois;
+    @FXML
+    private TableColumn<?, ?> c_nomj;
+    @FXML
+    private TableColumn<?, ?> c_prenomj;
+    @FXML
+    private TableColumn<?, ?> c_datej;
+    @FXML
+    private TableColumn<?, ?> c_specialite;
+    @FXML
+    private TableColumn<?, ?> c_telej2;
+    @FXML
+    private TableColumn<?, ?> c_email2;
+    @FXML
+    private TableView<?> tablemesproposition;
+
+    @FXML
+    private TableColumn<?, ?> tabmpof;
+
+    @FXML
+    private TableColumn<?, ?> tabmpos;
+
+    @FXML
+    private TableColumn<?, ?> tabd;
+
+    @FXML
+    private TableColumn<?, ?> tabdatem;
+
+    @FXML
+    private Label fileddaj;
+
+    @FXML
+    private TextField filedpof;
+
+    @FXML
+    private TextField filedpos;
+
+    @FXML
+    private TextArea fileddes;
+
+    @FXML
+    private Button modifierpro;
+
+    @FXML
+    private Button supppro;
+
     
-   
+  
+   public void favoris(){
+    GestionFavoris gf = new GestionFavoris ();
+   ArrayList<Favoris> favroiss= (ArrayList<Favoris>) gf.afficherfavoris(AcceuilController.cinlogin);  
+   ObservableList<Favoris> data = FXCollections.observableArrayList(favroiss);
+       System.out.println(data);
+     favrois.setItems(data);
+     c_nomj.setCellValueFactory(new PropertyValueFactory <>("nomj"));
+     c_prenomj.setCellValueFactory(new PropertyValueFactory <>("prenomj"));
+     c_datej.setCellValueFactory(new PropertyValueFactory <>("datej"));
+     c_telej2.setCellValueFactory(new PropertyValueFactory <>("telej"));
+     c_email2.setCellValueFactory(new PropertyValueFactory <>("mailj"));
+     c_specialite.setCellValueFactory(new PropertyValueFactory <>("specalite"));   
+   }
    
  
     
@@ -408,7 +470,8 @@ public class Posteur_interfaceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+        /****ayed**///
+        favoris();
         /////
            tableechangesposteur.setItems(dataeesp);
       
@@ -584,6 +647,15 @@ public class Posteur_interfaceController implements Initializable {
                  //table.setItems(dataeesp);
       
 
+
+    }
+    
+    @FXML
+    void suppmechange(ActionEvent event) {
+
+    }
+      @FXML
+    void modifiermechange(ActionEvent event) {
 
     }
     

@@ -14,6 +14,11 @@ public class Favoris {
        int id;
        int cin_posteur;
        int cin_jobeur;
+
+    @Override
+    public String toString() {
+        return "Favoris{" + "cin_posteur=" + cin_posteur + ", cin_jobeur=" + cin_jobeur + ", nomj=" + nomj + ", prenomj=" + prenomj + ", datej=" + datej + ", telej=" + telej + ", mailj=" + mailj + ", specalite=" + specalite + '}';
+    }
        String nomj;
        String prenomj;
        String datej;
@@ -94,7 +99,7 @@ public class Favoris {
         return telej;
     }
 
-    public void setTelej(String tele) {
+    public void setTelej(String telej) {
         this.telej = telej;
     }
 
@@ -102,7 +107,7 @@ public class Favoris {
         return mailj;
     }
 
-    public void setMailj(String mail) {
+    public void setMailj(String mailj) {
         this.mailj = mailj;
     }
 
