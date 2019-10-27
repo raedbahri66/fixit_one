@@ -236,6 +236,39 @@ public class Posteur_interfaceController implements Initializable {
     private TableColumn<?, ?> c_telej2;
     @FXML
     private TableColumn<?, ?> c_email2;
+    @FXML
+    private TableView<?> tablemesproposition;
+
+    @FXML
+    private TableColumn<?, ?> tabmpof;
+
+    @FXML
+    private TableColumn<?, ?> tabmpos;
+
+    @FXML
+    private TableColumn<?, ?> tabd;
+
+    @FXML
+    private TableColumn<?, ?> tabdatem;
+
+    @FXML
+    private Label fileddaj;
+
+    @FXML
+    private TextField filedpof;
+
+    @FXML
+    private TextField filedpos;
+
+    @FXML
+    private TextArea fileddes;
+
+    @FXML
+    private Button modifierpro;
+
+    @FXML
+    private Button supppro;
+
     
   
    public void favoris(){
@@ -614,6 +647,15 @@ public class Posteur_interfaceController implements Initializable {
                  //table.setItems(dataeesp);
       
 
+
+    }
+    
+    @FXML
+    void suppmechange(ActionEvent event) {
+
+    }
+      @FXML
+    void modifiermechange(ActionEvent event) {
 
     }
     
