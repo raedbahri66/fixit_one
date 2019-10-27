@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="825.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
   <tabs>
     <Tab text="Demander un service">
       <content>
@@ -33,7 +33,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="20.0" layoutY="181.0" mnemonicParsing="false">
+                  <Button fx:id="Btn_Menage" layoutX="20.0" layoutY="181.0" mnemonicParsing="false" onAction="#Menage">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -45,7 +45,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="213.0" layoutY="16.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="184.0">
+                  <Button fx:id="Btn_Plomberie" layoutX="213.0" layoutY="16.0" mnemonicParsing="false" onAction="#Plomberie" prefHeight="140.0" prefWidth="184.0">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -57,7 +57,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="222.0" layoutY="185.0" mnemonicParsing="false">
+                  <Button fx:id="Btn_Renovation" layoutX="222.0" layoutY="185.0" mnemonicParsing="false" onAction="#Renovation">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -69,7 +69,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="429.0" layoutY="180.0" mnemonicParsing="false">
+                  <Button fx:id="Btn_Conciergerie" layoutX="429.0" layoutY="180.0" mnemonicParsing="false" onAction="#Conciergerie">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -81,7 +81,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="417.0" layoutY="16.0" mnemonicParsing="false">
+                  <Button fx:id="Btn_Jardinage" layoutX="417.0" layoutY="16.0" mnemonicParsing="false" onAction="#Jardinage">
                      <font>
                         <Font size="14.0" />
                      </font>

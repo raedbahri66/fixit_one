@@ -85,13 +85,14 @@ public class GestionProduit {
     } 
     
           
-     public List<Produit> afficherProduit1() {
+     public List<Produit> afficherProduit1(int id) {
         
        List<Produit> table1= new ArrayList<>();
     //Echange e = null;
       try {
-         String req2="select * from produit ";
+         String req2="select * from produit Where idposteur_fg=? ";
          PreparedStatement pstm = c.prepareStatement(req2);
+        pstm.setInt(1,id);
           ResultSet res=  pstm.executeQuery();
           while (res.next()) { 
               Produit e = new Produit();
