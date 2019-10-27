@@ -313,6 +313,7 @@ public class Posteur_interfaceController implements Initializable {
      @FXML
     private TableColumn<Offre, String> Column_Nomservice;
 
+     @FXML
     private TextField idme;
       @FXML
     private DatePicker textdat;
@@ -764,7 +765,8 @@ public class Posteur_interfaceController implements Initializable {
                 tabdatem.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
                  utilisertableechange();
                 // tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
-    }    
+    }   
+    
 
     @FXML
     private void btn_modifprofil(ActionEvent event) {
@@ -849,14 +851,35 @@ public class Posteur_interfaceController implements Initializable {
 
 
     }
-     public void refrechtabechange(){
-         dataeesp.clear();
-            EchangeGestion es = new  EchangeGestion();
-       ArrayList Echange= (ArrayList)es.afficherEchange(); 
-    
-           ObservableList dataeesp= FXCollections.observableArrayList(Echange);
-            tableechangesposteur.setItems(dataeesp);
-         
+     Posteur p1= new Posteur();
+    int id =p1.getId();
+     ArrayList Echange2= (ArrayList)es.affichermesEchange(id); 
+        ObservableList datames= FXCollections.observableArrayList(Echange2);
+            //tablemesproposition.setItems(datames);
+     public void refrechtabechange() {
+        
+         try
+         {
+           dataeesp.clear();
+           datames.clear();
+            System.err.println(AcceuilController.cinlogin);
+            PosteurService p = new PosteurService();
+            Posteur p1= new Posteur();
+            p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+           EchangeGestion eg= new EchangeGestion();
+            ArrayList Echange= (ArrayList)eg.afficherEchange();
+           
+            int id=p1.getId();
+            ArrayList Echange2= (ArrayList)eg.affichermesEchange(id);
+           dataeesp= FXCollections.observableArrayList(Echange);
+           datames= FXCollections.observableArrayList(Echange2);
+          tableechangesposteur.setItems(dataeesp);
+            tablemesproposition.setItems(datames);
+           } catch (SQLException ex) {
+            Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
      }
      
    
@@ -865,10 +888,35 @@ public class Posteur_interfaceController implements Initializable {
     
     @FXML
     void suppmechange(ActionEvent event) {
+         String id=idme.getText();
+Echange E = new Echange(id);
+   GestionProduit gs = new  GestionProduit();
+   
+   es.supprimerEchange(E);
+   JOptionPane.showMessageDialog(null, "Supprimer avec succée");
+   filedpof.setText("");
+   filedpos.setText("");
+   fileddes.setText("");
+   textdat.setValue(null);
+   refrechtabechange();
 
     }
       @FXML
     void modifiermechange(ActionEvent event) {
+       /* String pof=filedpof.getText();
+         String pos=filedpos.getText();
+        
+   String description=fileddes.getText();
+   String date=  textdat.getValue().toString();
+   
+ Echange E = new Echange(pof,pos,description,date);
+   EchangeGestion EG = new EchangeGestion();
+   try{
+   EG.modifierEchange(E);
+ }catch(Exception e)
+    {
+       System.out.println(e.getMessage());  
+    }*/
 
     }
     //Oussama//
