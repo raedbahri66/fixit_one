@@ -433,16 +433,27 @@ public class Posteur_interfaceController implements Initializable {
           
    
   public void refrech(){
-      data.clear();
-      data1.clear();
-      GestionProduit GS = new GestionProduit();
-   ArrayList Produit1= (ArrayList)GS.afficherProduit();
-   GestionProduit GS1= new GestionProduit();
-    ArrayList Produit2= (ArrayList)GS1.afficherProduit1();
-   data= FXCollections.observableArrayList(Produit1);
-   data1= FXCollections.observableArrayList(Produit2);
-         table.setItems(data);
-          table1.setItems(data1);
+        try {
+            data.clear();
+            data1.clear();
+            System.err.println(AcceuilController.cinlogin);
+            PosteurService p = new PosteurService();
+            Posteur p1= new Posteur();
+            p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+            GestionProduit GS = new GestionProduit();
+            ArrayList Produit1= (ArrayList)GS.afficherProduit();
+            GestionProduit GS1= new GestionProduit();
+            int id=p1.getId();
+            ArrayList Produit2= (ArrayList)GS1.afficherProduit1(id);
+            data= FXCollections.observableArrayList(Produit1);
+            data1= FXCollections.observableArrayList(Produit2);
+            table.setItems(data);
+            table1.setItems(data1);
+        } catch (SQLException ex) {
+            Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
   
   
@@ -537,12 +548,12 @@ public class Posteur_interfaceController implements Initializable {
         datep_1.setText(p1.getDate_naissance().toString());
 
          numero.setText(Integer.toString(p1.getTel()));
-
+        int id=p1.getId();
     GestionProduit GS = new GestionProduit();
    ArrayList Produit1= (ArrayList)GS.afficherProduit();
     data= FXCollections.observableArrayList(Produit1);
    GestionProduit GS1= new GestionProduit();
-    ArrayList Produit2= (ArrayList)GS1.afficherProduit1();
+    ArrayList Produit2= (ArrayList)GS1.afficherProduit1(id);
    data1= FXCollections.observableArrayList(Produit2);
         table.setItems(data);
         table_nom.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom"));
