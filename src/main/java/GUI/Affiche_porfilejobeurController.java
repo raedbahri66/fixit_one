@@ -34,6 +34,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -85,13 +86,19 @@ public class Affiche_porfilejobeurController implements Initializable {
     private TextField cin_posteur;
      @FXML
     private RadioButton favoris_id;
+    @FXML
+    private RadioButton top;
+    @FXML
+    private RadioButton flop;
    
+    final ToggleGroup vote = new ToggleGroup();
     
      Boolean canAjout = true;
      PosteurService p = new PosteurService();
      CommentaireService c1=new CommentaireService();
      ArrayList<Commentaire> commentaires= (ArrayList<Commentaire>) c1.afficherCommentaire();
      public  ObservableList<Commentaire>data = FXCollections.observableArrayList(commentaires); 
+   
     
      
        public boolean verfication(){
@@ -142,7 +149,8 @@ public class Affiche_porfilejobeurController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        top.setToggleGroup(vote);    
+        flop.setToggleGroup(vote);
         afficher();
         getid();
         Jobeur A=new Jobeur();
@@ -267,7 +275,6 @@ public class Affiche_porfilejobeurController implements Initializable {
     
     }
 
-    @FXML
     private void favoris(ActionEvent event) {
        Jobeur A=new Jobeur();
        
@@ -310,6 +317,25 @@ public class Affiche_porfilejobeurController implements Initializable {
         
     }
 
-   
+    @FXML
+    private void vote(ActionEvent event) {
+        if(top.isSelected()){
+       GestionVote v1 =new GestionVote();
+       Jobeur A=new Jobeur();
+       GestionFavoris f1=new GestionFavoris();
+       A=Interface_choisir_jobeurController.j1;
+       int cin_jobeur=A.getCin();
+
+       int cin_posteur=AcceuilController.cinlogin;
+       Vote v=new Vote(cin_jobeur,cin_posteur);
+            System.out.println(v);
+       v1.UpdateVote(v,cin_jobeur);
+       /*v1.ajouterVote(v);*/
+        }
+         
+        
+        
     
-}
+
+   
+    }}

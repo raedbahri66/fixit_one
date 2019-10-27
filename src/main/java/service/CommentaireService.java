@@ -117,25 +117,6 @@ Connection c = ConnexionBD.getInstanceConnexionBD().getConnection();
      return commentaires;
     
     }
-    @Override
-    public void like(Jobeur j) {
-        
-    String req;
-   try { 
-          req= "UPDATE  jobeur SET nb_like= ? WHERE cin=?";
-              
-            PreparedStatement ste = c.prepareStatement(req);
-            ste.setInt(1,j.getNb_like());
-            ste.setInt(2,j.getCin());
-            ste.executeUpdate();
-            System.out.println( " successfully modified!");
-            } 
-        catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.err.println(" error modification!!");
-        } 
-    }
-
 }
 
    

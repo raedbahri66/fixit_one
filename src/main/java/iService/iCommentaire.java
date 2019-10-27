@@ -5,6 +5,7 @@
  */
 package iService;
 import entites.Commentaire;
+import entites.Jobeur;
 import java.util.List;
 
 /**
@@ -16,4 +17,5 @@ public interface iCommentaire {
     public void modifierCommentaire(Commentaire A);
     public void supprimerCommentaire(Commentaire A);
     public List<Commentaire> afficherCommentaire();
+ 
 }

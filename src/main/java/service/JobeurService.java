@@ -273,5 +273,29 @@ try {
     @Override
     public void modifierProfil(Jobeur p, InputStream fis, File file) {
     }
+
+    @Override
+    public void ajouterVote(Jobeur p) {
+         String req="INSERT INTO `Jobeur` "
+                    + "(`nb_like`) "
+                    + "VALUES (?)";
+         try{ PreparedStatement ste = c.prepareStatement(req);
+         ste.setInt(5,p.getNb_like()+1);
+           ste.executeUpdate();
+            JOptionPane.showMessageDialog(null," jobuer ajouté à votre liste favoris "); 
+        } catch (SQLException e) {System.err.println(e);
+    JOptionPane.showMessageDialog(null,"error ");
+        }
+    }
+
+    @Override
+    public void UpdateVote(Jobeur p, int cin_jobeur) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void supprimerVote(Jobeur p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
