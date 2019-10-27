@@ -700,7 +700,8 @@ public class Posteur_interfaceController implements Initializable {
    pofp.setText("");
    posp.setText("");
    pdp.setText("");
-   //dap.setv("");
+  dap.setValue(null);
+   
 
     }
       @FXML
