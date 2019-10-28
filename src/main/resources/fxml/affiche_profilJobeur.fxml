@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="386.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Affiche_porfilejobeurController">
+<VBox prefHeight="386.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Affiche_porfilejobeurController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="314.0" prefWidth="580.0" VBox.vgrow="ALWAYS">
       <children>
@@ -116,7 +116,7 @@
                   <TableColumn fx:id="Cin_J" prefWidth="87.0" text="CIN_J" visible="false" />
               </columns>
             </TableView>
-            <Button layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#Demander_Service" text="demander" />
+            <Button fx:id="Btn_demande_service" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#Demander_Service" text="Demander ce Jobeur" />
             <TextField fx:id="id_com" layoutX="293.0" layoutY="189.0" prefHeight="25.0" prefWidth="68.0" visible="false" />
             <TextField fx:id="cin_posteur" layoutX="320.0" layoutY="164.0" visible="false" />
             <RadioButton fx:id="favoris_id" layoutX="179.0" layoutY="224.0" mnemonicParsing="false" onAction="#radio_favoris" prefHeight="39.0" prefWidth="17.0" textFill="#1e1616">
