@@ -58,7 +58,15 @@ import service.GestionFavoris;
 import service.JobeurService;
 import service.PosteurService;
 import entites.Offre;
+import entites.annonce;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.input.MouseButton;
 import service.gestion_offre_service;
+import service.gestionannonce;
 
 /**
  * FXML Controller class
@@ -317,7 +325,77 @@ public class Posteur_interfaceController implements Initializable {
     private TextField idme;
       @FXML
     private DatePicker textdat;
+    @FXML
+    private TabPane tabheni_m;
+    @FXML
+    private TableView table_annonce;
+    @FXML
+    private TableColumn<?, ?> nom_annonce;
+    @FXML
+    private TableColumn<?, ?> adresse;
+    @FXML
+    private TableColumn<?, ?> date;
+    @FXML
+    private TableColumn<?, ?> description;
+    @FXML
+    private TableColumn<?, ?> tel;
+    @FXML
+    private TableColumn<?, ?> prix;
+   
+    @FXML
+    private TextField Nomann;
+    @FXML
+    private TextField adrann;
+    @FXML
+    private TextArea descann;
+    @FXML
+    private TextField telann;
+    @FXML
+    private TextField prixann;
+    @FXML
+    private DatePicker dateann;
+    @FXML
+    private Tab modifheni_tab;
+    @FXML
+    private TextField modif_nomannonce;
+    @FXML
+    private TextField modif_adresseannonce;
+    @FXML
+    private TextArea modif_descannonce;
+    @FXML
+    private TextField modif_prix;
+    @FXML
+    private DatePicker modif_date;
+    @FXML
+    private TextField idheni;
+    @FXML
+    private TableView table_annonce1;
+    @FXML
+    private TableColumn<?, ?> id1;
+    @FXML
+    private TableColumn<?, ?> nom_annonce1;
+    @FXML
+    private TableColumn<?, ?> adresse1;
+    @FXML
+    private TableColumn<?, ?> date1;
+    @FXML
+    private TableColumn<?, ?> description1;
+    @FXML
+    private TableColumn<?, ?> etat1;
+    @FXML
+    private TableColumn<?, ?> tel1;
+    @FXML
+    private TableColumn<?, ?> prix1;
 
+    
+    public static final LocalDate NOW_LOCAL_DATE (){
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate localDate = LocalDate.parse(date , formatter);
+        return localDate;
+    }
+    @FXML
+    private TableColumn<?, ?> id_h;
     
   
    public void favoris(){
@@ -661,7 +739,49 @@ public class Posteur_interfaceController implements Initializable {
        
        
         // TODO
-        /****ayed**///
+        //*******heni
+        table_annonce1.setOnMouseClicked((MouseEvent event) -> {
+     
+             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
+         annonce an = (annonce) table_annonce1.getItems().get(table_annonce1.getSelectionModel().getSelectedIndex());
+         //id.setText(an.getId());
+                        tabheni_m.getSelectionModel().select(modifheni_tab);
+
+         idheni.setText(String.valueOf((an.getId())));
+         //date.setText(p1.getDate().toString());
+         modif_nomannonce.setText(an.getNom_annonce());
+         modif_adresseannonce.setText(an.getAdress());
+         modif_date.setValue(an.getDate().toLocalDate()); 
+         //description1.setValue(an.getDate().toLocalDate());
+         modif_descannonce.setText(an.getDescription_annonce());   
+         
+         modif_prix.setText(String.valueOf(an.getPrix()));
+         }
+                 if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 1){
+         annonce an = (annonce) table_annonce1.getItems().get(table_annonce1.getSelectionModel().getSelectedIndex());
+         //id.setText(an.getId());
+
+         idheni.setText(String.valueOf((an.getId())));
+                 }});  
+         df_date1.setValue(NOW_LOCAL_DATE());
+                dateann.setValue(NOW_LOCAL_DATE());
+                
+                 gestionannonce an= new gestionannonce();
+        ArrayList<annonce> annonces=(ArrayList<annonce>) an.afficherannonce();
+        ObservableList<annonce> ans=FXCollections.observableArrayList(annonces);
+        table_annonce.setItems(ans);
+        id_h.setCellValueFactory(new PropertyValueFactory<>("id") );
+        nom_annonce.setCellValueFactory(new PropertyValueFactory<>("Nom_annonce") );
+        adresse.setCellValueFactory(new PropertyValueFactory<>("Adress") );
+        date.setCellValueFactory(new PropertyValueFactory<>("Date") );
+        description.setCellValueFactory(new PropertyValueFactory<>("description_annonce") );
+        //etat.setCellValueFactory(new PropertyValueFactory<>("etat_annonce") );
+        tel.setCellValueFactory(new PropertyValueFactory<>("tel") );
+        prix.setCellValueFactory(new PropertyValueFactory<>("prix") );
+
+        
+        
+        /******///
         favoris();
         /////
       
@@ -858,10 +978,9 @@ public class Posteur_interfaceController implements Initializable {
                  tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
                  //table.setItems(dataeesp);
       
-
-
     }
-     Posteur p1= new Posteur();
+    
+    Posteur p1= new Posteur();
     int id =p1.getId();
      ArrayList Echange2= (ArrayList)es.affichermesEchange(id); 
         ObservableList datames= FXCollections.observableArrayList(Echange2);
@@ -954,4 +1073,151 @@ Echange E = new Echange(id);
 
     // Oussama//
 
+    @FXML
+    private void bt_actualiser(ActionEvent event) {
+         gestionannonce an= new gestionannonce();
+        ArrayList<annonce> annonces=(ArrayList<annonce>) an.afficherannonce();
+        ObservableList<annonce> ans=FXCollections.observableArrayList(annonces);
+        table_annonce.getItems().clear();
+        table_annonce.setItems(ans);
+        id_h.setCellValueFactory(new PropertyValueFactory<>("id") );
+        nom_annonce.setCellValueFactory(new PropertyValueFactory<>("Nom_annonce") );
+        adresse.setCellValueFactory(new PropertyValueFactory<>("Adress") );
+        date.setCellValueFactory(new PropertyValueFactory<>("Date") );
+        description.setCellValueFactory(new PropertyValueFactory<>("description_annonce") );
+        //etat.setCellValueFactory(new PropertyValueFactory<>("etat_annonce") );
+        tel.setCellValueFactory(new PropertyValueFactory<>("tel") );
+        prix.setCellValueFactory(new PropertyValueFactory<>("prix") );
+    }
+
+    @FXML
+    private void bt_ajouterannonce(ActionEvent event) {
+         if(Nomann.getText().isEmpty()){
+           Nomann.setVisible(true);
+            canInscription = false;
+           JOptionPane.showMessageDialog (null,"il faut un nom pour l'annonce");
+        }
+     if(dateann.getValue().toString().isEmpty()){
+           dateann.setVisible(true);
+            canInscription = false;
+           JOptionPane.showMessageDialog (null,"il faut une date pour l'annonce");
+        }
+     
+     if(descann.getText().isEmpty()){
+           descann.setVisible(true);
+            canInscription = false;
+           JOptionPane.showMessageDialog (null,"il faut une description pour l'annonce");
+        }
+     if(telann.getText().isEmpty()){
+           telann.setVisible(true);
+            canInscription = false;
+           JOptionPane.showMessageDialog (null,"il faut donner votre numero de telephone");}
+           
+        if(prixann.getText().isEmpty()){
+           prixann.setVisible(true);
+            canInscription = false;
+           JOptionPane.showMessageDialog (null,"il faut un prix pour l'annonce");
+        }
+  
+     if(canInscription){
+    String Nmann=Nomann.getText();
+    String adressann=adrann.getText();
+    
+    LocalDate locald = dateann.getValue();
+        Date dat = Date.valueOf(locald);
+    
+    String dscann=descann.getText();
+    //String etann=(String) etatann.getValue();
+    int tel= Integer.parseInt(telann.getText());
+    int prix= Integer.parseInt(prixann.getText());
+   
+   
+     annonce an= new annonce(Nmann,adressann,dat,dscann,tel,prix);
+            gestionannonce an1 = new gestionannonce();
+              an1.ajouterannonce(an);
+              JOptionPane.showMessageDialog(null, "annonce Created Successfull");
+     
+    
+    }
+    }
+
+    @FXML
+    private void bt_modifierannonce(ActionEvent event) {
+        
+        if(modif_nomannonce.getText().isEmpty()){
+            canModif = false;
+        }
+        if(modif_adresseannonce.getText().isEmpty()){
+            canModif = false;
+        }
+        if(modif_descannonce.getText().isEmpty()){
+            canModif = false;
+        }
+        if(modif_prix.getText().isEmpty()){
+            canModif = false;
+        }
+        if(canModif)
+        {
+        LocalDate locald = modif_date.getValue();
+        Date date = Date.valueOf(locald);
+        gestionannonce an = new gestionannonce();
+        annonce an1= new annonce(Integer.parseInt(idheni.getText()),modif_nomannonce.getText(), modif_adresseannonce.getText(),date, modif_descannonce.getText(), Integer.parseInt(modif_prix.getText()));
+        an.modifierannonce(an1);
+        JOptionPane.showMessageDialog(null, "Account edited Successfull");
+        //nomp_1.setText(an1.getNom_annonce());
+        //prenomp_1.setText(an1.getAdress());
+        //emailp_1.setText(an1.getDescription_annonce());
+        //emailp_1.setText(an1.getPrix());
+        //modif_prix.setText(String.valueOf(an1.getPrix()));
+        //telp_1.setText(Integer.toString(p1.getTel()));
+         //datep_1.setText(p1.getDate_naissance().toString());
+        }
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "Please fill all cases");
+                          canModif = true;
+        }
+    }
+
+    @FXML
+    private void bt_actualiser1(ActionEvent event) {
+        gestionannonce an= new gestionannonce();
+        ArrayList<annonce> annonces=(ArrayList<annonce>) an.afficherannonce();
+        ObservableList<annonce> obs=FXCollections.observableArrayList(annonces);
+        table_annonce1.getItems().clear();
+        table_annonce1.setItems(obs);
+        id1.setCellValueFactory(new PropertyValueFactory<>("id") );
+        nom_annonce1.setCellValueFactory(new PropertyValueFactory<>("Nom_annonce") );
+        adresse1.setCellValueFactory(new PropertyValueFactory<>("Adress") );
+        date1.setCellValueFactory(new PropertyValueFactory<>("Date") );
+        description1.setCellValueFactory(new PropertyValueFactory<>("description_annonce") );
+        etat1.setCellValueFactory(new PropertyValueFactory<>("etat_annonce") );
+        tel1.setCellValueFactory(new PropertyValueFactory<>("tel") );
+        prix1.setCellValueFactory(new PropertyValueFactory<>("prix") );
+    }
+
+    @FXML
+    private void bt_supprimerannonce(ActionEvent event) {
+        gestionannonce an= new gestionannonce();
+    String id1=idheni.getText();
+     int idheni=Integer.parseInt(id1);
+     annonce an1 = new annonce(idheni);
+     //gestionannonce an1=new gestionannonce();
+        try {
+             if(JOptionPane.showConfirmDialog(null,"attention vous avez supprimer annonce,est ce que tu et sure?"
+                     ,"supprimer etudient",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
+             {
+             an.supprimerannonce(an1);
+                          JOptionPane.showMessageDialog(null,"annonce supprimé !");
+                          bt_actualiser1(event);
+
+      
+             }
+            else { JOptionPane.showMessageDialog(null,"veuillez remplire le champ nom !");}
+        
+        }catch (Exception e){JOptionPane.showMessageDialog(null,"erreur de supprimer \n"+e.getMessage());
+    }
+    
+    }
+    
 }

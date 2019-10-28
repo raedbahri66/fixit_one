@@ -323,5 +323,21 @@ try {
             System.err.println("" + p.getCin() + " error modification!!");
         }
     }
+
+    @Override
+    public void ajouterVote(Jobeur p,int cin_jobeur) {
+        
+        
+    }
+
+    @Override
+    public void UpdateVote(Jobeur p, int cin_jobeur) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void supprimerVote(Jobeur p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -22,4 +22,8 @@ public interface IJobeur {
     public void supprimerJobeur(Jobeur p);
     public List<Jobeur> afficherJobeur();
     public void modifierProfil(Jobeur p, InputStream fis, File file );
+    public void ajouterVote(Jobeur p,int cin_jobeur);
+    public void UpdateVote(Jobeur p,int cin_jobeur);
+    public void supprimerVote(Jobeur p );
+
 }

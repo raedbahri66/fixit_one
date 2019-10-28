@@ -50,9 +50,9 @@ import utils.ConnexionBD;
             ste1.setInt(1, an.getId());
             ste1.setString(2, an.getNom_annonce());
             ste1.setString(3, an.getAdress());
-            ste1.setString(4, an.getDate());
+            ste1.setString(4, an.getDate().toString());
             ste1.setString(5, an.getDescription_annonce());
-            ste1.setString(6, an.getEtat_annonce());
+            ste1.setString(6, "attente");
             ste1.setInt(7, an.getTel());
             ste1.setInt(8, an.getPrix());
             
@@ -96,7 +96,7 @@ try {
                       an.setId( res.getInt("id"));
                       an.setNom_annonce(res.getString("nom_annonce"));
                       an.setAdress(res.getString("adress"));
-                      an.setDate( res.getString("date"));
+                      an.setDate( res.getDate("date"));
                       an.setDescription_annonce(res.getString("Description_annonce"));
                       an.setEtat_annonce(res.getString("Etat_annonce"));
                       an.setTel( res.getInt("tel"));
@@ -116,18 +116,17 @@ try {
     public void modifierannonce(annonce an) {
         String req;
    try { 
-          req= "UPDATE  annonce_service SET id=?,nom_annonce= ?,adress= ?,date =? ,description_annonce=?,etat_annonce=?,tel=?,prix=? WHERE id= ?";
+          req= "UPDATE  annonce_service SET id=?,nom_annonce= ?,adress= ?,date =? ,description_annonce=?,prix=? WHERE id= ?";
       
             PreparedStatement ste = c.prepareStatement(req);
             ste.setInt(1,an.getId());
             ste.setString(2,an.getNom_annonce());
             ste.setString(3,an.getAdress());
-            ste.setString(4,an.getDate());
+            ste.setString(4,an.getDate().toString());
             ste.setString(5,an.getDescription_annonce());
-            ste.setString(6,an.getEtat_annonce());
-            ste.setInt(7,an.getTel());
-            ste.setInt(8,an.getPrix());
-            ste.setInt(9,an.getId());
+           
+            ste.setInt(6,an.getPrix());
+            ste.setInt(7,an.getId());
 
               ste.executeUpdate();
             System.out.println("" + an.getId()+ " successfully modified!");
