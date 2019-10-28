@@ -14,6 +14,7 @@ import iService.IVote;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
+import ZZZZZjava.util.loggin
 import javax.swing.JOptionPane;
 
 /**
@@ -51,9 +52,9 @@ public class GestionVote implements IVote{
         }
     }
      @Override
-    public void UpdateVote(Vote A, int cin_jobeur) {
-          String req = "UPDATE  vote SET nb_like=1 ,nb_dislike=0 WHERE idjobeur_fg="+cin_jobeur;
- 
+    public void UpdateVote(Vote A, int cin_jobeur,int cin_posteur) {
+          String req;
+         req="UPDATE `vote` SET `nb_like`=1,`nb_dislike`=0 WHERE idjobeur_fg="+cin_jobeur+" AND idposteur_fg="+cin_posteur;
      try { PreparedStatement ste = c.prepareStatement(req);
             ste.executeUpdate();
             System.out.println(" successfully modified!");
@@ -61,9 +62,10 @@ public class GestionVote implements IVote{
     JOptionPane.showMessageDialog(null,"error ");
     }}
     @Override
-     public void UpdateVotedislike(Vote A, int cin_jobeur) {
-          String req = "UPDATE  vote SET nb_like=0 ,nb_dislike=1 WHERE idjobeur_fg="+cin_jobeur;
-     try { PreparedStatement ste = c.prepareStatement(req);
+     public void UpdateVotedislike(Vote A, int cin_jobeur,int cin_posteur) {
+         String req;
+  req="UPDATE `vote` SET `nb_like`=0,`nb_dislike`=1 WHERE idjobeur_fg="+cin_jobeur+" AND idposteur_fg="+cin_posteur;
+  try { PreparedStatement ste = c.prepareStatement(req);
             ste.executeUpdate();
             System.out.println(" successfully modified!");
             } catch (SQLException e) {System.err.println(e);
@@ -89,21 +91,15 @@ public class GestionVote implements IVote{
     }
     
     @Override
-    public void supprimerVote(Vote A) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Vote> afficherVote() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Vote> afficherVote(int cin_jobeur) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
+    public void supprimerVote(Vote A,int cin_jobeur,int cin_posteur) {
+         String req;
+  req="UPDATE `vote` SET `nb_like`=0,`nb_dislike`=0 WHERE idjobeur_fg="+cin_jobeur+" AND idposteur_fg="+cin_posteur;
+  try { PreparedStatement ste = c.prepareStatement(req);
+            ste.executeUpdate();
+            System.out.println(" successfully modified!");
+            } catch (SQLException e) {System.err.println(e);
+    JOptionPane.showMessageDialog(null,"error ");
+    }}   
   public boolean verificationvote (int cin_p,int cin_j,String choix) throws SQLException{
          String req="select * from vote where idposteur_fg="+cin_p+" and idjobeur_fg="+cin_j+" and "+choix+"=1";
          System.out.println("zzzzzzzzz"+req); 
@@ -118,6 +114,37 @@ public class GestionVote implements IVote{
          ResultSet res=  ste.executeQuery(req);
           if (res.next()) {
            return true;
-          }  return false;}
+          }  return false;
+   
+   }
 
+    @Override
+    public int countlike(int cin_jobeur)  {
+        int a=0;
+         try {
+             String req="select count(*) from vote where nb_like=1 and idjobeur_fg="+cin_jobeur;
+             ResultSet res=  ste.executeQuery(req);
+             while(res.next())
+             a=res.getInt(1);
+         } catch (SQLException ex) {
+             Logger.getLogger(GestionVote.class.getName()).log(Level.SEVERE, null, ex);
+         }
+       return a;
+    }
+
+    @Override
+    public int countdislik(int cin_jobeur) {
+ int a=0;
+         try {
+             String req="select count(*) from vote where nb_dislike=1 and idjobeur_fg="+cin_jobeur;
+             ResultSet res=  ste.executeQuery(req);
+             while (res.next())
+           a=res.getInt(1);
+         } catch (SQLException ex) {
+             Logger.getLogger(GestionVote.class.getName()).log(Level.SEVERE, null, ex);
+         }
+       return a;    }
+
+  
+  
 }
