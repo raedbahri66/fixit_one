@@ -37,6 +37,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -50,6 +51,8 @@ import service.*;
  * @author ASUS
  */
 public class Affiche_porfilejobeurController implements Initializable {
+     @FXML
+    private Button Btn_demande_service;
     @FXML
     private Label cin_J;
     @FXML
@@ -90,6 +93,17 @@ public class Affiche_porfilejobeurController implements Initializable {
     private RadioButton top;
     @FXML
     private RadioButton flop;
+     @FXML
+    private Label label_top;
+    @FXML
+    private Label label_flop;
+    
+    @FXML
+    private Button ajouter_comment;
+    @FXML
+    private Button modifier_comment;
+    @FXML
+    private Button supprimer_c;
    
     final ToggleGroup vote = new ToggleGroup();
     
@@ -98,8 +112,20 @@ public class Affiche_porfilejobeurController implements Initializable {
      CommentaireService c1=new CommentaireService();
      ArrayList<Commentaire> commentaires= (ArrayList<Commentaire>) c1.afficherCommentaire();
      public  ObservableList<Commentaire>data = FXCollections.observableArrayList(commentaires); 
-   
     
+   
+    public void AfficheVOTE(){
+        int nbdislike;
+        int nblike;
+        Jobeur A=new Jobeur();
+        A=Interface_choisir_jobeurController.j1;
+        int cin_jobeur=A.getCin();
+        GestionVote v1 =new GestionVote();
+        nblike = v1.countlike(cin_jobeur);
+        nbdislike = v1.countdislik(cin_jobeur);
+        label_top.setText(String.valueOf(nblike));
+        label_flop.setText(String.valueOf(nbdislike));
+    }
      
        public boolean verfication(){
         String cin_p=cin_posteur.getText();
@@ -107,6 +133,7 @@ public class Affiche_porfilejobeurController implements Initializable {
         int cinlog=AcceuilController.cinlogin;
         if(cinlog==cin_p1){
             return true;
+          
         }
         return false;
         
@@ -123,6 +150,7 @@ public class Affiche_porfilejobeurController implements Initializable {
      Avis_PC.setCellValueFactory(new PropertyValueFactory <>("description"));
      Cin_P.setCellValueFactory(new PropertyValueFactory <>("id_posteur"));
      Cin_J.setCellValueFactory(new PropertyValueFactory <>("id_jobeur"));
+   
      }
      public void getid() {
      tab_comment.setOnMouseClicked(new EventHandler<MouseEvent>()
@@ -131,8 +159,19 @@ public class Affiche_porfilejobeurController implements Initializable {
          public void handle(MouseEvent event) {
          Commentaire c = (Commentaire) tab_comment.getItems().get(tab_comment.getSelectionModel().getSelectedIndex());
          id_com.setText( String.valueOf((c.getId())));
-         Commentaire.setText(c.getDescription());
-         cin_posteur.setText(String.valueOf(c.getId_posteur()));
+         
+         cin_posteur.setText(String.valueOf(c.getId_posteur()));  
+         if(verfication()){
+           ajouter_comment.setVisible(false);
+            modifier_comment.setVisible (true);
+            supprimer_c.setVisible(true);
+           Commentaire.setText(c.getDescription());}
+           else{
+            ajouter_comment.setVisible(true);
+            modifier_comment.setVisible (false);
+            supprimer_c.setVisible(false);
+           }
+        
          
                
          }
@@ -165,14 +204,26 @@ public class Affiche_porfilejobeurController implements Initializable {
             Email_J.setText(A.getEmail());
             String cin= String.valueOf(A.getCin());
             cin_J.setText(cin);
+            JobeurService j= new JobeurService();
+             A=j.getJobeurInfobyCin(A.getCin());
+            photo_profile.setImage(JobeurService.A1);
             System.out.println(Interface_choisir_jobeurController.j1);
             Posteur p1=new Posteur();
+         
             p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
             int cin_posteurvote=p1.getCin();
             int cin_jobeurvote=A.getCin();
             GestionVote v1 =new GestionVote();
+            ajouter_comment.setVisible(true);
+            modifier_comment.setVisible (false);
+            supprimer_c.setVisible(false);
+           
+           AfficheVOTE();
+           
+            
             boolean t=v1.verificationvote(cin_posteurvote,cin_jobeurvote,"nb_like");
             System.out.println("zzzzzzzzzzzz"+t);
+            
             if(v1.verificationvote(cin_posteurvote,cin_jobeurvote,"nb_like")){
                 System.out.println("zzzzzzzzzzzz"+t);
             top.setSelected(true);}
@@ -181,12 +232,67 @@ public class Affiche_porfilejobeurController implements Initializable {
             else{
               top.setSelected(false);
             flop.setSelected(false);}
+            
         } catch (SQLException ex) {
             Logger.getLogger(Affiche_porfilejobeurController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Affiche_porfilejobeurController.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
+        
+        /******supprimer vote*************/
+        top.setOnMouseClicked((MouseEvent event) -> {
+         if (event.getButton().equals(MouseButton.SECONDARY) && event.getClickCount() == 1){
+              GestionVote v1 =new GestionVote();
+        int nbdislike;
+        int nblike;
+        Jobeur A=new Jobeur();
+        A=Interface_choisir_jobeurController.j1;
+        int cin_jobeur=A.getCin();
+        Posteur p1= new Posteur();
+        int cin_posteur=AcceuilController.cinlogin;
+        Vote v=new Vote(cin_jobeur,cin_posteur);
+        v1.supprimerVote(v, cin_jobeur, cin_posteur); 
+        AfficheVOTE();
+             try {
+                 if(v1.verificationvote(cin_posteur,cin_jobeur,"nb_like")){
+                     top.setSelected(true);}
+                 else if(v1.verificationvote(cin_posteur,cin_jobeur,"nb_dislike"))
+                     flop.setSelected(true);
+                 else{
+                     top.setSelected(false);
+                     flop.setSelected(false);}
+             } catch (SQLException ex) {
+                 Logger.getLogger(Affiche_porfilejobeurController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+         }});
+        
+         flop.setOnMouseClicked((MouseEvent event) -> {
+         if (event.getButton().equals(MouseButton.SECONDARY) && event.getClickCount() == 1){
+                 GestionVote v1 =new GestionVote();
+                 int nbdislike;
+                 int nblike;
+                 Jobeur A=new Jobeur();
+                 A=Interface_choisir_jobeurController.j1;
+                 int cin_jobeur=A.getCin();
+                 Posteur p1= new Posteur();
+                 int cin_posteur=AcceuilController.cinlogin;
+                 Vote v=new Vote(cin_jobeur,cin_posteur);
+                 v1.supprimerVote(v, cin_jobeur, cin_posteur);
+                 AfficheVOTE();
+             try {
+                 if(v1.verificationvote(cin_posteur,cin_jobeur,"nb_like")){
+                     
+                     top.setSelected(true);}
+                 else if(v1.verificationvote(cin_posteur,cin_jobeur,"nb_dislike"))
+                     flop.setSelected(true);
+                 else{
+                     top.setSelected(false);
+                     flop.setSelected(false);}
+             } catch (SQLException ex) {
+                 Logger.getLogger(Affiche_porfilejobeurController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+             
+         }});
     }    
 
     @FXML
@@ -228,26 +334,28 @@ public class Affiche_porfilejobeurController implements Initializable {
     private void Modifier_c(ActionEvent event) {
     String id=id_com.getText();
     int id3=Integer.parseInt(id);
-    
     String comment=Commentaire.getText();
      Commentaire c = new Commentaire(id3,comment);
      CommentaireService c1=new CommentaireService();
      if(verfication()){
       try { 
+           
             if (JOptionPane.showConfirmDialog (null,"confirmer la modification","modification",
                  JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
-                if(verfication())
                 c1.modifierCommentaire(c);  
-                else
-               JOptionPane.showMessageDialog(null,"choisir votre avis svp");
-                
+             ajouter_comment.setVisible(true);
+            modifier_comment.setVisible (false);
+            supprimer_c.setVisible(false);
             } 
         } catch (Exception e){JOptionPane.showMessageDialog(null,"erreur de modifier");
         System.err.println(e);}}
-        else
-               JOptionPane.showMessageDialog(null,"choisir votre avis svp");
+     else JOptionPane.showMessageDialog(null,"choisir votre avis svp");
   
       afficher();
+            ajouter_comment.setVisible(true);
+            modifier_comment.setVisible (false);
+            supprimer_c.setVisible(false);
+           
     }
 
     @FXML
@@ -260,13 +368,16 @@ public class Affiche_porfilejobeurController implements Initializable {
      CommentaireService c1=new CommentaireService();
                     if(verfication()){
 
-     
+      
         try {
              if(JOptionPane.showConfirmDialog(null,"attention vous avez supprimer votre commentaire,est ce que tu et sure?"
                      ,"supprimer etudient",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
              {
              c1.supprimerCommentaire(c);
              JOptionPane.showMessageDialog(null,"commentaire supprimé");
+             ajouter_comment.setVisible(true);
+            modifier_comment.setVisible (false);
+            supprimer_c.setVisible(false);
              }
              
             else { JOptionPane.showMessageDialog(null,"suppression annuler ");}
@@ -276,6 +387,9 @@ public class Affiche_porfilejobeurController implements Initializable {
  else JOptionPane.showMessageDialog(null," attention choisissiez votre commenatire svp");
     
         afficher();
+        ajouter_comment.setVisible(true);
+        modifier_comment.setVisible (false);
+        supprimer_c.setVisible(false);
     }
 
     @FXML
@@ -314,6 +428,14 @@ public class Affiche_porfilejobeurController implements Initializable {
 
     @FXML
     private void Demander_Service(ActionEvent event) {
+        Jobeur A=new Jobeur();
+            A=Interface_choisir_jobeurController.j1;
+            String nom_j=A.getNom();
+            String prenom_j=A.getPrenom();
+            int cin_jobeur=A.getCin();
+            gestion_offre_service A1=new gestion_offre_service();
+            A1.insererNomjobeur(nom_j, prenom_j,cin_jobeur);
+        
     }
 
     @FXML
@@ -341,27 +463,25 @@ public class Affiche_porfilejobeurController implements Initializable {
     private void vote(ActionEvent event) throws SQLException, IOException {
            Jobeur A=new Jobeur();
        A=Interface_choisir_jobeurController.j1;
-        int cin_jobeur=A.getCin();
+      int cin_jobeur=A.getCin();
      Posteur p1= new Posteur();
      GestionVote v1 =new GestionVote();
         p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
          int cin_posteur=AcceuilController.cinlogin;
        if(top.isSelected()){
-             boolean t=v1.verificationvote1(cin_posteur,cin_jobeur);
           Vote v=new Vote(cin_posteur,cin_jobeur);
          if(v1.verificationvote1(cin_posteur,cin_jobeur)){
-            v1.UpdateVote(v,cin_jobeur);
-            System.out.println("ouuuuuuh"+t);}
-            else
-             v1.ajouterVote(v);}
-     
-     
-    
-      }
+            v1.UpdateVote(v,cin_jobeur,cin_posteur);
+             AfficheVOTE();}
+         else{
+             v1.ajouterVote(v);
+             AfficheVOTE();}
+      }}
 
 
     @FXML
     private void vote_dislike(ActionEvent event) throws SQLException, IOException {
+     
      Jobeur A=new Jobeur();
      A=Interface_choisir_jobeurController.j1;
      int cin_jobeur=A.getCin();
@@ -376,11 +496,14 @@ public class Affiche_porfilejobeurController implements Initializable {
             System.out.println("ouuuuuuh"+z);
          if(v1.verificationvote1(cin_posteur,cin_jobeur)){
                 System.out.println("ouuuuuuh"+z);
-            v1.UpdateVotedislike(v,cin_jobeur);}
+            v1.UpdateVotedislike(v,cin_jobeur,cin_posteur);
+             AfficheVOTE();}
             else
              v1.ajouterVotedislike(v);
+              AfficheVOTE();
              }
     }
+    
 }
          
         

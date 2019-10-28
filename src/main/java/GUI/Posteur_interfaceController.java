@@ -1026,6 +1026,29 @@ public class Posteur_interfaceController implements Initializable {
 
     @FXML
     private void ajouterechangep(ActionEvent event) throws SQLException, IOException {
+               boolean test= false;
+        if( pofp.getText().isEmpty()){
+           //pofp.getText().setVisible(true);
+            test = false;
+           JOptionPane.showMessageDialog (null,"il faut ajouter le proposition offerte ");
+        }
+        else if( posp.getText().isEmpty())
+         {
+           test = false;
+           JOptionPane.showMessageDialog (null," ajouter la proposition souhaitee");
+        }
+        else if( pdp.getText().isEmpty())
+         {
+           test = false;
+           JOptionPane.showMessageDialog (null," ajouter une description ");
+        }
+           /* if( dap.tr.isEmpty ())
+         {
+           test = false;
+           JOptionPane.showMessageDialog (null," ajouter une date ");*/
+        
+       
+            if(test){
         PosteurService p = new PosteurService();
           Posteur p1= new Posteur();
         p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
@@ -1048,7 +1071,11 @@ public class Posteur_interfaceController implements Initializable {
   dap.setValue(null);
   refrechtabechange();
    
-
+            }   else 
+        {
+            JOptionPane.showMessageDialog(null, "Remplir tous les champs");
+                          test = true;
+        }
     }
       @FXML
     void rechercherechange(ActionEvent event) throws SQLException {
