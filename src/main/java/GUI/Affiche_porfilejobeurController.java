@@ -98,6 +98,8 @@ public class Affiche_porfilejobeurController implements Initializable {
      CommentaireService c1=new CommentaireService();
      ArrayList<Commentaire> commentaires= (ArrayList<Commentaire>) c1.afficherCommentaire();
      public  ObservableList<Commentaire>data = FXCollections.observableArrayList(commentaires); 
+    @FXML
+    private Label labe_dislike;
    
     
      
