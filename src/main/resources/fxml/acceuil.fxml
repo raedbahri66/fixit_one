@@ -77,6 +77,11 @@
                      </font></Button>
                   <TextField fx:id="label_UserName" layoutX="229.0" layoutY="66.0" />
                   <PasswordField fx:id="Label_Password" layoutX="229.0" layoutY="136.0" />
+                  <Label fx:id="motdepass_oub" layoutX="345.0" layoutY="174.0" onMouseClicked="#Pass_oublie" prefHeight="26.0" prefWidth="188.0" text="Mot de passe oubliée?" textFill="WHITE" underline="true">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
       </content>
     </Tab>

@@ -30,8 +30,8 @@ public class GestionProduit {
          
     public void ajouterProduit(Produit E) {
         String req1="INSERT INTO `produit` "
-                    + "(`nomproduit`, `prix`,`description`, `categorie`, `num`, `etat_vente`, `etat_validation`, `idposteur_fg`, `idjobeur_fg`,`nom_proprietere`) "
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+                    + "(`nomproduit`, `prix`,`description`, `categorie`, `num`, `etat_vente`, `etat_validation`, `idposteur_fg`, `idjobeur_fg`,`nom_proprietere`,`date_produit`) "
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
             try{
                 PreparedStatement ste = c.prepareStatement(req1);
             
@@ -46,6 +46,7 @@ public class GestionProduit {
             ste.setInt(8, E.getIdPosteurfg());
             ste.setInt(9, E.getIdJobeurfg());
             ste.setString(10, E.getNomproprietere());
+            ste.setString(11, E.getDate1());
               ste.executeUpdate();
             System.out.println("Ajouter avec sucées ");
                     // JOptionPane.showMessageDialog(null,"requete execute correctement"); 
@@ -77,6 +78,7 @@ public class GestionProduit {
                         e.setCategorie(res.getString(5));
                          e.setNumero(res.getString(6));
                          e.setNomproprietere(res.getString(11));
+                         e.setDate1(res.getString(13));
                           echanges.add(e);
                            //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
           } 
@@ -119,10 +121,13 @@ public class GestionProduit {
         
        List<Produit> table1= new ArrayList<>();
     //Echange e = null;
+    String etat="non_vendu";
       try {
           if ("Tous()".equals(cat)){
-           String req2="select * from produit ";
+              
+           String req2="select * from produit where etat_vente=?";
          PreparedStatement pstm = c.prepareStatement(req2);
+         pstm.setString(1,etat);
           ResultSet res=  pstm.executeQuery();
           while (res.next()) { 
               Produit e = new Produit();
@@ -133,6 +138,7 @@ public class GestionProduit {
                         e.setCategorie(res.getString(5));
                          e.setNumero(res.getString(6));
                          e.setNomproprietere(res.getString(11));
+                         e.setDate1(res.getString(13));
                           table1.add(e);
                            //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
           } 
@@ -140,9 +146,10 @@ public class GestionProduit {
           
           }
           else{
-         String req2="select * from produit Where categorie=? ";
+         String req2="select * from produit Where categorie=? and etat_vente=?";
          PreparedStatement pstm = c.prepareStatement(req2);
          pstm.setString(1,cat);
+         pstm.setString(2,etat);
           ResultSet res=  pstm.executeQuery();
           while (res.next()) { 
               Produit e = new Produit();
@@ -153,6 +160,7 @@ public class GestionProduit {
                         e.setCategorie(res.getString(5));
                          e.setNumero(res.getString(6));
                          e.setNomproprietere(res.getString(11));
+                         e.setDate1(res.getString(13));
                           table1.add(e);
                            //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
                            }
@@ -167,9 +175,11 @@ public class GestionProduit {
         
        List<Produit> table1= new ArrayList<>();
     //Echange e = null;
+    String etat="non_vendu";
       try {
-         String req2="select * from produit Where nomproduit LIKE '"+nom+"'" ;
+         String req2="select * from produit Where nomproduit LIKE '"+nom+"' and etat_vente=?" ;
          PreparedStatement pstm = c.prepareStatement(req2);
+         pstm.setString(1,etat);
          //pstm.setString(1,nom);
           ResultSet res=  pstm.executeQuery();
           while (res.next()) { 
@@ -181,6 +191,7 @@ public class GestionProduit {
                         e.setCategorie(res.getString(5));
                          e.setNumero(res.getString(6));
                          e.setNomproprietere(res.getString(11));
+                         e.setDate1(res.getString(13));
                           table1.add(e);
                            //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
                            }

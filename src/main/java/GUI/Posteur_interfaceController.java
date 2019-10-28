@@ -59,6 +59,7 @@ import service.JobeurService;
 import service.PosteurService;
 import entites.Offre;
 import entites.annonce;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -142,6 +143,8 @@ public class Posteur_interfaceController implements Initializable {
     private TableColumn<Produit,String> table_nom1;
     @FXML
     private TableColumn<Produit,String> table_prix1;
+      @FXML
+    private TableColumn<Produit,String> table_date1;
     @FXML
     private TableColumn<Produit,String> table_categorie1;
     @FXML
@@ -175,7 +178,14 @@ public class Posteur_interfaceController implements Initializable {
     @FXML
     private TableColumn<Produit,String> table_categorie;
  
-    
+    @FXML
+    private Label validation_produit1;
+    @FXML
+    private Label validation_numero1;
+    @FXML
+    private Label validation_prix1;
+     @FXML
+    private Label validation_description1;
     @FXML
     private Label validation_produit;
     @FXML
@@ -202,10 +212,14 @@ public class Posteur_interfaceController implements Initializable {
     @FXML
     private Label label_id;
     @FXML
+    private Label datelocal;
+    @FXML
     private Label statut2;
     @FXML
     private ComboBox<String> categorie_produit;
     
+    @FXML
+    private Label afficher_date;
     @FXML
     private Label nom_proprietaire;
     @FXML
@@ -394,6 +408,17 @@ public class Posteur_interfaceController implements Initializable {
     private TableColumn<?, ?> tel1;
     @FXML
     private TableColumn<?, ?> prix1;
+      @FXML
+    private Label vprof;
+
+    @FXML
+    private Label vpros;
+
+    @FXML
+    private Label vdp;
+
+    @FXML
+    private Label vdap;
 
     
     public static final LocalDate NOW_LOCAL_DATE (){
@@ -443,6 +468,7 @@ public class Posteur_interfaceController implements Initializable {
                 table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
                 table_num.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
                 table_proprietere.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom_proprietere"));
+                table_date1.setCellValueFactory(new PropertyValueFactory<Produit,String>("date1"));
 
     }
     
@@ -460,6 +486,7 @@ public class Posteur_interfaceController implements Initializable {
         PosteurService p = new PosteurService();
         Posteur p1= new Posteur();
         p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+        
           ControleSaisie C= new ControleSaisie();
           if(nom_produit.getText().isEmpty())
         {canInscription = false;  validation_produit.setText("Champ vide");}
@@ -502,9 +529,12 @@ public class Posteur_interfaceController implements Initializable {
         String num=numero.getText();
         String etatvente="non_vendu";
         int idjobeur = 0;
+        
+        datelocal.setText(NOW_LOCAL_DATE().toString());
+        String date=datelocal.getText();
         String nomproprietere=p1.getNom();
         String etatvalidation="non_valider";
-        Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation,idposteur,idjobeur,nomproprietere);
+        Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation,idposteur,idjobeur,nomproprietere,date);
         GestionProduit gs = new  GestionProduit();
         gs.ajouterProduit(E);
           JOptionPane.showMessageDialog(null, "Produit Ajouter avec succée");
@@ -525,7 +555,7 @@ public class Posteur_interfaceController implements Initializable {
     
     
     
-    
+    public boolean controlemodifier=true;
      @FXML
     void modifierAction(ActionEvent event) {
         
@@ -539,6 +569,38 @@ public class Posteur_interfaceController implements Initializable {
    String etat=categorie_produit3.getValue().toString();
    Produit E = new Produit(id,nom,prix,description,categorie,num,etat,statut);
    GestionProduit gs = new  GestionProduit();
+   
+   
+    ControleSaisie C= new ControleSaisie();
+          if(nom2.getText().isEmpty())
+        {controlemodifier = false;  validation_produit1.setText("Champ vide");}
+          else if(!nom2.getText().isEmpty()) validation_produit1.setText("");
+          
+         
+        if(!C.isInt(prix2.getText()) )
+        {controlemodifier = false; validation_prix1.setText("Inccorect Prix");} 
+        else if (C.isInt(prix2.getText()) ) { validation_prix1.setText("");}
+      
+        if (!C.cinisValid(numero1.getText()) )
+        {controlemodifier = false; validation_numero1.setText("Inccorect Numero");} 
+        else if(C.cinisValid(numero1.getText())){validation_numero1.setText("");}
+          
+        if(prix2.getText().isEmpty())
+        {controlemodifier = false;  validation_prix1.setText("Champ vide");}
+        else if(!prix2.getText().isEmpty()&&C.isInt(prix2.getText())) validation_prix1.setText("");
+        
+        if(numero1.getText().isEmpty())
+        {controlemodifier = false;  validation_numero1.setText("Champ vide");}
+        else if(!numero1.getText().isEmpty()&&C.cinisValid(numero1.getText())) validation_numero1.setText("");
+        
+        if(description2.getText().isEmpty())
+        {controlemodifier = false;  validation_description1.setText("Champ vide");}
+        else if(!description2.getText().isEmpty()) validation_description1.setText("");
+        
+        
+   
+   
+   if(controlemodifier){
    try{
    gs.modifierProduit(E);
    JOptionPane.showMessageDialog(null, "Modification avec succée");
@@ -549,12 +611,20 @@ public class Posteur_interfaceController implements Initializable {
    categorie_produit3.setValue("");
    numero1.setText("");
    refrech();
-    }catch(Exception e)
+    }
+   catch(Exception e)
     {
        System.out.println(e.getMessage());  
     }
     }
-   
+    
+    else{ controlemodifier = true;}
+    
+    }
+    
+    
+    
+    
     @FXML
     void btnsearchAction(ActionEvent event) {
         data.clear();
@@ -571,6 +641,7 @@ public class Posteur_interfaceController implements Initializable {
                 table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
                 table_num.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
                 table_proprietere.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom_proprietere"));
+                table_date1.setCellValueFactory(new PropertyValueFactory<Produit,String>("date1"));
                 clickedtable();   
         
     }
@@ -610,7 +681,7 @@ public class Posteur_interfaceController implements Initializable {
                 label_description1.setText(A.getDescription());
                 label_num.setText(A.getNumero());
                 nom_proprietaire.setText(A.getNomproprietere());
-             
+             afficher_date.setText(A.getDate1());
                 
                 
              }
@@ -906,6 +977,7 @@ public class Posteur_interfaceController implements Initializable {
                 table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
                 table_num.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
                 table_proprietere.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom_proprietere"));
+                table_date1.setCellValueFactory(new PropertyValueFactory<Produit,String>("date1"));
                 clickedtable();
                 
         table1.setItems(data1);
@@ -919,11 +991,12 @@ public class Posteur_interfaceController implements Initializable {
                  table_etat_validation.setCellValueFactory(new PropertyValueFactory<Produit,String>("etatValidation"));
                  setValueformtableviewtotext();
  
-                 categorie_produit.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
-                 categorie_produit2.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
+                 categorie_produit.getItems().addAll("Autre","Jardinage","Electricité","Batimmant","Informatique","Electromenager");
+                 categorie_produit2.getItems().addAll("Autre","Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  categorie_produit3.getItems().addAll("non_vendu","vendu");
-                 combobox_filter.getItems().addAll("Tous()","Jardinage","Electricité","Batimmant","Informatique","Electromenager");
-     
+                 combobox_filter.getItems().addAll("Tous()","Autre","Jardinage","Electricité","Batimmant","Informatique","Electromenager");
+                 categorie_produit.setValue("Autre");
+                 combobox_filter.setValue("Tous()");
         ArrayList Echange2= (ArrayList)es.affichermesEchange(id); 
         ObservableList datames= FXCollections.observableArrayList(Echange2);
             tablemesproposition.setItems(datames);
@@ -976,29 +1049,58 @@ public class Posteur_interfaceController implements Initializable {
     }
 
     @FXML
-    private void ajouterechangep(ActionEvent event) throws SQLException, IOException {
-               boolean test= false;
+    private void ajouterechangep(ActionEvent event) throws SQLException, IOException, ParseException {
+              // boolean test= true;
+                String date8 = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+                // LocalDate locald =dap.getValue();
+                // Date dates = Date.valueOf(locald);
+      
+       
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        java.util.Date date9 =  sdf.parse(date8);
+                boolean test= true;
         if( pofp.getText().isEmpty()){
            //pofp.getText().setVisible(true);
             test = false;
-           JOptionPane.showMessageDialog (null,"il faut ajouter le proposition offerte ");
+            vprof.setText("champs vide");
         }
-        else if( posp.getText().isEmpty())
+             else if(! pofp.getText().isEmpty()) 
+             {
+                 vprof.setText("");
+          
+        }
+       if( posp.getText().isEmpty())
          {
            test = false;
-           JOptionPane.showMessageDialog (null," ajouter la proposition souhaitee");
+            vpros.setText("champs vide"); 
+        } else if(! posp.getText().isEmpty()) 
+        {
+             vpros.setText("");
         }
-        else if( pdp.getText().isEmpty())
+       if( pdp.getText().isEmpty())
          {
            test = false;
-           JOptionPane.showMessageDialog (null," ajouter une description ");
+           vdp.setText("champs vide");
+        }else if (! vdp.getText().isEmpty())
+        {
+           vdp.setText(""); 
         }
-           /* if( dap.tr.isEmpty ())
+            LocalDate locald =dap.getValue();
+                 Date dates = Date.valueOf(locald);
+    
+      
+             /*if ((dates.before(date9))&&*/ 
+             if ((dap.getValue() == null) ||(dates.before(date9)))
          {
            test = false;
-           JOptionPane.showMessageDialog (null," ajouter une date ");*/
-        
-       
+           vdap.setText("champs Invalide");
+           
+         } 
+             else
+             {
+                vdap.setText(""); 
+             }
+                   
             if(test){
         PosteurService p = new PosteurService();
           Posteur p1= new Posteur();
@@ -1009,10 +1111,10 @@ public class Posteur_interfaceController implements Initializable {
           String nomo=pofp.getText();
      String nomf=posp.getText();
        String description=pdp.getText();
-  LocalDate locald =dap.getValue();
-        String date =locald.toString();
+  //LocalDate locald =dap.getValue();
+        String date10 =locald.toString();
         int idjobeur=0;
-   Echange E = new Echange(nomo,nomf,description,date,idposteur1,nomposteur,idjobeur);
+   Echange E = new Echange(nomo,nomf,description,date10,idposteur1,nomposteur,idjobeur);
   EchangeGestion es = new  EchangeGestion();
    es.ajouterEchange(E);
    JOptionPane.showMessageDialog(null, "ajout avec succes");
@@ -1024,8 +1126,8 @@ public class Posteur_interfaceController implements Initializable {
    
             }   else 
         {
-            JOptionPane.showMessageDialog(null, "Remplir tous les champs");
-                          test = true;
+            //JOptionPane.showMessageDialog(null, "Remplir tous les champs");
+                          test = false;
         }
     }
       @FXML

@@ -17,38 +17,45 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane fx:id="tabpane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="823.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.JobeurgestionController">
+<TabPane fx:id="tabpane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="916.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.JobeurgestionController">
    <tabs>
       <Tab text="List Jobeurs">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" onKeyTyped="#Onkeyfilter" prefHeight="503.0" prefWidth="803.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" onKeyTyped="#Onkeyfilter" prefHeight="507.0" prefWidth="891.0">
                <children>
-                  <TableView fx:id="table_post" layoutX="14.0" layoutY="23.0" prefHeight="433.0" prefWidth="645.0">
+                  <TableView fx:id="table_post" layoutX="14.0" layoutY="23.0" prefHeight="441.0" prefWidth="701.0">
                      <columns>
                         <TableColumn fx:id="c1_cinp" prefWidth="91.0" text="Identifiant" />
-                        <TableColumn fx:id="c2_nomp" prefWidth="87.0" text="Nom" />
-                        <TableColumn fx:id="c3_prenomp" prefWidth="98.0" text="Prenom" />
-                        <TableColumn fx:id="c4_emailp" prefWidth="165.0" text="Email" />
-                        <TableColumn fx:id="c5_telp" minWidth="0.0" prefWidth="115.0" text="Telephone" />
-                        <TableColumn fx:id="c_spec" prefWidth="109.0" text="Specialite" />
+                        <TableColumn fx:id="c2_nomp" prefWidth="78.0" text="Nom" />
+                        <TableColumn fx:id="c3_prenomp" prefWidth="92.0" text="Prenom" />
+                        <TableColumn fx:id="c4_emailp" prefWidth="144.0" text="Email" />
+                        <TableColumn fx:id="c5_telp" minWidth="0.0" prefWidth="121.0" text="Telephone" />
+                        <TableColumn fx:id="c_spec" prefWidth="82.0" text="Specialite" />
+                        <TableColumn fx:id="c_address" prefWidth="92.0" text="Address" />
                      </columns>
                   </TableView>
-                  <Button fx:id="btn_text" layoutX="659.0" layoutY="8.0" mnemonicParsing="false" onAction="#btn_actualiser" prefHeight="31.0" prefWidth="90.0" text="Actualiser" />
-                  <Button layoutX="751.0" layoutY="8.0" mnemonicParsing="false" onAction="#logout_bt" prefHeight="31.0" prefWidth="65.0" text="logout" />
-                  <Label layoutX="702.0" layoutY="62.0" text="Filter">
+                  <Button fx:id="btn_text" layoutX="731.0" layoutY="8.0" mnemonicParsing="false" onAction="#btn_actualiser" prefHeight="31.0" prefWidth="90.0" text="Actualiser" />
+                  <Button layoutX="837.0" layoutY="8.0" mnemonicParsing="false" onAction="#logout_bt" prefHeight="31.0" prefWidth="65.0" text="logout" />
+                  <Label layoutX="769.0" layoutY="61.0" text="Filter">
                      <font>
                         <Font name="Copperplate Gothic Light" size="24.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="filter_field" layoutX="660.0" layoutY="176.0" onInputMethodTextChanged="#Textchanged_flnom" onKeyReleased="#OnKeyReleased" onKeyTyped="#OnkeyTypedfilter" onMouseReleased="#Clearmouse_text" prefHeight="31.0" prefWidth="165.0" promptText="Type Info..." />
-                  <ComboBox fx:id="combo_filter" layoutX="660.0" layoutY="123.0" prefWidth="150.0" />
-                  <RadioButton fx:id="active_filter" layoutX="703.0" layoutY="263.0" mnemonicParsing="false" onMouseClicked="#Active_filterBtn" prefHeight="21.0" prefWidth="91.0" text="Active" />
-                  <RadioButton fx:id="banned_filter" layoutX="702.0" layoutY="293.0" mnemonicParsing="false" onMouseClicked="#banned_btnfilter" prefHeight="21.0" prefWidth="148.0" text="Banned" />
-                  <Label layoutX="669.0" layoutY="217.0" prefHeight="46.0" prefWidth="99.0" text="Or Selon Etat">
+                  <TextField fx:id="filter_field" layoutX="727.0" layoutY="151.0" onInputMethodTextChanged="#Textchanged_flnom" onKeyReleased="#OnKeyReleased" onKeyTyped="#OnkeyTypedfilter" onMouseReleased="#Clearmouse_text" prefHeight="31.0" prefWidth="165.0" promptText="Type Info..." />
+                  <ComboBox fx:id="combo_filter" layoutX="734.0" layoutY="108.0" prefWidth="150.0" />
+                  <RadioButton fx:id="active_filter" layoutX="764.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#Active_filterBtn" prefHeight="21.0" prefWidth="91.0" text="Active" />
+                  <RadioButton fx:id="banned_filter" layoutX="763.0" layoutY="281.0" mnemonicParsing="false" onMouseClicked="#banned_btnfilter" prefHeight="21.0" prefWidth="148.0" text="Banned" />
+                  <Label layoutX="760.0" layoutY="198.0" prefHeight="46.0" prefWidth="99.0" text="Or Selon Etat">
                      <font>
                         <Font name="System Bold Italic" size="15.0" />
                      </font>
                   </Label>
+                  <Label layoutX="740.0" layoutY="310.0" prefHeight="46.0" prefWidth="140.0" text="Or Selon Address">
+                     <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="filter_field1" layoutX="732.0" layoutY="356.0" onKeyTyped="#OnkeyTypedfilter_address" onMouseReleased="#Clearmouse_text" prefHeight="31.0" prefWidth="155.0" promptText="Type Address..." />
                </children>
             </AnchorPane>
          </content>
@@ -212,6 +219,31 @@
                         <Font name="System Bold" size="23.0" />
                      </font>
                   </Button>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab fx:id="supp_posttab1" text="Gestion Competances et Demandes">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="546.0" fitWidth="859.0" layoutY="1.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/forum-bricolage.jpg" />
+                     </image>
+                  </ImageView>
+                  <TableView fx:id="table_post1" layoutX="14.0" layoutY="14.0" prefHeight="409.0" prefWidth="805.0">
+                     <columns>
+                        <TableColumn fx:id="c1_cinp1" prefWidth="91.0" text="Identifiant" />
+                        <TableColumn fx:id="c2_nomp1" prefWidth="87.0" text="Nom" />
+                        <TableColumn fx:id="c3_prenomp1" prefWidth="98.0" text="Prenom" />
+                        <TableColumn fx:id="c4_emailp1" prefWidth="165.0" text="Email" />
+                        <TableColumn fx:id="c5_telp1" minWidth="0.0" prefWidth="129.0" text="Telephone" />
+                        <TableColumn fx:id="c_spec1" prefWidth="120.0" text="Specialite" />
+                        <TableColumn fx:id="C7_etat" prefWidth="114.0" text="Etat" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="btn_text1" layoutX="372.0" layoutY="443.0" mnemonicParsing="false" onAction="#btn_actualiser1" prefHeight="31.0" prefWidth="90.0" text="Actualiser" />
                </children>
             </AnchorPane>
          </content>

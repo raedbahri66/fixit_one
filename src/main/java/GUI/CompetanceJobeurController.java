@@ -6,7 +6,6 @@
 package GUI;
 
 import entites.Jobeur;
-import entites.Posteur;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +14,6 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,16 +22,14 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import service.JobeurService;
-import service.PosteurService;
 
 /**
  * FXML Controller class
  *
  * @author lenovo
  */
-public class ProfilJobeurController implements Initializable {
+public class CompetanceJobeurController implements Initializable {
 
     @FXML
     private Label datep_1;
@@ -53,13 +49,14 @@ public class ProfilJobeurController implements Initializable {
     private ImageView image_post;
     @FXML
     private Label cv_click;
+    private static boolean a=false;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+         // TODO
         JobeurService p = new JobeurService();
         Jobeur p1= new Jobeur();
         try {
@@ -78,7 +75,7 @@ public class ProfilJobeurController implements Initializable {
         image_post.setImage(JobeurService.A1);
         spec_11.setText(p1.getJob());
          System.out.println(JobeurService.A1);
-        
+        // TODO
     }    
 
     @FXML
@@ -88,9 +85,8 @@ public class ProfilJobeurController implements Initializable {
     }
 
     @FXML
-    private void OnCVClicked(MouseEvent event) 
-    {
-            File file = new File("C:\\Users\\lenovo\\Documents\\NetBeansProjects\\Fixit_one\\cv.pdf");
+    private void OnCVClicked(MouseEvent event) {
+        File file = new File("C:\\Users\\lenovo\\Documents\\NetBeansProjects\\Fixit_one\\cv.pdf");
             if (Desktop.isDesktopSupported()) {
         new Thread(() -> {
             try {
@@ -100,6 +96,30 @@ public class ProfilJobeurController implements Initializable {
             }
         }).start();
 }
+    }
+
+    @FXML
+    private void Accepter_job_btn(ActionEvent event) throws SQLException, IOException {
+        JobeurService p = new JobeurService();
+        Jobeur p1= new Jobeur();
+        
+            p1 = p.getJobeurInfobyCin(JobeurgestionController.cin);
+            p.AccepterJobeur(p1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+               // a=true;    
+    }
+
+    @FXML
+    private void Refuser_Jobeur_btn(ActionEvent event) throws SQLException, IOException {
+        JobeurService p = new JobeurService();
+        Jobeur p1= new Jobeur();
+            p1 = p.getJobeurInfobyCin(JobeurgestionController.cin);
+            p.RefuserJobeur(p1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                              //  a=true;
+
+    }
     
-}
 }

@@ -47,6 +47,8 @@ import javax.swing.JOptionPane;
 import service.EchangeGestion;
 import service.JobeurService;
 import entites.Offre;
+import javafx.scene.text.Text;
+import service.GestionVote;
 import entites.Service;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -167,6 +169,9 @@ public class Jobeur_interfaceController implements Initializable {
     private TextField mpf;
     private FileInputStream fis;
     private File file;
+    private FileInputStream pdf;
+    private File pdff;
+    
     @FXML
     private TableView<Offre> Table_offre_jobeur;
 
@@ -229,6 +234,14 @@ public class Jobeur_interfaceController implements Initializable {
     @FXML
     private Button image_p_btn;
     private boolean canModif=true;
+    @FXML
+    private TextField file_pdf_p1;
+    @FXML
+    private Button pdf_p_btn1;
+    @FXML
+    private Text label_top;
+    @FXML
+    private Text label_flop;
 
     @FXML
     void ajouterechange(ActionEvent event) {
@@ -365,8 +378,6 @@ public class Jobeur_interfaceController implements Initializable {
                         } catch (FileNotFoundException ex) {
                             Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
                         }
-
-
                         try {
                             //     Image image=  new Image(file.toURI().toString());
                             URL url1 = file.toURI().toURL();
@@ -380,6 +391,39 @@ public class Jobeur_interfaceController implements Initializable {
                                 
 
     }
+
+        });
+      pdf_p_btn1.setOnAction(e->{
+                    stage.setTitle("File Chooser ");
+                    
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open Pdf File");
+            
+                         pdff = fileChooser.showOpenDialog(stage);
+                        if (pdff != null) {
+                                file_pdf_p1.setText(pdff.getAbsolutePath());
+                                System.out.println(pdff.getAbsolutePath()); 
+                        try {
+                            pdf = new FileInputStream(pdff);// file is selected using filechooser which is in last tutorial
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+
+                        try {
+                            //     Image image=  new Image(file.toURI().toString());
+                            URL url1 = pdff.toURI().toURL();
+                            System.out.println(new File(url1.toExternalForm()));
+                           // image_post.setImage(new Image(url1.toExternalForm()));
+                        } catch (MalformedURLException ex) {
+                          
+                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                                
+
+    };
+            
 
         });
       df_date1.setValue(NOW_LOCAL_DATE());
@@ -406,6 +450,12 @@ public class Jobeur_interfaceController implements Initializable {
          /*   Table_offre_jobeur.setOnMouseClicked((MouseEvent event) -> {
             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
                 
+        
+         GestionVote v1 =new GestionVote();
+         int nblike = v1.countlike(AcceuilController.cinlogin);
+         int nbdislike = v1.countdislik(AcceuilController.cinlogin);
+        label_top.setText(String.valueOf(nblike));
+        label_flop.setText(String.valueOf(nbdislike));
              Parent root = null;
                 try {
                     root = FXMLLoader.load(getClass().getResource("/fxml/Validation_offre.fxml"));
@@ -441,7 +491,7 @@ public class Jobeur_interfaceController implements Initializable {
         Date date = Date.valueOf(locald);
         JobeurService p = new JobeurService();
         Jobeur p1= new Jobeur(AcceuilController.cinlogin, tf_nom1.getText(), tf_prenom1.getText(), tef_email1.getText(), date, Integer.parseInt(tf_tel1.getText()));
-        p.modifierProfil(p1,fis,file);
+        p.modifierProfil(p1,fis,file,pdf,pdff);
         JOptionPane.showMessageDialog(null, "Account edited Successfull");
         nomp_1.setText(p1.getNom());
         nomp_11.setText(p1.getNom());
