@@ -23,6 +23,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -70,6 +71,8 @@ public class AcceuilController implements Initializable {
     Articlegestion art = new Articlegestion();
   ArrayList<Article> articles= (ArrayList<Article>)art.afficherArticle();  
   public ObservableList<Article> data = FXCollections.observableArrayList(articles);
+    @FXML
+    private Label motdepass_oub;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TOD
@@ -153,6 +156,19 @@ public class AcceuilController implements Initializable {
 
     @FXML
     private void retour_bt(ActionEvent event) throws IOException {
+        
+    }
+
+    @FXML
+    private void Pass_oublie(MouseEvent event) throws IOException {
+                   
+        Parent root= FXMLLoader.load(getClass().getResource("/fxml/Password.fxml"));
+        Stage stage1 = new Stage();
+                    
+                    Scene scene = new Scene(root);
+                    stage1.setScene(scene);
+                    /* Stage stag1 = new Stage(root);*/
+                    stage1.show();
         
     }
 
