@@ -30,7 +30,7 @@ public class EchangeGestion implements Iechange{
     @Override
     public void ajouterEchange(Echange E) {
                 String req1="INSERT INTO `echange` "
-                    + "(`proposition offerte`,`proposition_souhaitée` ,`description_echange`,`idposteurfg`,`nomposteur`,`date`) "
+                    + "(`proposition_offerte`,`proposition_souhaitée` ,`description_echange`,`idposteurfg`,`nomposteur`,`date`) "
                     + "VALUES (?,?,?,?,?,?)";
             try{
                 PreparedStatement ste = c.prepareStatement(req1);
@@ -56,12 +56,10 @@ public class EchangeGestion implements Iechange{
 
     @Override
     public void modifierEchange(Echange E) {
-        String req= "update echange SET  proposition offerte=?,proposition_souhaitée=?,description_echange=?,date=? Where id=?";
+        String req= "update echange SET proposition_offerte=?,proposition_souhaitée=?,description_echange=?,date=? Where id=?";
     
    try { 
           PreparedStatement ste = c.prepareStatement(req);
-          
-          
           ste.setString(1,E.getPropositionofferte());
           ste.setString(2,E.getPropositionsouhaitée());
             ste.setString(3,E.getDescription_echange());
@@ -155,6 +153,40 @@ public class EchangeGestion implements Iechange{
     }
      return tableechange;
       }
+         public List<Echange> affichermesEchange(int id) {
+          List<Echange> echanges= new ArrayList<>();
+    //Echange e = null;
+      
+      
+      try {
+         String req2="select * from echange  where idposteurfg=? ";
+         PreparedStatement pstm = c.prepareStatement(req2);
+          pstm.setInt(1,id);
+        
+          ResultSet res=  pstm.executeQuery();
+          while (res.next()) { 
+              Echange e = new Echange();
+              e.setId(res.getString(1));
+               e.setPropositionofferte(res.getString(2));
+              e.setPropositionsouhaitée(res.getString(3));
+                     e.setDescription_echange(res.getString(4));
+                     //e.setNom_posteur(res.getString(10));
+                         e.setDate(res.getString(11));
+                       
+                       
+                          echanges.add(e);
+                           //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10)));
+             
+          }
+        
+    }catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+      } 
+        
+     return echanges;
+   
+   
+    }
 }
 
 

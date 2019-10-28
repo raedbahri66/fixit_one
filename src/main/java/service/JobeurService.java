@@ -488,5 +488,17 @@ try {
             System.err.println("" + p.getCin() + " error modification!!");
         }
     }
+
+    @Override
+    public void ajouterVote(Jobeur p, int cin_jobeur) {
+    }
+
+    @Override
+    public void UpdateVote(Jobeur p, int cin_jobeur) {
+    }
+
+    @Override
+    public void supprimerVote(Jobeur p) {
+    }
     
 }

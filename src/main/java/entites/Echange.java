@@ -51,6 +51,10 @@ public class Echange {
         return id_posteurfg;
     }
 
+    public Echange(String id) {
+        this.id = id;
+    }
+
     public void setId_posteurfg(int id_posteurfg) {
         this.id_posteurfg = id_posteurfg;
     }

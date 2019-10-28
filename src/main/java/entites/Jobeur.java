@@ -17,11 +17,25 @@ public class Jobeur extends Personne{
     private String nomequipe_fg;
      private String role;
      private String address;
+     private int nb_like;
      
 
 
     public Jobeur() {
     }
+
+    public Jobeur(int nb_like) {
+        this.nb_like = nb_like;
+    }
+
+    public int getNb_like() {
+        return nb_like;
+    }
+
+    public void setNb_like(int nb_like) {
+        this.nb_like = nb_like;
+    }
+    
 
     public Jobeur(int cin, String role) {
         super(cin);

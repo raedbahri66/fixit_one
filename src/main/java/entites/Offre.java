@@ -19,6 +19,9 @@ public class Offre {
     private String tel;
     private String etatoffre;
     private int iposteurfg;
+    private String prenomposteur;
+    private String nomposteur;
+    private String Nomservice;
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
@@ -62,6 +65,28 @@ public class Offre {
     public String getAdresse() {
         return adresse;
     }
+
+    public void setNomposteur(String nomposteur) {
+        this.nomposteur = nomposteur;
+    }
+
+    public void setPrenomposteur(String prenomposteur) {
+        this.prenomposteur = prenomposteur;
+    }
+
+    public String getNomposteur() {
+        return nomposteur;
+    }
+
+    public String getPrenomposteur() {
+        return prenomposteur;
+    }
+    public Offre()
+            
+    {
+        super();
+    }
+    
      public Offre(String adresse, String Date_debut , String heure ,String tel,String description_offre) {
         super();
        this.adresse = adresse;
@@ -72,7 +97,7 @@ public class Offre {
         this.description_offre = description_offre;
         
     }
-     public Offre(String adresse, String Date_debut , String heure ,String tel,String description_offre,Integer iposteurfg,String etatoffre) {
+     public Offre(String adresse, String Date_debut , String heure ,String tel,String description_offre,Integer iposteurfg,String etatoffre,String nomposteur,String prenomposteur,String Nomservice) {
         super();
        this.adresse = adresse;
        
@@ -82,6 +107,9 @@ public class Offre {
        this.description_offre = description_offre;
        this.iposteurfg=iposteurfg;
        this.etatoffre=etatoffre;
+       this.nomposteur=nomposteur;
+       this.prenomposteur=prenomposteur;
+       this.Nomservice=Nomservice;
         
     }
 
@@ -99,7 +127,17 @@ public class Offre {
 
     public int getIposteurfg() {
         return iposteurfg;
+        
     }
+
+    public String getNomservice() {
+        return Nomservice;
+    }
+
+    public void setNomservice(String Nomservice) {
+        this.Nomservice = Nomservice;
+    }
+    
      
      
      

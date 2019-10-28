@@ -36,6 +36,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import utils.ConnexionBD;
+import GUI.Posteur_interfaceController;
 
 
 /**
@@ -51,7 +52,7 @@ public class Interface_afficher_serviceController implements Initializable {
             Statement ste;
             public boolean canInscription= true;
             
-            
+         
     
     @FXML
     private Button Btn_retour;

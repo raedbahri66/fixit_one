@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="825.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
   <tabs>
     <Tab text="Demander un service">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="397.0" prefWidth="628.0">
                <children>
                   <Button fx:id="Btn_electricite" layoutX="24.0" layoutY="16.0" mnemonicParsing="false" onAction="#Electricite">
                      <font>
@@ -33,7 +33,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="20.0" layoutY="181.0" mnemonicParsing="false">
+                  <Button fx:id="Btn_Menage" layoutX="20.0" layoutY="181.0" mnemonicParsing="false" onAction="#Menage">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -45,7 +45,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="213.0" layoutY="16.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="184.0">
+                  <Button fx:id="Btn_Plomberie" layoutX="213.0" layoutY="16.0" mnemonicParsing="false" onAction="#Plomberie" prefHeight="140.0" prefWidth="184.0">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -57,7 +57,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="222.0" layoutY="185.0" mnemonicParsing="false">
+                  <Button fx:id="Btn_Renovation" layoutX="222.0" layoutY="185.0" mnemonicParsing="false" onAction="#Renovation">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -69,7 +69,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="429.0" layoutY="180.0" mnemonicParsing="false">
+                  <Button fx:id="Btn_Conciergerie" layoutX="429.0" layoutY="180.0" mnemonicParsing="false" onAction="#Conciergerie">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -81,7 +81,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="417.0" layoutY="16.0" mnemonicParsing="false">
+                  <Button fx:id="Btn_Jardinage" layoutX="417.0" layoutY="16.0" mnemonicParsing="false" onAction="#Jardinage">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -96,6 +96,24 @@
                </children></AnchorPane>
       </content>
     </Tab>
+      <Tab text="Panier des service">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="Table_panier_service" layoutY="7.0" prefHeight="385.0" prefWidth="768.0">
+                    <columns>
+                      <TableColumn fx:id="Column_adress" prefWidth="75.0" text="Adress" />
+                      <TableColumn fx:id="Column_date" prefWidth="75.0" text="Date" />
+                        <TableColumn fx:id="Column_heure" prefWidth="75.0" text="Heure" />
+                        <TableColumn fx:id="Column_description" prefWidth="103.0" text="Description " />
+                        <TableColumn fx:id="Column_etat" prefWidth="72.0" text="Etat d'offre" />
+                        <TableColumn fx:id="Column_Nomservice" prefWidth="117.0" text="Type de service" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
     <Tab text="Profil">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -155,7 +173,161 @@
     </Tab>
       <Tab text="Annonce">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TabPane fx:id="tabheni_m" layoutX="1.0" prefHeight="418.0" prefWidth="729.0" tabClosingPolicy="UNAVAILABLE">
+                     <tabs>
+                        <Tab id="ong_afficherannonce" text="Liste des annonces">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="table_annonce" layoutX="8.0" layoutY="31.0" prefHeight="286.0" prefWidth="701.0">
+                                       <columns>
+                                          <TableColumn id="id" fx:id="id_h" prefWidth="34.0" text="id" />
+                                          <TableColumn id="nom_annonce" fx:id="nom_annonce" prefWidth="103.0" text="Nom annonce" />
+                                          <TableColumn id="adress" fx:id="adresse" prefWidth="103.0" text="Adresse" />
+                                          <TableColumn id="date" fx:id="date" prefWidth="77.0" text="Date" />
+                                          <TableColumn id="description_annonce" fx:id="description" prefWidth="239.0" text="Description annonce" />
+                                          <TableColumn id="telephone" fx:id="tel" prefWidth="83.0" text="telephone" />
+                                          <TableColumn id="prix" fx:id="prix" prefWidth="61.0" text="prix" />
+                                       </columns>
+                                    </TableView>
+                                    <Button layoutX="139.0" layoutY="327.0" mnemonicParsing="false" onAction="#bt_actualiser" prefHeight="40.0" prefWidth="121.0" text="Actualiser">
+                                       <font>
+                                          <Font name="System Bold Italic" size="18.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab id="ong_ajouterannonce" text="ajouter">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="21.0" prefHeight="31.0" prefWidth="157.0" text="Nom annonce">
+                                       <font>
+                                          <Font name="Arial Black" size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="55.0" layoutY="66.0" prefHeight="32.0" prefWidth="112.0" text="Adresse" textFill="#141313">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="55.0" layoutY="106.0" prefHeight="31.0" prefWidth="121.0" text="Date">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="27.0" layoutY="177.0" prefHeight="36.0" prefWidth="215.0" text="Description annonce">
+                                       <font>
+                                          <Font name="Arial Black" size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="38.0" layoutY="261.0" prefHeight="28.0" prefWidth="119.0" text="Telephone">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="55.0" layoutY="320.0" prefHeight="37.0" prefWidth="102.0" text="Prix">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="Nomann" layoutX="176.0" layoutY="22.0" prefHeight="30.0" prefWidth="200.0" />
+                                    <TextField fx:id="adrann" layoutX="176.0" layoutY="70.0" prefHeight="30.0" prefWidth="200.0" />
+                                    <TextArea fx:id="descann" layoutX="245.0" layoutY="152.0" prefHeight="95.0" prefWidth="231.0" />
+                                    <TextField fx:id="telann" layoutX="171.0" layoutY="260.0" prefHeight="30.0" prefWidth="200.0" />
+                                    <TextField fx:id="prixann" layoutX="171.0" layoutY="323.0" prefHeight="30.0" prefWidth="200.0" />
+                                    <Button layoutX="497.0" layoutY="265.0" mnemonicParsing="false" onAction="#bt_ajouterannonce" prefHeight="50.0" prefWidth="150.0" text="Ajouter">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Button>
+                                    <DatePicker fx:id="dateann" layoutX="176.0" layoutY="109.0" prefHeight="34.0" prefWidth="200.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab id="ong_modifierannonce" fx:id="modifheni_tab" text="modifier">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="24.0" layoutY="27.0" prefHeight="31.0" prefWidth="151.0" text="Nom annonce">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="67.0" layoutY="68.0" prefHeight="30.0" prefWidth="114.0" text="Adresse">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="67.0" layoutY="110.0" prefHeight="30.0" prefWidth="85.0" text="Date">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="33.0" layoutY="179.0" prefHeight="42.0" prefWidth="123.0" text="Description">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="59.0" layoutY="274.0" prefHeight="32.0" prefWidth="93.0" text="Prix">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="modif_nomannonce" layoutX="168.0" layoutY="28.0" prefHeight="30.0" prefWidth="200.0" />
+                                    <TextField fx:id="modif_adresseannonce" layoutX="168.0" layoutY="68.0" prefHeight="30.0" prefWidth="200.0" />
+                                    <TextArea fx:id="modif_descannonce" layoutX="168.0" layoutY="156.0" prefHeight="102.0" prefWidth="200.0" />
+                                    <TextField fx:id="modif_prix" layoutX="168.0" layoutY="278.0" prefHeight="30.0" prefWidth="200.0" />
+                                    <Button layoutX="449.0" layoutY="115.0" mnemonicParsing="false" onAction="#bt_modifierannonce" prefHeight="50.0" prefWidth="154.0" text="Modifier">
+                                       <font>
+                                          <Font name="System Bold Italic" size="18.0" />
+                                       </font>
+                                    </Button>
+                                    <DatePicker fx:id="modif_date" layoutX="168.0" layoutY="109.0" prefHeight="32.0" prefWidth="201.0" />
+                                    <TextField fx:id="idheni" layoutX="168.0" layoutY="2.0" visible="false" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab text="Mes annonces">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="table_annonce1" layoutX="14.0" layoutY="20.0" prefHeight="273.0" prefWidth="701.0">
+                                       <columns>
+                                          <TableColumn fx:id="id1" prefWidth="36.0" text="id" visible="false" />
+                                          <TableColumn fx:id="nom_annonce1" prefWidth="89.0" text="Nom annonce" />
+                                          <TableColumn fx:id="adresse1" prefWidth="89.0" text="Adresse" />
+                                          <TableColumn fx:id="date1" prefWidth="89.0" text="Date" />
+                                          <TableColumn fx:id="description1" prefWidth="138.0" text="Description annonce" />
+                                          <TableColumn fx:id="etat1" prefWidth="97.0" text="Etat annonce" />
+                                          <TableColumn fx:id="tel1" prefWidth="90.0" text="telephone" />
+                                          <TableColumn fx:id="prix1" prefWidth="72.0" text="Prix" />
+                                       </columns>
+                                    </TableView>
+                                    <Button layoutX="157.0" layoutY="318.0" mnemonicParsing="false" onAction="#bt_actualiser1" prefHeight="39.0" prefWidth="125.0" text="Actualiser">
+                                       <font>
+                                          <Font name="System Bold Italic" size="18.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="339.0" layoutY="318.0" mnemonicParsing="false" onAction="#bt_supprimerannonce" prefHeight="40.0" prefWidth="125.0" text="Supprimer">
+                                       <font>
+                                          <Font name="System Bold Italic" size="18.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
          </content>
       </Tab>
       <Tab text="Espace Troc">
@@ -185,7 +357,7 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView fx:id="tableechangesposteur" layoutX="62.0" layoutY="142.0" prefHeight="383.0" prefWidth="638.0">
+                                    <TableView fx:id="tableechangesposteur" layoutX="31.0" layoutY="98.0" prefHeight="383.0" prefWidth="638.0">
                                       <columns>
                                         <TableColumn fx:id="tablepofp" prefWidth="120.0" text="proposition offerte" />
                                         <TableColumn fx:id="tableposp" prefWidth="134.0" text="proposition souhaitee" />
@@ -194,8 +366,15 @@
                                           <TableColumn fx:id="tablenpos" prefWidth="134.0" text="nom posteur" />
                                       </columns>
                                     </TableView>
-                                    <TextField fx:id="repos" layoutX="268.0" layoutY="53.0" />
-                                    <Button fx:id="rechercherprop" layoutX="278.0" layoutY="102.0" mnemonicParsing="false" onAction="#rechercherechange" text="rechercher un proposition" />
+                                    <TextField fx:id="repos" layoutX="268.0" layoutY="53.0" promptText="Rechercher" />
+                                    <Button fx:id="rechercherprop" layoutX="434.0" layoutY="51.0" mnemonicParsing="false" onAction="#rechercherechange" prefHeight="29.0" prefWidth="42.0">
+                                       <graphic>
+                                          <ImageView fitHeight="21.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../imgage_article.jpg" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
                                  </children></AnchorPane>
                         </content>
                       </Tab>
@@ -203,9 +382,10 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="201.0" prefWidth="237.0">
                                  <children>
-                                    <TableView fx:id="tablemesproposition" layoutX="106.0" prefHeight="200.0" prefWidth="544.0">
+                                    <TableView fx:id="tablemesproposition" layoutX="80.0" layoutY="14.0" onSort="#utilisertableechange" prefHeight="200.0" prefWidth="657.0">
                                       <columns>
-                                        <TableColumn fx:id="tabmpof" prefWidth="120.0" text="propositionofferte" />
+                                          <TableColumn fx:id="tabid" minWidth="0.0" prefWidth="0.0" text="id" />
+                                        <TableColumn fx:id="tabmpof" prefWidth="240.0" text="propositionofferte" />
                                         <TableColumn fx:id="tabmpos" prefWidth="152.0" text="proposition souhaitee" />
                                           <TableColumn fx:id="tabd" prefWidth="152.0" text="description" />
                                           <TableColumn fx:id="tabdatem" prefWidth="152.0" text="date d'ajout" />
@@ -213,14 +393,15 @@
                                     </TableView>
                                     <Label layoutX="163.0" layoutY="222.0" text="propositionofferte" />
                                     <Label layoutX="163.0" layoutY="270.0" text="propositionshouaitee" />
-                                    <Label layoutX="190.0" layoutY="314.0" text="description" />
-                                    <Label fx:id="fileddaj" layoutX="188.0" layoutY="405.0" text="date d'ajout" />
-                                    <TextField fx:id="filedpof" layoutX="304.0" layoutY="218.0" />
-                                    <TextField fx:id="filedpos" layoutX="307.0" layoutY="266.0" />
-                                    <TextArea fx:id="fileddes" layoutX="307.0" layoutY="307.0" prefHeight="65.0" prefWidth="178.0" />
-                                    <DatePicker layoutX="300.0" layoutY="401.0" />
-                                    <Button fx:id="modifierpro" layoutX="227.0" layoutY="462.0" mnemonicParsing="false" onAction="#modifiermechange" text="modifier mes propositions" />
-                                    <Button fx:id="supppro" layoutX="441.0" layoutY="462.0" mnemonicParsing="false" onAction="#suppmechange" text="supprimer mes propositions" />
+                                    <Label layoutX="190.0" layoutY="320.0" text="description" />
+                                    <Label fx:id="fileddaj" layoutX="188.0" layoutY="414.0" text="date d'ajout" />
+                                    <TextField fx:id="filedpof" layoutX="295.0" layoutY="218.0" />
+                                    <TextField fx:id="filedpos" layoutX="295.0" layoutY="266.0" />
+                                    <TextArea fx:id="fileddes" layoutX="293.0" layoutY="314.0" prefHeight="65.0" prefWidth="178.0" />
+                                    <DatePicker fx:id="textdat" layoutX="295.0" layoutY="410.0" />
+                                    <Button fx:id="modifierpro" layoutX="227.0" layoutY="475.0" mnemonicParsing="false" onAction="#modifiermechange" text="modifier mes propositions" />
+                                    <Button fx:id="supppro" layoutX="442.0" layoutY="475.0" mnemonicParsing="false" onAction="#suppmechange" text="supprimer mes propositions" />
+                                    <TextField fx:id="idme" layoutX="14.0" layoutY="210.0" prefHeight="25.0" prefWidth="20.0" visible="false" />
                                  </children></AnchorPane>
                            </content>
                         </Tab>
@@ -262,13 +443,13 @@
                                                 <Font name="System Bold" size="22.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="combobox_filter" layoutX="165.0" layoutY="97.0" prefHeight="33.0" prefWidth="163.0" />
+                                          <ComboBox fx:id="combobox_filter" layoutX="165.0" layoutY="97.0" prefHeight="33.0" prefWidth="163.0" promptText="Tous()" />
                                           <Label layoutX="40.0" layoutY="94.0" prefHeight="38.0" prefWidth="101.0" text="Categorie:">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="recherche_produit" layoutX="542.0" layoutY="95.0" prefHeight="35.0" prefWidth="168.0" promptText="Recherhce" />
+                                          <TextField fx:id="recherche_produit" layoutX="542.0" layoutY="95.0" onKeyReleased="#OnkeyTypedfilter" prefHeight="35.0" prefWidth="168.0" promptText="Recherhce" />
                                           <Label layoutX="435.0" layoutY="200.0" prefHeight="38.0" prefWidth="87.0" text="Numero:">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
@@ -323,23 +504,23 @@
                                           </ImageView>
                                           <TextField fx:id="nom_produit" layoutX="140.0" layoutY="54.0" />
                                           <TextField fx:id="prix_produit" layoutX="140.0" layoutY="118.0" />
-                                          <TextArea fx:id="description_produit" layoutX="144.0" layoutY="330.0" prefHeight="105.0" prefWidth="279.0" />
-                                          <Label layoutX="38.0" layoutY="49.0" prefHeight="40.0" prefWidth="74.0" text="Produit:">
+                                          <TextArea fx:id="description_produit" layoutX="140.0" layoutY="337.0" prefHeight="105.0" prefWidth="279.0" />
+                                          <Label layoutX="39.0" layoutY="50.0" prefHeight="40.0" prefWidth="74.0" text="Produit:">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="38.0" layoutY="114.0" prefHeight="38.0" prefWidth="64.0" text="Prix:" textFill="#141313">
+                                          <Label layoutX="37.0" layoutY="115.0" prefHeight="38.0" prefWidth="64.0" text="Prix:" textFill="#141313">
                                              <font>
                                                 <Font name="System Bold" size="17.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="37.0" layoutY="318.0" prefHeight="38.0" prefWidth="101.0" text="Description:">
+                                          <Label layoutX="35.0" layoutY="326.0" prefHeight="38.0" prefWidth="101.0" text="Description:">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="43.0" layoutY="257.0" prefHeight="38.0" prefWidth="101.0" text="Categorie:">
+                                          <Label layoutX="34.0" layoutY="257.0" prefHeight="38.0" prefWidth="101.0" text="Categorie:">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
@@ -351,12 +532,37 @@
                                              </font>
                                           </Label>
                                           <ComboBox fx:id="categorie_produit" layoutX="141.0" layoutY="264.0" prefHeight="31.0" prefWidth="185.0" />
-                                          <Label layoutX="43.0" layoutY="182.0" prefHeight="41.0" prefWidth="89.0" text="Numero°" textFill="#141313">
+                                          <Label layoutX="37.0" layoutY="182.0" prefHeight="41.0" prefWidth="89.0" text="Numero°" textFill="#141313">
                                              <font>
                                                 <Font name="System Bold" size="17.0" />
                                              </font>
                                           </Label>
                                           <TextField fx:id="numero" layoutX="140.0" layoutY="187.0" />
+                                          <Label fx:id="validation_prix" layoutX="141.0" layoutY="152.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="validation_numero" layoutX="141.0" layoutY="223.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="validation_produit" layoutX="141.0" layoutY="89.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="validation_categorie" layoutX="141.0" layoutY="301.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="validation_description" layoutX="141.0" layoutY="449.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
                                        </children>
                                     </AnchorPane>
                                  </content>
@@ -372,13 +578,13 @@
                                           </ImageView>
                                           <TableView fx:id="table1" layoutX="30.0" layoutY="67.0" onSort="#setValueformtableviewtotext" prefHeight="159.0" prefWidth="779.0">
                                              <columns>
-                                                <TableColumn fx:id="table_nom1" prefWidth="85.0" text="Produit" />
-                                                <TableColumn fx:id="table_prix1" prefWidth="90.0" text="Prix(DT)" />
-                                                <TableColumn fx:id="table_description1" prefWidth="150.0" text="Description" />
-                                                <TableColumn fx:id="table_categorie1" prefWidth="121.0" text="Categorie" />
-                                                <TableColumn fx:id="table_numero1" prefWidth="113.0" text="Numero°" />
-                                                <TableColumn fx:id="table_etat_vente" prefWidth="112.0" text="Etat" />
-                                                <TableColumn fx:id="table_etat_validation" prefWidth="98.0" text="Statut" />
+                                                <TableColumn fx:id="table_nom1" prefWidth="113.0" text="Produit" />
+                                                <TableColumn fx:id="table_prix1" prefWidth="71.0" text="Prix(DT)" />
+                                                <TableColumn fx:id="table_description1" prefWidth="188.0" text="Description" />
+                                                <TableColumn fx:id="table_categorie1" prefWidth="150.0" text="Categorie" />
+                                                <TableColumn fx:id="table_numero1" prefWidth="131.0" text="Numero°" />
+                                                <TableColumn fx:id="table_etat_vente" prefWidth="116.0" text="Etat" />
+                                                <TableColumn fx:id="table_etat_validation" minWidth="0.0" prefWidth="0.0" text="Statut" />
                                                 <TableColumn fx:id="table_id1" minWidth="0.0" prefWidth="0.0" text="id" />
                                              </columns>
                                           </TableView>
