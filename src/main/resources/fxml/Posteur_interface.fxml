@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="825.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="825.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
   <tabs>
     <Tab text="Demander un service">
       <content>
@@ -349,6 +349,10 @@
                                     <TextArea fx:id="pdp" layoutX="262.0" layoutY="195.0" prefHeight="59.0" prefWidth="154.0" />
                                     <DatePicker fx:id="dap" layoutX="262.0" layoutY="296.0" prefHeight="25.0" prefWidth="158.0" />
                                     <Button fx:id="ajoutep" layoutX="316.0" layoutY="389.0" mnemonicParsing="false" onAction="#ajouterechangep" text="Ajouter" />
+                                    <Label fx:id="vprof" layoutX="432.0" layoutY="91.0" prefHeight="21.0" prefWidth="126.0" />
+                                    <Label fx:id="vpros" layoutX="455.0" layoutY="143.0" prefHeight="17.0" prefWidth="129.0" />
+                                    <Label fx:id="vdp" layoutX="455.0" layoutY="212.0" prefHeight="17.0" prefWidth="130.0" />
+                                    <Label fx:id="vdap" layoutX="481.0" layoutY="300.0" prefHeight="17.0" prefWidth="126.0" />
                                  </children>
                               </AnchorPane>
                         </content>

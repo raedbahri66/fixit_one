@@ -394,6 +394,17 @@ public class Posteur_interfaceController implements Initializable {
     private TableColumn<?, ?> tel1;
     @FXML
     private TableColumn<?, ?> prix1;
+      @FXML
+    private Label vprof;
+
+    @FXML
+    private Label vpros;
+
+    @FXML
+    private Label vdp;
+
+    @FXML
+    private Label vdap;
 
     
     public static final LocalDate NOW_LOCAL_DATE (){
@@ -977,28 +988,39 @@ public class Posteur_interfaceController implements Initializable {
 
     @FXML
     private void ajouterechangep(ActionEvent event) throws SQLException, IOException {
-               boolean test= false;
+               boolean test= true;
+               
         if( pofp.getText().isEmpty()){
            //pofp.getText().setVisible(true);
             test = false;
-           JOptionPane.showMessageDialog (null,"il faut ajouter le proposition offerte ");
+            vprof.setText("champs vide");
         }
-        else if( posp.getText().isEmpty())
+             else if(! pofp.getText().isEmpty()) 
+             {
+                 vprof.setText("");
+          
+        }
+       if( posp.getText().isEmpty())
          {
            test = false;
-           JOptionPane.showMessageDialog (null," ajouter la proposition souhaitee");
+            vpros.setText("champs vide"); 
+        } else if(! posp.getText().isEmpty()) 
+        {
+             vpros.setText("");
         }
-        else if( pdp.getText().isEmpty())
+       if( pdp.getText().isEmpty())
          {
            test = false;
-           JOptionPane.showMessageDialog (null," ajouter une description ");
+           vdp.setText("champs vide");
+        }else if (! vdp.getText().isEmpty())
+        {
+           vdp.setText(""); 
         }
-           /* if( dap.tr.isEmpty ())
+           
+            /* if( dap.tr.isEmpty ())
          {
            test = false;
            JOptionPane.showMessageDialog (null," ajouter une date ");*/
-        
-       
             if(test){
         PosteurService p = new PosteurService();
           Posteur p1= new Posteur();
@@ -1024,8 +1046,8 @@ public class Posteur_interfaceController implements Initializable {
    
             }   else 
         {
-            JOptionPane.showMessageDialog(null, "Remplir tous les champs");
-                          test = true;
+            //JOptionPane.showMessageDialog(null, "Remplir tous les champs");
+                          test = false;
         }
     }
       @FXML
