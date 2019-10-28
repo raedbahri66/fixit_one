@@ -16,14 +16,15 @@ public class Vote {
    private int idjobeur_fg;
    private int idposteur_fg;
    private String nomp;
-
+   private String prenomp;
+   private int nb_like;
+   private int nb_dislike;
+   
     public Vote(int idjobeur_fg, int idposteur_fg) {
         this.idjobeur_fg = idjobeur_fg;
         this.idposteur_fg = idposteur_fg;
     }
-   private String prenomp;
-   private int nb_like;
-   private int nb_dislike;
+
 
     public Vote() {
     }
@@ -34,6 +35,13 @@ public class Vote {
         this.nomp = nomp;
         this.prenomp = prenomp;
         this.nb_like = nb_like;
+     
+    }
+
+    public Vote(int idjobeur_fg, String nomp, String prenomp, int nb_dislike) {
+        this.idjobeur_fg = idjobeur_fg;
+        this.nomp = nomp;
+        this.prenomp = prenomp;
         this.nb_dislike = nb_dislike;
     }
 

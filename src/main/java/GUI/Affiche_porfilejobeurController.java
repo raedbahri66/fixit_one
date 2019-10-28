@@ -148,24 +148,44 @@ public class Affiche_porfilejobeurController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        top.setToggleGroup(vote);    
-        flop.setToggleGroup(vote);
-        afficher();
-        getid();
-        Jobeur A=new Jobeur();
-        A=Interface_choisir_jobeurController.j1;
-        nom_J.setText(A.getNom());
-        prenom_J.setText(A.getPrenom());
-        String date=A.getDate_naissance().toLocalDate().toString();
-        datenaissance_J.setText(date);
-        String tele= String.valueOf(A.getTel());
-        tele_J.setText(tele);
-        Email_J.setText(A.getEmail());
-        
-        String cin= String.valueOf(A.getCin());
-        cin_J.setText(cin);
-        System.out.println(Interface_choisir_jobeurController.j1);
+        try {
+            // TODO
+            top.setToggleGroup(vote);
+            flop.setToggleGroup(vote);
+            afficher();
+            getid();
+            Jobeur A=new Jobeur();
+            A=Interface_choisir_jobeurController.j1;
+            nom_J.setText(A.getNom());
+            prenom_J.setText(A.getPrenom());
+            String date=A.getDate_naissance().toLocalDate().toString();
+            datenaissance_J.setText(date);
+            String tele= String.valueOf(A.getTel());
+            tele_J.setText(tele);
+            Email_J.setText(A.getEmail());
+            String cin= String.valueOf(A.getCin());
+            cin_J.setText(cin);
+            System.out.println(Interface_choisir_jobeurController.j1);
+            Posteur p1=new Posteur();
+            p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+            int cin_posteurvote=p1.getCin();
+            int cin_jobeurvote=A.getCin();
+            GestionVote v1 =new GestionVote();
+            boolean t=v1.verificationvote(cin_posteurvote,cin_jobeurvote,"nb_like");
+            System.out.println("zzzzzzzzzzzz"+t);
+            if(v1.verificationvote(cin_posteurvote,cin_jobeurvote,"nb_like")){
+                System.out.println("zzzzzzzzzzzz"+t);
+            top.setSelected(true);}
+            else if(v1.verificationvote(cin_posteurvote,cin_jobeurvote,"nb_dislike"))
+            flop.setSelected(true);
+            else{
+              top.setSelected(false);
+            flop.setSelected(false);}
+        } catch (SQLException ex) {
+            Logger.getLogger(Affiche_porfilejobeurController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Affiche_porfilejobeurController.class.getName()).log(Level.SEVERE, null, ex);
+        }
          
     }    
 
@@ -318,24 +338,51 @@ public class Affiche_porfilejobeurController implements Initializable {
     }
 
     @FXML
-    private void vote(ActionEvent event) {
-        if(top.isSelected()){
-       GestionVote v1 =new GestionVote();
-       Jobeur A=new Jobeur();
-       GestionFavoris f1=new GestionFavoris();
+    private void vote(ActionEvent event) throws SQLException, IOException {
+           Jobeur A=new Jobeur();
        A=Interface_choisir_jobeurController.j1;
-       int cin_jobeur=A.getCin();
+        int cin_jobeur=A.getCin();
+     Posteur p1= new Posteur();
+     GestionVote v1 =new GestionVote();
+        p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+         int cin_posteur=AcceuilController.cinlogin;
+       if(top.isSelected()){
+             boolean t=v1.verificationvote1(cin_posteur,cin_jobeur);
+          Vote v=new Vote(cin_posteur,cin_jobeur);
+         if(v1.verificationvote1(cin_posteur,cin_jobeur)){
+            v1.UpdateVote(v,cin_jobeur);
+            System.out.println("ouuuuuuh"+t);}
+            else
+             v1.ajouterVote(v);}
+     
+     
+    
+      }
 
-       int cin_posteur=AcceuilController.cinlogin;
-       Vote v=new Vote(cin_jobeur,cin_posteur);
-            System.out.println(v);
-       v1.UpdateVote(v,cin_jobeur);
-       /*v1.ajouterVote(v);*/
-        }
+
+    @FXML
+    private void vote_dislike(ActionEvent event) throws SQLException, IOException {
+     Jobeur A=new Jobeur();
+     A=Interface_choisir_jobeurController.j1;
+     int cin_jobeur=A.getCin();
+     Posteur p1= new Posteur();
+     GestionVote v1 =new GestionVote();
+      p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+     int cin_posteur=AcceuilController.cinlogin;
+     System.out.println(cin_jobeur+" gggggggg"+cin_posteur);
+        Vote v=new Vote(cin_jobeur,cin_posteur);
+        if(flop.isSelected()){
+            boolean z=v1.verificationvote1(cin_posteur,cin_jobeur);
+            System.out.println("ouuuuuuh"+z);
+         if(v1.verificationvote1(cin_posteur,cin_jobeur)){
+                System.out.println("ouuuuuuh"+z);
+            v1.UpdateVotedislike(v,cin_jobeur);}
+            else
+             v1.ajouterVotedislike(v);
+             }
+    }
+}
          
         
         
-    
-
-   
-    }}
+  

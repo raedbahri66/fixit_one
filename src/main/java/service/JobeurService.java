@@ -325,17 +325,9 @@ try {
     }
 
     @Override
-    public void ajouterVote(Jobeur p) {
-         String req="INSERT INTO `Jobeur` "
-                    + "(`nb_like`) "
-                    + "VALUES (?)";
-         try{ PreparedStatement ste = c.prepareStatement(req);
-         ste.setInt(5,p.getNb_like()+1);
-           ste.executeUpdate();
-            JOptionPane.showMessageDialog(null," jobuer ajouté à votre liste favoris "); 
-        } catch (SQLException e) {System.err.println(e);
-    JOptionPane.showMessageDialog(null,"error ");
-        }
+    public void ajouterVote(Jobeur p,int cin_jobeur) {
+        
+        
     }
 
     @Override

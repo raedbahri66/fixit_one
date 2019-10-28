@@ -143,7 +143,7 @@
                   <Font name="Bauhaus 93" size="19.0" />
                </font>
             </Label>
-            <RadioButton fx:id="flop" layoutX="132.0" layoutY="206.0" mnemonicParsing="false" />
+            <RadioButton fx:id="flop" layoutX="132.0" layoutY="206.0" mnemonicParsing="false" onAction="#vote_dislike" />
             <Label layoutX="89.0" layoutY="195.0" prefHeight="39.0" prefWidth="35.0" text="Flop" textFill="#ffffffeb">
                <font>
                   <Font name="Bauhaus 93" size="18.0" />
