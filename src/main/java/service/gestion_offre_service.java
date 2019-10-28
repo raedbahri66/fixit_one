@@ -109,12 +109,12 @@ public class gestion_offre_service implements IOffre{
       } return offre; 
     }
     
-    public List<Offre> afficherOffre_Jobeur() {
+    public List<Offre> afficherOffre_Jobeur(int cin_jobeur) {
         
             List<Offre> offre = new ArrayList<>();    
      // Where idposteur_fg=2' 
       try {
-          String req="select * from offre_service ";
+          String req="select * from offre_service Where cinj="+cin_jobeur;
       
           PreparedStatement ste = c.prepareStatement(req);
           
