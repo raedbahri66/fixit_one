@@ -105,8 +105,9 @@
                       <TableColumn fx:id="Column_adress" prefWidth="75.0" text="Adress" />
                       <TableColumn fx:id="Column_date" prefWidth="75.0" text="Date" />
                         <TableColumn fx:id="Column_heure" prefWidth="75.0" text="Heure" />
-                        <TableColumn fx:id="Column_description" prefWidth="75.0" text="Description " />
-                        <TableColumn fx:id="Column_etat" prefWidth="75.0" text="Etat d'offre" />
+                        <TableColumn fx:id="Column_description" prefWidth="103.0" text="Description " />
+                        <TableColumn fx:id="Column_etat" prefWidth="72.0" text="Etat d'offre" />
+                        <TableColumn fx:id="Column_Nomservice" prefWidth="117.0" text="Type de service" />
                     </columns>
                   </TableView>
                </children>
@@ -172,7 +173,161 @@
     </Tab>
       <Tab text="Annonce">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TabPane fx:id="tabheni_m" layoutX="1.0" prefHeight="418.0" prefWidth="729.0" tabClosingPolicy="UNAVAILABLE">
+                     <tabs>
+                        <Tab id="ong_afficherannonce" text="Liste des annonces">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="table_annonce" layoutX="8.0" layoutY="31.0" prefHeight="286.0" prefWidth="701.0">
+                                       <columns>
+                                          <TableColumn id="id" fx:id="id_h" prefWidth="34.0" text="id" />
+                                          <TableColumn id="nom_annonce" fx:id="nom_annonce" prefWidth="103.0" text="Nom annonce" />
+                                          <TableColumn id="adress" fx:id="adresse" prefWidth="103.0" text="Adresse" />
+                                          <TableColumn id="date" fx:id="date" prefWidth="77.0" text="Date" />
+                                          <TableColumn id="description_annonce" fx:id="description" prefWidth="239.0" text="Description annonce" />
+                                          <TableColumn id="telephone" fx:id="tel" prefWidth="83.0" text="telephone" />
+                                          <TableColumn id="prix" fx:id="prix" prefWidth="61.0" text="prix" />
+                                       </columns>
+                                    </TableView>
+                                    <Button layoutX="139.0" layoutY="327.0" mnemonicParsing="false" onAction="#bt_actualiser" prefHeight="40.0" prefWidth="121.0" text="Actualiser">
+                                       <font>
+                                          <Font name="System Bold Italic" size="18.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab id="ong_ajouterannonce" text="ajouter">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="21.0" prefHeight="31.0" prefWidth="157.0" text="Nom annonce">
+                                       <font>
+                                          <Font name="Arial Black" size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="55.0" layoutY="66.0" prefHeight="32.0" prefWidth="112.0" text="Adresse" textFill="#141313">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="55.0" layoutY="106.0" prefHeight="31.0" prefWidth="121.0" text="Date">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="27.0" layoutY="177.0" prefHeight="36.0" prefWidth="215.0" text="Description annonce">
+                                       <font>
+                                          <Font name="Arial Black" size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="38.0" layoutY="261.0" prefHeight="28.0" prefWidth="119.0" text="Telephone">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="55.0" layoutY="320.0" prefHeight="37.0" prefWidth="102.0" text="Prix">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="Nomann" layoutX="176.0" layoutY="22.0" prefHeight="30.0" prefWidth="200.0" />
+                                    <TextField fx:id="adrann" layoutX="176.0" layoutY="70.0" prefHeight="30.0" prefWidth="200.0" />
+                                    <TextArea fx:id="descann" layoutX="245.0" layoutY="152.0" prefHeight="95.0" prefWidth="231.0" />
+                                    <TextField fx:id="telann" layoutX="171.0" layoutY="260.0" prefHeight="30.0" prefWidth="200.0" />
+                                    <TextField fx:id="prixann" layoutX="171.0" layoutY="323.0" prefHeight="30.0" prefWidth="200.0" />
+                                    <Button layoutX="497.0" layoutY="265.0" mnemonicParsing="false" onAction="#bt_ajouterannonce" prefHeight="50.0" prefWidth="150.0" text="Ajouter">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Button>
+                                    <DatePicker fx:id="dateann" layoutX="176.0" layoutY="109.0" prefHeight="34.0" prefWidth="200.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab id="ong_modifierannonce" fx:id="modifheni_tab" text="modifier">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="24.0" layoutY="27.0" prefHeight="31.0" prefWidth="151.0" text="Nom annonce">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="67.0" layoutY="68.0" prefHeight="30.0" prefWidth="114.0" text="Adresse">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="67.0" layoutY="110.0" prefHeight="30.0" prefWidth="85.0" text="Date">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="33.0" layoutY="179.0" prefHeight="42.0" prefWidth="123.0" text="Description">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="59.0" layoutY="274.0" prefHeight="32.0" prefWidth="93.0" text="Prix">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="modif_nomannonce" layoutX="168.0" layoutY="28.0" prefHeight="30.0" prefWidth="200.0" />
+                                    <TextField fx:id="modif_adresseannonce" layoutX="168.0" layoutY="68.0" prefHeight="30.0" prefWidth="200.0" />
+                                    <TextArea fx:id="modif_descannonce" layoutX="168.0" layoutY="156.0" prefHeight="102.0" prefWidth="200.0" />
+                                    <TextField fx:id="modif_prix" layoutX="168.0" layoutY="278.0" prefHeight="30.0" prefWidth="200.0" />
+                                    <Button layoutX="449.0" layoutY="115.0" mnemonicParsing="false" onAction="#bt_modifierannonce" prefHeight="50.0" prefWidth="154.0" text="Modifier">
+                                       <font>
+                                          <Font name="System Bold Italic" size="18.0" />
+                                       </font>
+                                    </Button>
+                                    <DatePicker fx:id="modif_date" layoutX="168.0" layoutY="109.0" prefHeight="32.0" prefWidth="201.0" />
+                                    <TextField fx:id="idheni" layoutX="168.0" layoutY="2.0" visible="false" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab text="Mes annonces">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="table_annonce1" layoutX="14.0" layoutY="20.0" prefHeight="273.0" prefWidth="701.0">
+                                       <columns>
+                                          <TableColumn fx:id="id1" prefWidth="36.0" text="id" visible="false" />
+                                          <TableColumn fx:id="nom_annonce1" prefWidth="89.0" text="Nom annonce" />
+                                          <TableColumn fx:id="adresse1" prefWidth="89.0" text="Adresse" />
+                                          <TableColumn fx:id="date1" prefWidth="89.0" text="Date" />
+                                          <TableColumn fx:id="description1" prefWidth="138.0" text="Description annonce" />
+                                          <TableColumn fx:id="etat1" prefWidth="97.0" text="Etat annonce" />
+                                          <TableColumn fx:id="tel1" prefWidth="90.0" text="telephone" />
+                                          <TableColumn fx:id="prix1" prefWidth="72.0" text="Prix" />
+                                       </columns>
+                                    </TableView>
+                                    <Button layoutX="157.0" layoutY="318.0" mnemonicParsing="false" onAction="#bt_actualiser1" prefHeight="39.0" prefWidth="125.0" text="Actualiser">
+                                       <font>
+                                          <Font name="System Bold Italic" size="18.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="339.0" layoutY="318.0" mnemonicParsing="false" onAction="#bt_supprimerannonce" prefHeight="40.0" prefWidth="125.0" text="Supprimer">
+                                       <font>
+                                          <Font name="System Bold Italic" size="18.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
          </content>
       </Tab>
       <Tab text="Espace Troc">

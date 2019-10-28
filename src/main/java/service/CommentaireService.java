@@ -6,6 +6,8 @@
 package service;
 
 import entites.Commentaire;
+import entites.Jobeur;
+import entites.Posteur;
 import iService.iCommentaire;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -90,8 +92,7 @@ Connection c = ConnexionBD.getInstanceConnexionBD().getConnection();
             Logger.getLogger(Articlegestion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-
+   
     @Override
     public List<Commentaire> afficherCommentaire() {
     List<Commentaire> commentaires = new ArrayList<>();
@@ -116,7 +117,7 @@ Connection c = ConnexionBD.getInstanceConnexionBD().getConnection();
      return commentaires;
     
     }
-    }
+}
 
    
 
