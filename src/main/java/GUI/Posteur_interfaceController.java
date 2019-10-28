@@ -1056,8 +1056,8 @@ Echange E = new Echange(id);
        System.err.println(AcceuilController.cinlogin);
         PosteurService ps = new PosteurService();
         Posteur p1= new Posteur();
-        Integer o =p1.getId();
-       gos.afficherOffre(o);
+       // Integer o =p1.getId();
+       gos.afficherOffre();
         Table_panier_service.setItems(data5);
      Column_adress.setCellValueFactory(new PropertyValueFactory <Offre,String>("adresse"));
      Column_date.setCellValueFactory(new PropertyValueFactory <Offre,String>("Date_debut"));
@@ -1068,7 +1068,7 @@ Echange E = new Echange(id);
    
     }
        gestion_offre_service gos = new gestion_offre_service();
-    ArrayList offre2= (ArrayList) gos.afficherOffre(id);
+    ArrayList offre2= (ArrayList) gos.afficherOffre();
     public ObservableList data5 = FXCollections.observableArrayList(offre2);
 
     // Oussama//
