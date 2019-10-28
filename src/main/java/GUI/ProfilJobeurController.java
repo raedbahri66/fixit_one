@@ -24,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
 import service.JobeurService;
 import service.PosteurService;
 
@@ -77,6 +78,7 @@ public class ProfilJobeurController implements Initializable {
         image_post.setImage(JobeurService.A1);
         spec_11.setText(p1.getJob());
          System.out.println(JobeurService.A1);
+        
     }    
 
     @FXML

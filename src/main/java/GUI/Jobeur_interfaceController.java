@@ -46,6 +46,8 @@ import javax.swing.JOptionPane;
 import service.EchangeGestion;
 import service.JobeurService;
 import entites.Offre;
+import javafx.scene.text.Text;
+import service.GestionVote;
 import service.PosteurService;
 import service.gestion_offre_service;
 
@@ -212,6 +214,10 @@ public class Jobeur_interfaceController implements Initializable {
     private TextField file_pdf_p1;
     @FXML
     private Button pdf_p_btn1;
+    @FXML
+    private Text label_top;
+    @FXML
+    private Text label_flop;
 
     @FXML
     void ajouterechange(ActionEvent event) {
@@ -416,6 +422,12 @@ public class Jobeur_interfaceController implements Initializable {
 
          ///////////////////////////Raed bahri*//////////////////////////////////
                 
+        
+         GestionVote v1 =new GestionVote();
+         int nblike = v1.countlike(AcceuilController.cinlogin);
+         int nbdislike = v1.countdislik(AcceuilController.cinlogin);
+        label_top.setText(String.valueOf(nblike));
+        label_flop.setText(String.valueOf(nbdislike));
     }    
 
     @FXML
