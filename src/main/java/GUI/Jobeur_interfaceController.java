@@ -45,7 +45,9 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import service.EchangeGestion;
 import service.JobeurService;
+import entites.Offre;
 import service.PosteurService;
+import service.gestion_offre_service;
 
 /**
  * FXML Controller class
@@ -143,6 +145,29 @@ public class Jobeur_interfaceController implements Initializable {
     private TextField mpf;
     private FileInputStream fis;
     private File file;
+    @FXML
+    private TableView<Offre> Table_offre_jobeur;
+
+    @FXML
+    private TableColumn<Offre, String> Column_adresse;
+
+    @FXML
+    private TableColumn<Offre, String> Column_date;
+
+    @FXML
+    private TableColumn<Offre, String> Column_heure;
+
+    @FXML
+    private TableColumn<Offre, String> Column__description;
+
+    @FXML
+    private TableColumn<Offre, String> Column__tel;
+
+    @FXML
+    private TableColumn<Offre, String> Column_nomp;
+
+    @FXML
+    private TableColumn<Offre, String> Column_prenomp;
 
 
        Echange E=new Echange();
@@ -274,6 +299,14 @@ public class Jobeur_interfaceController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        /////Oussama//
+     try {
+         afficher_offre_jobeur();
+     } catch (SQLException ex) {
+         Logger.getLogger(Jobeur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+     } catch (IOException ex) {
+         Logger.getLogger(Jobeur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+     } //Oussama//
        //tableechanges.setItems(data);
                          idechanges.setCellValueFactory(new PropertyValueFactory<Echange,String>("id"));
          propositionoff.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
@@ -383,5 +416,28 @@ public class Jobeur_interfaceController implements Initializable {
                           canModif = true;
         }
     }
+    
+    public void afficher_offre_jobeur() throws SQLException, IOException
+    {
+       //System.err.println(AcceuilController.cinlogin);
+        //PosteurService ps = new PosteurService();
+       // Posteur p1= new Posteur();
+       // Integer o =p1.getId();
+       gos.afficherOffre_Jobeur();
+        Table_offre_jobeur.setItems(data6);
+     Column_adresse.setCellValueFactory(new PropertyValueFactory <Offre,String>("adresse"));
+     Column_date.setCellValueFactory(new PropertyValueFactory <Offre,String>("Date_debut"));
+     Column_heure.setCellValueFactory(new PropertyValueFactory <Offre,String>("heure"));
+     Column__description.setCellValueFactory(new PropertyValueFactory <Offre,String>("description_offre"));
+     Column__tel.setCellValueFactory(new PropertyValueFactory <Offre,String>("tel"));
+     Column_nomp.setCellValueFactory(new PropertyValueFactory <Offre,String>("nomposteur"));
+     Column_prenomp.setCellValueFactory(new PropertyValueFactory <Offre,String>("prenomposteur"));
+   
+    }
+       gestion_offre_service gos = new gestion_offre_service();
+    ArrayList offre3= (ArrayList) gos.afficherOffre_Jobeur();
+    public ObservableList data6 = FXCollections.observableArrayList(offre3);
+
+    // Oussama//
     
 }

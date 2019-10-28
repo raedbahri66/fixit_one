@@ -175,9 +175,17 @@ public class Posteur_interfaceController implements Initializable {
     @FXML
     private TableColumn<Produit,String> table_categorie;
  
-
+    
+    @FXML
+    private Label validation_produit;
+    @FXML
+    private Label validation_numero;
     @FXML
     private Label validation_prix;
+    @FXML
+    private Label validation_categorie;
+    @FXML
+    private Label validation_description;
     @FXML
     private TextField numero;
     
@@ -453,13 +461,37 @@ public class Posteur_interfaceController implements Initializable {
         Posteur p1= new Posteur();
         p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
           ControleSaisie C= new ControleSaisie();
-        if(!C.isInt(prix_produit.getText()) ){
-            canInscription = false; validation_prix.setText("Inccorect Prix");
-        } 
-       else
-       {
-        canInscription = true;
-       }
+          if(nom_produit.getText().isEmpty())
+        {canInscription = false;  validation_produit.setText("Champ vide");}
+          else if(!nom_produit.getText().isEmpty()) validation_produit.setText("");
+          
+          
+        if(!C.isInt(prix_produit.getText()) )
+        {canInscription = false; validation_prix.setText("Inccorect Prix");} 
+        else if (C.isInt(prix_produit.getText()) ) { validation_prix.setText("");}
+        
+        if (!C.cinisValid(numero.getText()) )
+        {canInscription = false; validation_numero.setText("Inccorect Numero");} 
+        else if(C.cinisValid(numero.getText())){validation_numero.setText("");}
+        
+        if(prix_produit.getText().isEmpty())
+        {canInscription = false;  validation_prix.setText("Champ vide");}
+        else if(!prix_produit.getText().isEmpty()&&C.isInt(prix_produit.getText())) validation_prix.setText("");
+        
+        if(numero.getText().isEmpty())
+        {canInscription = false;  validation_numero.setText("Champ vide");}
+        else if(!numero.getText().isEmpty()&&C.cinisValid(numero.getText())) validation_numero.setText("");
+        
+        //if(categorie_produit.getValue()!="Jardinage"||categorie_produit.getValue()!="Informatique"||categorie_produit.getValue()!="Batimmant"||categorie_produit.getValue()!="Electromenager"||categorie_produit.getValue()!="Electricité")
+        //{canInscription = false;  validation_categorie.setText("Champ vide");}
+     //else  validation_categorie.setText("");
+       
+        if(description_produit.getText().isEmpty())
+        {canInscription = false;  validation_description.setText("Champ vide");}
+        else if(!description_produit.getText().isEmpty()) validation_description.setText("");
+        
+        
+        
         
         if(canInscription){
         int idposteur=p1.getId();
@@ -483,10 +515,17 @@ public class Posteur_interfaceController implements Initializable {
         numero.setText(Integer.toString(p1.getTel()));
         refrech();
         validation_prix.setText("");
+        validation_numero.setText("");
+        validation_produit.setText("");
         }
+        else{ canInscription = true;}
 
     }
 
+    
+    
+    
+    
      @FXML
     void modifierAction(ActionEvent event) {
         
@@ -727,7 +766,17 @@ public class Posteur_interfaceController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        afficher_panier_offre();
+        
+        
+        try {
+            afficher_panier_offre();
+        } catch (SQLException ex) {
+            Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+       
         // TODO
         //*******heni
         table_annonce1.setOnMouseClicked((MouseEvent event) -> {
@@ -874,7 +923,7 @@ public class Posteur_interfaceController implements Initializable {
                  categorie_produit2.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  categorie_produit3.getItems().addAll("non_vendu","vendu");
                  combobox_filter.getItems().addAll("Tous()","Jardinage","Electricité","Batimmant","Informatique","Electromenager");
-      
+     
         ArrayList Echange2= (ArrayList)es.affichermesEchange(id); 
         ObservableList datames= FXCollections.observableArrayList(Echange2);
             tablemesproposition.setItems(datames);
@@ -928,6 +977,29 @@ public class Posteur_interfaceController implements Initializable {
 
     @FXML
     private void ajouterechangep(ActionEvent event) throws SQLException, IOException {
+               boolean test= false;
+        if( pofp.getText().isEmpty()){
+           //pofp.getText().setVisible(true);
+            test = false;
+           JOptionPane.showMessageDialog (null,"il faut ajouter le proposition offerte ");
+        }
+        else if( posp.getText().isEmpty())
+         {
+           test = false;
+           JOptionPane.showMessageDialog (null," ajouter la proposition souhaitee");
+        }
+        else if( pdp.getText().isEmpty())
+         {
+           test = false;
+           JOptionPane.showMessageDialog (null," ajouter une description ");
+        }
+           /* if( dap.tr.isEmpty ())
+         {
+           test = false;
+           JOptionPane.showMessageDialog (null," ajouter une date ");*/
+        
+       
+            if(test){
         PosteurService p = new PosteurService();
           Posteur p1= new Posteur();
         p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
@@ -950,7 +1022,11 @@ public class Posteur_interfaceController implements Initializable {
   dap.setValue(null);
   refrechtabechange();
    
-
+            }   else 
+        {
+            JOptionPane.showMessageDialog(null, "Remplir tous les champs");
+                          test = true;
+        }
     }
       @FXML
     void rechercherechange(ActionEvent event) throws SQLException {
@@ -1009,8 +1085,7 @@ public class Posteur_interfaceController implements Initializable {
     void suppmechange(ActionEvent event) {
          String id=idme.getText();
 Echange E = new Echange(id);
-   GestionProduit gs = new  GestionProduit();
-   
+   //GestionProduit gs = new  GestionProduit();
    es.supprimerEchange(E);
    JOptionPane.showMessageDialog(null, "Supprimer avec succée");
    filedpof.setText("");
@@ -1022,27 +1097,42 @@ Echange E = new Echange(id);
     }
       @FXML
     void modifiermechange(ActionEvent event) {
-       /* String pof=filedpof.getText();
+       String id=idme.getText();
+        String pof=filedpof.getText();
          String pos=filedpos.getText();
-        
    String description=fileddes.getText();
-   String date=  textdat.getValue().toString();
-   
- Echange E = new Echange(pof,pos,description,date);
+   String date=textdat.getValue().toString();
+ Echange E = new Echange(id,pof,pos,description,date);
    EchangeGestion EG = new EchangeGestion();
-   try{
+  
+    try{
    EG.modifierEchange(E);
- }catch(Exception e)
+     JOptionPane.showMessageDialog(null, "modifications avec sucess");
+    }catch(Exception e)
     {
        System.out.println(e.getMessage());  
-    }*/
+    }
+     filedpof.setText("");
+   filedpos.setText("");
+   fileddes.setText("");
+   textdat.setValue(null);
+   refrechtabechange();
 
+            
     }
     //Oussama//
-    public void afficher_panier_offre()
-    {
+       
+    
+    public void afficher_panier_offre() throws SQLException, IOException
+    {    PosteurService p = new PosteurService();
+            Posteur p1= new Posteur();
+            p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+         int o =p1.getId();
+         System.out.println(o+"aaaaaaaaaaaaaaaaaaaaaa");
         
-        gos.afficherOffre();
+        gestion_offre_service gos = new gestion_offre_service();
+        ArrayList<Offre> offre2= (ArrayList) gos.afficherOffre(o);
+        ObservableList <Offre> data5 = FXCollections.observableArrayList(offre2);
         Table_panier_service.setItems(data5);
      Column_adress.setCellValueFactory(new PropertyValueFactory <Offre,String>("adresse"));
      Column_date.setCellValueFactory(new PropertyValueFactory <Offre,String>("Date_debut"));
@@ -1052,11 +1142,10 @@ Echange E = new Echange(id);
      Column_Nomservice.setCellValueFactory(new PropertyValueFactory <Offre,String>("Nomservice"));
    
     }
-    gestion_offre_service gos = new gestion_offre_service();
-    ArrayList offre= (ArrayList) gos.afficherOffre();
+     
+        
     
-    
-    public ObservableList data5 = FXCollections.observableArrayList(offre);
+
     // Oussama//
 
     @FXML

@@ -64,14 +64,15 @@ public class gestion_offre_service implements IOffre{
         }
     }
 
-    @Override
-    public List<Offre> afficherOffre() {
-            List<Offre> offre = new ArrayList<>();
-                
-            
-     
-      try {String req="select * from offre_service ";
+    public List<Offre> afficherOffre(int o) {
+        
+            List<Offre> offre = new ArrayList<>();    
+     // Where idposteur_fg=2' 
+      try {
+          String req="select * from offre_service Where idposteur_fg="+o;
+      
           PreparedStatement ste = c.prepareStatement(req);
+          //ste.setInt(1,id);
           ResultSet res= ste.executeQuery(req);
           while (res.next()) { 
                Offre a = new Offre();
@@ -90,7 +91,33 @@ public class gestion_offre_service implements IOffre{
       } return offre; 
     }
     
-    
+    public List<Offre> afficherOffre_Jobeur() {
+        
+            List<Offre> offre = new ArrayList<>();    
+     // Where idposteur_fg=2' 
+      try {
+          String req="select * from offre_service ";
+      
+          PreparedStatement ste = c.prepareStatement(req);
+          
+          ResultSet res= ste.executeQuery(req);
+          while (res.next()) { 
+               Offre a = new Offre();
+               
+                a.setAdresse(res.getString("adress"));
+                a.setDate_debut(res.getString("date"));
+                a.setHeure(res.getString("heure"));
+                a.setDescription_offre(res.getString("description_offre"));
+                a.setTel(res.getString("tel"));
+                a.setNomposteur(res.getString("nomp_fg"));
+                a.setPrenomposteur(res.getString("prenomp_fg"));
+                
+              offre.add(a);
+          }
+      } catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+      } return offre; 
+    }
     
     
 }

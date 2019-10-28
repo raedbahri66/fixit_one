@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="825.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="825.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
   <tabs>
     <Tab text="Demander un service">
       <content>
@@ -443,7 +443,7 @@
                                                 <Font name="System Bold" size="22.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="combobox_filter" layoutX="165.0" layoutY="97.0" prefHeight="33.0" prefWidth="163.0" />
+                                          <ComboBox fx:id="combobox_filter" layoutX="165.0" layoutY="97.0" prefHeight="33.0" prefWidth="163.0" promptText="Tous()" />
                                           <Label layoutX="40.0" layoutY="94.0" prefHeight="38.0" prefWidth="101.0" text="Categorie:">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
@@ -504,23 +504,23 @@
                                           </ImageView>
                                           <TextField fx:id="nom_produit" layoutX="140.0" layoutY="54.0" />
                                           <TextField fx:id="prix_produit" layoutX="140.0" layoutY="118.0" />
-                                          <TextArea fx:id="description_produit" layoutX="144.0" layoutY="330.0" prefHeight="105.0" prefWidth="279.0" />
-                                          <Label layoutX="38.0" layoutY="49.0" prefHeight="40.0" prefWidth="74.0" text="Produit:">
+                                          <TextArea fx:id="description_produit" layoutX="140.0" layoutY="337.0" prefHeight="105.0" prefWidth="279.0" />
+                                          <Label layoutX="39.0" layoutY="50.0" prefHeight="40.0" prefWidth="74.0" text="Produit:">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="38.0" layoutY="114.0" prefHeight="38.0" prefWidth="64.0" text="Prix:" textFill="#141313">
+                                          <Label layoutX="37.0" layoutY="115.0" prefHeight="38.0" prefWidth="64.0" text="Prix:" textFill="#141313">
                                              <font>
                                                 <Font name="System Bold" size="17.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="37.0" layoutY="318.0" prefHeight="38.0" prefWidth="101.0" text="Description:">
+                                          <Label layoutX="35.0" layoutY="326.0" prefHeight="38.0" prefWidth="101.0" text="Description:">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="43.0" layoutY="257.0" prefHeight="38.0" prefWidth="101.0" text="Categorie:">
+                                          <Label layoutX="34.0" layoutY="257.0" prefHeight="38.0" prefWidth="101.0" text="Categorie:">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
@@ -532,7 +532,7 @@
                                              </font>
                                           </Label>
                                           <ComboBox fx:id="categorie_produit" layoutX="141.0" layoutY="264.0" prefHeight="31.0" prefWidth="185.0" />
-                                          <Label layoutX="43.0" layoutY="182.0" prefHeight="41.0" prefWidth="89.0" text="Numero°" textFill="#141313">
+                                          <Label layoutX="37.0" layoutY="182.0" prefHeight="41.0" prefWidth="89.0" text="Numero°" textFill="#141313">
                                              <font>
                                                 <Font name="System Bold" size="17.0" />
                                              </font>
@@ -540,7 +540,27 @@
                                           <TextField fx:id="numero" layoutX="140.0" layoutY="187.0" />
                                           <Label fx:id="validation_prix" layoutX="141.0" layoutY="152.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
                                              <font>
-                                                <Font name="System Bold" size="15.0" />
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="validation_numero" layoutX="141.0" layoutY="223.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="validation_produit" layoutX="141.0" layoutY="89.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="validation_categorie" layoutX="141.0" layoutY="301.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="validation_description" layoutX="141.0" layoutY="449.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
                                              </font>
                                           </Label>
                                        </children>
@@ -558,13 +578,13 @@
                                           </ImageView>
                                           <TableView fx:id="table1" layoutX="30.0" layoutY="67.0" onSort="#setValueformtableviewtotext" prefHeight="159.0" prefWidth="779.0">
                                              <columns>
-                                                <TableColumn fx:id="table_nom1" prefWidth="85.0" text="Produit" />
-                                                <TableColumn fx:id="table_prix1" prefWidth="90.0" text="Prix(DT)" />
-                                                <TableColumn fx:id="table_description1" prefWidth="150.0" text="Description" />
-                                                <TableColumn fx:id="table_categorie1" prefWidth="121.0" text="Categorie" />
-                                                <TableColumn fx:id="table_numero1" prefWidth="113.0" text="Numero°" />
-                                                <TableColumn fx:id="table_etat_vente" prefWidth="112.0" text="Etat" />
-                                                <TableColumn fx:id="table_etat_validation" prefWidth="98.0" text="Statut" />
+                                                <TableColumn fx:id="table_nom1" prefWidth="113.0" text="Produit" />
+                                                <TableColumn fx:id="table_prix1" prefWidth="71.0" text="Prix(DT)" />
+                                                <TableColumn fx:id="table_description1" prefWidth="188.0" text="Description" />
+                                                <TableColumn fx:id="table_categorie1" prefWidth="150.0" text="Categorie" />
+                                                <TableColumn fx:id="table_numero1" prefWidth="131.0" text="Numero°" />
+                                                <TableColumn fx:id="table_etat_vente" prefWidth="116.0" text="Etat" />
+                                                <TableColumn fx:id="table_etat_validation" minWidth="0.0" prefWidth="0.0" text="Statut" />
                                                 <TableColumn fx:id="table_id1" minWidth="0.0" prefWidth="0.0" text="id" />
                                              </columns>
                                           </TableView>

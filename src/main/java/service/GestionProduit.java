@@ -63,8 +63,10 @@ public class GestionProduit {
     List<Produit> echanges= new ArrayList<>();
     //Echange e = null;
       try {
-         String req2="select * from produit ";
+          String etat="non_vendu";
+         String req2="select * from produit where etat_vente=?";
          PreparedStatement pstm = c.prepareStatement(req2);
+         pstm.setString(1,etat);
           ResultSet res=  pstm.executeQuery();
           while (res.next()) { 
               Produit e = new Produit();
