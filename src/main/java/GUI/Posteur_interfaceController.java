@@ -175,7 +175,14 @@ public class Posteur_interfaceController implements Initializable {
     @FXML
     private TableColumn<Produit,String> table_categorie;
  
-    
+    @FXML
+    private Label validation_produit1;
+    @FXML
+    private Label validation_numero1;
+    @FXML
+    private Label validation_prix1;
+     @FXML
+    private Label validation_description1;
     @FXML
     private Label validation_produit;
     @FXML
@@ -460,6 +467,7 @@ public class Posteur_interfaceController implements Initializable {
         PosteurService p = new PosteurService();
         Posteur p1= new Posteur();
         p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+        
           ControleSaisie C= new ControleSaisie();
           if(nom_produit.getText().isEmpty())
         {canInscription = false;  validation_produit.setText("Champ vide");}
@@ -525,7 +533,7 @@ public class Posteur_interfaceController implements Initializable {
     
     
     
-    
+    public boolean controlemodifier=true;
      @FXML
     void modifierAction(ActionEvent event) {
         
@@ -539,6 +547,38 @@ public class Posteur_interfaceController implements Initializable {
    String etat=categorie_produit3.getValue().toString();
    Produit E = new Produit(id,nom,prix,description,categorie,num,etat,statut);
    GestionProduit gs = new  GestionProduit();
+   
+   
+    ControleSaisie C= new ControleSaisie();
+          if(nom2.getText().isEmpty())
+        {controlemodifier = false;  validation_produit1.setText("Champ vide");}
+          else if(!nom2.getText().isEmpty()) validation_produit1.setText("");
+          
+         
+        if(!C.isInt(prix2.getText()) )
+        {controlemodifier = false; validation_prix1.setText("Inccorect Prix");} 
+        else if (C.isInt(prix2.getText()) ) { validation_prix1.setText("");}
+      
+        if (!C.cinisValid(numero1.getText()) )
+        {controlemodifier = false; validation_numero1.setText("Inccorect Numero");} 
+        else if(C.cinisValid(numero1.getText())){validation_numero1.setText("");}
+          
+        if(prix2.getText().isEmpty())
+        {controlemodifier = false;  validation_prix1.setText("Champ vide");}
+        else if(!prix2.getText().isEmpty()&&C.isInt(prix2.getText())) validation_prix1.setText("");
+        
+        if(numero1.getText().isEmpty())
+        {controlemodifier = false;  validation_numero1.setText("Champ vide");}
+        else if(!numero1.getText().isEmpty()&&C.cinisValid(numero1.getText())) validation_numero1.setText("");
+        
+        if(description2.getText().isEmpty())
+        {controlemodifier = false;  validation_description1.setText("Champ vide");}
+        else if(!description2.getText().isEmpty()) validation_description1.setText("");
+        
+        
+   
+   
+   if(controlemodifier){
    try{
    gs.modifierProduit(E);
    JOptionPane.showMessageDialog(null, "Modification avec succée");
@@ -549,12 +589,20 @@ public class Posteur_interfaceController implements Initializable {
    categorie_produit3.setValue("");
    numero1.setText("");
    refrech();
-    }catch(Exception e)
+    }
+   catch(Exception e)
     {
        System.out.println(e.getMessage());  
     }
     }
-   
+    
+    else{ controlemodifier = true;}
+    
+    }
+    
+    
+    
+    
     @FXML
     void btnsearchAction(ActionEvent event) {
         data.clear();
@@ -919,11 +967,12 @@ public class Posteur_interfaceController implements Initializable {
                  table_etat_validation.setCellValueFactory(new PropertyValueFactory<Produit,String>("etatValidation"));
                  setValueformtableviewtotext();
  
-                 categorie_produit.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
-                 categorie_produit2.getItems().addAll("Jardinage","Electricité","Batimmant","Informatique","Electromenager");
+                 categorie_produit.getItems().addAll("Autre","Jardinage","Electricité","Batimmant","Informatique","Electromenager");
+                 categorie_produit2.getItems().addAll("Autre","Jardinage","Electricité","Batimmant","Informatique","Electromenager");
                  categorie_produit3.getItems().addAll("non_vendu","vendu");
-                 combobox_filter.getItems().addAll("Tous()","Jardinage","Electricité","Batimmant","Informatique","Electromenager");
-     
+                 combobox_filter.getItems().addAll("Tous()","Autre","Jardinage","Electricité","Batimmant","Informatique","Electromenager");
+                 categorie_produit.setValue("Autre");
+                 combobox_filter.setValue("Tous()");
         ArrayList Echange2= (ArrayList)es.affichermesEchange(id); 
         ObservableList datames= FXCollections.observableArrayList(Echange2);
             tablemesproposition.setItems(datames);
