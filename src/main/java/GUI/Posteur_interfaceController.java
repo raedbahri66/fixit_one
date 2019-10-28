@@ -59,6 +59,7 @@ import service.JobeurService;
 import service.PosteurService;
 import entites.Offre;
 import entites.annonce;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -1036,9 +1037,16 @@ public class Posteur_interfaceController implements Initializable {
     }
 
     @FXML
-    private void ajouterechangep(ActionEvent event) throws SQLException, IOException {
-               boolean test= true;
-               
+    private void ajouterechangep(ActionEvent event) throws SQLException, IOException, ParseException {
+              // boolean test= true;
+                String date8 = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+                // LocalDate locald =dap.getValue();
+                // Date dates = Date.valueOf(locald);
+      
+       
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        java.util.Date date9 =  sdf.parse(date8);
+                boolean test= true;
         if( pofp.getText().isEmpty()){
            //pofp.getText().setVisible(true);
             test = false;
@@ -1065,11 +1073,22 @@ public class Posteur_interfaceController implements Initializable {
         {
            vdp.setText(""); 
         }
-           
-            /* if( dap.tr.isEmpty ())
+            LocalDate locald =dap.getValue();
+                 Date dates = Date.valueOf(locald);
+    
+      
+             /*if ((dates.before(date9))&&*/ 
+             if ((dap.getValue() == null) ||(dates.before(date9)))
          {
            test = false;
-           JOptionPane.showMessageDialog (null," ajouter une date ");*/
+           vdap.setText("champs Invalide");
+           
+         } 
+             else
+             {
+                vdap.setText(""); 
+             }
+                   
             if(test){
         PosteurService p = new PosteurService();
           Posteur p1= new Posteur();
@@ -1080,10 +1099,10 @@ public class Posteur_interfaceController implements Initializable {
           String nomo=pofp.getText();
      String nomf=posp.getText();
        String description=pdp.getText();
-  LocalDate locald =dap.getValue();
-        String date =locald.toString();
+  //LocalDate locald =dap.getValue();
+        String date10 =locald.toString();
         int idjobeur=0;
-   Echange E = new Echange(nomo,nomf,description,date,idposteur1,nomposteur,idjobeur);
+   Echange E = new Echange(nomo,nomf,description,date10,idposteur1,nomposteur,idjobeur);
   EchangeGestion es = new  EchangeGestion();
    es.ajouterEchange(E);
    JOptionPane.showMessageDialog(null, "ajout avec succes");
