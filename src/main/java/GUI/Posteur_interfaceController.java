@@ -766,7 +766,17 @@ public class Posteur_interfaceController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        afficher_panier_offre();
+        
+        
+        try {
+            afficher_panier_offre();
+        } catch (SQLException ex) {
+            Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+       
         // TODO
         //*******heni
         table_annonce1.setOnMouseClicked((MouseEvent event) -> {
@@ -1048,8 +1058,7 @@ public class Posteur_interfaceController implements Initializable {
     void suppmechange(ActionEvent event) {
          String id=idme.getText();
 Echange E = new Echange(id);
-   GestionProduit gs = new  GestionProduit();
-   
+   //GestionProduit gs = new  GestionProduit();
    es.supprimerEchange(E);
    JOptionPane.showMessageDialog(null, "Supprimer avec succée");
    filedpof.setText("");
@@ -1061,27 +1070,42 @@ Echange E = new Echange(id);
     }
       @FXML
     void modifiermechange(ActionEvent event) {
-       /* String pof=filedpof.getText();
+       String id=idme.getText();
+        String pof=filedpof.getText();
          String pos=filedpos.getText();
-        
    String description=fileddes.getText();
-   String date=  textdat.getValue().toString();
-   
- Echange E = new Echange(pof,pos,description,date);
+   String date=textdat.getValue().toString();
+ Echange E = new Echange(id,pof,pos,description,date);
    EchangeGestion EG = new EchangeGestion();
-   try{
+  
+    try{
    EG.modifierEchange(E);
- }catch(Exception e)
+     JOptionPane.showMessageDialog(null, "modifications avec sucess");
+    }catch(Exception e)
     {
        System.out.println(e.getMessage());  
-    }*/
+    }
+     filedpof.setText("");
+   filedpos.setText("");
+   fileddes.setText("");
+   textdat.setValue(null);
+   refrechtabechange();
 
+            
     }
     //Oussama//
-    public void afficher_panier_offre()
-    {
+       
+    
+    public void afficher_panier_offre() throws SQLException, IOException
+    {    PosteurService p = new PosteurService();
+            Posteur p1= new Posteur();
+            p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+         int o =p1.getId();
+         System.out.println(o+"aaaaaaaaaaaaaaaaaaaaaa");
         
-        gos.afficherOffre();
+        gestion_offre_service gos = new gestion_offre_service();
+        ArrayList<Offre> offre2= (ArrayList) gos.afficherOffre(o);
+        ObservableList <Offre> data5 = FXCollections.observableArrayList(offre2);
         Table_panier_service.setItems(data5);
      Column_adress.setCellValueFactory(new PropertyValueFactory <Offre,String>("adresse"));
      Column_date.setCellValueFactory(new PropertyValueFactory <Offre,String>("Date_debut"));
@@ -1091,11 +1115,10 @@ Echange E = new Echange(id);
      Column_Nomservice.setCellValueFactory(new PropertyValueFactory <Offre,String>("Nomservice"));
    
     }
-    gestion_offre_service gos = new gestion_offre_service();
-    ArrayList offre= (ArrayList) gos.afficherOffre();
+     
+        
     
-    
-    public ObservableList data5 = FXCollections.observableArrayList(offre);
+
     // Oussama//
 
     @FXML
