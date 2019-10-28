@@ -22,4 +22,6 @@ public interface IJobeur {
     public void supprimerJobeur(Jobeur p);
     public List<Jobeur> afficherJobeur();
     public void modifierProfil(Jobeur p, InputStream fis, File file );
+    public void AccepterJobeur(Jobeur p);
+    public void RefuserJobeur(Jobeur p);
 }

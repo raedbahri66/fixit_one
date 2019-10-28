@@ -38,6 +38,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import static javax.print.DocFlavor.BYTE_ARRAY.PDF;
+import static javax.print.DocFlavor.URL.PDF;
 import javax.swing.JOptionPane;
 import service.ControleSaisie;
 import service.JobeurService;
@@ -90,6 +92,8 @@ public class InscrireJobeurController implements Initializable {
     private Button image_p_btn;
     private FileInputStream fis;
     private File file;
+    private FileInputStream pdf;
+    private File pdff;
         public boolean canInscription=true;
     @FXML
     private ImageView image_post;
@@ -97,6 +101,10 @@ public class InscrireJobeurController implements Initializable {
     private TextField address_j;
     @FXML
     private Label address_vali;
+    @FXML
+    private TextField file_pdf_p1;
+    @FXML
+    private Button pdf_p_btn1;
 
     /**
      * Initializes the controller class.
@@ -135,6 +143,39 @@ public class InscrireJobeurController implements Initializable {
                             URL url1 = file.toURI().toURL();
                             System.out.println(new Image(url1.toExternalForm()));
                             image_post.setImage(new Image(url1.toExternalForm()));
+                        } catch (MalformedURLException ex) {
+                          
+                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                                
+
+    };
+            
+
+        });
+        pdf_p_btn1.setOnAction(e->{
+                    stage.setTitle("File Chooser ");
+                    
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open Pdf File");
+            
+                         pdff = fileChooser.showOpenDialog(stage);
+                        if (pdff != null) {
+                                file_pdf_p1.setText(pdff.getAbsolutePath());
+                                System.out.println(pdff.getAbsolutePath()); 
+                        try {
+                            pdf = new FileInputStream(pdff);// file is selected using filechooser which is in last tutorial
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+
+                        try {
+                            //     Image image=  new Image(file.toURI().toString());
+                            URL url1 = pdff.toURI().toURL();
+                            System.out.println(new File(url1.toExternalForm()));
+                           // image_post.setImage(new Image(url1.toExternalForm()));
                         } catch (MalformedURLException ex) {
                           
                             Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
@@ -220,7 +261,7 @@ public class InscrireJobeurController implements Initializable {
            System.out.println(fis);
                       System.out.println(file);
 
-           p.creerJobeur(P1,fis,file);
+           p.creerJobeur(P1,fis,file,pdf,pdff);
 
        }
        else

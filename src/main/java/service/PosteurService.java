@@ -258,7 +258,7 @@ try {
           ResultSet res1=  ste.executeQuery(req2);
           if (res1.next()) { 
               role= "Jobeur_interface";
-              if(res.getString("etat").equals("banned")) role="banned";
+              if(res1.getString("etat").equals("banned")) role="banned";
               }
        ResultSet res2=  ste.executeQuery(req3);
           if (res2.next()) { 
@@ -286,7 +286,7 @@ try {
               }   
           ResultSet res1=  ste.executeQuery(req2);
           if (res1.next()) { 
-              if(res1.getString("etat").equals("banned")) raison=res.getString("role");
+              if(res1.getString("etat").equals("banned")) raison=res1.getString("role");
               }     
       } catch (SQLException ex) {
           System.out.println(ex.getMessage());
@@ -374,7 +374,52 @@ try {
      return posteurs;
     }
             
-    
+    public String Emailget(int cin1) throws SQLException
+    {
+        String req1="select * from Posteur where cin="+cin1;   
+        String req2="select * from jobeur where cin="+cin1 ;
+         
+        
+        String email = "fault";
+        System.out.println(req1);
+        
+          ResultSet res=  ste.executeQuery(req1);
+          while (res.next()) { 
+              email= res.getString("email");
+              
+            //  if(res.getString("etat").equals("banned")) role="banned";
+              }   
+          ResultSet res1=  ste.executeQuery(req2);
+          while (res1.next()) { 
+              email= res1.getString("email");
+            //  if(res1.getString("etat").equals("banned")) role="banned";
+              }
+        System.out.println(email);
+       return email; 
+    }
+    public String Passwordget(int cin1) throws SQLException
+    {
+        String req1="select * from Posteur where cin="+cin1;   
+        String req2="select * from Jobeur where cin="+cin1 ;
+         
+        
+        String password = "fault";
+        System.out.println(req1);
+        
+          ResultSet res=  ste.executeQuery(req1);
+          while (res.next()) { 
+              password= res.getString("password");
+              
+            //  if(res.getString("etat").equals("banned")) role="banned";
+              }   
+          ResultSet res1=  ste.executeQuery(req2);
+          while (res1.next()) { 
+              password= res1.getString("password");
+            //  if(res1.getString("etat").equals("banned")) role="banned";
+              }
+        System.out.println(password);
+       return password; 
+    }
     
     
 }
