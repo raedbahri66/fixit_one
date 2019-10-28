@@ -119,10 +119,13 @@ public class GestionProduit {
         
        List<Produit> table1= new ArrayList<>();
     //Echange e = null;
+    String etat="non_vendu";
       try {
           if ("Tous()".equals(cat)){
-           String req2="select * from produit ";
+              
+           String req2="select * from produit where etat_vente=?";
          PreparedStatement pstm = c.prepareStatement(req2);
+         pstm.setString(1,etat);
           ResultSet res=  pstm.executeQuery();
           while (res.next()) { 
               Produit e = new Produit();
@@ -140,9 +143,10 @@ public class GestionProduit {
           
           }
           else{
-         String req2="select * from produit Where categorie=? ";
+         String req2="select * from produit Where categorie=? and etat_vente=?";
          PreparedStatement pstm = c.prepareStatement(req2);
          pstm.setString(1,cat);
+         pstm.setString(2,etat);
           ResultSet res=  pstm.executeQuery();
           while (res.next()) { 
               Produit e = new Produit();

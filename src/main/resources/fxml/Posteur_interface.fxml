@@ -638,6 +638,26 @@
                                           </Label>
                                           <ComboBox fx:id="categorie_produit3" layoutX="585.0" layoutY="355.0" prefWidth="150.0" />
                                           <Label fx:id="label_statut" layoutX="600.0" layoutY="422.0" prefHeight="28.0" prefWidth="82.0" visible="false" />
+                                          <Label fx:id="validation_produit1" layoutX="164.0" layoutY="278.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="validation_prix1" layoutX="164.0" layoutY="332.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="validation_description1" layoutX="164.0" layoutY="432.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="validation_numero1" layoutX="584.0" layoutY="278.0" prefHeight="25.0" prefWidth="155.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
                                        </children>
                                     </AnchorPane>
                                  </content>
