@@ -12,6 +12,7 @@ import service.PosteurService;
  * @author asus
  */
 public class Offre {
+    private String id;
     private String adresse;
     private String Date_debut;
     private String heure;
@@ -137,6 +138,17 @@ public class Offre {
     public void setNomservice(String Nomservice) {
         this.Nomservice = Nomservice;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+   
+    
     
      
      

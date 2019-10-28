@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import static GUI.AdmininterfaceController.NOW_LOCAL_DATE;
 import entites.Offre;
 import entites.Posteur;
 import java.io.IOException;
@@ -27,6 +28,9 @@ import javax.swing.JOptionPane;
 import service.PosteurService;
 import service.gestion_offre_service;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 
 /**
  * FXML Controller class
@@ -51,6 +55,11 @@ public class Interface_formulaire_posteur_serviceController implements Initializ
 
     @FXML
     private TextField Label_heure;
+    public static final LocalDate NOW_LOCAL_DATE (){
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate localDate = LocalDate.parse(date , formatter);
+        return localDate;}
 
     /**
      * Initializes the controller class.
@@ -79,6 +88,7 @@ public class Interface_formulaire_posteur_serviceController implements Initializ
             canInscription = false;}
         if(Label_description.getText().isEmpty()){
             canInscription = false;}
+        
      
         
         
@@ -113,6 +123,7 @@ public class Interface_formulaire_posteur_serviceController implements Initializ
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Label_date.setValue(NOW_LOCAL_DATE());
         // TODO
     }    
     

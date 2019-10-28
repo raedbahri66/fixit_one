@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import static GUI.Interface_choisir_jobeurController.j1;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
 import entites.Echange;
 import entites.Jobeur;
@@ -46,6 +47,12 @@ import javax.swing.JOptionPane;
 import service.EchangeGestion;
 import service.JobeurService;
 import entites.Offre;
+import entites.Service;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.input.MouseButton;
 import service.PosteurService;
 import service.gestion_offre_service;
 
@@ -60,7 +67,22 @@ public class Jobeur_interfaceController implements Initializable {
     /**
      * Initializes the controller class.
      */
- @FXML
+    @FXML
+    private TextField Label_id;
+    @FXML
+    private Button Btn_accepter_offre;
+
+    @FXML
+    private Button Btn_refuser_offre;
+    @FXML
+    private TextField Label_nomp;
+
+    @FXML
+    private TextField Label_prenomp;
+
+    @FXML
+    private TextField Label_telp;
+    @FXML
     private DatePicker dateajoute;
 
     @FXML
@@ -168,6 +190,8 @@ public class Jobeur_interfaceController implements Initializable {
 
     @FXML
     private TableColumn<Offre, String> Column_prenomp;
+    @FXML
+    private TableColumn<Offre,Integer> Column_id;
 
 
        Echange E=new Echange();
@@ -306,7 +330,9 @@ public class Jobeur_interfaceController implements Initializable {
          Logger.getLogger(Jobeur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
      } catch (IOException ex) {
          Logger.getLogger(Jobeur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
-     } //Oussama//
+     }
+     b();
+       //Oussama//
        //tableechanges.setItems(data);
                          idechanges.setCellValueFactory(new PropertyValueFactory<Echange,String>("id"));
          propositionoff.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
@@ -377,7 +403,22 @@ public class Jobeur_interfaceController implements Initializable {
         datep_1.setText(p1.getDate_naissance().toString());
 
          ///////////////////////////Raed bahri*//////////////////////////////////
+         /*   Table_offre_jobeur.setOnMouseClicked((MouseEvent event) -> {
+            if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
                 
+             Parent root = null;
+                try {
+                    root = FXMLLoader.load(getClass().getResource("/fxml/Validation_offre.fxml"));
+                } catch (IOException ex) {
+                    Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        Scene scene = new Scene(root);
+              //  Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+               // stage.hide();
+                stage.setScene(scene);
+                stage.show(); 
+                
+         }}); */     
     }    
 
     @FXML
@@ -434,11 +475,44 @@ public class Jobeur_interfaceController implements Initializable {
      Column__tel.setCellValueFactory(new PropertyValueFactory <Offre,String>("tel"));
      Column_nomp.setCellValueFactory(new PropertyValueFactory <Offre,String>("nomposteur"));
      Column_prenomp.setCellValueFactory(new PropertyValueFactory <Offre,String>("prenomposteur"));
+     Column_id.setCellValueFactory(new PropertyValueFactory <Offre,Integer>("id"));
    
+    }
+     public void b() {
+     Table_offre_jobeur.setOnMouseClicked(new EventHandler<MouseEvent>()
+     {
+         @Override
+         public void handle(MouseEvent event) {
+         Offre S = Table_offre_jobeur.getItems().get(Table_offre_jobeur.getSelectionModel().getSelectedIndex());
+         Label_nomp.setText(S.getNomposteur());
+         Label_prenomp.setText(S.getPrenomposteur());
+         Label_telp.setText(S.getTel());
+         Label_id.setText(S.getId());
+             
+         }
+     });
+             }
+       @FXML
+    void Accepter_Offre(ActionEvent event) throws SQLException {
+        String idoffre =Label_id.getText();
+         gestion_offre_service A1=new gestion_offre_service();
+            A1.Accepter_Offre_service(idoffre);
+            JOptionPane.showMessageDialog (null," L'offre est Accepté ");
+
+    }
+
+    @FXML
+    void Refuser_Offre(ActionEvent event) throws SQLException {
+        String idoffre =Label_id.getText();
+         gestion_offre_service A1=new gestion_offre_service();
+            A1.Refuser_Offre_service(idoffre);
+            JOptionPane.showMessageDialog (null," L'offre est Refusé ");
+
     }
      
      
 
     // Oussama//
+    
     
 }

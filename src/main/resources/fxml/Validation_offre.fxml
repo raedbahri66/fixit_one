@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="185.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Validation_offreController">
+   <children>
+      <Button layoutX="29.0" layoutY="46.0" mnemonicParsing="false" text="Accepter" />
+      <Button layoutX="104.0" layoutY="46.0" mnemonicParsing="false" text="Refuser" />
+   </children>
+</Pane>
