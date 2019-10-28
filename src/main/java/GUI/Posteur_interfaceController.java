@@ -1049,15 +1049,18 @@ Echange E = new Echange(id);
 
     }
     //Oussama//
-     
+       
     
     public void afficher_panier_offre() throws SQLException, IOException
-    {
-       System.err.println(AcceuilController.cinlogin);
-        PosteurService ps = new PosteurService();
-        Posteur p1= new Posteur();
-       // Integer o =p1.getId();
-       gos.afficherOffre();
+    {    PosteurService p = new PosteurService();
+            Posteur p1= new Posteur();
+            p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+         int o =p1.getId();
+         System.out.println(o+"aaaaaaaaaaaaaaaaaaaaaa");
+        
+        gestion_offre_service gos = new gestion_offre_service();
+        ArrayList<Offre> offre2= (ArrayList) gos.afficherOffre(o);
+        ObservableList <Offre> data5 = FXCollections.observableArrayList(offre2);
         Table_panier_service.setItems(data5);
      Column_adress.setCellValueFactory(new PropertyValueFactory <Offre,String>("adresse"));
      Column_date.setCellValueFactory(new PropertyValueFactory <Offre,String>("Date_debut"));
@@ -1067,9 +1070,9 @@ Echange E = new Echange(id);
      Column_Nomservice.setCellValueFactory(new PropertyValueFactory <Offre,String>("Nomservice"));
    
     }
-       gestion_offre_service gos = new gestion_offre_service();
-    ArrayList offre2= (ArrayList) gos.afficherOffre();
-    public ObservableList data5 = FXCollections.observableArrayList(offre2);
+     
+        
+    
 
     // Oussama//
 

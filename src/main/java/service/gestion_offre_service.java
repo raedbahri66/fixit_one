@@ -64,15 +64,15 @@ public class gestion_offre_service implements IOffre{
         }
     }
 
-    public List<Offre> afficherOffre() {
+    public List<Offre> afficherOffre(int o) {
         
             List<Offre> offre = new ArrayList<>();    
      // Where idposteur_fg=2' 
       try {
-          String req="select * from offre_service ";
+          String req="select * from offre_service Where idposteur_fg="+o;
       
           PreparedStatement ste = c.prepareStatement(req);
-          //ste.setInt(1,idps);
+          //ste.setInt(1,id);
           ResultSet res= ste.executeQuery(req);
           while (res.next()) { 
                Offre a = new Offre();
