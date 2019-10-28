@@ -142,6 +142,8 @@ public class Posteur_interfaceController implements Initializable {
     private TableColumn<Produit,String> table_nom1;
     @FXML
     private TableColumn<Produit,String> table_prix1;
+      @FXML
+    private TableColumn<Produit,String> table_date1;
     @FXML
     private TableColumn<Produit,String> table_categorie1;
     @FXML
@@ -209,10 +211,14 @@ public class Posteur_interfaceController implements Initializable {
     @FXML
     private Label label_id;
     @FXML
+    private Label datelocal;
+    @FXML
     private Label statut2;
     @FXML
     private ComboBox<String> categorie_produit;
     
+    @FXML
+    private Label afficher_date;
     @FXML
     private Label nom_proprietaire;
     @FXML
@@ -450,6 +456,7 @@ public class Posteur_interfaceController implements Initializable {
                 table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
                 table_num.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
                 table_proprietere.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom_proprietere"));
+                table_date1.setCellValueFactory(new PropertyValueFactory<Produit,String>("date1"));
 
     }
     
@@ -510,9 +517,12 @@ public class Posteur_interfaceController implements Initializable {
         String num=numero.getText();
         String etatvente="non_vendu";
         int idjobeur = 0;
+        
+        datelocal.setText(NOW_LOCAL_DATE().toString());
+        String date=datelocal.getText();
         String nomproprietere=p1.getNom();
         String etatvalidation="non_valider";
-        Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation,idposteur,idjobeur,nomproprietere);
+        Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation,idposteur,idjobeur,nomproprietere,date);
         GestionProduit gs = new  GestionProduit();
         gs.ajouterProduit(E);
           JOptionPane.showMessageDialog(null, "Produit Ajouter avec succée");
@@ -619,6 +629,7 @@ public class Posteur_interfaceController implements Initializable {
                 table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
                 table_num.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
                 table_proprietere.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom_proprietere"));
+                table_date1.setCellValueFactory(new PropertyValueFactory<Produit,String>("date1"));
                 clickedtable();   
         
     }
@@ -658,7 +669,7 @@ public class Posteur_interfaceController implements Initializable {
                 label_description1.setText(A.getDescription());
                 label_num.setText(A.getNumero());
                 nom_proprietaire.setText(A.getNomproprietere());
-             
+             afficher_date.setText(A.getDate1());
                 
                 
              }
@@ -954,6 +965,7 @@ public class Posteur_interfaceController implements Initializable {
                 table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
                 table_num.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
                 table_proprietere.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom_proprietere"));
+                table_date1.setCellValueFactory(new PropertyValueFactory<Produit,String>("date1"));
                 clickedtable();
                 
         table1.setItems(data1);
