@@ -56,7 +56,7 @@ public class EchangeGestion implements Iechange{
 
     @Override
     public void modifierEchange(Echange E) {
-        String req= "update echange SET  proposition_offerte=?,proposition_souhaitée=?,description_echange=?,date=? Where id=?";
+        String req= "update echange SET proposition_offerte=?,proposition_souhaitée=?,description_echange=?,date=? Where id=?";
     
    try { 
           PreparedStatement ste = c.prepareStatement(req);

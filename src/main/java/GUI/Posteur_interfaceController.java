@@ -1019,8 +1019,7 @@ public class Posteur_interfaceController implements Initializable {
     void suppmechange(ActionEvent event) {
          String id=idme.getText();
 Echange E = new Echange(id);
-   GestionProduit gs = new  GestionProduit();
-   
+   //GestionProduit gs = new  GestionProduit();
    es.supprimerEchange(E);
    JOptionPane.showMessageDialog(null, "Supprimer avec succée");
    filedpof.setText("");
@@ -1032,21 +1031,28 @@ Echange E = new Echange(id);
     }
       @FXML
     void modifiermechange(ActionEvent event) {
-       /* String pof=filedpof.getText();
+       String id=idme.getText();
+        String pof=filedpof.getText();
          String pos=filedpos.getText();
-        
    String description=fileddes.getText();
-   String date=  textdat.getValue().toString();
-   
- Echange E = new Echange(pof,pos,description,date);
+   String date=textdat.getValue().toString();
+ Echange E = new Echange(id,pof,pos,description,date);
    EchangeGestion EG = new EchangeGestion();
-   try{
+  
+    try{
    EG.modifierEchange(E);
- }catch(Exception e)
+     JOptionPane.showMessageDialog(null, "modifications avec sucess");
+    }catch(Exception e)
     {
        System.out.println(e.getMessage());  
-    }*/
+    }
+     filedpof.setText("");
+   filedpos.setText("");
+   fileddes.setText("");
+   textdat.setValue(null);
+   refrechtabechange();
 
+            
     }
     //Oussama//
        
