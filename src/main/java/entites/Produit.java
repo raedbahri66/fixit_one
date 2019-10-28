@@ -1,5 +1,6 @@
 package entites;
 
+import java.sql.Date;
 import java.util.Objects;
 
 /**
@@ -18,7 +19,37 @@ public class Produit {
     private int idPosteurfg;
     private int idJobeurfg;
     private String nomproprietere;
+    private String date1;
     public Produit() {
+    }
+
+    public Produit(String id, String nom, String prix, String description, String categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg, String nomproprietere, String date1) {
+        this.id = id;
+        this.nom = nom;
+        this.prix = prix;
+        this.description = description;
+        this.categorie = categorie;
+        this.numero = numero;
+        this.etatVente = etatVente;
+        this.etatValidation = etatValidation;
+        this.idPosteurfg = idPosteurfg;
+        this.idJobeurfg = idJobeurfg;
+        this.nomproprietere = nomproprietere;
+        this.date1 = date1;
+    }
+
+    public Produit(String nom, String prix, String description, String categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg, String nomproprietere, String date1) {
+        this.nom = nom;
+        this.prix = prix;
+        this.description = description;
+        this.categorie = categorie;
+        this.numero = numero;
+        this.etatVente = etatVente;
+        this.etatValidation = etatValidation;
+        this.idPosteurfg = idPosteurfg;
+        this.idJobeurfg = idJobeurfg;
+        this.nomproprietere = nomproprietere;
+        this.date1 = date1;
     }
 
     public Produit(String nom, String prix, String description, String categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg, String nomproprietere) {
@@ -274,6 +305,16 @@ public class Produit {
     public void setNomproprietere(String nomprestataire) {
         this.nomproprietere = nomprestataire;
     }
+
+    public String getDate1() {
+        return date1;
+    }
+
+    public void setDate1(String date1) {
+        this.date1 = date1;
+    }
+
+
 
     
     

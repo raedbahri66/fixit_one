@@ -45,7 +45,9 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import service.EchangeGestion;
 import service.JobeurService;
+import entites.Offre;
 import service.PosteurService;
+import service.gestion_offre_service;
 
 /**
  * FXML Controller class
@@ -143,6 +145,32 @@ public class Jobeur_interfaceController implements Initializable {
     private TextField mpf;
     private FileInputStream fis;
     private File file;
+    private FileInputStream pdf;
+    private File pdff;
+    
+    @FXML
+    private TableView<Offre> Table_offre_jobeur;
+
+    @FXML
+    private TableColumn<Offre, String> Column_adresse;
+
+    @FXML
+    private TableColumn<Offre, String> Column_date;
+
+    @FXML
+    private TableColumn<Offre, String> Column_heure;
+
+    @FXML
+    private TableColumn<Offre, String> Column__description;
+
+    @FXML
+    private TableColumn<Offre, String> Column__tel;
+
+    @FXML
+    private TableColumn<Offre, String> Column_nomp;
+
+    @FXML
+    private TableColumn<Offre, String> Column_prenomp;
 
 
        Echange E=new Echange();
@@ -180,6 +208,10 @@ public class Jobeur_interfaceController implements Initializable {
     @FXML
     private Button image_p_btn;
     private boolean canModif=true;
+    @FXML
+    private TextField file_pdf_p1;
+    @FXML
+    private Button pdf_p_btn1;
 
     @FXML
     void ajouterechange(ActionEvent event) {
@@ -274,6 +306,14 @@ public class Jobeur_interfaceController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        /////Oussama//
+     try {
+         afficher_offre_jobeur();
+     } catch (SQLException ex) {
+         Logger.getLogger(Jobeur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+     } catch (IOException ex) {
+         Logger.getLogger(Jobeur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+     } //Oussama//
        //tableechanges.setItems(data);
                          idechanges.setCellValueFactory(new PropertyValueFactory<Echange,String>("id"));
          propositionoff.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
@@ -306,8 +346,6 @@ public class Jobeur_interfaceController implements Initializable {
                         } catch (FileNotFoundException ex) {
                             Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
                         }
-
-
                         try {
                             //     Image image=  new Image(file.toURI().toString());
                             URL url1 = file.toURI().toURL();
@@ -321,6 +359,39 @@ public class Jobeur_interfaceController implements Initializable {
                                 
 
     }
+
+        });
+      pdf_p_btn1.setOnAction(e->{
+                    stage.setTitle("File Chooser ");
+                    
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open Pdf File");
+            
+                         pdff = fileChooser.showOpenDialog(stage);
+                        if (pdff != null) {
+                                file_pdf_p1.setText(pdff.getAbsolutePath());
+                                System.out.println(pdff.getAbsolutePath()); 
+                        try {
+                            pdf = new FileInputStream(pdff);// file is selected using filechooser which is in last tutorial
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+
+                        try {
+                            //     Image image=  new Image(file.toURI().toString());
+                            URL url1 = pdff.toURI().toURL();
+                            System.out.println(new File(url1.toExternalForm()));
+                           // image_post.setImage(new Image(url1.toExternalForm()));
+                        } catch (MalformedURLException ex) {
+                          
+                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                                
+
+    };
+            
 
         });
       df_date1.setValue(NOW_LOCAL_DATE());
@@ -367,7 +438,7 @@ public class Jobeur_interfaceController implements Initializable {
         Date date = Date.valueOf(locald);
         JobeurService p = new JobeurService();
         Jobeur p1= new Jobeur(AcceuilController.cinlogin, tf_nom1.getText(), tf_prenom1.getText(), tef_email1.getText(), date, Integer.parseInt(tf_tel1.getText()));
-        p.modifierProfil(p1,fis,file);
+        p.modifierProfil(p1,fis,file,pdf,pdff);
         JOptionPane.showMessageDialog(null, "Account edited Successfull");
         nomp_1.setText(p1.getNom());
         nomp_11.setText(p1.getNom());
@@ -383,5 +454,29 @@ public class Jobeur_interfaceController implements Initializable {
                           canModif = true;
         }
     }
+    
+    public void afficher_offre_jobeur() throws SQLException, IOException
+    {
+       
+           
+            int  cin_jobeur=AcceuilController.cinlogin;
+             gestion_offre_service gos = new gestion_offre_service();
+    ArrayList<Offre> offre3= (ArrayList) gos.afficherOffre_Jobeur(cin_jobeur);
+    ObservableList<Offre> data6 = FXCollections.observableArrayList(offre3);
+       //gos.afficherOffre_Jobeur(cin_jobeur);
+        Table_offre_jobeur.setItems(data6);
+     Column_adresse.setCellValueFactory(new PropertyValueFactory <Offre,String>("adresse"));
+     Column_date.setCellValueFactory(new PropertyValueFactory <Offre,String>("Date_debut"));
+     Column_heure.setCellValueFactory(new PropertyValueFactory <Offre,String>("heure"));
+     Column__description.setCellValueFactory(new PropertyValueFactory <Offre,String>("description_offre"));
+     Column__tel.setCellValueFactory(new PropertyValueFactory <Offre,String>("tel"));
+     Column_nomp.setCellValueFactory(new PropertyValueFactory <Offre,String>("nomposteur"));
+     Column_prenomp.setCellValueFactory(new PropertyValueFactory <Offre,String>("prenomposteur"));
+   
+    }
+     
+     
+
+    // Oussama//
     
 }

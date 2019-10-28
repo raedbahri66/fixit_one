@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package iService;
-
-import entites.Offre;
-import entites.Service;
-import java.util.List;
+package API;
 
 /**
  *
- * @author asus
+ * @author lenovo
  */
-public interface IOffre {
-    public void creerOffre(Offre O);
-    
+public class FB {
     
 }

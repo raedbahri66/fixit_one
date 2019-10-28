@@ -51,6 +51,8 @@ import service.*;
  * @author ASUS
  */
 public class Affiche_porfilejobeurController implements Initializable {
+     @FXML
+    private Button Btn_demande_service;
     @FXML
     private Label cin_J;
     @FXML
@@ -426,6 +428,14 @@ public class Affiche_porfilejobeurController implements Initializable {
 
     @FXML
     private void Demander_Service(ActionEvent event) {
+        Jobeur A=new Jobeur();
+            A=Interface_choisir_jobeurController.j1;
+            String nom_j=A.getNom();
+            String prenom_j=A.getPrenom();
+            int cin_jobeur=A.getCin();
+            gestion_offre_service A1=new gestion_offre_service();
+            A1.insererNomjobeur(nom_j, prenom_j,cin_jobeur);
+        
     }
 
     @FXML

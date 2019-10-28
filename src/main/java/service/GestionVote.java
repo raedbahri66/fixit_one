@@ -14,7 +14,8 @@ import iService.IVote;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
-import ZZZZZjava.util.loggin
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -59,7 +60,7 @@ public class GestionVote implements IVote{
             ste.executeUpdate();
             System.out.println(" successfully modified!");
             } catch (SQLException e) {System.err.println(e);
-    JOptionPane.showMessageDialog(null,"error ");
+               JOptionPane.showMessageDialog(null,"error ");
     }}
     @Override
      public void UpdateVotedislike(Vote A, int cin_jobeur,int cin_posteur) {
