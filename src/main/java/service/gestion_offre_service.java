@@ -81,6 +81,7 @@ public class gestion_offre_service implements IOffre{
                 a.setHeure(res.getString("heure"));
                 a.setDescription_offre(res.getString("description_offre"));
                 a.setEtatoffre(res.getString("etat_offre"));
+                a.setNomservice(res.getString("nomservice_fg"));
                 
               offre.add(a);
           }
