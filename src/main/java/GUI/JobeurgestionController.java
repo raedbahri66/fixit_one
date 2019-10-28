@@ -24,6 +24,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -47,6 +48,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import org.controlsfx.control.textfield.TextFields;
 import service.ControleSaisie;
 import service.JobeurService;
 import service.PosteurService;
@@ -177,85 +179,420 @@ public class JobeurgestionController implements Initializable{
     public boolean valid1= true;
         final ToggleGroup group = new ToggleGroup();
             static int cin;
+    @FXML
+    private Tab supp_posttab1;
+    @FXML
+    private TableView table_post1;
+    @FXML
+    private TableColumn<?, ?> c1_cinp1;
+    @FXML
+    private TableColumn<?, ?> c2_nomp1;
+    @FXML
+    private TableColumn<?, ?> c3_prenomp1;
+    @FXML
+    private TableColumn<?, ?> c4_emailp1;
+    @FXML
+    private TableColumn<?, ?> c5_telp1;
+    @FXML
+    private TableColumn<?, ?> c_spec1;
+    @FXML
+    private TableColumn<?, ?> C7_etat;
+    @FXML
+    private Button btn_text1;
+    @FXML
+    private TableColumn<?, ?> c_address;
+    @FXML
+    private TextField filter_field1;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        active_filter.setToggleGroup(group);
-                active_filter.setSelected(true);
-                banned_filter.setToggleGroup(group);
-        ObservableList<String> sexelist = FXCollections.observableArrayList("Homme","Femme");
-        ObservableList<String> speclist = FXCollections.observableArrayList("Electricite","Plomberie","Jardinage","Menage","Conciergerie");
-        ObservableList<String> filter_choix = FXCollections.observableArrayList("nom","email","cin");
-        sexe_p.setValue("Homme");
-        sexe_p.setItems(sexelist);
-        combo_j.setValue("Electricite");
-        combo_j.setItems(speclist);
-        date_p.setValue(NOW_LOCAL_DATE());
-        sexe_p1.setValue("Homme");
-        sexe_p1.setItems(sexelist);
-        combo_j1.setValue("Electricite");
-        combo_j1.setItems(speclist);
-        date_p1.setValue(NOW_LOCAL_DATE());
-        combo_filter.setValue("cin");
-        combo_filter.setItems(filter_choix);
-        /////affiche//
-        JobeurService p= new JobeurService(); 
-        ArrayList<Jobeur> pers=(ArrayList<Jobeur>) p.afficherJobeur();
-        ObservableList<Jobeur> obs=FXCollections.observableArrayList(pers);
-        table_post.getItems().clear();
-        table_post.setItems(obs);
+        String[] possible_ville = {"Agareb",
+            "Aïn Draham",
+            "Akouda",
+            "Amdoun",
+            "Ariana Ville",
+            "Bab El Bhar",
+            "Bab Souika",
+            "Balta-Bou Aouane",
+            "Bargou",
+            "Béja Nord",
+            "Béja Sud",
+            "Bekalta",
+            "Belkhir",
+            "Bembla",
+            "Ben Arous",
+            "Ben Gardane",
+            "Beni Hassen",
+            "Béni Khalled",
+            "Beni Khedache",
+            "Béni Khiar",
+            "Bir Ali Ben Khalifa",
+            "Bir El Hafey",
+            "Bir Lahmar",
+            "Bir Mcherga",
+            "Bizerte Nord",
+            "Bizerte Sud",
+            "Borj El Amri",
+            "Bou Arada",
+            "Bou Argoub",
+            "Bou Hajla",
+            "Bou Merdes",
+            "Bou Mhel el-Bassatine",
+            "Bou Salem",
+            "Bouficha",
+            "Carthage",
+            "Cebbala Ouled Asker",
+            "Chebba",
+            "Chebika",
+            "Chorbane",
+            "Cité El Khadra",
+            "Dahmani",
+            "Dar Chaâbane El Fehri",
+            "Degache",
+            "Dehiba",
+            "Djebel Jelloud",
+            "Djedeida",
+            "Djerba - Ajim",
+            "Djerba - Houmt Souk",
+            "Djerba - Midoun",
+            "Douar Hicher",
+            "Douz Nord",
+            "Douz Sud",
+            "Echrarda",
+            "El Alâa",
+            "El Alia",
+            "El Amra",
+            "El Aroussa",
+            "El Ayoun",
+            "El Batan",
+            "El Fahs",
+            "El Guettar",
+            "El Hamma",
+            "El Haouaria",
+            "El Hencha",
+            "El Jem",
+            "El Kabaria",
+            "El Krib",
+            "El Ksar",
+            "El Ksour",
+            "El Menzah",
+            "El Mida",
+            "El Mourouj",
+            "El Omrane",
+            "El Omrane supérieur",
+            "El Ouardia",
+            "Enfida",
+            "Essouassi",
+            "Ettadhamen",
+            "Ettahrir",
+            "Ezzahra",
+            "Ezzouhour",
+            "Ezzouhour",
+            "Faouar",
+            "Fériana",
+            "Fernana",
+            "Fouchana",
+            "Foussana",
+            "Gaâfour",
+            "Gabès Médina",
+            "Gabès Ouest",
+            "Gabès Sud",
+            "Gafsa Nord",
+            "Gafsa Sud",
+            "Ghannouch",
+            "Ghar El Melh",
+            "Ghardimaou",
+            "Ghezala",
+            "Ghomrassen",
+            "Goubellat",
+            "Graïba",
+            "Grombalia",
+            "Haffouz",
+            "Haïdra",
+            "Hajeb El Ayoun",
+            "Hammam Chott",
+            "Hammam Ghezèze",
+            "Hammam Lif",
+            "Hammam Sousse",
+            "Hammamet",
+            "Hassi El Ferid",
+            "Hazoua",
+            "Hebira",
+            "Hergla",
+            "Hraïria",
+            "Jebiniana",
+            "Jedelienne",
+            "Jemmal",
+            "Jendouba Nord",
+            "Jendouba Sud",
+            "Jérissa",
+            "Jilma",
+            "Joumine",
+            "Kairouan Nord",
+            "Kairouan Sud",
+            "Kalâa Kebira",
+            "Kalâa Seghira",
+            "Kalâat el-Andalous",
+            "Kalâat Khasba",
+            "Kalaat Senan",
+            "Kasserine Nord",
+            "Kasserine Sud",
+            "Kébili Nord",
+            "Kébili Sud",
+            "Kef Est",
+            "Kef Ouest",
+            "Kélibia",
+            "Kerkennah",
+            "Kesra",
+            "Kondar",
+            "Korba",
+            "Ksar Hellal",
+            "Ksibet el-Mediouni",
+            "Ksour Essef",
+            "La Goulette",
+            "La Manouba",
+            "La Marsa",
+            "La Soukra",
+            "Le Bardo",
+            "Le Kram",
+            "Msaken",
+            "Mahdia",
+            "Mahres",
+            "Majel Bel Abbes",
+            "Makthar",
+            "Mareth",
+            "Mateur",
+            "Matmata",
+            "Mdhilla",
+            "Medenine Nord",
+            "Medenine Sud",
+            "Medina",
+            "Medina Jedida",
+            "Medjez el-Bab",
+            "Megrine",
+            "Meknassy",
+            "Melloulèche",
+            "Menzel Bourguiba",
+            "Menzel Bouzaiane",
+            "Menzel Bouzelfa",
+            "Menzel Chaker",
+            "Menzel El Habib",
+            "Menzel Jemil",
+            "Menzel Temime",
+            "Métlaoui",
+            "Métouia",
+            "Mezzouna",
+            "Mnihla",
+            "Mohamedia",
+            "Moknine",
+            "Monastir",
+            "Mornag",
+            "Mornaguia",
+            "Moularès",
+            "Nabeul",
+            "Nadhour",
+            "Nasrallah",
+            "Nebeur",
+            "Nefta",
+            "Nefza",
+            "Nouvelle Matmata",
+            "Oued Ellil",
+            "Oued Meliz",
+            "Ouerdanine",
+            "Oueslatia",
+            "Ouled Chamekh",
+            "Ouled Haffouz",
+            "Radès",
+            "Raoued",
+            "Ras Jebel",
+            "Redeyef",
+            "Regueb",
+            "Remada",
+            "Rouhia",
+            "Sahline",
+            "Sakiet Eddaïer",
+            "Sakiet Ezzit",
+            "Sakiet Sidi Youssef",
+            "Saouaf",
+            "Sayada-Lamta-Bou Hajar",
+            "Sbeïtla",
+            "Sbiba",
+            "Sbikha",
+            "Sejnane",
+            "Séjoumi",
+            "Sened",
+            "Sers",
+            "Sfax Ouest",
+            "Sfax Sud",
+            "Sfax Ville",
+            "Sidi Aïch",
+            "Sidi Ali Ben Aoun",
+            "Sidi Alouane",
+            "Sidi Bou Ali",
+            "Sidi Bou Rouis",
+            "Sidi Bouzid Est",
+            "Sidi Bouzid Ouest",
+            "Sidi El Béchir",
+            "Sidi El Hani",
+            "Sidi Hassine",
+            "Sidi Makhlouf",
+            "Sidi Thabet",
+            "Siliana Nord",
+            "Siliana Sud",
+            "Skhira",
+            "Smâr",
+            "Soliman",
+            "Souk Jedid",
+            "Souk Lahad",
+            "Sousse Jawhara",
+            "Sousse Médina",
+            "Sousse Riadh",
+            "Sousse Sidi Abdelhamid",
+            "Tabarka",
+            "Tajerouine",
+            "Takelsa",
+            "Tameghza",
+            "Tataouine Nord",
+            "Tataouine Sud",
+            "Téboulba",
+            "Tebourba",
+            "Téboursouk",
+            "Testour",
+            "Thala",
+            "Thibar",
+            "Thyna",
+            "Tinja",
+            "Tozeur",
+            "Utique",
+            "Zaghouan",
+            "Zarzis",
+            "Zarzouna",
+            "Zéramdine",
+            "Zriba"
 
-        c1_cinp.setCellValueFactory(new PropertyValueFactory<>("cin") );
-        c2_nomp.setCellValueFactory(new PropertyValueFactory<>("nom") );
-        c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
-        c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
-        c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
-        c_spec.setCellValueFactory(new PropertyValueFactory<>("job") );
-        ///
-        table_post.setOnMouseClicked((MouseEvent event) -> {
-                    if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
-                        Jobeur p0 = new Jobeur();
-                        p0=(Jobeur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
-                        tabpane1.getSelectionModel().select(modif_posttab);
-                        nom_p1.setText(p0.getNom());
-                        prenom_p1.setText(p0.getPrenom());
-                        sexe_p1.setValue(p0.getSexe());
-                        date_p1.setValue(p0.getDate_naissance().toLocalDate());
-                        email_p1.setText(p0.getEmail());
-                        pass_p1.setText(p0.getPassword());
-                        tel_p1.setText(Integer.toString(p0.getTel()));
-                        id_p1.setText(Integer.toString(p0.getCin()));
-                        address_j1.setText(p0.getAddress());
-                        combo_j1.setValue(p0.getJob());
-                    }
-                    else if (event.getButton().equals(MouseButton.SECONDARY) && event.getClickCount() == 1){
-                        Jobeur p0 = new Jobeur();
-                        p0=(Jobeur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
-                        tabpane1.getSelectionModel().select(supp_posttab);
-                        cinsupp_t.setText(Integer.toString(p0.getCin()));
-                    }
-                    
-                    else if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 3){
-                        Jobeur p0 = new Jobeur();
-                        p0=(Jobeur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
-                        int cin1=p0.getCin();
-                        cin=cin1;
-                        Parent root = null;
-                        try {
-                            root= FXMLLoader.load(getClass().getResource("/fxml/Profil_Jobeur.fxml"));
-                        } catch (IOException ex) {
-                            Logger.getLogger(PosteurgestionController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        Stage stage1 = new Stage();
-                        
-                        Scene scene = new Scene(root);
-                        stage1.setScene(scene);
-                        /* Stage stag1 = new Stage(root);*/
-                        stage1.show();
-                    }
-                });
+        };
+        TextFields.bindAutoCompletion(filter_field1, possible_ville);
+
         
-    }
+            active_filter.setToggleGroup(group);
+            active_filter.setSelected(true);
+            banned_filter.setToggleGroup(group);
+            ObservableList<String> sexelist = FXCollections.observableArrayList("Homme","Femme");
+            ObservableList<String> speclist = FXCollections.observableArrayList("Electricite","Plomberie","Jardinage","Menage","Conciergerie");
+            ObservableList<String> filter_choix = FXCollections.observableArrayList("nom","email","cin");
+            sexe_p.setValue("Homme");
+            sexe_p.setItems(sexelist);
+            combo_j.setValue("Electricite");
+            combo_j.setItems(speclist);
+            date_p.setValue(NOW_LOCAL_DATE());
+            sexe_p1.setValue("Homme");
+            sexe_p1.setItems(sexelist);
+            combo_j1.setValue("Electricite");
+            combo_j1.setItems(speclist);
+            date_p1.setValue(NOW_LOCAL_DATE());
+            combo_filter.setValue("cin");
+            combo_filter.setItems(filter_choix);
+            /////affiche//
+            JobeurService p= new JobeurService();
+            ArrayList<Jobeur> pers=(ArrayList<Jobeur>) p.afficherJobeur();
+            ObservableList<Jobeur> obs=FXCollections.observableArrayList(pers);
+            
+            table_post.getItems().clear();
+            table_post.setItems(obs);
+            c1_cinp.setCellValueFactory(new PropertyValueFactory<>("cin") );
+            c2_nomp.setCellValueFactory(new PropertyValueFactory<>("nom") );
+            c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
+            c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
+            c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
+            c_spec.setCellValueFactory(new PropertyValueFactory<>("job") );
+                            c_address.setCellValueFactory(new PropertyValueFactory<>("address") );
+
+            
+            ArrayList<Jobeur> pers1;
+        try {
+            pers1 = (ArrayList<Jobeur>) p.afficherJobeurbyEtat("Attente");
+            ObservableList<Jobeur> obs1=FXCollections.observableArrayList(pers1);
+            table_post1.getItems().clear();
+        table_post1.setItems(obs1);
+        c1_cinp1.setCellValueFactory(new PropertyValueFactory<>("cin") );
+        c2_nomp1.setCellValueFactory(new PropertyValueFactory<>("nom") );
+        c3_prenomp1.setCellValueFactory(new PropertyValueFactory<>("prenom") );
+        c4_emailp1.setCellValueFactory(new PropertyValueFactory<>("email") );
+        c5_telp1.setCellValueFactory(new PropertyValueFactory<>("tel") );
+        c_spec1.setCellValueFactory(new PropertyValueFactory<>("job") );
+                C7_etat.setCellValueFactory(new PropertyValueFactory<>("etat") );
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JobeurgestionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            ///
+            table_post.setOnMouseClicked((MouseEvent event) -> {
+                if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
+                    Jobeur p0 = new Jobeur();
+                    p0=(Jobeur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
+                    tabpane1.getSelectionModel().select(modif_posttab);
+                    nom_p1.setText(p0.getNom());
+                    prenom_p1.setText(p0.getPrenom());
+                    sexe_p1.setValue(p0.getSexe());
+                    date_p1.setValue(p0.getDate_naissance().toLocalDate());
+                    email_p1.setText(p0.getEmail());
+                    pass_p1.setText(p0.getPassword());
+                    tel_p1.setText(Integer.toString(p0.getTel()));
+                    id_p1.setText(Integer.toString(p0.getCin()));
+                    address_j1.setText(p0.getAddress());
+                    combo_j1.setValue(p0.getJob());
+                }
+                else if (event.getButton().equals(MouseButton.SECONDARY) && event.getClickCount() == 1){
+                    Jobeur p0 = new Jobeur();
+                    p0=(Jobeur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
+                    tabpane1.getSelectionModel().select(supp_posttab);
+                    cinsupp_t.setText(Integer.toString(p0.getCin()));
+                }
+                
+                else if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 1){
+                    Jobeur p0 = new Jobeur();
+                    p0=(Jobeur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
+                    int cin1=p0.getCin();
+                    cin=cin1;
+                    Parent root = null;
+                    try {
+                        root= FXMLLoader.load(getClass().getResource("/fxml/Profil_Jobeur.fxml"));
+                    } catch (IOException ex) {
+                        Logger.getLogger(PosteurgestionController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Stage stage1 = new Stage();
+                    
+                    Scene scene = new Scene(root);
+                    stage1.setScene(scene);
+                    /* Stage stag1 = new Stage(root);*/
+                    stage1.show();
+                }
+            });
+            table_post1.setOnMouseClicked((MouseEvent event) -> {
+                if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 1){
+                    Jobeur p0 = new Jobeur();
+                    p0=(Jobeur) table_post1.getItems().get(table_post1.getSelectionModel().getSelectedIndex());
+                    int cin1=p0.getCin();
+                    cin=cin1;
+                    Parent root = null;
+                    try {
+                        root= FXMLLoader.load(getClass().getResource("/fxml/Competance_jobeur.fxml"));
+                    } catch (IOException ex) {
+                        Logger.getLogger(PosteurgestionController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Stage stage1 = new Stage();
+                    
+                    Scene scene = new Scene(root);
+                    stage1.setScene(scene);
+                    /* Stage stag1 = new Stage(root);*/
+                    stage1.show();
+                }
+            });
+        
+        }
+        
+    
+    
     @FXML
     private void btn_actualiser(ActionEvent event) {
         filter_field.clear();
@@ -271,14 +608,35 @@ public class JobeurgestionController implements Initializable{
         c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
         c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
         c_spec.setCellValueFactory(new PropertyValueFactory<>("job") );
+        c_address.setCellValueFactory(new PropertyValueFactory<>("address") );
     }
 
     @FXML
-    private void logout_bt(ActionEvent event) {
+    private void logout_bt(ActionEvent event) throws IOException {
+        Parent root=FXMLLoader.load(getClass().getResource("/fxml/acceuil.fxml"));
+        Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
     }
 
     @FXML
     private void Clearmouse_text(MouseEvent event) {
+      filter_field.clear();
+      JobeurService p= new JobeurService();
+        ArrayList<Jobeur> pers=(ArrayList<Jobeur>) p.afficherJobeur();
+        ObservableList<Jobeur> obs=FXCollections.observableArrayList(pers);
+        table_post.getItems().clear();
+        table_post.setItems(obs);
+        c1_cinp.setCellValueFactory(new PropertyValueFactory<>("cin") );
+        c2_nomp.setCellValueFactory(new PropertyValueFactory<>("nom") );
+        c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
+        c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
+        c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
+        c_spec.setCellValueFactory(new PropertyValueFactory<>("job") );
+        c_address.setCellValueFactory(new PropertyValueFactory<>("address") );
+      
     }
 
     @FXML
@@ -307,7 +665,8 @@ public class JobeurgestionController implements Initializable{
         c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
         c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
         c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
-        c_spec.setCellValueFactory(new PropertyValueFactory<>("job") );
+        c_spec.setCellValueFactory(new PropertyValueFactory<>("job")) ;
+                c_address.setCellValueFactory(new PropertyValueFactory<>("address") );
     }
 
     @FXML
@@ -324,6 +683,7 @@ public class JobeurgestionController implements Initializable{
         c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
         c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
         c_spec.setCellValueFactory(new PropertyValueFactory<>("job") );
+        c_address.setCellValueFactory(new PropertyValueFactory<>("address") );
     }
 
     @FXML
@@ -340,6 +700,7 @@ public class JobeurgestionController implements Initializable{
         c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
         c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
         c_spec.setCellValueFactory(new PropertyValueFactory<>("job") );
+        c_address.setCellValueFactory(new PropertyValueFactory<>("address") );
     }
 
     @FXML
@@ -560,6 +921,42 @@ public class JobeurgestionController implements Initializable{
                           canInscription = true;
 
        }
+    }
+
+    @FXML
+    private void btn_actualiser1() throws SQLException {
+        JobeurService p= new JobeurService(); 
+        ArrayList<Jobeur> pers=(ArrayList<Jobeur>) p.afficherJobeurbyEtat("Attente");
+        ObservableList<Jobeur> obs=FXCollections.observableArrayList(pers);
+       
+        table_post1.getItems().clear();
+        table_post1.setItems(obs);
+        c1_cinp1.setCellValueFactory(new PropertyValueFactory<>("cin") );
+        c2_nomp1.setCellValueFactory(new PropertyValueFactory<>("nom") );
+        c3_prenomp1.setCellValueFactory(new PropertyValueFactory<>("prenom") );
+        c4_emailp1.setCellValueFactory(new PropertyValueFactory<>("email") );
+        c5_telp1.setCellValueFactory(new PropertyValueFactory<>("tel") );
+        c_spec1.setCellValueFactory(new PropertyValueFactory<>("job") );
+        C7_etat.setCellValueFactory(new PropertyValueFactory<>("etat") );
+    }
+
+    @FXML
+    private void OnkeyTypedfilter_address(KeyEvent event) {
+        String msg = filter_field1.getText().concat("%");
+
+        JobeurService p= new JobeurService(); 
+        ArrayList<Jobeur> pers=(ArrayList<Jobeur>) p.afficherJobeurbyAddress(msg);
+        ObservableList<Jobeur> obs=FXCollections.observableArrayList(pers);
+        table_post.getItems().clear();
+        table_post.setItems(obs);
+
+        c1_cinp.setCellValueFactory(new PropertyValueFactory<>("cin") );
+        c2_nomp.setCellValueFactory(new PropertyValueFactory<>("nom") );
+        c3_prenomp.setCellValueFactory(new PropertyValueFactory<>("prenom") );
+        c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
+        c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
+        c_spec.setCellValueFactory(new PropertyValueFactory<>("job")) ;
+                c_address.setCellValueFactory(new PropertyValueFactory<>("address") );
     }
 
     

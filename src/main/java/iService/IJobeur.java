@@ -25,5 +25,7 @@ public interface IJobeur {
     public void ajouterVote(Jobeur p,int cin_jobeur);
     public void UpdateVote(Jobeur p,int cin_jobeur);
     public void supprimerVote(Jobeur p );
+    public void AccepterJobeur(Jobeur p);
+    public void RefuserJobeur(Jobeur p);
 
 }

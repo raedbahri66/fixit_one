@@ -36,6 +36,7 @@ import utils.ConnexionBD;
  */
 public class JobeurService implements IJobeur{
     public static Image A1;
+    public static File P1;
 
     Connection c = ConnexionBD
            .getInstanceConnexionBD()
@@ -66,7 +67,7 @@ public class JobeurService implements IJobeur{
             ste.setString(9, "Jobeur");
             ste.setString(10, p.getJob());
             ste.setString(11, p.getAddress());
-            ste.setString(12, "non_valide");
+            ste.setString(12, "Attente");
             ste.setBinaryStream(13, (InputStream)fis, (int)file.length());
             
             ste.executeUpdate();
@@ -78,8 +79,8 @@ public class JobeurService implements IJobeur{
             JOptionPane.showMessageDialog(null, "Cin is already used by another ones");
         }
     }
-    public void creerJobeur(Jobeur p) {
-         String req1 = "insert into jobeur (cin, nom, prenom, email, sexe, password, date_naissance, tel, role, job, address, etat) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+    public void creerJobeur(Jobeur p, FileInputStream fis, File file, FileInputStream fis1, File file1) {
+         String req1 = "insert into jobeur (cin, nom, prenom, email, sexe, password, date_naissance, tel, role, job, address, etat, image_j, cv) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ste = c.prepareStatement(req1);
             ste.setInt(1, p.getCin());
@@ -93,7 +94,38 @@ public class JobeurService implements IJobeur{
             ste.setString(9, "Jobeur");
             ste.setString(10, p.getJob());
             ste.setString(11, p.getAddress());
-            ste.setString(12, "Active");
+            ste.setString(12, "Attente");
+            ste.setBinaryStream(13, (InputStream)fis, (int)file.length());
+            ste.setBinaryStream(14, (InputStream)fis1, (int)file1.length());
+
+            
+            ste.executeUpdate();
+            System.out.println("Ajout Complete");
+            JOptionPane.showMessageDialog(null, "Account Created Successfull");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PosteurService.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Cin is already used by another ones");
+        }
+    }
+    public void creerJobeur(Jobeur p) {
+         String req1 = "insert into jobeur (cin, nom, prenom, email, sexe, password, date_naissance, tel, role, job, address, etat ) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement ste = c.prepareStatement(req1);
+            ste.setInt(1, p.getCin());
+            ste.setString(2, p.getNom());
+            ste.setString(3, p.getPrenom());
+            ste.setString(4, p.getEmail());
+            ste.setString(5, p.getSexe());
+            ste.setString(6, p.getPassword());
+            ste.setDate(7, (Date) p.getDate_naissance());
+            ste.setInt(8, p.getTel());
+            ste.setString(9, "Jobeur");
+            ste.setString(10, p.getJob());
+            ste.setString(11, p.getAddress());
+            ste.setString(12, "Attente");
+            //ste.setString(13, );
+
             
             
             ste.executeUpdate();
@@ -140,9 +172,26 @@ public class JobeurService implements IJobeur{
                      Image image1=new Image("file:img.jpg");
                A1=image1;
                System.out.println(A1);
+                    ///pdf//////////////
+                    System.out.println(res.getBytes("cv"));
+                      if(res.getBytes("cv") != null)
+                      {
+                          InputStream is1 = res.getBinaryStream("cv");
+                      FileOutputStream os1 = new FileOutputStream( new File("cv.pdf"));
+                      byte[] content1 = new byte[4048];
+                      int size1 = 0;
+                     while((size1 = is1.read(content1)) != -1){
+                          os1.write(content1, 0, size1);
+                      }
+                      }
+                     File pdf1=new File("file:cv.pdf");
+               P1=pdf1;
+               System.out.println(A1);
+               ///////////
                       
                         }
-                      }  
+                      
+          }
       } catch (SQLException ex) {
           System.out.println(ex.getMessage());
       } 
@@ -167,6 +216,38 @@ public class JobeurService implements IJobeur{
             st2.setString(10, p.getAddress());
             
 
+            st2.executeUpdate();
+            System.out.println("" + p.getCin() + " successfully modified!");
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            System.err.println("" + p.getCin() + " error modification!!");
+        }
+    }
+    @Override
+    public void AccepterJobeur(Jobeur p) {
+        try {
+            String update = "UPDATE jobeur SET  cin = ?, etat=? WHERE cin = ? ";
+            PreparedStatement st2 = c.prepareStatement(update);
+            st2.setInt(1, p.getCin());
+            st2.setString(2, "Accepte");
+            st2.setInt(3, p.getCin());
+            st2.executeUpdate();
+            System.out.println("" + p.getCin() + " successfully modified!");
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            System.err.println("" + p.getCin() + " error modification!!");
+        }
+    }
+    @Override
+    public void RefuserJobeur(Jobeur p) {
+        try {
+            String update = "UPDATE jobeur SET  cin = ?, etat=? WHERE cin = ? ";
+            PreparedStatement st2 = c.prepareStatement(update);
+            st2.setInt(1, p.getCin());
+            st2.setString(2, "Refuse");
+            st2.setInt(3, p.getCin());
             st2.executeUpdate();
             System.out.println("" + p.getCin() + " successfully modified!");
 
@@ -252,6 +333,67 @@ public class JobeurService implements IJobeur{
           }
      return jobeurs;
     }
+    public List<Jobeur> afficherJobeurbyRole(String role) {
+        List<Jobeur> jobeurs = new ArrayList<>();
+      Jobeur p=null;
+      ResultSet res;
+        try {
+            String req1="select * from jobeur where role LIKE '"+role+"'";;
+            res = ste.executeQuery(req1);
+            while (res.next()) { 
+              p = new Jobeur();
+                      p.setId( res.getInt("id"));
+                      p.setCin(res.getInt("cin") );
+                      p.setNom(res.getString("nom"));
+                      p.setPrenom(res.getString("prenom"));
+                      p.setEmail(res.getString("email"));
+                      p.setSexe(res.getString("sexe"));
+                      p.setPassword(res.getString("password"));
+                      p.setDate_naissance(res.getDate("date_naissance"));
+                      p.setTel(res.getInt("tel"));
+                      p.setRole(res.getString("role"));
+                      p.setEtat(res.getString("etat"));
+                      p.setAddress(res.getString("address"));
+                      p.setJob(res.getString("job"));
+ jobeurs.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JobeurService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return jobeurs;
+    }
+        
+    public List<Jobeur> afficherJobeurbyAddress(String address) {
+        List<Jobeur> jobeurs = new ArrayList<>();
+      Jobeur p=null;
+      ResultSet res;
+        try {
+            String req1="select * from jobeur where address LIKE '"+address+"'";;
+            res = ste.executeQuery(req1);
+            while (res.next()) { 
+              p = new Jobeur();
+                      p.setId( res.getInt("id"));
+                      p.setCin(res.getInt("cin") );
+                      p.setNom(res.getString("nom"));
+                      p.setPrenom(res.getString("prenom"));
+                      p.setEmail(res.getString("email"));
+                      p.setSexe(res.getString("sexe"));
+                      p.setPassword(res.getString("password"));
+                      p.setDate_naissance(res.getDate("date_naissance"));
+                      p.setTel(res.getInt("tel"));
+                      p.setRole(res.getString("role"));
+                      p.setEtat(res.getString("etat"));
+                      p.setAddress(res.getString("address"));
+                      p.setJob(res.getString("job"));
+ jobeurs.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JobeurService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          //ResultSet res=  ste.executeQuery(req2);
+          
+     return jobeurs;
+    }
     public List<Jobeur> afficherJobeurbynNom(String choix,String nom) throws SQLException {
         List<Jobeur> jobeurs = new ArrayList<>();
       Jobeur p = null ;
@@ -323,21 +465,40 @@ try {
             System.err.println("" + p.getCin() + " error modification!!");
         }
     }
+    public void modifierProfil(Jobeur p, InputStream fis, File file,InputStream pdf, File pdff) {
+         try {
+            String update = "UPDATE jobeur SET  cin = ? , nom = ? , prenom = ? , email = ?, date_naissance = ? , tel = ?, image_j= ?, cv=? WHERE cin = ? ";
+            PreparedStatement st2 = c.prepareStatement(update);
+            st2.setInt(1, p.getCin());
+            st2.setString(2, p.getNom());
+            st2.setString(3, p.getPrenom());
+            st2.setString(4, p.getEmail());
+            st2.setDate(5, p.getDate_naissance());
+            st2.setInt(6, p.getTel());
+            st2.setInt(9, p.getCin());
+            st2.setBinaryStream(7, (InputStream)fis, (int)file.length());
+            st2.setBinaryStream(8, (InputStream)pdf, (int)pdff.length());
+
+
+            st2.executeUpdate();
+            System.out.println("" + p.getCin() + " successfully modified!");
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            System.err.println("" + p.getCin() + " error modification!!");
+        }
+    }
 
     @Override
-    public void ajouterVote(Jobeur p,int cin_jobeur) {
-        
-        
+    public void ajouterVote(Jobeur p, int cin_jobeur) {
     }
 
     @Override
     public void UpdateVote(Jobeur p, int cin_jobeur) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void supprimerVote(Jobeur p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
