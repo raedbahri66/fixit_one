@@ -85,9 +85,9 @@ public class GestionVote implements IVote{
             ste.setString(4,A.getPrenomp());
             ste.setInt(5,A.getNb_dislike()+1);
             ste.executeUpdate();
-            JOptionPane.showMessageDialog(null," jobuer ajouté à votre liste favoris "); 
+             
         } catch (SQLException e) {System.err.println(e);
-    JOptionPane.showMessageDialog(null,"error ");
+   
         }
     }
     
@@ -111,7 +111,7 @@ public class GestionVote implements IVote{
      }
    public boolean verificationvote1 (int cin_p,int cin_j) throws SQLException{
          String req="select * from vote where idposteur_fg="+cin_p+" and idjobeur_fg="+cin_j;
-         System.out.println("zzzzzzzzz"+req); 
+      
          ResultSet res=  ste.executeQuery(req);
           if (res.next()) {
            return true;
