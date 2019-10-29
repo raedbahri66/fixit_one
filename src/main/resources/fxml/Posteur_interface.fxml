@@ -371,11 +371,11 @@
                                       </columns>
                                     </TableView>
                                     <TextField fx:id="repos" layoutX="268.0" layoutY="53.0" promptText="Rechercher" />
-                                    <Button fx:id="rechercherprop" layoutX="434.0" layoutY="51.0" mnemonicParsing="false" onAction="#rechercherechange" prefHeight="29.0" prefWidth="42.0">
+                                    <Button fx:id="rechercherprop" layoutX="434.0" layoutY="53.0" mnemonicParsing="false" onAction="#rechercherechange" prefHeight="27.0" prefWidth="30.0">
                                        <graphic>
-                                          <ImageView fitHeight="21.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../../imgage_article.jpg" />
+                                                <Image url="@../Image/search-icon%20(1).png" />
                                              </image>
                                           </ImageView>
                                        </graphic></Button>
@@ -673,6 +673,11 @@
                                        </children>
                                     </AnchorPane>
                                  </content>
+                              </Tab>
+                              <Tab text="Untitled Tab">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                </content>
                               </Tab>
                            </tabs>
                         </TabPane>
