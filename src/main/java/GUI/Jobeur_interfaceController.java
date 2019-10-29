@@ -445,31 +445,45 @@ public class Jobeur_interfaceController implements Initializable {
         image_post.setImage(JobeurService.A1);
          System.out.println(JobeurService.A1);
         datep_1.setText(p1.getDate_naissance().toString());
-
-         ///////////////////////////Raed bahri*//////////////////////////////////
-         /*   Table_offre_jobeur.setOnMouseClicked((MouseEvent event) -> {
-            if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
-                
         
-         GestionVote v1 =new GestionVote();
+        GestionVote v1 =new GestionVote();
          int nblike = v1.countlike(AcceuilController.cinlogin);
          int nbdislike = v1.countdislik(AcceuilController.cinlogin);
         label_top.setText(String.valueOf(nblike));
         label_flop.setText(String.valueOf(nbdislike));
-             Parent root = null;
-                try {
-                    root = FXMLLoader.load(getClass().getResource("/fxml/Validation_offre.fxml"));
-                } catch (IOException ex) {
-                    Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        Scene scene = new Scene(root);
-              //  Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-               // stage.hide();
-                stage.setScene(scene);
-                stage.show(); 
-                
-         }}); */     
+       Jobeur j=new Jobeur(nblike,nbdislike,AcceuilController.cinlogin);
+       p.putVote(j);
+        try {
+            System.out.println(p.top5());
+             } catch (SQLException ex) {
+            Logger.getLogger(Jobeur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
+            
+            ///////////////////////////Raed bahri*//////////////////////////////////
+            /*   Table_offre_jobeur.setOnMouseClicked((MouseEvent event) -> {
+            if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
+            
+            
+            GestionVote v1 =new GestionVote();
+            int nblike = v1.countlike(AcceuilController.cinlogin);
+            int nbdislike = v1.countdislik(AcceuilController.cinlogin);
+            label_top.setText(String.valueOf(nblike));
+            label_flop.setText(String.valueOf(nbdislike));
+            Parent root = null;
+            try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/Validation_offre.fxml"));
+            } catch (IOException ex) {
+            Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Scene scene = new Scene(root);
+            //  Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // stage.hide();
+            stage.setScene(scene);
+            stage.show();
+            
+            }}); */     
+       
 
     @FXML
     private void btn_modifprofil(ActionEvent event) {

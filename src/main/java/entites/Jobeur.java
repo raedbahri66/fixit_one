@@ -18,6 +18,15 @@ public class Jobeur extends Personne{
      private String role;
      private String address;
      private int nb_like;
+     private int nb_dislike;
+
+    public int getNb_dislike() {
+        return nb_dislike;
+    }
+
+    public void setNb_dislike(int nb_dislike) {
+        this.nb_dislike = nb_dislike;
+    }
      
 
 
@@ -34,6 +43,12 @@ public class Jobeur extends Personne{
 
     public void setNb_like(int nb_like) {
         this.nb_like = nb_like;
+    }
+
+    public Jobeur(int nb_like, int nb_dislike, int cin) {
+        super(cin);
+        this.nb_like = nb_like;
+        this.nb_dislike = nb_dislike;
     }
     
     
