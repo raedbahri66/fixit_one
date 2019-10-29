@@ -419,7 +419,51 @@ public class Posteur_interfaceController implements Initializable {
 
     @FXML
     private Label vdap;
-
+    
+    @FXML
+    private TableView<String> table2;
+    @FXML
+    private TableColumn<Produit,String> table_nom2;
+    @FXML
+    private TableColumn<Produit,String> table_id2;
+    @FXML
+    private TableColumn<Produit,String> table_prix2;
+    @FXML
+    private TableColumn<Produit,String> table_categorie2;
+    @FXML
+    private TableColumn<Produit,String> table_num2;
+    @FXML
+    private TableColumn<Produit,String> table_description2;
+    @FXML
+    private TableColumn<Produit,String> table_proprietere2;
+    @FXML
+    private TableColumn<Produit,String> table_date2;
+     @FXML
+    private Label idpanier;
+    @FXML
+    private Label produit_panier;
+    @FXML
+    private Label prix_panier;
+   @FXML
+    private Label nom_produit_acheter;
+    @FXML
+    private Label nom_proprietaire11;
+    @FXML
+    private Label prix_payer;
+    @FXML
+    private Label frais_payment;
+    @FXML
+    private Label montant_total;
+    @FXML
+    private Label idproduitacheter;
+       
+   
+    
+    
+    
+    
+    
+    
     
     public static final LocalDate NOW_LOCAL_DATE (){
         String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
@@ -552,8 +596,32 @@ public class Posteur_interfaceController implements Initializable {
 
     }
 
+   
     
     
+    @FXML
+    void ajouter_panier(ActionEvent event) {
+        
+        nom_produit_acheter.setText(produit_panier.getText());
+        nom_proprietaire11.setText(nom_proprietaire.getText());
+        prix_payer.setText(prix_panier.getText());
+        idproduitacheter.setText(idpanier.getText());
+        
+        float prix=Integer.parseInt(prix_payer.getText());
+        float frais=(int) (prix*0.02);
+        frais_payment.setText(Float.toString(frais));
+        float prixtotal=frais+prix;
+        montant_total.setText(Float.toString(prixtotal));
+        //frais_payment.setText(nom_proprietaire.getText());
+       // montant_total.setText(nom_proprietaire.getText());
+
+    }
+    
+    
+       @FXML
+    void bnt_payment(ActionEvent event) {
+
+    }
     
     public boolean controlemodifier=true;
      @FXML
@@ -682,6 +750,9 @@ public class Posteur_interfaceController implements Initializable {
                 label_num.setText(A.getNumero());
                 nom_proprietaire.setText(A.getNomproprietere());
              afficher_date.setText(A.getDate1());
+                idpanier.setText(A.getId());
+                prix_panier.setText(A.getPrix());
+                produit_panier.setText(A.getNom());
                 
                 
              }

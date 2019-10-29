@@ -20,6 +20,8 @@ public class Produit {
     private int idJobeurfg;
     private String nomproprietere;
     private String date1;
+    private String panier;
+    
     public Produit() {
     }
 
@@ -151,6 +153,14 @@ public class Produit {
         this.description = description;
     }
 
+    public Produit(String id, String panier) {
+        this.id = id;
+        this.panier = panier;
+    }
+
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 5;
@@ -214,6 +224,14 @@ public class Produit {
             return false;
         }
         return true;
+    }
+
+    public String getPanier() {
+        return panier;
+    }
+
+    public void setPanier(String panier) {
+        this.panier = panier;
     }
 
    
