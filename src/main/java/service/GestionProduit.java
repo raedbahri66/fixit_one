@@ -226,6 +226,23 @@ public class GestionProduit {
     System.out.println(ex.getMessage());
     }
     }
+     
+      public void modifierEtatProduit(Produit E) {
+    String req= "update produit SET  etat_vente=? Where id=? ";
+    String etat="vendu";
+   try { 
+          PreparedStatement ste = c.prepareStatement(req);
+           ste.setString(2,E.getId());
+            ste.setString(1,etat);
+             ste.executeUpdate();
+           
+          
+    }catch(SQLException ex)
+    {
+    System.out.println(ex.getMessage());
+    }
+    }
+     
 
       public void ajouterauPanier(Produit E) {
     String req= "update produit SET  panier=? Where id=? ";

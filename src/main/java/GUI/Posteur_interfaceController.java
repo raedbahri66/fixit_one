@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package GUI;
+import API.Payment;
+import static API.Payment.Paymment;
 import service.GestionProduit;
 import entites.Produit;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
@@ -607,20 +609,33 @@ public class Posteur_interfaceController implements Initializable {
         prix_payer.setText(prix_panier.getText());
         idproduitacheter.setText(idpanier.getText());
         
-        float prix=Integer.parseInt(prix_payer.getText());
-        float frais=(int) (prix*0.02);
-        frais_payment.setText(Float.toString(frais));
-        float prixtotal=frais+prix;
-        montant_total.setText(Float.toString(prixtotal));
-        //frais_payment.setText(nom_proprietaire.getText());
-       // montant_total.setText(nom_proprietaire.getText());
+        int prix=Integer.parseInt(prix_payer.getText());
+        int frais=(int) (prix*0.02);
+        frais_payment.setText(Integer.toString(frais));
+        int prixtotal=frais+prix;
+        montant_total.setText(Integer.toString(prixtotal));
+       JOptionPane.showMessageDialog(null, "Produit ajouter avec succées vous devez consultez votre panier pour finaliser le paymment");
 
     }
     
     
        @FXML
     void bnt_payment(ActionEvent event) {
-
+        
+        
+    int prix=Integer.parseInt(montant_total.getText());  
+    Paymment(prix);
+    String id=idproduitacheter.getText();
+    Produit E = new Produit(id);
+   GestionProduit gs = new  GestionProduit();
+     gs.modifierEtatProduit(E);
+      JOptionPane.showMessageDialog(null, "Paymment effectuer avec succeés");
+      nom_produit_acheter.setText("");
+        nom_proprietaire11.setText("");
+        prix_payer.setText("");
+        idproduitacheter.setText("");
+      montant_total.setText("");
+      refrech();
     }
     
     public boolean controlemodifier=true;
