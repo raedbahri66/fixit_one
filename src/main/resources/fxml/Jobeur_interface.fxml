@@ -91,7 +91,7 @@
                <children>
                   <ImageView fitHeight="630.0" fitWidth="768.0" layoutY="7.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Image/Fotolia_71258241_S.jpg" />
+                        <Image url="@../Image/propiedad-vivienda-gente-negocios-negociando-contrato-aqui-es-donde-debe-firmar_36325-2258.jpg" />
                      </image>
                   </ImageView>
                   <TableView fx:id="Table_offre_jobeur" layoutX="18.0" layoutY="95.0" opacity="0.85" prefHeight="302.0" prefWidth="358.0">

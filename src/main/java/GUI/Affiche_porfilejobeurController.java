@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import API.SMS;
 import entites.Article;
 import entites.Commentaire;
 import entites.Jobeur;
@@ -436,7 +437,7 @@ public class Affiche_porfilejobeurController implements Initializable {
             gestion_offre_service A1=new gestion_offre_service();
             A1.insererNomjobeur(nom_j, prenom_j,cin_jobeur);
             JOptionPane.showMessageDialog (null," Votre demande à été sauvegardée ");
-        
+            SMS.sendSms();       
     }
 
     @FXML
@@ -473,9 +474,20 @@ public class Affiche_porfilejobeurController implements Initializable {
           Vote v=new Vote(cin_posteur,cin_jobeur);
          if(v1.verificationvote1(cin_posteur,cin_jobeur)){
             v1.UpdateVote(v,cin_jobeur,cin_posteur);
-             AfficheVOTE();}
+             int nblike = v1.countlike(cin_jobeur);
+         int nbdislike = v1.countdislik(cin_jobeur);
+       Jobeur j=new Jobeur(nblike,nbdislike,cin_jobeur);
+       JobeurService p =new JobeurService();
+       p.putVote(j);
+             AfficheVOTE();
+           }
          else{
              v1.ajouterVote(v);
+          int nblike = v1.countlike(cin_jobeur);
+         int nbdislike = v1.countdislik(cin_jobeur);
+          Jobeur j=new Jobeur(nblike,nbdislike,cin_jobeur);
+          JobeurService p =new JobeurService();
+          p.putVote(j);
              AfficheVOTE();}
       }}
 
@@ -498,9 +510,20 @@ public class Affiche_porfilejobeurController implements Initializable {
          if(v1.verificationvote1(cin_posteur,cin_jobeur)){
                 System.out.println("ouuuuuuh"+z);
             v1.UpdateVotedislike(v,cin_jobeur,cin_posteur);
-             AfficheVOTE();}
+              int nblike = v1.countlike(cin_jobeur);
+         int nbdislike = v1.countdislik(cin_jobeur);
+          Jobeur j=new Jobeur(nblike,nbdislike,cin_jobeur);
+          JobeurService p =new JobeurService();
+          p.putVote(j);
+             AfficheVOTE();
+          ;}
             else
              v1.ajouterVotedislike(v);
+           int nblike = v1.countlike(cin_jobeur);
+         int nbdislike = v1.countdislik(cin_jobeur);
+          Jobeur j=new Jobeur(nblike,nbdislike,cin_jobeur);
+          JobeurService p =new JobeurService();
+          p.putVote(j);
               AfficheVOTE();
              }
     }
