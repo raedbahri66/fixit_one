@@ -227,6 +227,23 @@ public class GestionProduit {
     }
     }
 
+      public void ajouterauPanier(Produit E) {
+    String req= "update produit SET  panier=? Where id=? ";
+    
+   try { 
+          PreparedStatement ste = c.prepareStatement(req);
+           ste.setString(2,E.getId());
+          ste.setString(1,E.getPanier());
+             ste.executeUpdate();
+           
+          
+    }catch(SQLException ex)
+    {
+    System.out.println(ex.getMessage());
+    }
+    }
+     
+     
         public void supprimerProduit(Produit E) {
     String req= "delete from produit Where id=? ";
     
