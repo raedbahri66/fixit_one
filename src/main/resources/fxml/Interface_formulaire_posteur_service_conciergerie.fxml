@@ -49,9 +49,9 @@
       </Label>
       <TextField fx:id="Label_adresse" layoutX="288.0" layoutY="82.0" />
       <DatePicker fx:id="Label_date" layoutX="285.0" layoutY="121.0" />
-      <TextField fx:id="Label_tel" layoutX="289.0" layoutY="218.0" />
+      <TextField fx:id="Label_tel" layoutX="289.0" layoutY="218.0" promptText="+216XXXXXXXX" />
       <TextArea fx:id="Label_description" layoutX="288.0" layoutY="258.0" prefHeight="89.0" prefWidth="215.0" />
       <Button fx:id="Btn_ajouter_service" layoutX="392.0" layoutY="355.0" mnemonicParsing="false" onAction="#Ajouter_offre_service" text="Enregistrer" />
-      <TextField fx:id="Label_heure" layoutX="288.0" layoutY="170.0" />
+      <TextField fx:id="Label_heure" layoutX="288.0" layoutY="170.0" promptText="00H : 00 M : 00S" />
    </children>
 </Pane>
