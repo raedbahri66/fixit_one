@@ -932,13 +932,16 @@ public class Posteur_interfaceController implements Initializable {
         nomp_11.setText(p1.getNom());
         prenomp_1.setText(p1.getPrenom());
         emailp_1.setText(p1.getEmail());
-        telp_1.setText(Integer.toString(p1.getTel()));
-         datep_1.setText(p1.getDate_naissance().toString());
+        if(p1.getDate_naissance()!=null)
+        {
+       telp_1.setText(Integer.toString(p1.getTel()));
+       datep_1.setText(p1.getDate_naissance().toString());
         image_post.setImage(PosteurService.A1);
          System.out.println(PosteurService.A1);
         datep_1.setText(p1.getDate_naissance().toString());
 
          numero.setText(Integer.toString(p1.getTel()));
+        }
         int id=p1.getId();
     GestionProduit GS = new GestionProduit();
    ArrayList Produit1= (ArrayList)GS.afficherProduit();

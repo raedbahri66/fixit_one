@@ -37,7 +37,6 @@ import utils.ConnexionBD;
 public class JobeurService implements IJobeur{
     public static Image A1;
     public static File P1;
-
     Connection c = ConnexionBD
            .getInstanceConnexionBD()
            .getConnection();
@@ -79,6 +78,24 @@ public class JobeurService implements IJobeur{
             JOptionPane.showMessageDialog(null, "Cin is already used by another ones");
         }
     }
+    
+    public void creerJobeurByFb(Jobeur p) {
+         String req1 = "insert into jobeur (cin, nom, prenom, email) values (?,?,?,?)";
+        try {
+            PreparedStatement ste = c.prepareStatement(req1);
+            ste.setInt(1, p.getCin());
+            ste.setString(2, p.getNom());
+            ste.setString(3, p.getPrenom());
+            ste.setString(4, p.getEmail());
+            ste.executeUpdate();
+            System.out.println("Ajout Complete");
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(PosteurService.class.getName()).log(Level.SEVERE, null, ex);
+          //  JOptionPane.showMessageDialog(null, "Cin is already used by another ones");
+        }
+    }
+    
     public void creerJobeur(Jobeur p, FileInputStream fis, File file, FileInputStream fis1, File file1) {
          String req1 = "insert into jobeur (cin, nom, prenom, email, sexe, password, date_naissance, tel, role, job, address, etat, image_j, cv) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {

@@ -36,6 +36,7 @@ public class Jobeur extends Personne{
         this.nb_like = nb_like;
     }
     
+    
 
     public Jobeur(int cin, String role) {
         super(cin);

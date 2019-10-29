@@ -956,7 +956,7 @@ public class JobeurgestionController implements Initializable{
         c4_emailp.setCellValueFactory(new PropertyValueFactory<>("email") );
         c5_telp.setCellValueFactory(new PropertyValueFactory<>("tel") );
         c_spec.setCellValueFactory(new PropertyValueFactory<>("job")) ;
-                c_address.setCellValueFactory(new PropertyValueFactory<>("address") );
+        c_address.setCellValueFactory(new PropertyValueFactory<>("address") );
     }
 
     
