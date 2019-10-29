@@ -129,6 +129,7 @@ public class gestion_offre_service implements IOffre{
                 a.setTel(res.getString("tel"));
                 a.setNomposteur(res.getString("nomp_fg"));
                 a.setPrenomposteur(res.getString("prenomp_fg"));
+                a.setId(res.getString("id"));
                 
               offre.add(a);
           }
@@ -155,6 +156,31 @@ public class gestion_offre_service implements IOffre{
             Logger.getLogger(gestion_offre_service.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+     public void Accepter_Offre_service(String Id) throws SQLException{
+     String mot ="Accepter";
+     String req1 = "UPDATE `offre_service` SET `etat_offre`=? WHERE id="+Id;
+         try {
+           PreparedStatement ste = c.prepareStatement(req1);
+            ste.setString(1,mot);
+             ste.executeUpdate();
+     
+     } catch(SQLException ex) {
+            Logger.getLogger(gestion_offre_service.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+     }
+       public void Refuser_Offre_service(String Id) throws SQLException{
+     String mot ="Refuser";
+     String req1 = "UPDATE `offre_service` SET `etat_offre`=? WHERE id="+Id;
+     try {
+           PreparedStatement ste = c.prepareStatement(req1);
+            ste.setString(1,mot);
+             ste.executeUpdate();
+     
+     } catch(SQLException ex) {
+            Logger.getLogger(gestion_offre_service.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     } 
     
     
 }

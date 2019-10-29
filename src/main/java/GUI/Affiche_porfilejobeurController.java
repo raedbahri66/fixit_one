@@ -428,13 +428,14 @@ public class Affiche_porfilejobeurController implements Initializable {
 
     @FXML
     private void Demander_Service(ActionEvent event) {
-        Jobeur A=new Jobeur();
+            Jobeur A=new Jobeur();
             A=Interface_choisir_jobeurController.j1;
             String nom_j=A.getNom();
             String prenom_j=A.getPrenom();
             int cin_jobeur=A.getCin();
             gestion_offre_service A1=new gestion_offre_service();
             A1.insererNomjobeur(nom_j, prenom_j,cin_jobeur);
+            JOptionPane.showMessageDialog (null," Votre demande à été sauvegardée ");
         
     }
 
