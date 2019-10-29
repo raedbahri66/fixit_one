@@ -141,22 +141,15 @@ public class Interface_choisir_jobeurController implements Initializable {
         // TODO
 
     @FXML
-    private void btn_top5(ActionEvent event) {
-           Parent root = null;
-        try {
-             root = FXMLLoader.load(getClass().getResource("/fxml/top5.fxml"));
-                } catch (IOException ex) {
-                    Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        
+    private void btn_top5(ActionEvent event) throws IOException {
+         Parent root=null;
+         root = FXMLLoader.load(getClass().getResource("/fxml/top5.fxml"));
         Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();
                 stage.setScene(scene);
                 stage.show(); 
     
-    
-    }
-    }    
+    }}  
     
 

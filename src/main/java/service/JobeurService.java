@@ -543,7 +543,7 @@ try {
                       p.setEtat(res.getString("etat"));
                       p.setAddress(res.getString("address"));
                       p.setJob(res.getString("job"));
-                      p.setNb_like(res.getInt("nb_like"));
+                      p.setNb_like(res.getInt("like"));
 
  jobeurs.add(p);
   }

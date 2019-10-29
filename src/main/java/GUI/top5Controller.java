@@ -77,7 +77,7 @@ public class top5Controller implements Initializable {
      Column_sexej.setCellValueFactory(new PropertyValueFactory <>("sexe"));
      Column_tel.setCellValueFactory(new PropertyValueFactory <>("tel"));
      Column_job.setCellValueFactory(new PropertyValueFactory <>("job"));
-     Date_naissanceJ.setCellValueFactory(new PropertyValueFactory<>("like"));
+     Date_naissanceJ.setCellValueFactory(new PropertyValueFactory<>("nb_like"));
    
     }    
 
