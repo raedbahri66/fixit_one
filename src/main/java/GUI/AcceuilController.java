@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import API.FB;
 import entites.Article;
 import entites.Posteur;
 import java.io.IOException;
@@ -33,6 +34,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import service.Articlegestion;
+import service.JobeurService;
 import service.PosteurService;
 
 /**
@@ -157,6 +159,7 @@ public class AcceuilController implements Initializable {
     @FXML
     private void retour_bt(ActionEvent event) throws IOException {
         
+        
     }
 
     @FXML
@@ -170,6 +173,20 @@ public class AcceuilController implements Initializable {
                     /* Stage stag1 = new Stage(root);*/
                     stage1.show();
         
+    }
+
+    @FXML
+    private void Facebook_login(MouseEvent event) throws IOException {
+        FB.login();
+        if(PosteurService.pFb || FB.alreadysignfb)
+        {
+            Parent root=FXMLLoader.load(getClass().getResource("/fxml/Posteur_interface.fxml"));
+        Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();  
+        }
     }
 
     

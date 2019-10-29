@@ -31,6 +31,15 @@ public class Personne {
         this.cin = cin;
     }
 
+    public Personne(int cin, String nom, String prenom, String email) {
+        this.cin = cin;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+    }
+     
+     
+     
     public Personne(int id, int cin, String nom, String prenom, String email, String sexe, String password, Date date_naissance, int tel, String etat) {
         this.id = id;
         this.cin = cin;
