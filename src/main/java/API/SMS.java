@@ -25,7 +25,7 @@ public class SMS {
 
     Message message = Message.creator(new PhoneNumber("+21623755144"),
         new PhoneNumber("+14157499365"), 
-        "Il y'a Une annonce son contenu est modéfier verifier là").create();
+        "Vérifier Votre Application Fix-It ! Vous avez une Offre de Travail").create();
 
     System.out.println(message.getSid());
   }
