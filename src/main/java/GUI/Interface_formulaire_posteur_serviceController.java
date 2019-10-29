@@ -10,6 +10,7 @@ import entites.Offre;
 import entites.Posteur;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -28,6 +29,7 @@ import javax.swing.JOptionPane;
 import service.PosteurService;
 import service.gestion_offre_service;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -68,7 +70,7 @@ public class Interface_formulaire_posteur_serviceController implements Initializ
     Posteur p = new Posteur();
     
     @FXML
-    void Ajouter_offre_service(ActionEvent event) throws SQLException, IOException {
+    void Ajouter_offre_service(ActionEvent event) throws SQLException, IOException, ParseException {
         PosteurService p = new PosteurService();
         Posteur p1= new Posteur();
         p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
@@ -78,7 +80,16 @@ public class Interface_formulaire_posteur_serviceController implements Initializ
         String nomposteur=p1.getNom();
         String prenomposteur=p1.getPrenom();
         String etatoffre="en-attente";
-        
+        String date8 = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+         LocalDate LCD =Label_date.getValue();
+         Date datess = Date.valueOf(LCD);
+      
+       
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        java.util.Date date9 =  sdf.parse(date8);
+        if (datess.before(date9))
+        {JOptionPane.showMessageDialog(null, "Date Invalide");
+        canInscription=false;}
         if(Label_adresse.getText().isEmpty()){
             canInscription = false;}
         
@@ -99,8 +110,7 @@ public class Interface_formulaire_posteur_serviceController implements Initializ
         String Tel = Label_tel.getText();
         String Heure =Label_heure.getText();
         String Nomservice ="Electricité";
-        LocalDate LCD =Label_date.getValue();
-        
+       
          String date = LCD.toString();
          Offre O = new Offre(adresse,date ,Heure ,Description,Tel,idposteur,etatoffre,nomposteur,prenomposteur,Nomservice);
         gestion_offre_service g = new gestion_offre_service();

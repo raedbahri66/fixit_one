@@ -9,6 +9,7 @@ import entites.Offre;
 import entites.Posteur;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -27,6 +28,7 @@ import javax.swing.JOptionPane;
 import service.PosteurService;
 import service.gestion_offre_service;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -38,16 +40,21 @@ import java.util.Calendar;
  */
 public class Interface_formulaire_posteur_service_plomberieController implements Initializable {
 
-     @FXML
+          @FXML
     private TextField Label_adresse;
+
     @FXML
     private DatePicker Label_date;
+
     @FXML
     private TextField Label_tel;
+
     @FXML
     private TextArea Label_description;
+
     @FXML
     private Button Btn_ajouter_service;
+
     @FXML
     private TextField Label_heure;
     public static final LocalDate NOW_LOCAL_DATE (){
@@ -55,18 +62,15 @@ public class Interface_formulaire_posteur_service_plomberieController implements
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate localDate = LocalDate.parse(date , formatter);
         return localDate;}
-public boolean canInscription= true;
-    Posteur p = new Posteur();
+
     /**
      * Initializes the controller class.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-
+    public boolean canInscription= true;
+    Posteur p = new Posteur();
+    
     @FXML
-    private void Ajouter_offre_service(ActionEvent event) throws SQLException,IOException {
+    void Ajouter_offre_service(ActionEvent event) throws SQLException, IOException, ParseException {
         PosteurService p = new PosteurService();
         Posteur p1= new Posteur();
         p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
@@ -76,7 +80,16 @@ public boolean canInscription= true;
         String nomposteur=p1.getNom();
         String prenomposteur=p1.getPrenom();
         String etatoffre="en-attente";
-        
+        String date8 = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+         LocalDate LCD =Label_date.getValue();
+         Date datess = Date.valueOf(LCD);
+      
+       
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        java.util.Date date9 =  sdf.parse(date8);
+        if (datess.before(date9))
+        {JOptionPane.showMessageDialog(null, "Date Invalide");
+        canInscription=false;}
         if(Label_adresse.getText().isEmpty()){
             canInscription = false;}
         
@@ -86,6 +99,7 @@ public boolean canInscription= true;
             canInscription = false;}
         if(Label_description.getText().isEmpty()){
             canInscription = false;}
+        
      
         
         
@@ -95,11 +109,10 @@ public boolean canInscription= true;
         String Description = Label_description.getText();
         String Tel = Label_tel.getText();
         String Heure =Label_heure.getText();
-        String Nomservice ="Plomberie";
-        LocalDate LCD =Label_date.getValue();
-        
+        String Nomservice ="Electricité";
+       
          String date = LCD.toString();
-Offre O = new Offre(adresse,date ,Heure ,Description,Tel,idposteur,etatoffre,nomposteur,prenomposteur,Nomservice);
+         Offre O = new Offre(adresse,date ,Heure ,Description,Tel,idposteur,etatoffre,nomposteur,prenomposteur,Nomservice);
         gestion_offre_service g = new gestion_offre_service();
               g.creerOffre(O);
               JOptionPane.showMessageDialog(null, "votre details du service sont enregistré");
@@ -118,4 +131,9 @@ Offre O = new Offre(adresse,date ,Heure ,Description,Tel,idposteur,etatoffre,nom
        }
 
     }
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        Label_date.setValue(NOW_LOCAL_DATE());
+        // TODO
+    } 
 }
