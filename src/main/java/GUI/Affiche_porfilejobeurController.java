@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import API.SMS;
 import entites.Article;
 import entites.Commentaire;
 import entites.Jobeur;
@@ -436,7 +437,7 @@ public class Affiche_porfilejobeurController implements Initializable {
             gestion_offre_service A1=new gestion_offre_service();
             A1.insererNomjobeur(nom_j, prenom_j,cin_jobeur);
             JOptionPane.showMessageDialog (null," Votre demande à été sauvegardée ");
-        
+            SMS.sendSms();       
     }
 
     @FXML
