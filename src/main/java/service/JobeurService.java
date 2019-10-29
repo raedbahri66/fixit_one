@@ -37,7 +37,6 @@ import utils.ConnexionBD;
 public class JobeurService implements IJobeur{
     public static Image A1;
     public static File P1;
-
     Connection c = ConnexionBD
            .getInstanceConnexionBD()
            .getConnection();
@@ -79,6 +78,24 @@ public class JobeurService implements IJobeur{
             JOptionPane.showMessageDialog(null, "Cin is already used by another ones");
         }
     }
+    
+    public void creerJobeurByFb(Jobeur p) {
+         String req1 = "insert into jobeur (cin, nom, prenom, email) values (?,?,?,?)";
+        try {
+            PreparedStatement ste = c.prepareStatement(req1);
+            ste.setInt(1, p.getCin());
+            ste.setString(2, p.getNom());
+            ste.setString(3, p.getPrenom());
+            ste.setString(4, p.getEmail());
+            ste.executeUpdate();
+            System.out.println("Ajout Complete");
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(PosteurService.class.getName()).log(Level.SEVERE, null, ex);
+          //  JOptionPane.showMessageDialog(null, "Cin is already used by another ones");
+        }
+    }
+    
     public void creerJobeur(Jobeur p, FileInputStream fis, File file, FileInputStream fis1, File file1) {
          String req1 = "insert into jobeur (cin, nom, prenom, email, sexe, password, date_naissance, tel, role, job, address, etat, image_j, cv) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
@@ -487,8 +504,52 @@ try {
             System.out.println(ex.getMessage());
             System.err.println("" + p.getCin() + " error modification!!");
         }
-    }
+    }//***********
+    public void putVote(Jobeur j)  
+    {  try {
+        String update ="UPDATE jobeur SET  `like` = ?, `dislike`= ? WHERE cin = ? ";
+            PreparedStatement st2 = c.prepareStatement(update);
+            st2.setInt(1, j.getNb_like());
+            st2.setInt(2, j.getNb_dislike());
+            st2.setInt(3, j.getCin());
+            st2.executeUpdate();
+            System.out.println("" + j.getCin() + " successfully vote!");
+             } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            System.err.println("" + j.getCin() + " error modification!!");
+        }
+    }////*********
+     
+    public List<Jobeur> top5() throws SQLException {
+        List<Jobeur> jobeurs = new ArrayList<>();
+      Jobeur p = null ;
+      String req2="select * from jobeur order by `like` DESC limit 5";
+     
+         
+         
+          ResultSet res=  ste.executeQuery(req2);
+          while (res.next()) { 
+              p = new Jobeur();
+                      p.setId( res.getInt("id"));
+                      p.setCin(res.getInt("cin") );
+                      p.setNom(res.getString("nom"));
+                      p.setPrenom(res.getString("prenom"));
+                      p.setEmail(res.getString("email"));
+                      p.setSexe(res.getString("sexe"));
+                      p.setPassword(res.getString("password"));
+                      p.setDate_naissance(res.getDate("date_naissance"));
+                      p.setTel(res.getInt("tel"));
+                      p.setRole(res.getString("role"));
+                      p.setEtat(res.getString("etat"));
+                      p.setAddress(res.getString("address"));
+                      p.setJob(res.getString("job"));
 
+ jobeurs.add(p);
+  }
+        return jobeurs;
+    }
+        
+    
     @Override
     public void ajouterVote(Jobeur p, int cin_jobeur) {
     }
