@@ -156,6 +156,11 @@ public class Jobeur extends Personne{
         this.address = address;
     }
 
+    @Override
+    public String toString() {
+        return "Jobeur{" + "job=" + job + ", nb_like=" + nb_like + ", nb_dislike=" + nb_dislike + '}';
+    }
+
     
     
             
