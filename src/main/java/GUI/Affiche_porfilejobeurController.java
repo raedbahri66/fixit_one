@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import API.Mail;
 import API.SMS;
 import entites.Article;
 import entites.Commentaire;
@@ -41,6 +42,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 import service.Articlegestion;
 import service.CommentaireService;
@@ -494,7 +496,7 @@ public class Affiche_porfilejobeurController implements Initializable {
 
 
     @FXML
-    private void vote_dislike(ActionEvent event) throws SQLException, IOException {
+    private void vote_dislike(ActionEvent event) throws SQLException, IOException,MessagingException {
      
      Jobeur A=new Jobeur();
      A=Interface_choisir_jobeurController.j1;
@@ -502,32 +504,42 @@ public class Affiche_porfilejobeurController implements Initializable {
      Posteur p1= new Posteur();
      GestionVote v1 =new GestionVote();
       p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+      String nomp=p1.getNom();
+      String prenomp=p1.getPrenom();
      int cin_posteur=AcceuilController.cinlogin;
-     System.out.println(cin_jobeur+" gggggggg"+cin_posteur);
         Vote v=new Vote(cin_jobeur,cin_posteur);
         if(flop.isSelected()){
-            boolean z=v1.verificationvote1(cin_posteur,cin_jobeur);
-            System.out.println("ouuuuuuh"+z);
          if(v1.verificationvote1(cin_posteur,cin_jobeur)){
-                System.out.println("ouuuuuuh"+z);
             v1.UpdateVotedislike(v,cin_jobeur,cin_posteur);
-              int nblike = v1.countlike(cin_jobeur);
+         
+         int nblike = v1.countlike(cin_jobeur);
          int nbdislike = v1.countdislik(cin_jobeur);
           Jobeur j=new Jobeur(nblike,nbdislike,cin_jobeur);
           JobeurService p =new JobeurService();
           p.putVote(j);
-             AfficheVOTE();
+             
+          AfficheVOTE();
+           
+          String content = nomp+" "+prenomp+"n'aime pas votre profile";
+          Mail.sendMail11(A.getEmail(),"Notifacation:", content);
           ;}
             else
-             v1.ajouterVotedislike(v);
-           int nblike = v1.countlike(cin_jobeur);
+           v1.ajouterVotedislike(v);
+           
+         int nblike = v1.countlike(cin_jobeur);
          int nbdislike = v1.countdislik(cin_jobeur);
           Jobeur j=new Jobeur(nblike,nbdislike,cin_jobeur);
           JobeurService p =new JobeurService();
+         
           p.putVote(j);
-              AfficheVOTE();
+         
+          String content = nomp+" "+prenomp+"n'aime pas votre profile";
+          Mail.sendMail11(A.getEmail(),"Notifacation:", content);
+                  
              }
     }
+  
+           
     
 }
          

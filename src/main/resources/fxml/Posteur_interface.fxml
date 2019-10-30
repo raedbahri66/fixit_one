@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="825.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="825.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
   <tabs>
     <Tab text="Demander un service">
       <content>
@@ -118,6 +119,13 @@
                </children>
             </AnchorPane>
          </content>
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/shopping-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Tab>
     <Tab text="Profil">
       <content>
@@ -175,6 +183,13 @@
                   <Button fx:id="image_p_btn" layoutX="433.0" layoutY="449.0" mnemonicParsing="false" text="|||" />
                </children></AnchorPane>
       </content>
+         <graphic>
+            <ImageView fitHeight="34.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/Man-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
     </Tab>
       <Tab text="Annonce">
          <content>
@@ -353,7 +368,14 @@
                                     <TextField fx:id="posp" layoutX="261.0" layoutY="139.0" />
                                     <TextArea fx:id="pdp" layoutX="262.0" layoutY="195.0" prefHeight="59.0" prefWidth="154.0" />
                                     <DatePicker fx:id="dap" layoutX="262.0" layoutY="296.0" prefHeight="25.0" prefWidth="158.0" />
-                                    <Button fx:id="ajoutep" layoutX="316.0" layoutY="389.0" mnemonicParsing="false" onAction="#ajouterechangep" text="Ajouter" />
+                                    <Button fx:id="ajoutep" layoutX="316.0" layoutY="389.0" mnemonicParsing="false" onAction="#ajouterechangep" text="Ajouter">
+                                       <graphic>
+                                          <ImageView fitHeight="25.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Image/Button-Add-icon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
                                     <Label fx:id="vprof" layoutX="432.0" layoutY="91.0" prefHeight="21.0" prefWidth="126.0" />
                                     <Label fx:id="vpros" layoutX="455.0" layoutY="143.0" prefHeight="17.0" prefWidth="129.0" />
                                     <Label fx:id="vdp" layoutX="455.0" layoutY="212.0" prefHeight="17.0" prefWidth="130.0" />
@@ -376,9 +398,9 @@
                                       </columns>
                                     </TableView>
                                     <TextField fx:id="repos" layoutX="268.0" layoutY="53.0" promptText="Rechercher" />
-                                    <Button fx:id="rechercherprop" layoutX="434.0" layoutY="53.0" mnemonicParsing="false" onAction="#rechercherechange" prefHeight="27.0" prefWidth="30.0">
+                                    <Button fx:id="rechercherprop" layoutX="434.0" layoutY="53.0" mnemonicParsing="false" onAction="#rechercherechange" prefHeight="0.0" prefWidth="0.0">
                                        <graphic>
-                                          <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../Image/search-icon%20(1).png" />
                                              </image>
@@ -408,8 +430,22 @@
                                     <TextField fx:id="filedpos" layoutX="295.0" layoutY="266.0" />
                                     <TextArea fx:id="fileddes" layoutX="293.0" layoutY="314.0" prefHeight="65.0" prefWidth="178.0" />
                                     <DatePicker fx:id="textdat" layoutX="295.0" layoutY="410.0" />
-                                    <Button fx:id="modifierpro" layoutX="227.0" layoutY="475.0" mnemonicParsing="false" onAction="#modifiermechange" text="modifier mes propositions" />
-                                    <Button fx:id="supppro" layoutX="442.0" layoutY="475.0" mnemonicParsing="false" onAction="#suppmechange" text="supprimer mes propositions" />
+                                    <Button fx:id="modifierpro" layoutX="227.0" layoutY="477.0" mnemonicParsing="false" onAction="#modifiermechange" text="modifier mes propositions">
+                                       <graphic>
+                                          <ImageView fitHeight="21.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Image/pencil-icon%20(1)f.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
+                                    <Button fx:id="supppro" layoutX="471.0" layoutY="477.0" mnemonicParsing="false" onAction="#suppmechange" text="supprimer mes propositions">
+                                       <graphic>
+                                          <ImageView fitHeight="28.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Image/Button-Close-icon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
                                     <TextField fx:id="idme" layoutX="14.0" layoutY="210.0" prefHeight="25.0" prefWidth="20.0" visible="false" />
                                  </children></AnchorPane>
                            </content>
@@ -418,6 +454,13 @@
                   </TabPane>
                </children></AnchorPane>
          </content>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/Arrows-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Tab>
       <Tab text="Produit">
          <content>
@@ -425,13 +468,13 @@
                <children>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="624.0" prefWidth="824.0">
                      <children>
-                        <TabPane prefHeight="597.0" prefWidth="839.0" tabClosingPolicy="UNAVAILABLE">
+                        <TabPane fx:id="produitpane" prefHeight="597.0" prefWidth="839.0" tabClosingPolicy="UNAVAILABLE">
                            <tabs>
                               <Tab text="Liste">
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <ImageView fitHeight="602.0" fitWidth="1028.0" opacity="0.7" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="602.0" fitWidth="1028.0" layoutX="2.0" layoutY="-2.0" opacity="0.7" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../Image/bricolage-et-diy-quels-outils-avoir-chez-soi.jpg" />
                                              </image>
@@ -440,7 +483,7 @@
                                              <columns>
                                                 <TableColumn fx:id="table_nom" prefWidth="98.0" text="Produit" />
                                                 <TableColumn fx:id="table_id" minWidth="0.0" prefWidth="48.0" text="id" visible="false" />
-                                                <TableColumn fx:id="table_prix" prefWidth="88.0" text="Prix(DT)" />
+                                                <TableColumn fx:id="table_prix" prefWidth="88.0" text="Prix(USD)" />
                                                 <TableColumn fx:id="table_categorie" prefWidth="117.0" text="Categorie" />
                                                 <TableColumn fx:id="table_num" minWidth="0.0" prefWidth="76.0" text="num" visible="false" />
                                                 <TableColumn fx:id="table_description" minWidth="0.0" prefWidth="76.0" text="desc" visible="false" />
@@ -505,9 +548,27 @@
                                              </font>
                                           </Label>
                                           <Label fx:id="afficher_date" layoutX="549.0" layoutY="196.0" prefHeight="46.0" prefWidth="154.0" />
+                                          <Button fx:id="btnajouterpanier" layoutX="579.0" layoutY="382.0" mnemonicParsing="false" onAction="#ajouter_panier" text="Panier">
+                                             <graphic>
+                                                <ImageView fitHeight="27.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../Image/add-item-icon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic></Button>
+                                          <Label fx:id="idpanier" layoutX="229.0" layoutY="403.0" prefHeight="26.0" prefWidth="32.0" visible="false" />
+                                          <Label fx:id="prix_panier" layoutX="202.0" layoutY="429.0" prefHeight="21.0" prefWidth="43.0" visible="false" />
+                                          <Label fx:id="produit_panier" layoutX="311.0" layoutY="450.0" prefHeight="31.0" prefWidth="61.0" visible="false" />
                                        </children>
                                     </AnchorPane>
                                  </content>
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Image/Checklist-icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
                               </Tab>
                               <Tab text="Ajouter">
                                  <content>
@@ -541,7 +602,14 @@
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
                                           </Label>
-                                          <Button layoutX="392.0" layoutY="503.0" mnemonicParsing="false" onAction="#addaction" text="Valider" />
+                                          <Button layoutX="392.0" layoutY="503.0" mnemonicParsing="false" onAction="#addaction" text="Valider">
+                                             <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../Image/Knob-Valid-Green-icon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic></Button>
                                           <Label fx:id="statut" layoutX="254.0" layoutY="461.0" prefHeight="42.0" prefWidth="363.0" textFill="#109a17">
                                              <font>
                                                 <Font name="System Bold" size="17.0" />
@@ -583,6 +651,13 @@
                                        </children>
                                     </AnchorPane>
                                  </content>
+                                 <graphic>
+                                    <ImageView fitHeight="32.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Image/Button-Add-icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
                               </Tab>
                               <Tab text="Mes Produits">
                                  <content>
@@ -596,8 +671,8 @@
                                           <TableView fx:id="table1" layoutX="30.0" layoutY="67.0" onSort="#setValueformtableviewtotext" prefHeight="159.0" prefWidth="779.0">
                                              <columns>
                                                 <TableColumn fx:id="table_nom1" prefWidth="113.0" text="Produit" />
-                                                <TableColumn fx:id="table_prix1" prefWidth="71.0" text="Prix(DT)" />
-                                                <TableColumn fx:id="table_description1" prefWidth="188.0" text="Description" />
+                                                <TableColumn fx:id="table_prix1" prefWidth="100.0" text="Prix(USD)" />
+                                                <TableColumn fx:id="table_description1" prefWidth="159.0" text="Description" />
                                                 <TableColumn fx:id="table_categorie1" prefWidth="150.0" text="Categorie" />
                                                 <TableColumn fx:id="table_numero1" prefWidth="131.0" text="Numero°" />
                                                 <TableColumn fx:id="table_etat_vente" prefWidth="116.0" text="Etat" />
@@ -627,15 +702,29 @@
                                           </Label>
                                           <TextField fx:id="nom2" layoutX="163.0" layoutY="247.0" />
                                           <TextField fx:id="prix2" layoutX="163.0" layoutY="301.0" />
-                                          <Button fx:id="modifier" layoutX="299.0" layoutY="513.0" mnemonicParsing="false" onAction="#modifierAction" text="Modifier" />
-                                          <TextArea fx:id="description2" layoutX="163.0" layoutY="356.0" prefHeight="76.0" prefWidth="277.0" />
+                                          <Button fx:id="modifier" layoutX="299.0" layoutY="513.0" mnemonicParsing="false" onAction="#modifierAction" text="Modifier">
+                                             <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../Image/pencil-icon%20(1)f.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic></Button>
+                                          <TextArea fx:id="description2" layoutX="163.0" layoutY="356.0" prefHeight="75.0" prefWidth="270.0" />
                                           <Label fx:id="label_id" layoutX="617.0" layoutY="451.0" prefHeight="45.0" prefWidth="65.0" visible="false" />
                                           <Label fx:id="statut2" layoutX="245.0" layoutY="455.0" prefHeight="37.0" prefWidth="295.0" textFill="#0d8d1e">
                                              <font>
                                                 <Font name="System Bold" size="17.0" />
                                              </font>
                                           </Label>
-                                          <Button layoutX="420.0" layoutY="513.0" mnemonicParsing="false" onAction="#SupprimerAction" text="Supprimer" />
+                                          <Button layoutX="420.0" layoutY="513.0" mnemonicParsing="false" onAction="#SupprimerAction" text="Supprimer">
+                                             <graphic>
+                                                <ImageView fitHeight="23.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../Image/Button-Close-icon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic></Button>
                                           <Label layoutX="495.0" layoutY="242.0" prefHeight="41.0" prefWidth="89.0" text="Numero°:" textFill="#141313">
                                              <font>
                                                 <Font name="System Bold" size="17.0" />
@@ -678,11 +767,119 @@
                                        </children>
                                     </AnchorPane>
                                  </content>
+                                 <graphic>
+                                    <ImageView fitHeight="27.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Image/Pencil-icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
                               </Tab>
-                              <Tab text="Untitled Tab">
+                              <Tab fx:id="panier" text="Panier">
                                 <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <ImageView fitHeight="731.0" fitWidth="1103.0" opacity="0.7" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Image/bricolage-et-diy-quels-outils-avoir-chez-soi.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="32.0" layoutY="31.0" prefHeight="21.0" prefWidth="245.0" text="Panier">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="76.0" layoutY="100.0" prefHeight="38.0" prefWidth="101.0" text="Produit:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="471.0" layoutY="96.0" prefHeight="38.0" prefWidth="101.0" text="Prix:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="54.0" layoutY="139.0" prefHeight="38.0" prefWidth="101.0" text="Publié Par:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="nom_produit_acheter" layoutX="166.0" layoutY="105.0" prefHeight="29.0" prefWidth="123.0">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="nom_proprietaire11" layoutX="166.0" layoutY="143.0" prefHeight="29.0" prefWidth="123.0">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="nom_proprietaire12" layoutX="166.0" layoutY="180.0" prefHeight="29.0" prefWidth="123.0">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="numero_carte" layoutX="490.0" layoutY="301.0" />
+                                          <Label layoutX="413.0" layoutY="298.0" prefHeight="38.0" prefWidth="101.0" text="Carte:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="325.0" layoutY="350.0" prefHeight="40.0" prefWidth="145.0" text="Date de validité:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="date_validite_carte" layoutX="490.0" layoutY="355.0" prefHeight="29.0" prefWidth="104.0" />
+                                          <Label layoutX="420.0" layoutY="406.0" prefHeight="33.0" prefWidth="57.0" text="CVC:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="prix_payer" layoutX="522.0" layoutY="101.0" prefHeight="29.0" prefWidth="123.0">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="357.0" layoutY="139.0" prefHeight="39.0" prefWidth="157.0" text="Frais de payment:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="frais_payment" layoutX="522.0" layoutY="144.0" prefHeight="29.0" prefWidth="123.0">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="321.0" layoutY="188.0" prefHeight="43.0" prefWidth="206.0" text="Montant Total a Payé:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="montant_total" layoutX="522.0" layoutY="192.0" prefHeight="29.0" prefWidth="123.0">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Button layoutX="527.0" layoutY="479.0" mnemonicParsing="false" onAction="#bnt_payment" text="Payer">
+                                             <graphic>
+                                                <ImageView fitHeight="23.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../Image/Coin-us-dollar-icon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic></Button>
+                                          <Label fx:id="idproduitacheter" layoutX="109.0" layoutY="269.0" prefHeight="36.0" prefWidth="85.0" visible="false" />
+                                          <PasswordField fx:id="cvc" layoutX="491.0" layoutY="407.0" prefHeight="29.0" prefWidth="63.0" />
+                                       </children></AnchorPane>
                                 </content>
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Image/add-item-icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
                               </Tab>
                            </tabs>
                         </TabPane>
@@ -690,6 +887,13 @@
                   </AnchorPane>
                </children></AnchorPane>
          </content>
+         <graphic>
+            <ImageView fitHeight="34.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/Autodesk-Product-Design-Suite-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Tab>
       <Tab text="Favoris">
          <content>
@@ -708,6 +912,13 @@
                </children>
             </AnchorPane>
          </content>
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/Etoile-favoris-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Tab>
   </tabs>
 </TabPane>

@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package GUI;
+import API.Payment;
+import static API.Payment.Paymment;
 import service.GestionProduit;
 import entites.Produit;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
@@ -419,7 +421,51 @@ public class Posteur_interfaceController implements Initializable {
 
     @FXML
     private Label vdap;
-
+    
+    @FXML
+    private TableView<String> table2;
+    @FXML
+    private TableColumn<Produit,String> table_nom2;
+    @FXML
+    private TableColumn<Produit,String> table_id2;
+    @FXML
+    private TableColumn<Produit,String> table_prix2;
+    @FXML
+    private TableColumn<Produit,String> table_categorie2;
+    @FXML
+    private TableColumn<Produit,String> table_num2;
+    @FXML
+    private TableColumn<Produit,String> table_description2;
+    @FXML
+    private TableColumn<Produit,String> table_proprietere2;
+    @FXML
+    private TableColumn<Produit,String> table_date2;
+     @FXML
+    private Label idpanier;
+    @FXML
+    private Label produit_panier;
+    @FXML
+    private Label prix_panier;
+   @FXML
+    private Label nom_produit_acheter;
+    @FXML
+    private Label nom_proprietaire11;
+    @FXML
+    private Label prix_payer;
+    @FXML
+    private Label frais_payment;
+    @FXML
+    private Label montant_total;
+    @FXML
+    private Label idproduitacheter;
+       
+   
+    
+    
+    
+    
+    
+    
     
     public static final LocalDate NOW_LOCAL_DATE (){
         String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
@@ -552,8 +598,45 @@ public class Posteur_interfaceController implements Initializable {
 
     }
 
+   
     
     
+    @FXML
+    void ajouter_panier(ActionEvent event) {
+        
+        nom_produit_acheter.setText(produit_panier.getText());
+        nom_proprietaire11.setText(nom_proprietaire.getText());
+        prix_payer.setText(prix_panier.getText());
+        idproduitacheter.setText(idpanier.getText());
+        
+        int prix=Integer.parseInt(prix_payer.getText());
+        int frais=(int) (prix*0.02);
+        frais_payment.setText(Integer.toString(frais));
+        int prixtotal=frais+prix;
+        montant_total.setText(Integer.toString(prixtotal));
+       JOptionPane.showMessageDialog(null, "Produit ajouter avec succées vous devez consultez votre panier pour finaliser le paymment");
+
+    }
+    
+    
+       @FXML
+    void bnt_payment(ActionEvent event) {
+        
+        
+    int prix=Integer.parseInt(montant_total.getText());  
+    Paymment(prix);
+    String id=idproduitacheter.getText();
+    Produit E = new Produit(id);
+   GestionProduit gs = new  GestionProduit();
+     gs.modifierEtatProduit(E);
+      JOptionPane.showMessageDialog(null, "Paymment effectuer avec succeés");
+      nom_produit_acheter.setText("");
+        nom_proprietaire11.setText("");
+        prix_payer.setText("");
+        idproduitacheter.setText("");
+      montant_total.setText("");
+      refrech();
+    }
     
     public boolean controlemodifier=true;
      @FXML
@@ -682,6 +765,9 @@ public class Posteur_interfaceController implements Initializable {
                 label_num.setText(A.getNumero());
                 nom_proprietaire.setText(A.getNomproprietere());
              afficher_date.setText(A.getDate1());
+                idpanier.setText(A.getId());
+                prix_panier.setText(A.getPrix());
+                produit_panier.setText(A.getNom());
                 
                 
              }

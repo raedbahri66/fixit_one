@@ -21,11 +21,11 @@ import javax.mail.internet.MimeMessage;
  */
 
 public class Mail {
-    public static void sendMail(String to,String sujet,String contenu) throws MessagingException{
+    public static void sendMail11(String to,String sujet,String contenu) throws MessagingException{
     
         
-        String login = "raedbahri@aol.com";
-        String pass="bnqjsfnjmtriyelq";
+        String login = "fixitapplication@aol.com";
+        String pass="bunbpbkvgsrbjqpq";
         String host = "smtp.aol.com";
         Properties prop = System.getProperties();
         prop.put("mail.smtp.starttls.enable", "true");
