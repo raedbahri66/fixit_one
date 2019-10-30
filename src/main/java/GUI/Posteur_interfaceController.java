@@ -468,9 +468,9 @@ public class Posteur_interfaceController implements Initializable {
     @FXML
     private TextField numero_carte;
     @FXML
-    private TextField mois_validite_carte;
+    private TextField mois_validite;
     @FXML
-    private TextField year_validite_carte;
+    private TextField year_validite;
     @FXML
     private TextField cvc;
     @FXML
@@ -691,38 +691,44 @@ public class Posteur_interfaceController implements Initializable {
 
     }
     
-    
+    public boolean controlepayment=true;
        @FXML
     void bnt_payment(ActionEvent event) throws StripeException {
        
-        String cvc1=cvc.getText();
-     int mois=Integer.parseInt(mois_validite_carte.getText());
-     int year=Integer.parseInt(year_validite_carte.getText());
+   
+     
+     
+          if(year_validite.getText().isEmpty())
+        {controlepayment = false;  date_validation.setText("Champ vide");}
+          else if(!year_validite.getText().isEmpty()){ date_validation.setText("");}
+       if(mois_validite.getText().isEmpty())
+        {controlepayment = false;  mois_validation.setText("Champ vide");}
+          else if(!mois_validite.getText().isEmpty()){ mois_validation.setText("");}
+        if(cvc.getText().isEmpty())
+        {controlepayment = false;  cvc_validation.setText("Champ vide");}
+          else if(!cvc.getText().isEmpty()) {cvc_validation.setText("");}
+    if(numero_carte.getText().isEmpty())
+        {controlepayment = false;  card_validation.setText("Champ vide");}
+          else if(!numero_carte.getText().isEmpty()) {card_validation.setText("");}
+    
+    if (  "".equals(montant_total.getText())){
+        JOptionPane.showMessageDialog(null, "Veuillez choisir un produit");
+        controlepayment = false;
+    }
+    
+    
+    
+    if(controlepayment){
+             String cvc1=cvc.getText();
+     String mois=mois_validite.getText();
+     String year=year_validite.getText();
      String numC=numero_carte.getText();
     int prix=Integer.parseInt(montant_total.getText()); 
     Payment p=new Payment(); 
      ControleSaisie C= new ControleSaisie();
-     
-     
-          if(year_validite_carte.getText().isEmpty())
-        {canInscription = false;  date_validation.setText("Champ vide");}
-          else if(!year_validite_carte.getText().isEmpty()){ date_validation.setText("");}
-       if(mois_validite_carte.getText().isEmpty())
-        {canInscription = false;  mois_validation.setText("Champ vide");}
-          else if(!mois_validite_carte.getText().isEmpty()){ mois_validation.setText("");}
-        if(cvc.getText().isEmpty())
-        {canInscription = false;  cvc_validation.setText("Champ vide");}
-          else if(!cvc.getText().isEmpty()) {cvc_validation.setText("");}
-    if(numero_carte.getText().isEmpty())
-        {canInscription = false;  card_validation.setText("Champ vide");}
-          else if(!numero_carte.getText().isEmpty()) {card_validation.setText("");}
-    
-    
-    
-    
-    
-    if(canInscription){
-    if(p.Paymment(prix,numC,mois,year,cvc1)==true)
+      int  mois2=Integer.parseInt(mois);
+      int year2=Integer.parseInt(year);  
+    if(p.Paymment(prix,numC,mois2,year2,cvc1)==true)
     {
     String id=idproduitacheter.getText();
     Produit E = new Produit(id);
@@ -735,15 +741,22 @@ public class Posteur_interfaceController implements Initializable {
         idproduitacheter.setText("");
       montant_total.setText("");
       numero_carte.setText("");
-      year_validite_carte.setText("");
-      mois_validite_carte.setText("");
+      year_validite.setText("");
+      mois_validite.setText("");
               cvc.setText("");
+              frais_payment.setText("");
       refrech();
     }
     else{JOptionPane.showMessageDialog(null, "Erreur de paymment veuillez verifier vos données ");}
+    
+    
+    
+   
+    
+    
     }
     
-     else{ canInscription = true;}
+     else{ controlepayment = true;}
   
     
     
