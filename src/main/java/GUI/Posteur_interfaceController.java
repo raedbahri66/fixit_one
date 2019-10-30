@@ -62,10 +62,14 @@ import service.JobeurService;
 import service.PosteurService;
 import entites.Offre;
 import entites.annonce;
+import facebook4j.FacebookException;
+import facebook4j.FacebookFactory;
+import facebook4j.auth.AccessToken;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseButton;
@@ -1273,7 +1277,7 @@ public class Posteur_interfaceController implements Initializable {
     }
 
     @FXML
-    private void ajouterechangep(ActionEvent event) throws SQLException, IOException, ParseException {
+    private void ajouterechangep(ActionEvent event) throws SQLException, IOException, ParseException, FacebookException {
               // boolean test= true;
                 String date8 = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
                 // LocalDate locald =dap.getValue();
@@ -1342,6 +1346,19 @@ public class Posteur_interfaceController implements Initializable {
   EchangeGestion es = new  EchangeGestion();
    es.ajouterEchange(E);
    JOptionPane.showMessageDialog(null, "ajout avec succes");
+  facebook4j.Facebook facebook = new FacebookFactory().getInstance();
+    
+    facebook.setOAuthAppId("", "");
+  
+    String accessTokenString = "EAAjdVZBDPFWIBAAHH2Uk0ZBkX6UWGftWZB6Bc0wOM5qLSv7wph2ZAFasgY0fDNkc1PJ5Su7MixODicTjKZCI5dqBIu77g8yAIFaM0lJZAPBo0cJumEzVSlWxiNzXjt9EuhZB4UG4yY1GlUYvCJ7DFKi3Vqa7yZClavi71qQITHtejqB2KqZB8VXYc21n0vvs00owZD";
+    AccessToken at = new AccessToken(accessTokenString);
+    facebook.setOAuthAccessToken(at);
+        try{
+            
+        facebook.postStatusMessage("\n Pubilerpar:"+p1.getNom()+ "\n son numero de telephone est:"+p1.getTel()+ "\n Propositionofferte: "+E.getPropositionofferte()+ "\n Propositionsouhaitée: "+ E.getPropositionsouhaitée() +"\n Description: " + E.getDescription_echange());
+        
+        }
+        catch(FacebookException fex){System.out.println(fex);}
    pofp.setText("");
    posp.setText("");
    pdp.setText("");
