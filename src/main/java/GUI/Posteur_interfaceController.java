@@ -473,6 +473,8 @@ public class Posteur_interfaceController implements Initializable {
     private Button arabe;
         @FXML
     private Button programmation;
+    @FXML
+    private TextField recherche_favoris1;
     
        @FXML
     void voirpdffrancais(ActionEvent event) {
@@ -540,8 +542,6 @@ public class Posteur_interfaceController implements Initializable {
     @FXML
     private Label nom_proprietaire12;
     
-    @FXML
-    private TextField date_validite_carte;
   
     
   
@@ -1632,6 +1632,27 @@ Echange E = new Echange(id);
                 stage.hide();
                 stage.setScene(scene);
                 stage.show();
+    }
+
+   
+
+    @FXML
+    private void favoriss4(KeyEvent event) {
+        if(!recherche_favoris1.getText().isEmpty()){
+        String recher =recherche_favoris1.getText().concat("%");
+      GestionFavoris gf = new GestionFavoris ();
+   ArrayList<Favoris> favroiss= (ArrayList<Favoris>) gf.recherchefavoris(AcceuilController.cinlogin,recher);  
+   ObservableList<Favoris> data = FXCollections.observableArrayList(favroiss);
+       System.out.println(data);
+     favrois.setItems(data);
+     c_nomj.setCellValueFactory(new PropertyValueFactory <>("nomj"));
+     c_prenomj.setCellValueFactory(new PropertyValueFactory <>("prenomj"));
+     c_datej.setCellValueFactory(new PropertyValueFactory <>("datej"));
+     c_telej2.setCellValueFactory(new PropertyValueFactory <>("telej"));
+     c_email2.setCellValueFactory(new PropertyValueFactory <>("mailj"));
+     c_specialite.setCellValueFactory(new PropertyValueFactory <>("specalite"));}
+     else
+     favoris();
     }
     
 }

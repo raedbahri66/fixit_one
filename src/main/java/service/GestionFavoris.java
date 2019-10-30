@@ -129,4 +129,31 @@ public class GestionFavoris implements IFavoris{
      return favoriss;
         
     }
+    
+    public List<Favoris> recherchefavoris(int cin_posteur1,String nom) {
+           List<Favoris> favoriss = new ArrayList<>();
+           Favoris F = null ; 
+     
+      try {
+        String req="select * from favoris where cin_posteur="+cin_posteur1+" and like'"+nom+"'";
+        ResultSet res= ste.executeQuery(req);
+          while (res.next()) { 
+                F= new Favoris();
+                F.setId(res.getInt(1));
+                F.setCin_posteur(res.getInt(2));
+                F.setCin_jobeur(res.getInt(3));
+                F.setNomj(res.getString(4));
+                F.setPrenomj(res.getString(5));
+                F.setDatej(res.getString(6));
+                F.setTelej(res.getString(7));
+                F.setMailj(res.getString(8));
+                F.setSpecalite(res.getString(9));
+                favoriss.add(F);  
+          }
+      } catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+      }    
+     return favoriss;
+        
+    }
 }
