@@ -112,10 +112,7 @@ public class AdmininterfaceController implements Initializable {
   ArrayList<Article> articles= (ArrayList<Article>) art.afficherArticle();  
   public ObservableList<Article> data = FXCollections.observableArrayList(articles);
   ObservableList<String> categoriesList= FXCollections.
-  observableArrayList("Bricolage","jardinage","informatique");
-   
-    
-   
+  observableArrayList("Bricolage","Plomberie","Jardinage","Ménage","Rénovation","Electricité");
     public void initialize(URL url, ResourceBundle rb) {
         PosteurService p= new PosteurService();
         ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteur();

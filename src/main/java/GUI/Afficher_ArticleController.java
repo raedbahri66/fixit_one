@@ -41,22 +41,21 @@ import service.Articlegestion;
 public class Afficher_ArticleController implements Initializable {
     @FXML
     private Text tiitre_article;
-   
     @FXML
-    private Label desc_artcile;
+    private TextArea desc_artcile;
     @FXML
     private Label lire;
-    Article A=new Article();
+    
     @FXML
     private ImageView image_article;
     
-  
-    
+   Article A=new Article();
+   
     private Desktop desktop = Desktop.getDesktop();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Article A=new Article();
+       
         A=AcceuilController.A1;
         int id=(A.getId());
         Articlegestion a1=new Articlegestion();

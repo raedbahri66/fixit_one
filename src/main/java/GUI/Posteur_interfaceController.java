@@ -448,7 +448,8 @@ public class Posteur_interfaceController implements Initializable {
     private Label montant_total;
     @FXML
     private Label idproduitacheter;
-       
+     @FXML
+    private TableColumn<?, ?> id_h;  
    
     @FXML
     private TextField numero_carte;
@@ -511,6 +512,8 @@ public class Posteur_interfaceController implements Initializable {
     private Label dollar2;
     @FXML
     private Label dollar1;
+    @FXML
+    private TextField recherche_favoris1;
     
        @FXML
     void voirpdffrancais(ActionEvent event) {
@@ -567,9 +570,7 @@ public class Posteur_interfaceController implements Initializable {
         LocalDate localDate = LocalDate.parse(date , formatter);
         return localDate;
     }
-    @FXML
-    private TableColumn<?, ?> id_h;
-
+ 
   
    public void favoris(){
     GestionFavoris gf = new GestionFavoris ();
@@ -1858,6 +1859,25 @@ Echange E = new Echange(id);
         image_post.setImage(image1);
        // image_post.setImage(new Image("file:/C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg"));
         file_image_p.setText("C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg");
+
     }
+    @FXML
+    private void favoriss4(KeyEvent event) {
+        if(!recherche_favoris1.getText().isEmpty()){
+        String recher =recherche_favoris1.getText().concat("%");
+      GestionFavoris gf = new GestionFavoris ();
+   ArrayList<Favoris> favroiss= (ArrayList<Favoris>) gf.recherchefavoris(AcceuilController.cinlogin,recher);  
+   ObservableList<Favoris> data = FXCollections.observableArrayList(favroiss);
+       System.out.println(data);
+     favrois.setItems(data);
+     c_nomj.setCellValueFactory(new PropertyValueFactory <>("nomj"));
+     c_prenomj.setCellValueFactory(new PropertyValueFactory <>("prenomj"));
+     c_datej.setCellValueFactory(new PropertyValueFactory <>("datej"));
+     c_telej2.setCellValueFactory(new PropertyValueFactory <>("telej"));
+     c_email2.setCellValueFactory(new PropertyValueFactory <>("mailj"));
+     c_specialite.setCellValueFactory(new PropertyValueFactory <>("specalite"));}
+     else
+     favoris();}
+    
     
 }
