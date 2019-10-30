@@ -65,7 +65,7 @@
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label depthTest="ENABLE" mouseTransparent="true" prefHeight="25.0" prefWidth="204.0" text="Date de naissance:" GridPane.rowIndex="2">
+                  <Label depthTest="ENABLE" mouseTransparent="true" prefHeight="25.0" prefWidth="177.0" text="Date de naissance:" GridPane.rowIndex="2">
                      <font>
                         <Font name="Arial Bold" size="21.0" />
                      </font>
@@ -97,7 +97,7 @@
                   </Label>
                </children>
             </GridPane>
-            <Label layoutX="199.0" layoutY="11.0" prefHeight="38.0" prefWidth="358.0" text="Je suis à votre service " textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="199.0" layoutY="11.0" prefHeight="38.0" prefWidth="358.0" text="Je suis à votre service !!" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Arial Narrow Bold" size="36.0" />
                </font>
