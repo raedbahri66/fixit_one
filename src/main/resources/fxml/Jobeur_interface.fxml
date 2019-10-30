@@ -77,11 +77,12 @@
                   <Label layoutX="85.0" layoutY="502.0" text="Votre CV:" />
                   <TextField fx:id="file_pdf_p1" layoutX="223.0" layoutY="497.0" prefHeight="31.0" prefWidth="209.0" promptText="Choose your CV in Pdf" />
                   <Button fx:id="pdf_p_btn1" layoutX="432.0" layoutY="497.0" mnemonicParsing="false" text="|||" />
-                  <Button layoutX="532.0" layoutY="497.0" mnemonicParsing="false" onAction="#btn_modifprofil" text="Modifier Mon Profil" />
+                  <Button layoutX="625.0" layoutY="523.0" mnemonicParsing="false" onAction="#btn_modifprofil" text="Modifier Mon Profil" />
                   <Text layoutX="543.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="top" />
                   <Text layoutX="612.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="flop" />
                   <Text fx:id="label_top" layoutX="569.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
                   <Text fx:id="label_flop" layoutX="641.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                  <Button layoutX="482.0" layoutY="450.0" mnemonicParsing="false" onAction="#Chosier_ph_bt" text="Choisir Photo Maintenant" />
                </children></AnchorPane>
       </content>
     </Tab>

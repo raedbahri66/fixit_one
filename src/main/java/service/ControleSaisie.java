@@ -66,7 +66,7 @@ public class ControleSaisie {
         String req1="select * from Posteur where cin="+cin1 ;   
         String req2="select * from Jobeur where cin="+cin1;
         boolean etat= false;
-        etat = cinisValid((Integer.toString(cin1)));
+        
         try {
           ResultSet res=  ste.executeQuery(req1);
           if (res.next()) { 
@@ -80,6 +80,7 @@ public class ControleSaisie {
       } catch (SQLException ex) {
           System.out.println(ex.getMessage());
       } 
+        System.out.println("Read cin:"+cin11+"  "+cin1);
         if(cin11.equals(cin1))
             etat= true;
                     else etat=false;

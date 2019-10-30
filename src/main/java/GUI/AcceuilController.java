@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import static API.CAM.Capture;
 import API.FB;
 
 import entites.Article;
@@ -171,7 +172,8 @@ public class AcceuilController implements Initializable {
 
     @FXML
     private void retour_bt(ActionEvent event) throws IOException, InterruptedException, URISyntaxException {
-        
+               
+
 
     }
 
