@@ -93,6 +93,7 @@ public class Interface_choisir_jobeurController implements Initializable {
     }
      @FXML
     void Onkeyjobeur_elec(KeyEvent event) {
+       if(!Label_recherche.getText().isEmpty()){
         String nom = Label_recherche.getText().concat("%");
         data.clear();
         //String nom =Label_recherche.getText();
@@ -108,9 +109,11 @@ public class Interface_choisir_jobeurController implements Initializable {
      Column_tel.setCellValueFactory(new PropertyValueFactory <Jobeur,Integer>("tel"));
      Column_job.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("job"));
      Date_naissanceJ.setCellValueFactory(new PropertyValueFactory<Jobeur,Date>("date_naissance"));
-     column_cin.setCellValueFactory(new PropertyValueFactory <Jobeur,Integer>("cin"));
+     column_cin.setCellValueFactory(new PropertyValueFactory <Jobeur,Integer>("cin"));}
         
-
+       else{ 
+           afficherTab_service_elec();
+       }
     }
   
 
