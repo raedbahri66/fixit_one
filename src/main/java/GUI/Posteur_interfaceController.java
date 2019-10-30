@@ -1336,7 +1336,7 @@ public class Posteur_interfaceController implements Initializable {
     
     facebook.setOAuthAppId("", "");
   
-    String accessTokenString = "EAAjdVZBDPFWIBAAHH2Uk0ZBkX6UWGftWZB6Bc0wOM5qLSv7wph2ZAFasgY0fDNkc1PJ5Su7MixODicTjKZCI5dqBIu77g8yAIFaM0lJZAPBo0cJumEzVSlWxiNzXjt9EuhZB4UG4yY1GlUYvCJ7DFKi3Vqa7yZClavi71qQITHtejqB2KqZB8VXYc21n0vvs00owZD";
+    String accessTokenString = "EAAjdVZBDPFWIBADMdaOnnL5xLLzy18ZCYW8yNTzAoTCZBAoZAIzh1z0HvIwSLEVKMC9VbU2BRIBdHr6WBdCcZA4cRObmcPRLOwwg49hoglYhP0fPnQd81a4Nxq4A8WP37jY14YUQ5svbqQAtzVZCd8a3nLiQtHCYj8DXl7SZCZBhCdX4xVEM9996bQWhUZCO3cEYZD";
     AccessToken at = new AccessToken(accessTokenString);
     facebook.setOAuthAccessToken(at);
         try{
@@ -1344,7 +1344,8 @@ public class Posteur_interfaceController implements Initializable {
         facebook.postStatusMessage("\n Pubilerpar:"+p1.getNom()+ "\n son numero de telephone est:"+p1.getTel()+ "\n Propositionofferte: "+E.getPropositionofferte()+ "\n Propositionsouhaitée: "+ E.getPropositionsouhaitée() +"\n Description: " + E.getDescription_echange());
       
         }
-        catch(FacebookException fex){System.out.println(fex);}
+        catch(FacebookException fex)
+        {System.out.println(fex);}
    pofp.setText("");
    posp.setText("");
    pdp.setText("");
