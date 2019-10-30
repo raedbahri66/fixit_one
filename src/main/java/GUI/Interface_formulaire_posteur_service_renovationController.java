@@ -51,8 +51,6 @@ public class Interface_formulaire_posteur_service_renovationController implement
     @FXML
     private TextArea Label_description;
 
-    @FXML
-    private Button Btn_ajouter_service;
 
     @FXML
     private TextField Label_heure;
@@ -67,10 +65,19 @@ public class Interface_formulaire_posteur_service_renovationController implement
      */
     public boolean canInscription= true;
     Posteur p = new Posteur();
-    
     @FXML
-    void Ajouter_offre_service(ActionEvent event) throws SQLException, IOException, ParseException {
-        PosteurService p = new PosteurService();
+    private Button Btn_ajout_service;
+    
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        Label_date.setValue(NOW_LOCAL_DATE());
+        // TODO
+    } 
+
+    @FXML
+    private void btn_ajout_service(ActionEvent event) throws SQLException, IOException, ParseException {
+         PosteurService p = new PosteurService();
         Posteur p1= new Posteur();
         p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
         
@@ -115,8 +122,8 @@ public class Interface_formulaire_posteur_service_renovationController implement
         gestion_offre_service g = new gestion_offre_service();
               g.creerOffre(O);
               JOptionPane.showMessageDialog(null, "votre details du service sont enregistré");
-               Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_choisir_jobeur.fxml"));
-        Scene scene = new Scene(root);
+               Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_choisir_jobeur_renovation.fxml"));
+                Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();
                 stage.setScene(scene);
@@ -128,11 +135,5 @@ public class Interface_formulaire_posteur_service_renovationController implement
                           canInscription = true;
 
        }
-
     }
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        Label_date.setValue(NOW_LOCAL_DATE());
-        // TODO
-    } 
 }

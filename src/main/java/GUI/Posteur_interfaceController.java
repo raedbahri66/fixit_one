@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package GUI;
+import static API.CAM.Capture;
 import API.Payment;
 
 import service.GestionProduit;
@@ -62,10 +63,15 @@ import service.JobeurService;
 import service.PosteurService;
 import entites.Offre;
 import entites.annonce;
+import facebook4j.FacebookException;
+import facebook4j.FacebookFactory;
+import facebook4j.auth.AccessToken;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseButton;
@@ -469,6 +475,8 @@ public class Posteur_interfaceController implements Initializable {
     private Button arabe;
         @FXML
     private Button programmation;
+            @FXML
+    private TableColumn<Echange, String> tabletel;
     @FXML
     private TabPane produitpane;
     @FXML
@@ -561,6 +569,16 @@ public class Posteur_interfaceController implements Initializable {
     }
     @FXML
     private TableColumn<?, ?> id_h;
+    @FXML
+    private TabPane produitpane;
+    @FXML
+    private Button btnajouterpanier;
+    @FXML
+    private Tab panier;
+    @FXML
+    private Label nom_proprietaire12;
+    
+  
     
   
    public void favoris(){
@@ -1149,16 +1167,7 @@ public class Posteur_interfaceController implements Initializable {
                 stage.show();
 
     }
-     @FXML
-    void Conciergerie(ActionEvent event)throws IOException {
-         Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service_conciergerie.fxml"));
-         Scene scene = new Scene(root);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.hide();
-                stage.setScene(scene);
-                stage.show();
-
-    }
+     
     
     
     public boolean canModif=true;
@@ -1261,6 +1270,7 @@ public class Posteur_interfaceController implements Initializable {
             tablepdp.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
                  tabledap.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
                  tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
+                 tabletel.setCellValueFactory(new PropertyValueFactory<Echange,String>("id_jobeurfg"));
                 // tableechangesposteur.setItems(dataeesp);*/
 
         Stage stage = new Stage();
@@ -1438,7 +1448,12 @@ public class Posteur_interfaceController implements Initializable {
         Date date = Date.valueOf(locald);
         PosteurService p = new PosteurService();
         Posteur p1= new Posteur(AcceuilController.cinlogin, tf_nom1.getText(), tf_prenom1.getText(), tef_email1.getText(), date, Integer.parseInt(tf_tel1.getText()));
+        if(!file_image_p.getText().isEmpty()){
         p.modifierProfil(p1,fis,file);
+        file_image_p.setText(""); 
+        image_post.setImage(null);
+        }
+        else {p.modifierPosteur(p1);}
         JOptionPane.showMessageDialog(null, "Account edited Successfull");
         nomp_1.setText(p1.getNom());
         nomp_11.setText(p1.getNom());
@@ -1457,7 +1472,7 @@ public class Posteur_interfaceController implements Initializable {
     }
 
     @FXML
-    private void ajouterechangep(ActionEvent event) throws SQLException, IOException, ParseException {
+    private void ajouterechangep(ActionEvent event) throws SQLException, IOException, ParseException, FacebookException {
               // boolean test= true;
                 String date8 = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
                 // LocalDate locald =dap.getValue();
@@ -1521,11 +1536,25 @@ public class Posteur_interfaceController implements Initializable {
        String description=pdp.getText();
   //LocalDate locald =dap.getValue();
         String date10 =locald.toString();
-        int idjobeur=0;
+        int idjobeur=p1.getTel();
    Echange E = new Echange(nomo,nomf,description,date10,idposteur1,nomposteur,idjobeur);
   EchangeGestion es = new  EchangeGestion();
    es.ajouterEchange(E);
-   JOptionPane.showMessageDialog(null, "ajout avec succes");
+   JOptionPane.showMessageDialog(null, "ajout avec succes ");
+  facebook4j.Facebook facebook = new FacebookFactory().getInstance();
+    
+    facebook.setOAuthAppId("", "");
+  
+    String accessTokenString = "EAAjdVZBDPFWIBADMdaOnnL5xLLzy18ZCYW8yNTzAoTCZBAoZAIzh1z0HvIwSLEVKMC9VbU2BRIBdHr6WBdCcZA4cRObmcPRLOwwg49hoglYhP0fPnQd81a4Nxq4A8WP37jY14YUQ5svbqQAtzVZCd8a3nLiQtHCYj8DXl7SZCZBhCdX4xVEM9996bQWhUZCO3cEYZD";
+    AccessToken at = new AccessToken(accessTokenString);
+    facebook.setOAuthAccessToken(at);
+        try{
+         
+        facebook.postStatusMessage("\n Pubilerpar:"+p1.getNom()+ "\n son numero de telephone est:"+p1.getTel()+ "\n Propositionofferte: "+E.getPropositionofferte()+ "\n Propositionsouhaitée: "+ E.getPropositionsouhaitée() +"\n Description: " + E.getDescription_echange());
+      
+        }
+        catch(FacebookException fex)
+        {System.out.println(fex);}
    pofp.setText("");
    posp.setText("");
    pdp.setText("");
@@ -1539,6 +1568,23 @@ public class Posteur_interfaceController implements Initializable {
         }
     }
       @FXML
+    void OnkeyTypeechange(KeyEvent event) {
+        // String msg = repos.getText().concat("%");
+          String ech =repos.getText().concat("%");
+  dataeesp.clear();
+   
+       EchangeGestion ES = new EchangeGestion();
+   ArrayList Echange= (ArrayList) ES.Rechercheprpo(ech);
+    dataeesp= FXCollections.observableArrayList(Echange);
+   tableechangesposteur.setItems(dataeesp);
+        tablepofp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
+     tableposp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionsouhaitée"));
+            tablepdp.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
+                 tabledap.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
+                 tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
+    }
+      
+    @FXML
     void rechercherechange(ActionEvent event) throws SQLException {
         
         dataeesp.clear();
@@ -1805,5 +1851,23 @@ Echange E = new Echange(id);
     
     }
 
+    @FXML
+    private void Conciergerie2(ActionEvent event) throws IOException {
+        Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service_conciergerie.fxml"));
+         Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
+    }
+
+    @FXML
+    private void Chosier_ph_bt(ActionEvent event) {
+       Image image1=new Image("file:image1.png");
+        image_post.setImage(null);
+        image_post.setImage(image1);
+       // image_post.setImage(new Image("file:/C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg"));
+        file_image_p.setText("C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg");
+    }
     
 }

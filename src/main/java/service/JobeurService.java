@@ -79,6 +79,7 @@ public class JobeurService implements IJobeur{
         }
     }
     
+    @Override
     public void creerJobeurByFb(Jobeur p) {
          String req1 = "insert into jobeur (cin, nom, prenom, email) values (?,?,?,?)";
         try {
@@ -96,6 +97,7 @@ public class JobeurService implements IJobeur{
         }
     }
     
+    @Override
     public void creerJobeur(Jobeur p, FileInputStream fis, File file, FileInputStream fis1, File file1) {
          String req1 = "insert into jobeur (cin, nom, prenom, email, sexe, password, date_naissance, tel, role, job, address, etat, image_j, cv) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
@@ -155,6 +157,7 @@ public class JobeurService implements IJobeur{
         }
     }
     
+    @Override
     public Jobeur getJobeurInfobyCin(int cin1) throws FileNotFoundException, SQLException, IOException
     {
         Jobeur p = new Jobeur();
@@ -324,6 +327,7 @@ public class JobeurService implements IJobeur{
         
      return jobeurs;
     }
+    @Override
     public List<Jobeur> afficherJobeurbyEtat(String nom) throws SQLException {
         List<Jobeur> jobeurs = new ArrayList<>();
       Jobeur p=null;
@@ -380,6 +384,7 @@ public class JobeurService implements IJobeur{
         return jobeurs;
     }
         
+    @Override
     public List<Jobeur> afficherJobeurbyAddress(String address) {
         List<Jobeur> jobeurs = new ArrayList<>();
       Jobeur p=null;
@@ -411,6 +416,7 @@ public class JobeurService implements IJobeur{
           
      return jobeurs;
     }
+    
     public List<Jobeur> afficherJobeurbynNom(String choix,String nom) throws SQLException {
         List<Jobeur> jobeurs = new ArrayList<>();
       Jobeur p = null ;
@@ -443,7 +449,8 @@ public class JobeurService implements IJobeur{
      return jobeurs;
     }
       
-        public void BannirJobeur(Jobeur p) {
+    @Override
+    public void BannirJobeur(Jobeur p) {
 try {
             String update = "UPDATE jobeur SET  cin = ?, etat = ?, role= ? WHERE cin = ? ";
             PreparedStatement st2 = c.prepareStatement(update);
@@ -482,6 +489,7 @@ try {
             System.err.println("" + p.getCin() + " error modification!!");
         }
     }
+    @Override
     public void modifierProfil(Jobeur p, InputStream fis, File file,InputStream pdf, File pdff) {
          try {
             String update = "UPDATE jobeur SET  cin = ? , nom = ? , prenom = ? , email = ?, date_naissance = ? , tel = ?, image_j= ?, cv=? WHERE cin = ? ";
@@ -505,6 +513,7 @@ try {
             System.err.println("" + p.getCin() + " error modification!!");
         }
     }//***********
+    @Override
     public void putVote(Jobeur j)  
     {  try {
         String update ="UPDATE jobeur SET  `like` = ?, `dislike`= ? WHERE cin = ? ";

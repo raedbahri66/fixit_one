@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import API.Mail;
 import API.SMS;
 import entites.Article;
 import entites.Commentaire;
@@ -42,7 +41,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 import service.Articlegestion;
 import service.CommentaireService;
@@ -53,7 +51,7 @@ import service.*;
  *
  * @author ASUS
  */
-public class Affiche_porfilejobeurController implements Initializable {
+public class Affiche_porfilejobeur_renovationController implements Initializable {
      @FXML
     private Button Btn_demande_service;
     @FXML
@@ -121,7 +119,7 @@ public class Affiche_porfilejobeurController implements Initializable {
         int nbdislike;
         int nblike;
         Jobeur A=new Jobeur();
-        A=Interface_choisir_jobeurController.j1;
+        A=Interface_choisir_jobeur_renovationController.jre;
         int cin_jobeur=A.getCin();
         GestionVote v1 =new GestionVote();
         nblike = v1.countlike(cin_jobeur);
@@ -197,8 +195,7 @@ public class Affiche_porfilejobeurController implements Initializable {
             afficher();
             getid();
             Jobeur A=new Jobeur();
-            
-            A=Interface_choisir_jobeurController.j1;
+            A=Interface_choisir_jobeur_renovationController.jre;
             nom_J.setText(A.getNom());
             prenom_J.setText(A.getPrenom());
             String date=A.getDate_naissance().toLocalDate().toString();
@@ -211,7 +208,7 @@ public class Affiche_porfilejobeurController implements Initializable {
             JobeurService j= new JobeurService();
              A=j.getJobeurInfobyCin(A.getCin());
             photo_profile.setImage(JobeurService.A1);
-            System.out.println(Interface_choisir_jobeurController.j1);
+            System.out.println(Interface_choisir_jobeur_renovationController.jre);
             Posteur p1=new Posteur();
          
             p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
@@ -250,7 +247,7 @@ public class Affiche_porfilejobeurController implements Initializable {
         int nbdislike;
         int nblike;
         Jobeur A=new Jobeur();
-        A=Interface_choisir_jobeurController.j1;
+        A=Interface_choisir_jobeur_renovationController.jre;
         int cin_jobeur=A.getCin();
         Posteur p1= new Posteur();
         int cin_posteur=AcceuilController.cinlogin;
@@ -276,7 +273,7 @@ public class Affiche_porfilejobeurController implements Initializable {
                  int nbdislike;
                  int nblike;
                  Jobeur A=new Jobeur();
-                 A=Interface_choisir_jobeurController.j1;
+                 A=Interface_choisir_jobeur_renovationController.jre;
                  int cin_jobeur=A.getCin();
                  Posteur p1= new Posteur();
                  int cin_posteur=AcceuilController.cinlogin;
@@ -323,7 +320,7 @@ public class Affiche_porfilejobeurController implements Initializable {
         int cin_P=p1.getCin();
         System.out.println("cinpostteur"+cin_P);
         Jobeur A=new Jobeur();
-        A=Interface_choisir_jobeurController.j1;
+        A=Interface_choisir_jobeur_renovationController.jre;
         int cin_j=A.getCin();
         System.out.println("cinjobeur"+cin_j);
         String commentaire=Commentaire.getText(); 
@@ -400,7 +397,7 @@ public class Affiche_porfilejobeurController implements Initializable {
     private void Retour(ActionEvent event) {
          Parent root = null;
         try {
-             root = FXMLLoader.load(getClass().getResource("/fxml/Interface_choisir_jobeur.fxml"));
+             root = FXMLLoader.load(getClass().getResource("/fxml/Interface_choisir_jobeur_renovation.fxml"));
                 } catch (IOException ex) {
                     Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -417,7 +414,7 @@ public class Affiche_porfilejobeurController implements Initializable {
        Jobeur A=new Jobeur();
        
        GestionFavoris f1=new GestionFavoris();
-       A=Interface_choisir_jobeurController.j1;
+       A=Interface_choisir_jobeur_renovationController.jre;
        int cin_posteur=AcceuilController.cinlogin;
        int cin_jobeur=A.getCin();
        String nomj=A.getNom();
@@ -433,7 +430,7 @@ public class Affiche_porfilejobeurController implements Initializable {
     @FXML
     private void Demander_Service(ActionEvent event) {
             Jobeur A=new Jobeur();
-            A=Interface_choisir_jobeurController.j1;
+            A=Interface_choisir_jobeur_renovationController.jre;
             String nom_j=A.getNom();
             String prenom_j=A.getPrenom();
             int cin_jobeur=A.getCin();
@@ -447,7 +444,7 @@ public class Affiche_porfilejobeurController implements Initializable {
     private void radio_favoris(ActionEvent event) {
        Jobeur A=new Jobeur();
        GestionFavoris f1=new GestionFavoris();
-       A=Interface_choisir_jobeurController.j1;
+       A=Interface_choisir_jobeur_renovationController.jre;
        int cin_posteur=AcceuilController.cinlogin;
        int cin_jobeur=A.getCin();
        String nomj=A.getNom();
@@ -467,7 +464,7 @@ public class Affiche_porfilejobeurController implements Initializable {
     @FXML
     private void vote(ActionEvent event) throws SQLException, IOException {
            Jobeur A=new Jobeur();
-       A=Interface_choisir_jobeurController.j1;
+       A=Interface_choisir_jobeur_renovationController.jre;
       int cin_jobeur=A.getCin();
      Posteur p1= new Posteur();
      GestionVote v1 =new GestionVote();
@@ -496,50 +493,40 @@ public class Affiche_porfilejobeurController implements Initializable {
 
 
     @FXML
-    private void vote_dislike(ActionEvent event) throws SQLException, IOException,MessagingException {
+    private void vote_dislike(ActionEvent event) throws SQLException, IOException {
      
      Jobeur A=new Jobeur();
-     A=Interface_choisir_jobeurController.j1;
+     A=Interface_choisir_jobeur_renovationController.jre;
      int cin_jobeur=A.getCin();
      Posteur p1= new Posteur();
      GestionVote v1 =new GestionVote();
       p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
-      String nomp=p1.getNom();
-      String prenomp=p1.getPrenom();
      int cin_posteur=AcceuilController.cinlogin;
+     System.out.println(cin_jobeur+" gggggggg"+cin_posteur);
         Vote v=new Vote(cin_jobeur,cin_posteur);
         if(flop.isSelected()){
+            boolean z=v1.verificationvote1(cin_posteur,cin_jobeur);
+            System.out.println("ouuuuuuh"+z);
          if(v1.verificationvote1(cin_posteur,cin_jobeur)){
+                System.out.println("ouuuuuuh"+z);
             v1.UpdateVotedislike(v,cin_jobeur,cin_posteur);
-         
-         int nblike = v1.countlike(cin_jobeur);
+              int nblike = v1.countlike(cin_jobeur);
          int nbdislike = v1.countdislik(cin_jobeur);
           Jobeur j=new Jobeur(nblike,nbdislike,cin_jobeur);
           JobeurService p =new JobeurService();
           p.putVote(j);
-             
-          AfficheVOTE();
-           
-          String content = nomp+" "+prenomp+"n'aime pas votre profile";
-         /* Mail.sendMail11(A.getEmail(),"Notifacation:", content);*/
+             AfficheVOTE();
           ;}
             else
-           v1.ajouterVotedislike(v);
-           
-         int nblike = v1.countlike(cin_jobeur);
+             v1.ajouterVotedislike(v);
+           int nblike = v1.countlike(cin_jobeur);
          int nbdislike = v1.countdislik(cin_jobeur);
           Jobeur j=new Jobeur(nblike,nbdislike,cin_jobeur);
           JobeurService p =new JobeurService();
-         
           p.putVote(j);
-         
-          String content = nomp+" "+prenomp+"n'aime pas votre profile";
-          Mail.sendMail11(A.getEmail(),"Notifacation:", content);
-                  
+              AfficheVOTE();
              }
     }
-  
-           
     
 }
          

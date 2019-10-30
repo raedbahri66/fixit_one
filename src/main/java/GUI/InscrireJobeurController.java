@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import API.CAM;
+import static API.CAM.Capture;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
 import entites.Jobeur;
 import entites.Posteur;
@@ -255,14 +257,28 @@ public class InscrireJobeurController implements Initializable {
         String password= pass_j.getText();
         LocalDate locald = date_j.getValue();
         Date date = Date.valueOf(locald);
+        System.out.println(date.getYear());
 
            Jobeur P1= new Jobeur (cin,nom,prenom,email,sexe,password,date,tel,job,address);
            JobeurService p = new JobeurService();
            System.out.println(fis);
+           CAM.Capture();
+           
+           
                       System.out.println(file);
-
-           p.creerJobeur(P1,fis,file,pdf,pdff);
-
+                      if(file_pdf_p1.getText().isEmpty() && file_image_p.getText().isEmpty())
+                          p.creerJobeur(P1);
+                      else if(file_pdf_p1.getText().isEmpty())
+                      {
+                               file_image_p.setText("");
+                              p.creerJobeur(P1, fis, file);
+                              image_post.setImage(null);
+                      }
+                      else {
+                          p.creerJobeur(P1, fis, file, pdf, pdff);
+                          file_image_p.setText("");
+                          file_pdf_p1.setText("");
+                      }
        }
        else
        {
@@ -271,5 +287,15 @@ public class InscrireJobeurController implements Initializable {
 
        }
 }  
+
+    @FXML
+    private void Choisirph_btn(ActionEvent event) {
+        Capture();
+        Image image1=new Image("file:image1.png");
+        image_post.setImage(null);
+        image_post.setImage(image1);
+       // image_post.setImage(new Image("file:/C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg"));
+        file_image_p.setText("C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg");
+    }
     
 }

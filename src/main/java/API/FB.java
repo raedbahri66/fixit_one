@@ -48,7 +48,9 @@ public class FB {
 
         if(!driver.getCurrentUrl().contains("facebook.com")){
             String url = driver.getCurrentUrl();
-            accessToken = url.replaceAll(".*#access_token=(.+)&.*","$1");
+            System.err.println(url);
+            accessToken = url.replaceAll(".*?access_token=(.+)&.*","$1");
+            
             int indexOfLast = accessToken.lastIndexOf("&");
             if(indexOfLast >=0) 
                 accessToken2 = accessToken.substring(0, indexOfLast);
@@ -70,8 +72,10 @@ public class FB {
     
             PosteurService P1= new PosteurService();
             ControleSaisie A1= new ControleSaisie();
+            System.out.println(b.intValue());
             if(!A1.isCintUsed(b.intValue()))
             {
+                System.out.println(A1.isCintUsed(b.intValue()));
             P1.creerPosteurByFb(P);
             } else alreadysignfb=true;
             
