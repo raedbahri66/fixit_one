@@ -95,8 +95,9 @@ public class AdmininterfaceController implements Initializable {
     private ImageView image_article;
     private FileInputStream fis;
     private File file;
+    
     /****date de aujourdhui****/
- public static final LocalDate NOW_LOCAL_DATE (){
+  public static final LocalDate NOW_LOCAL_DATE (){
         String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate localDate = LocalDate.parse(date , formatter);
@@ -105,6 +106,7 @@ public class AdmininterfaceController implements Initializable {
      * Initializes the controller class.
      */
     /**ayed**/
+ 
   Boolean canInscription = true;
   Articlegestion art = new Articlegestion();
   ArrayList<Article> articles= (ArrayList<Article>) art.afficherArticle();  
@@ -135,7 +137,7 @@ public class AdmininterfaceController implements Initializable {
                      
                             URL url1 = file.toURI().toURL();
                             System.out.println(url1);
-                            System.out.println(url1.toExternalForm());
+                            System.out.println("zzz"+url1.toExternalForm());
                             image_article.setImage(new Image(url1.toExternalForm()));
                         } catch (MalformedURLException ex) {
                           
@@ -193,20 +195,38 @@ public class AdmininterfaceController implements Initializable {
          {
             canInscription = false;
            JOptionPane.showMessageDialog (null," remplire le champ source ");
-        }
+        }  
+         if(canInscription && file_image_A.getText().isEmpty()){
+                String nom = nomarticle.getText();
+                String descriptionart=descriptionarticle.getText();
+                 LocalDate date_article =dateajout.getValue();
+                 Date date = Date.valueOf(date_article);
+                String sources= source.getText();
+                String categorie=(String) categories.getValue();
+                Article a = new Article(nom,descriptionart,date,categorie,sources);
+                Articlegestion a1=new Articlegestion();
+                a1.ajouterArticle(a);
+                nomarticle.setText("");
+                descriptionarticle.setText("");
+                source.setText("");
+                file_image_A.setText("");
+         }else
         
-        
-    if(canInscription){
+    if(canInscription&& !file_image_A.getText().isEmpty()){
    String nom = nomarticle.getText();
    String descriptionart=descriptionarticle.getText();
    LocalDate date_article =dateajout.getValue();
    Date date = Date.valueOf(date_article);
    String sources= source.getText();
    String categorie=(String) categories.getValue();
-   
    Article a = new Article(nom,descriptionart,date,categorie,sources);
    Articlegestion a1=new Articlegestion();
    a1.ajouterArticle(a,fis,file);
+   nomarticle.setText("");
+   descriptionarticle.setText("");
+   source.setText("");
+   file_image_A.setText("");
+   image_article.setImage(null);
   
     }
     Articlegestion art = new Articlegestion();
