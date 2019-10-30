@@ -62,10 +62,14 @@ import service.JobeurService;
 import service.PosteurService;
 import entites.Offre;
 import entites.annonce;
+import facebook4j.FacebookException;
+import facebook4j.FacebookFactory;
+import facebook4j.auth.AccessToken;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseButton;
@@ -464,9 +468,9 @@ public class Posteur_interfaceController implements Initializable {
     @FXML
     private TextField numero_carte;
     @FXML
-    private TextField mois_validite_carte;
+    private TextField mois_validite;
     @FXML
-    private TextField year_validite_carte;
+    private TextField year_validite;
     @FXML
     private TextField cvc;
     @FXML
@@ -687,38 +691,44 @@ public class Posteur_interfaceController implements Initializable {
 
     }
     
-    
+    public boolean controlepayment=true;
        @FXML
     void bnt_payment(ActionEvent event) throws StripeException {
        
-        String cvc1=cvc.getText();
-     int mois=Integer.parseInt(mois_validite_carte.getText());
-     int year=Integer.parseInt(year_validite_carte.getText());
+   
+     
+     
+          if(year_validite.getText().isEmpty())
+        {controlepayment = false;  date_validation.setText("Champ vide");}
+          else if(!year_validite.getText().isEmpty()){ date_validation.setText("");}
+       if(mois_validite.getText().isEmpty())
+        {controlepayment = false;  mois_validation.setText("Champ vide");}
+          else if(!mois_validite.getText().isEmpty()){ mois_validation.setText("");}
+        if(cvc.getText().isEmpty())
+        {controlepayment = false;  cvc_validation.setText("Champ vide");}
+          else if(!cvc.getText().isEmpty()) {cvc_validation.setText("");}
+    if(numero_carte.getText().isEmpty())
+        {controlepayment = false;  card_validation.setText("Champ vide");}
+          else if(!numero_carte.getText().isEmpty()) {card_validation.setText("");}
+    
+    if (  "".equals(montant_total.getText())){
+        JOptionPane.showMessageDialog(null, "Veuillez choisir un produit");
+        controlepayment = false;
+    }
+    
+    
+    
+    if(controlepayment){
+             String cvc1=cvc.getText();
+     String mois=mois_validite.getText();
+     String year=year_validite.getText();
      String numC=numero_carte.getText();
     int prix=Integer.parseInt(montant_total.getText()); 
     Payment p=new Payment(); 
      ControleSaisie C= new ControleSaisie();
-     
-     
-          if(year_validite_carte.getText().isEmpty())
-        {canInscription = false;  date_validation.setText("Champ vide");}
-          else if(!year_validite_carte.getText().isEmpty()){ date_validation.setText("");}
-       if(mois_validite_carte.getText().isEmpty())
-        {canInscription = false;  mois_validation.setText("Champ vide");}
-          else if(!mois_validite_carte.getText().isEmpty()){ mois_validation.setText("");}
-        if(cvc.getText().isEmpty())
-        {canInscription = false;  cvc_validation.setText("Champ vide");}
-          else if(!cvc.getText().isEmpty()) {cvc_validation.setText("");}
-    if(numero_carte.getText().isEmpty())
-        {canInscription = false;  card_validation.setText("Champ vide");}
-          else if(!numero_carte.getText().isEmpty()) {card_validation.setText("");}
-    
-    
-    
-    
-    
-    if(canInscription){
-    if(p.Paymment(prix,numC,mois,year,cvc1)==true)
+      int  mois2=Integer.parseInt(mois);
+      int year2=Integer.parseInt(year);  
+    if(p.Paymment(prix,numC,mois2,year2,cvc1)==true)
     {
     String id=idproduitacheter.getText();
     Produit E = new Produit(id);
@@ -731,15 +741,22 @@ public class Posteur_interfaceController implements Initializable {
         idproduitacheter.setText("");
       montant_total.setText("");
       numero_carte.setText("");
-      year_validite_carte.setText("");
-      mois_validite_carte.setText("");
+      year_validite.setText("");
+      mois_validite.setText("");
               cvc.setText("");
+              frais_payment.setText("");
       refrech();
     }
     else{JOptionPane.showMessageDialog(null, "Erreur de paymment veuillez verifier vos données ");}
+    
+    
+    
+   
+    
+    
     }
     
-     else{ canInscription = true;}
+     else{ controlepayment = true;}
   
     
     
@@ -1236,7 +1253,12 @@ public class Posteur_interfaceController implements Initializable {
         Date date = Date.valueOf(locald);
         PosteurService p = new PosteurService();
         Posteur p1= new Posteur(AcceuilController.cinlogin, tf_nom1.getText(), tf_prenom1.getText(), tef_email1.getText(), date, Integer.parseInt(tf_tel1.getText()));
+        if(!file_image_p.getText().isEmpty()){
         p.modifierProfil(p1,fis,file);
+        file_image_p.setText(""); 
+        image_post.setImage(null);
+        }
+        else {p.modifierPosteur(p1);}
         JOptionPane.showMessageDialog(null, "Account edited Successfull");
         nomp_1.setText(p1.getNom());
         nomp_11.setText(p1.getNom());
@@ -1255,7 +1277,7 @@ public class Posteur_interfaceController implements Initializable {
     }
 
     @FXML
-    private void ajouterechangep(ActionEvent event) throws SQLException, IOException, ParseException {
+    private void ajouterechangep(ActionEvent event) throws SQLException, IOException, ParseException, FacebookException {
               // boolean test= true;
                 String date8 = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
                 // LocalDate locald =dap.getValue();
@@ -1324,6 +1346,19 @@ public class Posteur_interfaceController implements Initializable {
   EchangeGestion es = new  EchangeGestion();
    es.ajouterEchange(E);
    JOptionPane.showMessageDialog(null, "ajout avec succes");
+  facebook4j.Facebook facebook = new FacebookFactory().getInstance();
+    
+    facebook.setOAuthAppId("", "");
+  
+    String accessTokenString = "EAAjdVZBDPFWIBAAHH2Uk0ZBkX6UWGftWZB6Bc0wOM5qLSv7wph2ZAFasgY0fDNkc1PJ5Su7MixODicTjKZCI5dqBIu77g8yAIFaM0lJZAPBo0cJumEzVSlWxiNzXjt9EuhZB4UG4yY1GlUYvCJ7DFKi3Vqa7yZClavi71qQITHtejqB2KqZB8VXYc21n0vvs00owZD";
+    AccessToken at = new AccessToken(accessTokenString);
+    facebook.setOAuthAccessToken(at);
+        try{
+            
+        facebook.postStatusMessage("\n Pubilerpar:"+p1.getNom()+ "\n son numero de telephone est:"+p1.getTel()+ "\n Propositionofferte: "+E.getPropositionofferte()+ "\n Propositionsouhaitée: "+ E.getPropositionsouhaitée() +"\n Description: " + E.getDescription_echange());
+        
+        }
+        catch(FacebookException fex){System.out.println(fex);}
    pofp.setText("");
    posp.setText("");
    pdp.setText("");

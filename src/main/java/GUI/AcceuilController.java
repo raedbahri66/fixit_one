@@ -6,9 +6,11 @@
 package GUI;
 
 import API.FB;
+
 import entites.Article;
 import entites.Posteur;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -168,9 +170,9 @@ public class AcceuilController implements Initializable {
     }
 
     @FXML
-    private void retour_bt(ActionEvent event) throws IOException {
+    private void retour_bt(ActionEvent event) throws IOException, InterruptedException, URISyntaxException {
         
-        
+
     }
 
     @FXML

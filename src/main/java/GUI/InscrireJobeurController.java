@@ -255,14 +255,25 @@ public class InscrireJobeurController implements Initializable {
         String password= pass_j.getText();
         LocalDate locald = date_j.getValue();
         Date date = Date.valueOf(locald);
+        System.out.println(date.getYear());
 
            Jobeur P1= new Jobeur (cin,nom,prenom,email,sexe,password,date,tel,job,address);
            JobeurService p = new JobeurService();
            System.out.println(fis);
                       System.out.println(file);
-
-           p.creerJobeur(P1,fis,file,pdf,pdff);
-
+                      if(file_pdf_p1.getText().isEmpty() && file_image_p.getText().isEmpty())
+                          p.creerJobeur(P1);
+                      else if(file_pdf_p1.getText().isEmpty())
+                      {
+                               file_image_p.setText("");
+                              p.creerJobeur(P1, fis, file);
+                              image_post.setImage(null);
+                      }
+                      else {
+                          p.creerJobeur(P1, fis, file, pdf, pdff);
+                          file_image_p.setText("");
+                          file_pdf_p1.setText("");
+                      }
        }
        else
        {
