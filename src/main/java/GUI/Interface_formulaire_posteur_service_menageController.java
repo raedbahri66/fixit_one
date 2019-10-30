@@ -32,6 +32,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * FXML Controller class
@@ -134,6 +136,18 @@ public class Interface_formulaire_posteur_service_menageController implements In
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Label_date.setValue(NOW_LOCAL_DATE());
+        System.err.println(AcceuilController.cinlogin);
+        PosteurService p = new PosteurService();
+        Posteur p1= new Posteur();
+          try {
+              p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+              // TODO
+          } catch (SQLException ex) {
+              Logger.getLogger(Interface_formulaire_posteur_serviceController.class.getName()).log(Level.SEVERE, null, ex);
+          } catch (IOException ex) {
+              Logger.getLogger(Interface_formulaire_posteur_serviceController.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          Label_tel.setText(Integer.toString(p1.getTel()));
         // TODO
     } 
     

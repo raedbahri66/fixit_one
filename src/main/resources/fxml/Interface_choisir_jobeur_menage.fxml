@@ -27,7 +27,7 @@
             <TableColumn fx:id="column_cin" minWidth="0.0" prefWidth="23.0" text="Cin" />
          </columns>
       </TableView>
-      <TextField fx:id="Label_recherche" layoutX="233.0" layoutY="31.0" promptText="Recherche" />
+      <TextField fx:id="Label_recherche" layoutX="233.0" layoutY="31.0" onKeyReleased="#Onkeyjobeur_mena" promptText="Recherche" />
       <Button fx:id="Btn_recherche_jobeur" layoutX="403.0" layoutY="30.0" mnemonicParsing="false" onAction="#RechercheJobeur" prefHeight="25.0" prefWidth="25.0">
          <graphic>
             <ImageView fitHeight="19.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">

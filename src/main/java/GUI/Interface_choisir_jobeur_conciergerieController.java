@@ -30,6 +30,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -75,12 +76,32 @@ public class Interface_choisir_jobeur_conciergerieController implements Initiali
     private TableView<Jobeur> Table_Jobeurc;
     @FXML
     void RechercheJobeur(ActionEvent event) {
-        data.clear();
+        data1.clear();
         String nom =Label_recherche.getText();
       Gestion_tableau_jobeur gt = new Gestion_tableau_jobeur();
       ArrayList Jobeur= (ArrayList) gt.RechercheJobeur(nom);
-      data= FXCollections.observableArrayList(Jobeur);
-     Table_Jobeurc.setItems(data);
+      data1= FXCollections.observableArrayList(Jobeur);
+     Table_Jobeurc.setItems(data1);
+     Column_nomj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("nom"));
+     Column_prenomj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("prenom"));
+     Column_emailj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("email"));
+     Column_sexej.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("sexe"));
+     Column_tel.setCellValueFactory(new PropertyValueFactory <Jobeur,Integer>("tel"));
+     Column_job.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("job"));
+     Date_naissanceJ.setCellValueFactory(new PropertyValueFactory<Jobeur,Date>("date_naissance"));
+     column_cin.setCellValueFactory(new PropertyValueFactory <Jobeur,Integer>("cin"));
+
+    }
+    @FXML
+    void Onkeyjobeur_con(KeyEvent event) {
+        String nom = Label_recherche.getText().concat("%");
+        data1.clear();
+        //String nom =Label_recherche.getText();
+      Gestion_tableau_jobeur gt = new Gestion_tableau_jobeur();
+      ArrayList Jobeur= (ArrayList) gt.RechercheJobeur(nom);
+      
+      data1= FXCollections.observableArrayList(Jobeur);
+     Table_Jobeurc.setItems(data1);
      Column_nomj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("nom"));
      Column_prenomj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("prenom"));
      Column_emailj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("email"));
@@ -100,7 +121,7 @@ public class Interface_choisir_jobeur_conciergerieController implements Initiali
     {
         
      gt.afficherJobeur_Conciergerie();
-     Table_Jobeurc.setItems(data);
+     Table_Jobeurc.setItems(data1);
      Column_nomj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("nom"));
      Column_prenomj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("prenom"));
      Column_emailj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("email"));
@@ -118,7 +139,7 @@ public class Interface_choisir_jobeur_conciergerieController implements Initiali
     ArrayList jobeur= (ArrayList) gt.afficherJobeur_Conciergerie();
     
     
-    public ObservableList data = FXCollections.observableArrayList(jobeur);
+    public ObservableList data1 = FXCollections.observableArrayList(jobeur);
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         afficherTab_service();
