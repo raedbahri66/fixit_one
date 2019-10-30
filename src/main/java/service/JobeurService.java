@@ -504,8 +504,53 @@ try {
             System.out.println(ex.getMessage());
             System.err.println("" + p.getCin() + " error modification!!");
         }
-    }
+    }//***********
+    public void putVote(Jobeur j)  
+    {  try {
+        String update ="UPDATE jobeur SET  `like` = ?, `dislike`= ? WHERE cin = ? ";
+            PreparedStatement st2 = c.prepareStatement(update);
+            st2.setInt(1, j.getNb_like());
+            st2.setInt(2, j.getNb_dislike());
+            st2.setInt(3, j.getCin());
+            st2.executeUpdate();
+            System.out.println("" + j.getCin() + " successfully vote!");
+             } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            System.err.println("" + j.getCin() + " error modification!!");
+        }
+    }////*********
+     
+    public List<Jobeur> top5() throws SQLException {
+        List<Jobeur> jobeurs = new ArrayList<>();
+      Jobeur p = null ;
+      String req2="select * from jobeur order by `like` DESC limit 5";
+     
+         
+         
+          ResultSet res=  ste.executeQuery(req2);
+          while (res.next()) { 
+              p = new Jobeur();
+                      p.setId( res.getInt("id"));
+                      p.setCin(res.getInt("cin") );
+                      p.setNom(res.getString("nom"));
+                      p.setPrenom(res.getString("prenom"));
+                      p.setEmail(res.getString("email"));
+                      p.setSexe(res.getString("sexe"));
+                      p.setPassword(res.getString("password"));
+                      p.setDate_naissance(res.getDate("date_naissance"));
+                      p.setTel(res.getInt("tel"));
+                      p.setRole(res.getString("role"));
+                      p.setEtat(res.getString("etat"));
+                      p.setAddress(res.getString("address"));
+                      p.setJob(res.getString("job"));
+                      p.setNb_like(res.getInt("like"));
 
+ jobeurs.add(p);
+  }
+        return jobeurs;
+    }
+        
+    
     @Override
     public void ajouterVote(Jobeur p, int cin_jobeur) {
     }

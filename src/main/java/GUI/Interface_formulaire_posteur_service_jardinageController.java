@@ -109,7 +109,7 @@ public class Interface_formulaire_posteur_service_jardinageController implements
         String Description = Label_description.getText();
         String Tel = Label_tel.getText();
         String Heure =Label_heure.getText();
-        String Nomservice ="Electricité";
+        String Nomservice ="Jardinage";
        
          String date = LCD.toString();
          Offre O = new Offre(adresse,date ,Heure ,Description,Tel,idposteur,etatoffre,nomposteur,prenomposteur,Nomservice);

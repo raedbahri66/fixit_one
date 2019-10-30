@@ -136,6 +136,17 @@
     <artifactId>selenium-java</artifactId>
     <version>3.141.59</version>
 </dependency>
+<dependency>
+  <groupId>com.twilio.sdk</groupId>
+  <artifactId>twilio</artifactId>
+  <version>7.42.0</version>
+</dependency>
+ <dependency>
+  <groupId>com.stripe</groupId>
+  <artifactId>stripe-java</artifactId>
+  <version>14.3.0</version>
+</dependency>
+
 
 <!-- https://mvnrepository.com/artifact/org.json/json -->
 <dependency>

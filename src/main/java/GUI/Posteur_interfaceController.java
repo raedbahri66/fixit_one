@@ -4,9 +4,12 @@
  * and open the template in the editor.
  */
 package GUI;
+import API.Payment;
+
 import service.GestionProduit;
 import entites.Produit;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
+import com.stripe.exception.StripeException;
 import entites.Echange;
 import entites.Favoris;
 import entites.Jobeur;
@@ -419,7 +422,119 @@ public class Posteur_interfaceController implements Initializable {
 
     @FXML
     private Label vdap;
+    
+    @FXML
+    private TableView<String> table2;
+    @FXML
+    private TableColumn<Produit,String> table_nom2;
+    @FXML
+    private TableColumn<Produit,String> table_id2;
+    @FXML
+    private TableColumn<Produit,String> table_prix2;
+    @FXML
+    private TableColumn<Produit,String> table_categorie2;
+    @FXML
+    private TableColumn<Produit,String> table_num2;
+    @FXML
+    private TableColumn<Produit,String> table_description2;
+    @FXML
+    private TableColumn<Produit,String> table_proprietere2;
+    @FXML
+    private TableColumn<Produit,String> table_date2;
+     @FXML
+    private Label idpanier;
+    @FXML
+    private Label produit_panier;
+    @FXML
+    private Label prix_panier;
+   @FXML
+    private Label nom_produit_acheter;
+    @FXML
+    private Label nom_proprietaire11;
+    @FXML
+    private Label prix_payer;
+    @FXML
+    private Label frais_payment;
+    @FXML
+    private Label montant_total;
+    @FXML
+    private Label idproduitacheter;
+       
+   
+    @FXML
+    private TextField numero_carte;
+    @FXML
+    private TextField mois_validite;
+    @FXML
+    private TextField year_validite;
+    @FXML
+    private TextField cvc;
+    @FXML
+    private Label date_validation;
+    @FXML
+    private Label mois_validation;
+    @FXML
+    private Label card_validation;
+    @FXML
+    private Label cvc_validation;
+     @FXML
+    private Button voirpdf;
+       @FXML
+    private Button anglais;
 
+    @FXML
+    private Button arabe;
+        @FXML
+    private Button programmation;
+    
+       @FXML
+    void voirpdffrancais(ActionEvent event) {
+ try
+        {
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"C:\\Users\\iheb\\Documents\\NetBeansProjects\\fixit_one\\src\\main\\resources\\Image\\document_complet.pdf");
+        }catch(Exception e)
+        {
+            JOptionPane.showConfirmDialog(null, "error");
+        }
+    }
+     @FXML
+    void apprendreanglais(ActionEvent event) {
+         try
+        {
+         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"C:\\Users\\iheb\\Documents\\NetBeansProjects\\fixit_one\\src\\main\\resources\\Image\\anglais-pln.pdf");
+        }catch(Exception e)
+        {
+            JOptionPane.showConfirmDialog(null, "error");
+        }
+
+    }
+
+    @FXML
+    void apprendrearabe(ActionEvent event) {
+        try
+        {
+         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"C:\\Users\\iheb\\Documents\\NetBeansProjects\\fixit_one\\src\\main\\resources\\Image\\ar_barab_kazana.pdf");
+        }catch(Exception e)
+        {
+            JOptionPane.showConfirmDialog(null, "error");
+        }
+
+    }
+      @FXML
+    void apprendreprogrammation(ActionEvent event) {
+         try
+        {
+         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"C:\\Users\\iheb\\Documents\\NetBeansProjects\\fixit_one\\src\\main\\resources\\Image\\polyX2003.pdf");
+        }catch(Exception e)
+        {
+            JOptionPane.showConfirmDialog(null, "error");
+        }
+
+    }
+    
+    
+    
+    
     
     public static final LocalDate NOW_LOCAL_DATE (){
         String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
@@ -552,6 +667,104 @@ public class Posteur_interfaceController implements Initializable {
 
     }
 
+   
+    
+    
+    @FXML
+    void ajouter_panier(ActionEvent event) {
+        
+        nom_produit_acheter.setText(produit_panier.getText());
+        nom_proprietaire11.setText(nom_proprietaire.getText());
+        prix_payer.setText(prix_panier.getText());
+        idproduitacheter.setText(idpanier.getText());
+        
+        int prix=Integer.parseInt(prix_payer.getText());
+        int frais=(int) (prix*0.02);
+        frais_payment.setText(Integer.toString(frais));
+        int prixtotal=frais+prix;
+        montant_total.setText(Integer.toString(prixtotal));
+       JOptionPane.showMessageDialog(null, "Produit ajouter avec succées vous devez consultez votre panier pour finaliser le paymment");
+
+    }
+    
+    public boolean controlepayment=true;
+       @FXML
+    void bnt_payment(ActionEvent event) throws StripeException {
+       
+   
+     
+     
+          if(year_validite.getText().isEmpty())
+        {controlepayment = false;  date_validation.setText("Champ vide");}
+          else if(!year_validite.getText().isEmpty()){ date_validation.setText("");}
+       if(mois_validite.getText().isEmpty())
+        {controlepayment = false;  mois_validation.setText("Champ vide");}
+          else if(!mois_validite.getText().isEmpty()){ mois_validation.setText("");}
+        if(cvc.getText().isEmpty())
+        {controlepayment = false;  cvc_validation.setText("Champ vide");}
+          else if(!cvc.getText().isEmpty()) {cvc_validation.setText("");}
+    if(numero_carte.getText().isEmpty())
+        {controlepayment = false;  card_validation.setText("Champ vide");}
+          else if(!numero_carte.getText().isEmpty()) {card_validation.setText("");}
+    
+    if (  "".equals(montant_total.getText())){
+        JOptionPane.showMessageDialog(null, "Veuillez choisir un produit");
+        controlepayment = false;
+    }
+    
+    
+    
+    if(controlepayment){
+             String cvc1=cvc.getText();
+     String mois=mois_validite.getText();
+     String year=year_validite.getText();
+     String numC=numero_carte.getText();
+    int prix=Integer.parseInt(montant_total.getText()); 
+    Payment p=new Payment(); 
+     ControleSaisie C= new ControleSaisie();
+      int  mois2=Integer.parseInt(mois);
+      int year2=Integer.parseInt(year);  
+    if(p.Paymment(prix,numC,mois2,year2,cvc1)==true)
+    {
+    String id=idproduitacheter.getText();
+    Produit E = new Produit(id);
+   GestionProduit gs = new  GestionProduit();
+     gs.modifierEtatProduit(E);
+      JOptionPane.showMessageDialog(null, "Paymment effectuer avec succeés");
+      nom_produit_acheter.setText("");
+        nom_proprietaire11.setText("");
+        prix_payer.setText("");
+        idproduitacheter.setText("");
+      montant_total.setText("");
+      numero_carte.setText("");
+      year_validite.setText("");
+      mois_validite.setText("");
+              cvc.setText("");
+              frais_payment.setText("");
+      refrech();
+    }
+    else{JOptionPane.showMessageDialog(null, "Erreur de paymment veuillez verifier vos données ");}
+    
+    
+    
+   
+    
+    
+    }
+    
+     else{ controlepayment = true;}
+  
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -682,6 +895,9 @@ public class Posteur_interfaceController implements Initializable {
                 label_num.setText(A.getNumero());
                 nom_proprietaire.setText(A.getNomproprietere());
              afficher_date.setText(A.getDate1());
+                idpanier.setText(A.getId());
+                prix_panier.setText(A.getPrix());
+                produit_panier.setText(A.getNom());
                 
                 
              }

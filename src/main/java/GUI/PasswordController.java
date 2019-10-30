@@ -468,7 +468,7 @@ public class PasswordController implements Initializable {
                 } else 
         {
             Label_cin.setText("Accepted");
-        Mail.sendMail(email, "Votre Mot de Passe FiX_It", messaage);
+        Mail.sendMail11(email, "Votre Mot de Passe FiX_It", messaage);
          TimeUnit.MILLISECONDS.sleep(50);
           JOptionPane.showMessageDialog(null, "Mot de passe envoyées avec success");
 

@@ -45,7 +45,7 @@ public class Articlegestion implements IArticle{
         try {
             ste = c.createStatement();
         } catch (SQLException ex) {
-            System.out.println(ex);
+           System.out.println(ex);
         }
     }
      @Override

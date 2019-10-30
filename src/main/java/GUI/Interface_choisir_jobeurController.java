@@ -66,6 +66,8 @@ public class Interface_choisir_jobeurController implements Initializable {
     private TableColumn<Jobeur,Date> Date_naissanceJ;
     @FXML
     private TextField Label_recherche;
+    @FXML
+    private Button Btn_retour_jobeur;
 
     @FXML
     private Button Btn_recherche_jobeur;
@@ -95,7 +97,7 @@ public class Interface_choisir_jobeurController implements Initializable {
      public void afficherTab_service()
     {
         
-     gt.afficherJobeur();
+     gt.afficherJobeur_Electricien();
      Table_Jobeur.setItems(data);
      Column_nomj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("nom"));
      Column_prenomj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("prenom"));
@@ -111,7 +113,7 @@ public class Interface_choisir_jobeurController implements Initializable {
      public static Jobeur j1;
      
      Gestion_tableau_jobeur gt = new Gestion_tableau_jobeur();
-    ArrayList jobeur= (ArrayList) gt.afficherJobeur();
+    ArrayList jobeur= (ArrayList) gt.afficherJobeur_Electricien();
     
     
     public ObservableList data = FXCollections.observableArrayList(jobeur);
@@ -139,6 +141,27 @@ public class Interface_choisir_jobeurController implements Initializable {
          }});
     }
         // TODO
-    }    
+
+    @FXML
+    private void btn_top5(ActionEvent event) throws IOException {
+         Parent root=null;
+         root = FXMLLoader.load(getClass().getResource("/fxml/top5.fxml"));
+        Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show(); 
+    
+    }
+@FXML
+    void Retour(ActionEvent event) throws IOException {
+        Parent root=FXMLLoader.load(getClass().getResource("/fxml/Posteur_interface.fxml"));
+        Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show(); 
+
+    }}  
     
 
