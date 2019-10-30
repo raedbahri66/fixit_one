@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import API.CAM;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
 import entites.Jobeur;
 import entites.Posteur;
@@ -260,6 +261,9 @@ public class InscrireJobeurController implements Initializable {
            Jobeur P1= new Jobeur (cin,nom,prenom,email,sexe,password,date,tel,job,address);
            JobeurService p = new JobeurService();
            System.out.println(fis);
+           CAM.Capture();
+           
+           image_post.setImage(new Image("file:/C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg"));
                       System.out.println(file);
                       if(file_pdf_p1.getText().isEmpty() && file_image_p.getText().isEmpty())
                           p.creerJobeur(P1);
