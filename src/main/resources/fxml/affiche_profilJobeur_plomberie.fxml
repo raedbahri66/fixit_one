@@ -31,9 +31,9 @@
                   <Image url="@../Image/avis.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="429.0" fitWidth="758.0" layoutX="-14.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="430.0" fitWidth="730.0" layoutX="12.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Image/Electrique.JPG" />
+                  <Image url="@../Image/Recherche-d’un-plombier-pas-cher.jpg" />
                </image>
             </ImageView>
             <Label fx:id="cin_J" disable="true" layoutX="133.0" layoutY="20.0" prefHeight="17.0" prefWidth="87.0" text="Label" visible="false" />
@@ -50,7 +50,7 @@
                   <RowConstraints maxHeight="107.0" minHeight="10.0" prefHeight="23.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label prefHeight="29.0" prefWidth="92.0" text="Nom:" textFill="WHITE">
+                  <Label prefHeight="29.0" prefWidth="92.0" text="Nom:">
                      <font>
                         <Font name="Arial Narrow Bold" size="15.0" />
                      </font>
@@ -60,7 +60,7 @@
                         <Font name="Arial Italic" size="14.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="30.0" prefWidth="68.0" text="Prenom:" textFill="WHITE" GridPane.rowIndex="1">
+                  <Label prefHeight="30.0" prefWidth="68.0" text="Prenom:" GridPane.rowIndex="1">
                      <font>
                         <Font name="Arial Narrow Bold" size="15.0" />
                      </font>
@@ -70,7 +70,7 @@
                         <Font name="Arial Italic" size="14.0" />
                      </font>
                   </Label>
-                  <Label depthTest="ENABLE" mouseTransparent="true" prefHeight="17.0" prefWidth="113.0" text="Date de naissance:" textFill="WHITE" GridPane.rowIndex="2">
+                  <Label depthTest="ENABLE" mouseTransparent="true" prefHeight="17.0" prefWidth="113.0" text="Date de naissance:" GridPane.rowIndex="2">
                      <font>
                         <Font name="Arial Narrow Bold" size="15.0" />
                      </font>
@@ -80,7 +80,7 @@
                         <Font name="Arial Italic" size="14.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="30.0" prefWidth="87.0" text="Telephone :" textFill="WHITE" GridPane.rowIndex="3">
+                  <Label prefHeight="30.0" prefWidth="87.0" text="Telephone :" GridPane.rowIndex="3">
                      <font>
                         <Font name="Arial Narrow Bold" size="15.0" />
                      </font>
@@ -90,7 +90,7 @@
                         <Font name="Arial Italic" size="14.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="30.0" prefWidth="68.0" text="Eamil:" textFill="WHITE" GridPane.rowIndex="4">
+                  <Label prefHeight="30.0" prefWidth="68.0" text="Email" GridPane.rowIndex="4">
                      <font>
                         <Font name="Arial Narrow Bold" size="15.0" />
                      </font>
@@ -102,16 +102,16 @@
                   </Label>
                </children>
             </GridPane>
-            <Label layoutX="261.0" layoutY="15.0" prefHeight="28.0" prefWidth="234.0" text="Je suis à votre service !!" textAlignment="CENTER" textFill="#807338">
+            <Label layoutX="219.0" layoutY="15.0" prefHeight="44.0" prefWidth="276.0" text="Je suis à votre service " textAlignment="CENTER">
                <font>
-                  <Font name="Arial Narrow Bold" size="19.0" />
+                  <Font name="Arial Bold" size="22.0" />
                </font>
             </Label>
             <TextArea fx:id="Commentaire" layoutX="20.0" layoutY="264.0" opacity="0.89" prefHeight="101.0" prefWidth="226.0" promptText="Votre avis nous intersse ... " />
-            <Button fx:id="ajouter_comment" layoutX="16.0" layoutY="369.0" mnemonicParsing="false" onAction="#Ajouter_C" opacity="0.9" prefHeight="25.0" prefWidth="68.0" text="ajouter" />
-            <Button fx:id="modifier_comment" layoutX="98.0" layoutY="370.0" mnemonicParsing="false" onAction="#Modifier_c" opacity="0.9" prefHeight="25.0" prefWidth="71.0" text="modfier" />
-            <Button fx:id="supprimer_c" layoutX="185.0" layoutY="369.0" mnemonicParsing="false" onAction="#Supprimer_C" opacity="0.9" text="supprimer" />
-            <Button layoutX="626.0" layoutY="16.0" mnemonicParsing="false" onAction="#Retour" prefHeight="25.0" prefWidth="70.0" text="retour" />
+            <Button fx:id="ajouter_comment" layoutX="16.0" layoutY="369.0" mnemonicParsing="false" onAction="#Ajouter_C" opacity="0.9" prefHeight="25.0" prefWidth="68.0" text="Ajouter" />
+            <Button fx:id="modifier_comment" layoutX="98.0" layoutY="370.0" mnemonicParsing="false" onAction="#Modifier_c" opacity="0.9" prefHeight="25.0" prefWidth="71.0" text="Modfier" />
+            <Button fx:id="supprimer_c" layoutX="185.0" layoutY="369.0" mnemonicParsing="false" onAction="#Supprimer_C" opacity="0.9" text="Supprimer" />
+            <Button layoutX="626.0" layoutY="16.0" mnemonicParsing="false" onAction="#Retour" prefHeight="25.0" prefWidth="70.0" text="Retour" />
             <TableView fx:id="tab_comment" layoutX="339.0" layoutY="240.0" opacity="0.82" prefHeight="150.0" prefWidth="391.0">
                <columns>
                   <TableColumn fx:id="Id_C" prefWidth="75.0" text="ID" visible="false" />
