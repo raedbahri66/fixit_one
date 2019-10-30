@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="825.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="825.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
   <tabs>
     <Tab text="Demander un service">
       <content>
@@ -449,6 +449,18 @@
                                     <TextField fx:id="idme" layoutX="14.0" layoutY="210.0" prefHeight="25.0" prefWidth="20.0" visible="false" />
                                  </children></AnchorPane>
                            </content>
+                        </Tab>
+                        <Tab text="consulter">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Button fx:id="voirpdf" layoutX="246.0" layoutY="88.0" mnemonicParsing="false" onAction="#voirpdffrancais" prefHeight="25.0" prefWidth="246.0" text="Apprendre le français" />
+                                    <Button fx:id="anglais" layoutX="251.0" layoutY="179.0" mnemonicParsing="false" onAction="#apprendreanglais" prefHeight="25.0" prefWidth="244.0" text="Apprendre l'anglais" />
+                                    <Button fx:id="arabe" layoutX="261.0" layoutY="278.0" mnemonicParsing="false" onAction="#apprendrearabe" prefHeight="25.0" prefWidth="234.0" text="Apprendre l'arabe" />
+                                    <Button fx:id="programmation" layoutX="268.0" layoutY="361.0" mnemonicParsing="false" onAction="#apprendreprogrammation" text="Apprendre les bases de programmation" />
+                                 </children>
+                              </AnchorPane>
+                          </content>
                         </Tab>
                     </tabs>
                   </TabPane>

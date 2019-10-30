@@ -480,6 +480,14 @@ public class Posteur_interfaceController implements Initializable {
      @FXML
     private Button voirpdf;
        @FXML
+    private Button anglais;
+
+    @FXML
+    private Button arabe;
+        @FXML
+    private Button programmation;
+    
+       @FXML
     void voirpdffrancais(ActionEvent event) {
  try
         {
@@ -488,6 +496,40 @@ public class Posteur_interfaceController implements Initializable {
         {
             JOptionPane.showConfirmDialog(null, "error");
         }
+    }
+     @FXML
+    void apprendreanglais(ActionEvent event) {
+         try
+        {
+         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"C:\\Users\\iheb\\Documents\\NetBeansProjects\\fixit_one\\src\\main\\resources\\Image\\anglais-pln.pdf");
+        }catch(Exception e)
+        {
+            JOptionPane.showConfirmDialog(null, "error");
+        }
+
+    }
+
+    @FXML
+    void apprendrearabe(ActionEvent event) {
+        try
+        {
+         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"C:\\Users\\iheb\\Documents\\NetBeansProjects\\fixit_one\\src\\main\\resources\\Image\\ar_barab_kazana.pdf");
+        }catch(Exception e)
+        {
+            JOptionPane.showConfirmDialog(null, "error");
+        }
+
+    }
+      @FXML
+    void apprendreprogrammation(ActionEvent event) {
+         try
+        {
+         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"C:\\Users\\iheb\\Documents\\NetBeansProjects\\fixit_one\\src\\main\\resources\\Image\\polyX2003.pdf");
+        }catch(Exception e)
+        {
+            JOptionPane.showConfirmDialog(null, "error");
+        }
+
     }
     
     
