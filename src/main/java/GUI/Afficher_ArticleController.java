@@ -61,7 +61,7 @@ public class Afficher_ArticleController implements Initializable {
         int id=(A.getId());
         Articlegestion a1=new Articlegestion();
         image_article.setImage(AcceuilController.m);
-        image_article.setImage(new Image("file:/C:/Users/ASUS/Documents/NetBeansProjects/Fixit_one/Fixit_one/imgage_article.jpg"));
+        image_article.setImage(new Image("file:imgage_article.jpg"));
         System.out.println(A);
         tiitre_article.setText(A.getNom_article());
         desc_artcile.setText(A.getDescriptionarticle());
@@ -85,7 +85,7 @@ public class Afficher_ArticleController implements Initializable {
     @FXML
     private void lirelasuite(MouseEvent event) {
         A=AcceuilController.A1;
-        String s1 =("http://"+A.getSources());
+        String s1 =(A.getSources());
         Desktop desktop = Desktop.getDesktop();
         try {
             desktop.browse(URI.create(s1));

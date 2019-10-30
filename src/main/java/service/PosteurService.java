@@ -67,7 +67,7 @@ public class PosteurService implements iPosteur{
             ste.setDate(7, (Date) p.getDate_naissance());
             ste.setInt(8, p.getTel());
             ste.setString(9, "Posteur");
-            ste.setString(10, "non_valide");
+            ste.setString(10, "Active");
             ste.setBinaryStream(11, (InputStream)fis, (int)file.length());
             
 
@@ -95,7 +95,7 @@ public class PosteurService implements iPosteur{
             ste.setDate(7, (Date) p.getDate_naissance());
             ste.setInt(8, p.getTel());
             ste.setString(9, "Posteur");
-            ste.setString(10, "non_valide");
+            ste.setString(10, "Active");
             
 
             ste.executeUpdate();
