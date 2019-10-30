@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="787.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="787.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
   <tabs>
     <Tab text="Demander un service">
       <content>
@@ -186,6 +186,7 @@
                   <Label layoutX="81.0" layoutY="454.0" text="Photo de Profil:" />
                   <TextField fx:id="file_image_p" layoutX="219.0" layoutY="449.0" prefHeight="31.0" prefWidth="214.0" promptText="Choose Image" />
                   <Button fx:id="image_p_btn" layoutX="433.0" layoutY="449.0" mnemonicParsing="false" text="|||" />
+                  <Button layoutX="492.0" layoutY="449.0" mnemonicParsing="false" onAction="#Chosier_ph_bt" text="Choisir Photo Maintenant" />
                </children></AnchorPane>
       </content>
          <graphic>
@@ -393,16 +394,17 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView fx:id="tableechangesposteur" layoutX="31.0" layoutY="98.0" prefHeight="383.0" prefWidth="638.0">
+                                    <TableView fx:id="tableechangesposteur" layoutY="99.0" prefHeight="383.0" prefWidth="765.0">
                                       <columns>
                                         <TableColumn fx:id="tablepofp" prefWidth="120.0" text="proposition offerte" />
                                         <TableColumn fx:id="tableposp" prefWidth="134.0" text="proposition souhaitee" />
                                           <TableColumn fx:id="tablepdp" prefWidth="134.0" text="description" />
                                           <TableColumn fx:id="tabledap" prefWidth="134.0" text="dateajout" />
                                           <TableColumn fx:id="tablenpos" prefWidth="134.0" text="nom posteur" />
+                                          <TableColumn fx:id="tabletel" prefWidth="134.0" text=" telephone" />
                                       </columns>
                                     </TableView>
-                                    <TextField fx:id="repos" layoutX="268.0" layoutY="53.0" promptText="Rechercher" />
+                                    <TextField fx:id="repos" layoutX="268.0" layoutY="53.0" onKeyReleased="#OnkeyTypeechange" promptText="Rechercher" />
                                     <Button fx:id="rechercherprop" layoutX="434.0" layoutY="53.0" mnemonicParsing="false" onAction="#rechercherechange" prefHeight="0.0" prefWidth="0.0">
                                        <graphic>
                                           <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">

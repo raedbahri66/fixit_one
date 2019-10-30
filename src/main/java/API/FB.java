@@ -72,8 +72,10 @@ public class FB {
     
             PosteurService P1= new PosteurService();
             ControleSaisie A1= new ControleSaisie();
+            System.out.println(b.intValue());
             if(!A1.isCintUsed(b.intValue()))
             {
+                System.out.println(A1.isCintUsed(b.intValue()));
             P1.creerPosteurByFb(P);
             } else alreadysignfb=true;
             
