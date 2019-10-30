@@ -1359,6 +1359,23 @@ public class Posteur_interfaceController implements Initializable {
         }
     }
       @FXML
+    void OnkeyTypeechange(KeyEvent event) {
+        // String msg = repos.getText().concat("%");
+          String ech =repos.getText().concat("%");
+  dataeesp.clear();
+   
+       EchangeGestion ES = new EchangeGestion();
+   ArrayList Echange= (ArrayList) ES.Rechercheprpo(ech);
+    dataeesp= FXCollections.observableArrayList(Echange);
+   tableechangesposteur.setItems(dataeesp);
+        tablepofp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
+     tableposp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionsouhaitée"));
+            tablepdp.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
+                 tabledap.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
+                 tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
+    }
+      
+    @FXML
     void rechercherechange(ActionEvent event) throws SQLException {
         
         dataeesp.clear();
