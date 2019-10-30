@@ -569,17 +569,7 @@ public class Posteur_interfaceController implements Initializable {
     }
     @FXML
     private TableColumn<?, ?> id_h;
-    @FXML
-    private TabPane produitpane;
-    @FXML
-    private Button btnajouterpanier;
-    @FXML
-    private Tab panier;
-    @FXML
-    private Label nom_proprietaire12;
-    
-  
-    
+
   
    public void favoris(){
     GestionFavoris gf = new GestionFavoris ();
