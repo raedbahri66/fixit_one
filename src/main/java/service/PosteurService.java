@@ -80,6 +80,7 @@ public class PosteurService implements iPosteur{
             JOptionPane.showMessageDialog(null, "Cin is already used by another ones");
         }
     }
+    @Override
     public void creerPosteur(Posteur p) {
             String req1 = "insert into posteur (cin, nom, prenom, email, sexe, password, date_naissance, tel, role, etat) values (?,?,?,?,?,?,?,?,?,?)";
         try {
@@ -133,6 +134,7 @@ try {
         }
     }
 
+    @Override
     public void BannirPosteur(Posteur p) {
 try {
             String update = "UPDATE posteur SET  cin = ?, etat = ?, role= ? WHERE cin = ? ";
@@ -243,6 +245,7 @@ try {
         return p; 
     }
     
+    @Override
     public String login(int cin1,String password1)
     {
         String req1="select * from Posteur where cin="+cin1 +" and password="+password1;   
@@ -276,6 +279,7 @@ try {
     }
 
     
+    @Override
     public String BannirRaison(int cin1,String password1)
     {
         String req1="select * from Posteur where cin="+cin1 +" and password="+password1;   
@@ -319,6 +323,7 @@ try {
         }
     
     }
+    @Override
     public List<Posteur> afficherPosteurbynNom(String choix,String nom) throws SQLException {
         List<Posteur> posteurs = new ArrayList<>();
       Posteur p = null ;
@@ -349,6 +354,7 @@ try {
           }
      return posteurs;
     }
+    @Override
     public List<Posteur> afficherPosteurbyEtat(String nom) throws SQLException {
         List<Posteur> posteurs = new ArrayList<>();
       Posteur p = null ;
@@ -376,6 +382,7 @@ try {
      return posteurs;
     }
             
+    @Override
     public String Emailget(int cin1) throws SQLException
     {
         String req1="select * from Posteur where cin="+cin1;   
@@ -399,6 +406,7 @@ try {
         System.out.println(email);
        return email; 
     }
+    @Override
     public String Passwordget(int cin1) throws SQLException
     {
         String req1="select * from Posteur where cin="+cin1;   
@@ -422,6 +430,7 @@ try {
         System.out.println(password);
        return password; 
     }
+    @Override
     public void creerPosteurByFb(Posteur p) {
          String req1 = "insert into Posteur (cin, nom, prenom, email) values (?,?,?,?)";
         try {

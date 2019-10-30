@@ -5,10 +5,11 @@
  */
 package GUI;
 import API.Payment;
-import static API.Payment.Paymment;
+
 import service.GestionProduit;
 import entites.Produit;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
+import com.stripe.exception.StripeException;
 import entites.Echange;
 import entites.Favoris;
 import entites.Jobeur;
@@ -61,10 +62,14 @@ import service.JobeurService;
 import service.PosteurService;
 import entites.Offre;
 import entites.annonce;
+import facebook4j.FacebookException;
+import facebook4j.FacebookFactory;
+import facebook4j.auth.AccessToken;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -443,8 +448,76 @@ public class Posteur_interfaceController implements Initializable {
     private Label idproduitacheter;
        
    
+    @FXML
+    private TextField numero_carte;
+    @FXML
+    private TextField mois_validite;
+    @FXML
+    private TextField year_validite;
+    @FXML
+    private TextField cvc;
+    @FXML
+    private Label date_validation;
+    @FXML
+    private Label mois_validation;
+    @FXML
+    private Label card_validation;
+    @FXML
+    private Label cvc_validation;
+     @FXML
+    private Button voirpdf;
+       @FXML
+    private Button anglais;
+
+    @FXML
+    private Button arabe;
+        @FXML
+    private Button programmation;
     
-    
+       @FXML
+    void voirpdffrancais(ActionEvent event) {
+ try
+        {
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"C:\\Users\\iheb\\Documents\\NetBeansProjects\\fixit_one\\src\\main\\resources\\Image\\document_complet.pdf");
+        }catch(Exception e)
+        {
+            JOptionPane.showConfirmDialog(null, "error");
+        }
+    }
+     @FXML
+    void apprendreanglais(ActionEvent event) {
+         try
+        {
+         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"C:\\Users\\iheb\\Documents\\NetBeansProjects\\fixit_one\\src\\main\\resources\\Image\\anglais-pln.pdf");
+        }catch(Exception e)
+        {
+            JOptionPane.showConfirmDialog(null, "error");
+        }
+
+    }
+
+    @FXML
+    void apprendrearabe(ActionEvent event) {
+        try
+        {
+         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"C:\\Users\\iheb\\Documents\\NetBeansProjects\\fixit_one\\src\\main\\resources\\Image\\ar_barab_kazana.pdf");
+        }catch(Exception e)
+        {
+            JOptionPane.showConfirmDialog(null, "error");
+        }
+
+    }
+      @FXML
+    void apprendreprogrammation(ActionEvent event) {
+         try
+        {
+         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"C:\\Users\\iheb\\Documents\\NetBeansProjects\\fixit_one\\src\\main\\resources\\Image\\polyX2003.pdf");
+        }catch(Exception e)
+        {
+            JOptionPane.showConfirmDialog(null, "error");
+        }
+
+    }
     
     
     
@@ -466,12 +539,10 @@ public class Posteur_interfaceController implements Initializable {
     private Tab panier;
     @FXML
     private Label nom_proprietaire12;
-    @FXML
-    private TextField numero_carte;
+    
     @FXML
     private TextField date_validite_carte;
-    @FXML
-    private PasswordField cvc;
+  
     
   
    public void favoris(){
@@ -615,13 +686,45 @@ public class Posteur_interfaceController implements Initializable {
 
     }
     
-    
+    public boolean controlepayment=true;
        @FXML
-    void bnt_payment(ActionEvent event) {
-        
-        
-    int prix=Integer.parseInt(montant_total.getText());  
-    Paymment(prix);
+    void bnt_payment(ActionEvent event) throws StripeException {
+       
+   
+     
+     
+          if(year_validite.getText().isEmpty())
+        {controlepayment = false;  date_validation.setText("Champ vide");}
+          else if(!year_validite.getText().isEmpty()){ date_validation.setText("");}
+       if(mois_validite.getText().isEmpty())
+        {controlepayment = false;  mois_validation.setText("Champ vide");}
+          else if(!mois_validite.getText().isEmpty()){ mois_validation.setText("");}
+        if(cvc.getText().isEmpty())
+        {controlepayment = false;  cvc_validation.setText("Champ vide");}
+          else if(!cvc.getText().isEmpty()) {cvc_validation.setText("");}
+    if(numero_carte.getText().isEmpty())
+        {controlepayment = false;  card_validation.setText("Champ vide");}
+          else if(!numero_carte.getText().isEmpty()) {card_validation.setText("");}
+    
+    if (  "".equals(montant_total.getText())){
+        JOptionPane.showMessageDialog(null, "Veuillez choisir un produit");
+        controlepayment = false;
+    }
+    
+    
+    
+    if(controlepayment){
+             String cvc1=cvc.getText();
+     String mois=mois_validite.getText();
+     String year=year_validite.getText();
+     String numC=numero_carte.getText();
+    int prix=Integer.parseInt(montant_total.getText()); 
+    Payment p=new Payment(); 
+     ControleSaisie C= new ControleSaisie();
+      int  mois2=Integer.parseInt(mois);
+      int year2=Integer.parseInt(year);  
+    if(p.Paymment(prix,numC,mois2,year2,cvc1)==true)
+    {
     String id=idproduitacheter.getText();
     Produit E = new Produit(id);
    GestionProduit gs = new  GestionProduit();
@@ -632,8 +735,37 @@ public class Posteur_interfaceController implements Initializable {
         prix_payer.setText("");
         idproduitacheter.setText("");
       montant_total.setText("");
+      numero_carte.setText("");
+      year_validite.setText("");
+      mois_validite.setText("");
+              cvc.setText("");
+              frais_payment.setText("");
       refrech();
     }
+    else{JOptionPane.showMessageDialog(null, "Erreur de paymment veuillez verifier vos données ");}
+    
+    
+    
+   
+    
+    
+    }
+    
+     else{ controlepayment = true;}
+  
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     public boolean controlemodifier=true;
      @FXML
@@ -1107,7 +1239,12 @@ public class Posteur_interfaceController implements Initializable {
         Date date = Date.valueOf(locald);
         PosteurService p = new PosteurService();
         Posteur p1= new Posteur(AcceuilController.cinlogin, tf_nom1.getText(), tf_prenom1.getText(), tef_email1.getText(), date, Integer.parseInt(tf_tel1.getText()));
+        if(!file_image_p.getText().isEmpty()){
         p.modifierProfil(p1,fis,file);
+        file_image_p.setText(""); 
+        image_post.setImage(null);
+        }
+        else {p.modifierPosteur(p1);}
         JOptionPane.showMessageDialog(null, "Account edited Successfull");
         nomp_1.setText(p1.getNom());
         nomp_11.setText(p1.getNom());
@@ -1126,7 +1263,7 @@ public class Posteur_interfaceController implements Initializable {
     }
 
     @FXML
-    private void ajouterechangep(ActionEvent event) throws SQLException, IOException, ParseException {
+    private void ajouterechangep(ActionEvent event) throws SQLException, IOException, ParseException, FacebookException {
               // boolean test= true;
                 String date8 = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
                 // LocalDate locald =dap.getValue();
@@ -1195,6 +1332,19 @@ public class Posteur_interfaceController implements Initializable {
   EchangeGestion es = new  EchangeGestion();
    es.ajouterEchange(E);
    JOptionPane.showMessageDialog(null, "ajout avec succes");
+  facebook4j.Facebook facebook = new FacebookFactory().getInstance();
+    
+    facebook.setOAuthAppId("", "");
+  
+    String accessTokenString = "EAAjdVZBDPFWIBAAHH2Uk0ZBkX6UWGftWZB6Bc0wOM5qLSv7wph2ZAFasgY0fDNkc1PJ5Su7MixODicTjKZCI5dqBIu77g8yAIFaM0lJZAPBo0cJumEzVSlWxiNzXjt9EuhZB4UG4yY1GlUYvCJ7DFKi3Vqa7yZClavi71qQITHtejqB2KqZB8VXYc21n0vvs00owZD";
+    AccessToken at = new AccessToken(accessTokenString);
+    facebook.setOAuthAccessToken(at);
+        try{
+            
+        facebook.postStatusMessage("\n Pubilerpar:"+p1.getNom()+ "\n son numero de telephone est:"+p1.getTel()+ "\n Propositionofferte: "+E.getPropositionofferte()+ "\n Propositionsouhaitée: "+ E.getPropositionsouhaitée() +"\n Description: " + E.getDescription_echange());
+        
+        }
+        catch(FacebookException fex){System.out.println(fex);}
    pofp.setText("");
    posp.setText("");
    pdp.setText("");
