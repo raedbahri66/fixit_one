@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_choisir_jobeur_menageController">
+   <children>
+      <ImageView fitHeight="412.0" fitWidth="664.0" layoutX="-8.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Image/menage.jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="Table_Jobeurm" layoutY="69.0" opacity="0.73" prefHeight="337.0" prefWidth="648.0">
+         <columns>
+            <TableColumn fx:id="Column_nomj" prefWidth="75.0" text="Nom" />
+            <TableColumn fx:id="Column_prenomj" prefWidth="75.0" text="Prenom" />
+            <TableColumn fx:id="Column_emailj" prefWidth="75.0" text="Email" />
+            <TableColumn fx:id="Column_sexej" prefWidth="75.0" text="Sexe" />
+            <TableColumn fx:id="Column_tel" prefWidth="125.0" text="Num télephone" />
+            <TableColumn fx:id="Column_job" prefWidth="102.0" text="Spécialité" />
+            <TableColumn fx:id="Date_naissanceJ" prefWidth="124.0" text="Date_naissance" />
+            <TableColumn fx:id="column_cin" minWidth="0.0" prefWidth="23.0" text="Cin" />
+         </columns>
+      </TableView>
+      <TextField fx:id="Label_recherche" layoutX="233.0" layoutY="31.0" promptText="Recherche" />
+      <Button fx:id="Btn_recherche_jobeur" layoutX="403.0" layoutY="30.0" mnemonicParsing="false" onAction="#RechercheJobeur" prefHeight="25.0" prefWidth="25.0">
+         <graphic>
+            <ImageView fitHeight="19.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/search-icon%20(1).png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="486.0" layoutY="31.0" mnemonicParsing="false" onAction="#btn_top5" prefHeight="25.0" prefWidth="60.0" text="TOP5" />
+      <Button fx:id="Btn_retour_jobeur" layoutX="574.0" layoutY="4.0" mnemonicParsing="false" onAction="#Retour" prefHeight="27.0" prefWidth="68.0" text="Retour" />
+   </children>
+</Pane>

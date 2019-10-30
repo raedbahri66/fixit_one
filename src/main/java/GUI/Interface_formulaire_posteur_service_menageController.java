@@ -109,14 +109,14 @@ public class Interface_formulaire_posteur_service_menageController implements In
         String Description = Label_description.getText();
         String Tel = Label_tel.getText();
         String Heure =Label_heure.getText();
-        String Nomservice ="Electricité";
+        String Nomservice ="Menage";
        
          String date = LCD.toString();
          Offre O = new Offre(adresse,date ,Heure ,Description,Tel,idposteur,etatoffre,nomposteur,prenomposteur,Nomservice);
         gestion_offre_service g = new gestion_offre_service();
               g.creerOffre(O);
               JOptionPane.showMessageDialog(null, "votre details du service sont enregistré");
-               Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_choisir_jobeur.fxml"));
+               Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_choisir_jobeur_menage.fxml"));
         Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();

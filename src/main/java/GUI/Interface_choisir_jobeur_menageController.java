@@ -41,10 +41,9 @@ import service.gestion_service;
  *
  * @author asus
  */
-public class Interface_choisir_jobeurController implements Initializable {
+public class Interface_choisir_jobeur_menageController implements Initializable {
 
-    @FXML
-    private TableView<Jobeur> Table_Jobeur;
+  
     @FXML
     private TableColumn<Jobeur,String> Column_nomj;
 
@@ -72,13 +71,15 @@ public class Interface_choisir_jobeurController implements Initializable {
     @FXML
     private Button Btn_recherche_jobeur;
     @FXML
+    private TableView<Jobeur> Table_Jobeurm;
+    @FXML
     void RechercheJobeur(ActionEvent event) {
         data.clear();
         String nom =Label_recherche.getText();
       Gestion_tableau_jobeur gt = new Gestion_tableau_jobeur();
       ArrayList Jobeur= (ArrayList) gt.RechercheJobeur(nom);
       data= FXCollections.observableArrayList(Jobeur);
-     Table_Jobeur.setItems(data);
+     Table_Jobeurm.setItems(data);
      Column_nomj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("nom"));
      Column_prenomj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("prenom"));
      Column_emailj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("email"));
@@ -97,8 +98,8 @@ public class Interface_choisir_jobeurController implements Initializable {
      public void afficherTab_service()
     {
         
-     gt.afficherJobeur_Electricien();
-     Table_Jobeur.setItems(data);
+     gt.afficherJobeur_Menage();
+     Table_Jobeurm.setItems(data);
      Column_nomj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("nom"));
      Column_prenomj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("prenom"));
      Column_emailj.setCellValueFactory(new PropertyValueFactory <Jobeur,String>("email"));
@@ -110,25 +111,25 @@ public class Interface_choisir_jobeurController implements Initializable {
 
    
     }
-     public static Jobeur j1;
+     public static Jobeur jm;
      
      Gestion_tableau_jobeur gt = new Gestion_tableau_jobeur();
-    ArrayList jobeur= (ArrayList) gt.afficherJobeur_Electricien();
+    ArrayList jobeur= (ArrayList) gt.afficherJobeur_Menage();
     
     
     public ObservableList data = FXCollections.observableArrayList(jobeur);
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         afficherTab_service();
-        Table_Jobeur.setOnMouseClicked((MouseEvent event) -> {
+        Table_Jobeurm.setOnMouseClicked((MouseEvent event) -> {
             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
          Jobeur A=new Jobeur();
-          A = (Jobeur) Table_Jobeur.getItems().get(Table_Jobeur.getSelectionModel().getSelectedIndex());
-         j1=A;
+          A = (Jobeur) Table_Jobeurm.getItems().get(Table_Jobeurm.getSelectionModel().getSelectedIndex());
+         jm=A;
           Parent root = null;
                 System.out.println(A);
                 try {
-                    root = FXMLLoader.load(getClass().getResource("/fxml/affiche_profilJobeur.fxml"));
+                    root = FXMLLoader.load(getClass().getResource("/fxml/affiche_profilJobeur_menage.fxml"));
                 } catch (IOException ex) {
                     Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
                 }
