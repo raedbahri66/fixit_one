@@ -12,6 +12,7 @@ import entites.Posteur;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -31,6 +32,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -69,6 +71,7 @@ public class AcceuilController implements Initializable {
     @FXML
     private TableColumn<?, ?> sou1;
     public static Article A1;
+    public static Image m;
     /**
      * Initializes the controller class.
      */
@@ -96,6 +99,14 @@ public class AcceuilController implements Initializable {
          Article A=new Article();
          A = (Article) table_article.getItems().get(table_article.getSelectionModel().getSelectedIndex());
          A1=A;
+         Articlegestion a=new Articlegestion();
+             try {
+                m=a.get_image(A.getId());
+             } catch (SQLException ex) {
+                 Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+             } catch (IOException ex) {
+                 Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+             }
           Parent root = null;
                 System.out.println(A);
                 try {

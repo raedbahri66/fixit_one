@@ -60,7 +60,6 @@ public class Articlegestion implements IArticle{
             ste.setString(4,A.getCategorie());
             ste.setString(5,A.getSources());
             ste.setBinaryStream(6, (InputStream)fis, (int)file.length());
-            
             ste.executeUpdate();
             System.out.println("Ajout article Complete");
             JOptionPane.showMessageDialog(null," artcile ajouté "); 
