@@ -198,7 +198,13 @@ public class InscrirePosteurController implements Initializable {
 
            Posteur P1= new Posteur(cin,nom,prenom,email,sexe,password,date,tel);
            PosteurService p = new PosteurService();
+           if(!file_image_p.getText().isEmpty())
+           {
            p.creerPosteur(P1,fis,file);
+           file_image_p.setText("");
+           image_post.setImage(null);
+           }
+           else p.creerPosteur(P1);
 
        }
        else

@@ -1249,7 +1249,12 @@ public class Posteur_interfaceController implements Initializable {
         Date date = Date.valueOf(locald);
         PosteurService p = new PosteurService();
         Posteur p1= new Posteur(AcceuilController.cinlogin, tf_nom1.getText(), tf_prenom1.getText(), tef_email1.getText(), date, Integer.parseInt(tf_tel1.getText()));
+        if(!file_image_p.getText().isEmpty()){
         p.modifierProfil(p1,fis,file);
+        file_image_p.setText(""); 
+        image_post.setImage(null);
+        }
+        else {p.modifierPosteur(p1);}
         JOptionPane.showMessageDialog(null, "Account edited Successfull");
         nomp_1.setText(p1.getNom());
         nomp_11.setText(p1.getNom());
