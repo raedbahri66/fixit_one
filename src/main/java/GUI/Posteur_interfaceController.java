@@ -570,13 +570,11 @@ public class Posteur_interfaceController implements Initializable {
         LocalDate localDate = LocalDate.parse(date , formatter);
         return localDate;
     }
-    @FXML
-    private TableColumn<?, ?> id_h;
+ 
 
     
   
     
-  
    public void favoris(){
     GestionFavoris gf = new GestionFavoris ();
    ArrayList<Favoris> favroiss= (ArrayList<Favoris>) gf.afficherfavoris(AcceuilController.cinlogin);  
@@ -1864,7 +1862,7 @@ Echange E = new Echange(id);
         image_post.setImage(image1);
        // image_post.setImage(new Image("file:/C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg"));
         file_image_p.setText("C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg");
-
+    }
 
     @FXML
     private void favoriss4(KeyEvent event) {
@@ -1883,14 +1881,6 @@ Echange E = new Echange(id);
      c_specialite.setCellValueFactory(new PropertyValueFactory <>("specalite"));}
      else
      favoris();}
-    @FXML
-    private void Chosier_ph_bt(ActionEvent event) {
-       Image image1=new Image("file:image1.png");
-        image_post.setImage(null);
-        image_post.setImage(image1);
-       // image_post.setImage(new Image("file:/C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg"));
-        file_image_p.setText("C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg");
 
-    }
     
 }
