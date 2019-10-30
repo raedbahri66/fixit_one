@@ -1878,6 +1878,6 @@ Echange E = new Echange(id);
      c_specialite.setCellValueFactory(new PropertyValueFactory <>("specalite"));}
      else
      favoris();}
-    
+   
     
 }
