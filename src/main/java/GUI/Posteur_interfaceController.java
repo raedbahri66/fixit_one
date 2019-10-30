@@ -448,7 +448,8 @@ public class Posteur_interfaceController implements Initializable {
     private Label montant_total;
     @FXML
     private Label idproduitacheter;
-       
+     @FXML
+    private TableColumn<?, ?> id_h;  
    
     @FXML
     private TextField numero_carte;
@@ -567,16 +568,8 @@ public class Posteur_interfaceController implements Initializable {
         LocalDate localDate = LocalDate.parse(date , formatter);
         return localDate;
     }
-    @FXML
-    private TableColumn<?, ?> id_h;
-    @FXML
-    private TabPane produitpane;
-    @FXML
-    private Button btnajouterpanier;
-    @FXML
-    private Tab panier;
-    @FXML
-    private Label nom_proprietaire12;
+    
+  
     
   
     
