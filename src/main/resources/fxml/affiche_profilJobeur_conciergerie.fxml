@@ -28,7 +28,7 @@
             </ImageView>
             <ImageView fitHeight="491.0" fitWidth="751.0" layoutX="-7.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Image/Electricite3.JPG" />
+                  <Image url="@../Image/concierge.jpg" />
                </image>
             </ImageView>
             <Label fx:id="cin_J" disable="true" layoutX="133.0" layoutY="20.0" prefHeight="17.0" prefWidth="87.0" text="Label" visible="false" />
@@ -97,7 +97,7 @@
                   </Label>
                </children>
             </GridPane>
-            <Label layoutX="199.0" layoutY="11.0" prefHeight="38.0" prefWidth="358.0" text="Je suis à votre service !!" textAlignment="CENTER" textFill="#ff8a05">
+            <Label layoutX="199.0" layoutY="11.0" prefHeight="38.0" prefWidth="358.0" text="Je suis à votre service !!" textAlignment="CENTER" textFill="#1a77ff">
                <font>
                   <Font name="Arial Narrow Bold" size="36.0" />
                </font>
