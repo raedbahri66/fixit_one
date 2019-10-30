@@ -206,6 +206,14 @@ public class JobeurgestionController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if(JobeurService.affich) try {
+            System.out.println("Actialiser");
+            btn_actualiser1();
+        } catch (SQLException ex) {
+            Logger.getLogger(JobeurgestionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         String[] possible_ville = {"Agareb",
             "Aïn Draham",
             "Akouda",
@@ -478,16 +486,16 @@ public class JobeurgestionController implements Initializable{
             active_filter.setSelected(true);
             banned_filter.setToggleGroup(group);
             ObservableList<String> sexelist = FXCollections.observableArrayList("Homme","Femme");
-            ObservableList<String> speclist = FXCollections.observableArrayList("Electricite","Plomberie","Jardinage","Menage","Conciergerie");
+            ObservableList<String> speclist = FXCollections.observableArrayList("Electricien","Menage","Plombier","Conciergerie","Renovation","Jardinage");
             ObservableList<String> filter_choix = FXCollections.observableArrayList("nom","email","cin");
             sexe_p.setValue("Homme");
             sexe_p.setItems(sexelist);
-            combo_j.setValue("Electricite");
+            combo_j.setValue("Electricien");
             combo_j.setItems(speclist);
             date_p.setValue(NOW_LOCAL_DATE());
             sexe_p1.setValue("Homme");
             sexe_p1.setItems(sexelist);
-            combo_j1.setValue("Electricite");
+            combo_j1.setValue("Electricien");
             combo_j1.setItems(speclist);
             date_p1.setValue(NOW_LOCAL_DATE());
             combo_filter.setValue("cin");
