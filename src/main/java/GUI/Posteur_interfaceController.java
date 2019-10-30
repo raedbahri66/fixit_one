@@ -477,6 +477,18 @@ public class Posteur_interfaceController implements Initializable {
     private Label card_validation;
     @FXML
     private Label cvc_validation;
+     @FXML
+    private Button voirpdf;
+       @FXML
+    void voirpdffrancais(ActionEvent event) {
+ try
+        {
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"C:\\Users\\iheb\\Documents\\NetBeansProjects\\fixit_one\\src\\main\\resources\\Image\\document_complet.pdf");
+        }catch(Exception e)
+        {
+            JOptionPane.showConfirmDialog(null, "error");
+        }
+    }
     
     
     
