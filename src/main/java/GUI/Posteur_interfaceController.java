@@ -473,6 +473,8 @@ public class Posteur_interfaceController implements Initializable {
     private Button arabe;
         @FXML
     private Button programmation;
+            @FXML
+    private TableColumn<Echange, String> tabletel;
     
        @FXML
     void voirpdffrancais(ActionEvent event) {
@@ -1110,6 +1112,7 @@ public class Posteur_interfaceController implements Initializable {
             tablepdp.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
                  tabledap.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
                  tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
+                 tabletel.setCellValueFactory(new PropertyValueFactory<Echange,String>("id_jobeurfg"));
                 // tableechangesposteur.setItems(dataeesp);*/
 
         Stage stage = new Stage();
@@ -1327,7 +1330,7 @@ public class Posteur_interfaceController implements Initializable {
        String description=pdp.getText();
   //LocalDate locald =dap.getValue();
         String date10 =locald.toString();
-        int idjobeur=0;
+        int idjobeur=p1.getTel();
    Echange E = new Echange(nomo,nomf,description,date10,idposteur1,nomposteur,idjobeur);
   EchangeGestion es = new  EchangeGestion();
    es.ajouterEchange(E);

@@ -393,13 +393,14 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView fx:id="tableechangesposteur" layoutX="31.0" layoutY="98.0" prefHeight="383.0" prefWidth="638.0">
+                                    <TableView fx:id="tableechangesposteur" layoutY="99.0" prefHeight="383.0" prefWidth="765.0">
                                       <columns>
                                         <TableColumn fx:id="tablepofp" prefWidth="120.0" text="proposition offerte" />
                                         <TableColumn fx:id="tableposp" prefWidth="134.0" text="proposition souhaitee" />
                                           <TableColumn fx:id="tablepdp" prefWidth="134.0" text="description" />
                                           <TableColumn fx:id="tabledap" prefWidth="134.0" text="dateajout" />
                                           <TableColumn fx:id="tablenpos" prefWidth="134.0" text="nom posteur" />
+                                          <TableColumn fx:id="tabletel" prefWidth="134.0" text=" telephone" />
                                       </columns>
                                     </TableView>
                                     <TextField fx:id="repos" layoutX="268.0" layoutY="53.0" onKeyReleased="#OnkeyTypeechange" promptText="Rechercher" />
