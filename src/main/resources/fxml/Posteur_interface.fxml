@@ -833,7 +833,7 @@
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="mois_validite_carte" layoutX="490.0" layoutY="355.0" prefHeight="36.0" prefWidth="49.0" promptText="MM" />
+                                          <TextField fx:id="mois_validite" layoutX="490.0" layoutY="355.0" prefHeight="36.0" prefWidth="49.0" promptText="MM" />
                                           <Label layoutX="420.0" layoutY="420.0" prefHeight="33.0" prefWidth="57.0" text="CVC:">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
@@ -874,7 +874,7 @@
                                              </graphic></Button>
                                           <Label fx:id="idproduitacheter" layoutX="109.0" layoutY="269.0" prefHeight="36.0" prefWidth="85.0" visible="false" />
                                           <PasswordField fx:id="cvc" layoutX="491.0" layoutY="421.0" prefHeight="29.0" prefWidth="63.0" promptText="CVC" />
-                                          <TextField fx:id="year_validite_carte" layoutX="559.0" layoutY="356.0" prefHeight="35.0" prefWidth="61.0" promptText="YYYY" />
+                                          <TextField fx:id="year_validite" layoutX="559.0" layoutY="356.0" prefHeight="35.0" prefWidth="61.0" promptText="YYYY" />
                                           <Label layoutX="549.0" layoutY="360.0" text="/" />
                                           <Label fx:id="card_validation" layoutX="493.0" layoutY="328.0" prefHeight="30.0" prefWidth="284.0" textFill="RED">
                                              <font>
