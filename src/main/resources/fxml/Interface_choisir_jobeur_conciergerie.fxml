@@ -8,14 +8,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_choisir_jobeur_plomberieController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_choisir_jobeur_conciergerieController">
    <children>
-      <ImageView fitHeight="412.0" fitWidth="664.0" layoutX="-8.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="412.0" fitWidth="664.0" layoutX="16.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Image/Recherche-d’un-plombier-pas-cher.jpg" />
+            <Image url="@../Image/photo-635621228685432307-2.jpg" />
          </image>
       </ImageView>
-      <TableView fx:id="Table_Jobeurp" layoutY="69.0" opacity="0.73" prefHeight="337.0" prefWidth="648.0">
+      <TableView fx:id="Table_Jobeurc" layoutY="69.0" opacity="0.73" prefHeight="337.0" prefWidth="648.0">
          <columns>
             <TableColumn fx:id="Column_nomj" prefWidth="75.0" text="Nom" />
             <TableColumn fx:id="Column_prenomj" prefWidth="75.0" text="Prenom" />

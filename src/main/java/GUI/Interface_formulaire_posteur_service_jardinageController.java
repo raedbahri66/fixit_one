@@ -116,7 +116,7 @@ public class Interface_formulaire_posteur_service_jardinageController implements
         gestion_offre_service g = new gestion_offre_service();
               g.creerOffre(O);
               JOptionPane.showMessageDialog(null, "votre details du service sont enregistré");
-               Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_choisir_jobeur.fxml"));
+               Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_choisir_jobeur_jardinage.fxml"));
         Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();

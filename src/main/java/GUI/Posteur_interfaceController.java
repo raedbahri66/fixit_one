@@ -70,6 +70,7 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseButton;
@@ -427,24 +428,6 @@ public class Posteur_interfaceController implements Initializable {
     @FXML
     private Label vdap;
     
-    @FXML
-    private TableView<String> table2;
-    @FXML
-    private TableColumn<Produit,String> table_nom2;
-    @FXML
-    private TableColumn<Produit,String> table_id2;
-    @FXML
-    private TableColumn<Produit,String> table_prix2;
-    @FXML
-    private TableColumn<Produit,String> table_categorie2;
-    @FXML
-    private TableColumn<Produit,String> table_num2;
-    @FXML
-    private TableColumn<Produit,String> table_description2;
-    @FXML
-    private TableColumn<Produit,String> table_proprietere2;
-    @FXML
-    private TableColumn<Produit,String> table_date2;
      @FXML
     private Label idpanier;
     @FXML
@@ -548,6 +531,18 @@ public class Posteur_interfaceController implements Initializable {
     }
     @FXML
     private TableColumn<?, ?> id_h;
+    @FXML
+    private TabPane produitpane;
+    @FXML
+    private Button btnajouterpanier;
+    @FXML
+    private Tab panier;
+    @FXML
+    private Label nom_proprietaire12;
+    
+    @FXML
+    private TextField date_validite_carte;
+  
     
   
    public void favoris(){
@@ -1012,16 +1007,7 @@ public class Posteur_interfaceController implements Initializable {
                 stage.show();
 
     }
-     @FXML
-    void Conciergerie(ActionEvent event)throws IOException {
-         Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service_conciergerie.fxml"));
-         Scene scene = new Scene(root);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.hide();
-                stage.setScene(scene);
-                stage.show();
-
-    }
+     
     
     
     public boolean canModif=true;
@@ -1636,6 +1622,16 @@ Echange E = new Echange(id);
         }catch (Exception e){JOptionPane.showMessageDialog(null,"erreur de supprimer \n"+e.getMessage());
     }
     
+    }
+
+    @FXML
+    private void Conciergerie2(ActionEvent event) throws IOException {
+        Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_formulaire_posteur_service_conciergerie.fxml"));
+         Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
     }
     
 }
