@@ -219,4 +219,35 @@ public class Gestion_tableau_jobeur {
       } return jobeur;    
      // TODO
     }
+    public List<Jobeur> afficherJobeur_Jardinage() {
+        
+               List<Jobeur> jobeur = new ArrayList<>();
+               String job ="jardinage";
+                
+            
+     
+      try {
+          String req="SELECT * FROM jobeur WHERE job=?";
+          PreparedStatement ste = c.prepareStatement(req);
+          ste.setString(1,job);
+          ResultSet res= ste.executeQuery();
+          while (res.next()) { 
+               Jobeur a = new Jobeur() ;
+                a.setCin(res.getInt("cin"));
+                a.setNom(res.getString("nom"));
+                a.setPrenom(res.getString("prenom"));
+                a.setEmail(res.getString("email"));
+                a.setSexe(res.getString("sexe"));
+                a.setDate_naissance(res.getDate("date_naissance"));
+                a.setTel(res.getInt("tel"));
+                a.setJob(res.getString("job"));
+                
+                
+              jobeur.add(a);
+          }
+      } catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+      } return jobeur;    
+     // TODO
+    }
 }
