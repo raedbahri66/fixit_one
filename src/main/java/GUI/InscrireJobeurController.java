@@ -255,6 +255,7 @@ public class InscrireJobeurController implements Initializable {
         String password= pass_j.getText();
         LocalDate locald = date_j.getValue();
         Date date = Date.valueOf(locald);
+        System.out.println(date.getYear());
 
            Jobeur P1= new Jobeur (cin,nom,prenom,email,sexe,password,date,tel,job,address);
            JobeurService p = new JobeurService();
