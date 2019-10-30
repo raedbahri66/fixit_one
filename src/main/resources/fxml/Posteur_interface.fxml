@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="825.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="825.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Posteur_interfaceController">
   <tabs>
     <Tab text="Demander un service">
       <content>
@@ -181,6 +181,7 @@
                   <Label layoutX="81.0" layoutY="454.0" text="Photo de Profil:" />
                   <TextField fx:id="file_image_p" layoutX="219.0" layoutY="449.0" prefHeight="31.0" prefWidth="214.0" promptText="Choose Image" />
                   <Button fx:id="image_p_btn" layoutX="433.0" layoutY="449.0" mnemonicParsing="false" text="|||" />
+                  <Button layoutX="492.0" layoutY="449.0" mnemonicParsing="false" onAction="#Chosier_ph_bt" text="Choisir Photo Maintenant" />
                </children></AnchorPane>
       </content>
          <graphic>

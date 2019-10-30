@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package GUI;
+import static API.CAM.Capture;
 import API.Payment;
 
 import service.GestionProduit;
@@ -540,8 +541,6 @@ public class Posteur_interfaceController implements Initializable {
     @FXML
     private Label nom_proprietaire12;
     
-    @FXML
-    private TextField date_validite_carte;
   
     
   
@@ -1632,6 +1631,15 @@ Echange E = new Echange(id);
                 stage.hide();
                 stage.setScene(scene);
                 stage.show();
+    }
+
+    @FXML
+    private void Chosier_ph_bt(ActionEvent event) {
+       Image image1=new Image("file:image1.png");
+        image_post.setImage(null);
+        image_post.setImage(image1);
+       // image_post.setImage(new Image("file:/C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg"));
+        file_image_p.setText("C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg");
     }
     
 }
