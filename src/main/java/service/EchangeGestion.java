@@ -130,9 +130,9 @@ public class EchangeGestion implements Iechange{
             List<Echange> tableechange= new ArrayList<>();
      try{
             
-        String req2="select * from echange Where proposition_souhaitée=? ";
+        String req2="select * from echange Where proposition_souhaitée LIKE'"+ech+"'";
          PreparedStatement pstm = c.prepareStatement(req2);
-       pstm.setString(1,ech);
+      // pstm.setString(1,ech);
           ResultSet res=  pstm.executeQuery();
             //pstm.setString(1,ech);
           while (res.next()) { 

@@ -1330,20 +1330,21 @@ public class Posteur_interfaceController implements Initializable {
    Echange E = new Echange(nomo,nomf,description,date10,idposteur1,nomposteur,idjobeur);
   EchangeGestion es = new  EchangeGestion();
    es.ajouterEchange(E);
-   JOptionPane.showMessageDialog(null, "ajout avec succes");
+   JOptionPane.showMessageDialog(null, "ajout avec succes ");
   facebook4j.Facebook facebook = new FacebookFactory().getInstance();
     
     facebook.setOAuthAppId("", "");
   
-    String accessTokenString = "EAAjdVZBDPFWIBAAHH2Uk0ZBkX6UWGftWZB6Bc0wOM5qLSv7wph2ZAFasgY0fDNkc1PJ5Su7MixODicTjKZCI5dqBIu77g8yAIFaM0lJZAPBo0cJumEzVSlWxiNzXjt9EuhZB4UG4yY1GlUYvCJ7DFKi3Vqa7yZClavi71qQITHtejqB2KqZB8VXYc21n0vvs00owZD";
+    String accessTokenString = "EAAjdVZBDPFWIBADMdaOnnL5xLLzy18ZCYW8yNTzAoTCZBAoZAIzh1z0HvIwSLEVKMC9VbU2BRIBdHr6WBdCcZA4cRObmcPRLOwwg49hoglYhP0fPnQd81a4Nxq4A8WP37jY14YUQ5svbqQAtzVZCd8a3nLiQtHCYj8DXl7SZCZBhCdX4xVEM9996bQWhUZCO3cEYZD";
     AccessToken at = new AccessToken(accessTokenString);
     facebook.setOAuthAccessToken(at);
         try{
-            
+         
         facebook.postStatusMessage("\n Pubilerpar:"+p1.getNom()+ "\n son numero de telephone est:"+p1.getTel()+ "\n Propositionofferte: "+E.getPropositionofferte()+ "\n Propositionsouhaitée: "+ E.getPropositionsouhaitée() +"\n Description: " + E.getDescription_echange());
-        
+      
         }
-        catch(FacebookException fex){System.out.println(fex);}
+        catch(FacebookException fex)
+        {System.out.println(fex);}
    pofp.setText("");
    posp.setText("");
    pdp.setText("");
@@ -1357,6 +1358,23 @@ public class Posteur_interfaceController implements Initializable {
         }
     }
       @FXML
+    void OnkeyTypeechange(KeyEvent event) {
+        // String msg = repos.getText().concat("%");
+          String ech =repos.getText().concat("%");
+  dataeesp.clear();
+   
+       EchangeGestion ES = new EchangeGestion();
+   ArrayList Echange= (ArrayList) ES.Rechercheprpo(ech);
+    dataeesp= FXCollections.observableArrayList(Echange);
+   tableechangesposteur.setItems(dataeesp);
+        tablepofp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
+     tableposp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionsouhaitée"));
+            tablepdp.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
+                 tabledap.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
+                 tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
+    }
+      
+    @FXML
     void rechercherechange(ActionEvent event) throws SQLException {
         
         dataeesp.clear();
