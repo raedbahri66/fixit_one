@@ -43,8 +43,8 @@
                   </Label>
                   <TextField fx:id="filter_field" layoutX="727.0" layoutY="151.0" onInputMethodTextChanged="#Textchanged_flnom" onKeyReleased="#OnKeyReleased" onKeyTyped="#OnkeyTypedfilter" onMouseReleased="#Clearmouse_text" prefHeight="31.0" prefWidth="165.0" promptText="Type Info..." />
                   <ComboBox fx:id="combo_filter" layoutX="734.0" layoutY="108.0" prefWidth="150.0" />
-                  <RadioButton fx:id="active_filter" layoutX="764.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#Active_filterBtn" prefHeight="21.0" prefWidth="91.0" text="Active" />
-                  <RadioButton fx:id="banned_filter" layoutX="763.0" layoutY="281.0" mnemonicParsing="false" onMouseClicked="#banned_btnfilter" prefHeight="21.0" prefWidth="148.0" text="Banned" />
+                  <RadioButton fx:id="active_filter" layoutX="764.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#Active_filterBtn" prefHeight="21.0" prefWidth="91.0" text="Accepte" />
+                  <RadioButton fx:id="banned_filter" layoutX="763.0" layoutY="281.0" mnemonicParsing="false" onMouseClicked="#banned_btnfilter" prefHeight="21.0" prefWidth="148.0" text="Refuse" />
                   <Label layoutX="760.0" layoutY="198.0" prefHeight="46.0" prefWidth="99.0" text="Or Selon Etat">
                      <font>
                         <Font name="System Bold Italic" size="15.0" />
