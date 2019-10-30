@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package GUI;
+import static API.CAM.Capture;
 import API.Payment;
 
 import service.GestionProduit;
@@ -74,6 +75,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseButton;
+import static service.GestionProduit.imageproduit;
 import service.gestion_offre_service;
 import service.gestionannonce;
 
@@ -473,6 +475,42 @@ public class Posteur_interfaceController implements Initializable {
     private Button arabe;
         @FXML
     private Button programmation;
+            @FXML
+    private TableColumn<Echange, String> tabletel;
+    @FXML
+    private TabPane produitpane;
+    @FXML
+    private Button btnajouterpanier;
+    @FXML
+    private Tab panier;
+    @FXML
+    private Label nom_proprietaire12;
+    @FXML
+    private ImageView image_produit;
+    @FXML
+    private TextField image_path;
+    @FXML
+    private Button importAction;
+    private FileInputStream fis2;
+    private File file2;
+    private FileInputStream fis3;
+    private File file3;
+    @FXML
+    private ImageView afficher_image;
+    @FXML
+    private ImageView image_panier;
+    @FXML
+    private ImageView image_modifier;
+    @FXML
+    private TextField image_path2;
+    @FXML
+    private Button importModifier;
+    @FXML
+    private Label dollar3;
+    @FXML
+    private Label dollar2;
+    @FXML
+    private Label dollar1;
     @FXML
     private TextField recherche_favoris1;
     
@@ -533,14 +571,7 @@ public class Posteur_interfaceController implements Initializable {
     }
     @FXML
     private TableColumn<?, ?> id_h;
-    @FXML
-    private TabPane produitpane;
-    @FXML
-    private Button btnajouterpanier;
-    @FXML
-    private Tab panier;
-    @FXML
-    private Label nom_proprietaire12;
+
     
   
     
@@ -632,9 +663,9 @@ public class Posteur_interfaceController implements Initializable {
         else if(!description_produit.getText().isEmpty()) validation_description.setText("");
         
         
-        
-        
-        if(canInscription){
+        if (image_path.getText().isEmpty())
+        {
+            if(canInscription){
         int idposteur=p1.getId();
         String nom=nom_produit.getText();
         String desc=description_produit.getText();
@@ -663,6 +694,43 @@ public class Posteur_interfaceController implements Initializable {
         validation_produit.setText("");
         }
         else{ canInscription = true;}
+        }
+        
+        else{
+          if(canInscription){
+        int idposteur=p1.getId();
+        String nom=nom_produit.getText();
+        String desc=description_produit.getText();
+        String prix=prix_produit.getText();
+        String categorie=categorie_produit.getValue().toString();
+        String num=numero.getText();
+        String etatvente="non_vendu";
+        int idjobeur = 0;
+        
+        datelocal.setText(NOW_LOCAL_DATE().toString());
+        String date=datelocal.getText();
+        String nomproprietere=p1.getNom();
+        String etatvalidation="non_valider";
+        Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation,idposteur,idjobeur,nomproprietere,date);
+        GestionProduit gs = new  GestionProduit();
+        gs.ajouterProduitimage(E,fis2,file2);
+          JOptionPane.showMessageDialog(null, "Produit Ajouter avec succée");
+        nom_produit.setText("");
+        prix_produit.setText("");
+        description_produit.setText("");       
+        categorie_produit.setValue("");
+        numero.setText(Integer.toString(p1.getTel()));
+        refrech();
+        validation_prix.setText("");
+        validation_numero.setText("");
+        validation_produit.setText("");
+        image_path.setText("");
+        image_produit.setImage(null);
+        
+        }
+        else{ canInscription = true;}  
+        }
+        
 
     }
 
@@ -676,43 +744,73 @@ public class Posteur_interfaceController implements Initializable {
         nom_proprietaire11.setText(nom_proprietaire.getText());
         prix_payer.setText(prix_panier.getText());
         idproduitacheter.setText(idpanier.getText());
-        
+        int id1=Integer.parseInt(idpanier.getText());
         int prix=Integer.parseInt(prix_payer.getText());
         int frais=(int) (prix*0.02);
         frais_payment.setText(Integer.toString(frais));
+        dollar1.setText("$");
+        dollar2.setText("$");
+        dollar3.setText("$");
         int prixtotal=frais+prix;
         montant_total.setText(Integer.toString(prixtotal));
+       
+            GestionProduit GS = new GestionProduit();
+              
+                 try {
+                     GS.afficherProduitimage(id1);
+                 } catch (IOException ex) {
+                     Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+                 if(GestionProduit.imageproduit==null){
+                     afficher_image.setImage(null);
+                 }
+       
+       image_panier.setImage(GestionProduit.imageproduit);
        JOptionPane.showMessageDialog(null, "Produit ajouter avec succées vous devez consultez votre panier pour finaliser le paymment");
-
     }
+    
+    
+    
+    
     
     public boolean controlepayment=true;
        @FXML
     void bnt_payment(ActionEvent event) throws StripeException {
        
-   
-     
+     ControleSaisie C= new ControleSaisie();
+        
      
           if(year_validite.getText().isEmpty())
         {controlepayment = false;  date_validation.setText("Champ vide");}
-          else if(!year_validite.getText().isEmpty()){ date_validation.setText("");}
-       if(mois_validite.getText().isEmpty())
+          else if(!C.anneeisValid(year_validite.getText()) )
+        {controlepayment = false; date_validation.setText("Inccorect année");} 
+          else if(!year_validite.getText().isEmpty()&&C.anneeisValid(year_validite.getText())){ date_validation.setText("");}
+     
+           if(mois_validite.getText().isEmpty())
         {controlepayment = false;  mois_validation.setText("Champ vide");}
-          else if(!mois_validite.getText().isEmpty()){ mois_validation.setText("");}
-        if(cvc.getText().isEmpty())
+           else if(!C.moisisValid(mois_validite.getText()) )
+        {controlepayment = false; mois_validation.setText("Inccorect mois");} 
+          else if(!mois_validite.getText().isEmpty()&&C.moisisValid(mois_validite.getText())){ mois_validation.setText("");}
+       
+       if(cvc.getText().isEmpty())
         {controlepayment = false;  cvc_validation.setText("Champ vide");}
-          else if(!cvc.getText().isEmpty()) {cvc_validation.setText("");}
-    if(numero_carte.getText().isEmpty())
+       else if(!C.cvcisValid(cvc.getText()) )
+        {controlepayment = false; cvc_validation.setText("Inccorect CVC");} 
+          else if(!cvc.getText().isEmpty()&&C.cvcisValid(cvc.getText())) {cvc_validation.setText("");}
+   
+        if(numero_carte.getText().isEmpty())
         {controlepayment = false;  card_validation.setText("Champ vide");}
-          else if(!numero_carte.getText().isEmpty()) {card_validation.setText("");}
-    
-    if (  "".equals(montant_total.getText())){
+        else if(!C.cardisValid(numero_carte.getText()) )
+        {controlepayment = false; card_validation.setText("Inccorect Numero Card");} 
+          else if(!numero_carte.getText().isEmpty()&&C.cardisValid(numero_carte.getText())) {card_validation.setText("");}
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+          if (  "".equals(montant_total.getText())){
         JOptionPane.showMessageDialog(null, "Veuillez choisir un produit");
-        controlepayment = false;
-    }
+        controlepayment = false;}
+
     
-    
-    
+     
     if(controlepayment){
              String cvc1=cvc.getText();
      String mois=mois_validite.getText();
@@ -720,7 +818,7 @@ public class Posteur_interfaceController implements Initializable {
      String numC=numero_carte.getText();
     int prix=Integer.parseInt(montant_total.getText()); 
     Payment p=new Payment(); 
-     ControleSaisie C= new ControleSaisie();
+   
       int  mois2=Integer.parseInt(mois);
       int year2=Integer.parseInt(year);  
     if(p.Paymment(prix,numC,mois2,year2,cvc1)==true)
@@ -740,14 +838,13 @@ public class Posteur_interfaceController implements Initializable {
       mois_validite.setText("");
               cvc.setText("");
               frais_payment.setText("");
+              image_panier.setImage(null);
+              dollar1.setText("");
+              dollar2.setText("");
+              dollar3.setText("");
       refrech();
     }
     else{JOptionPane.showMessageDialog(null, "Erreur de paymment veuillez verifier vos données ");}
-    
-    
-    
-   
-    
     
     }
     
@@ -811,8 +908,8 @@ public class Posteur_interfaceController implements Initializable {
         
         
    
-   
-   if(controlemodifier){
+   if (image_path2.getText().isEmpty()){
+       if(controlemodifier){
    try{
    gs.modifierProduit(E);
    JOptionPane.showMessageDialog(null, "Modification avec succée");
@@ -822,6 +919,8 @@ public class Posteur_interfaceController implements Initializable {
    categorie_produit2.setValue("");
    categorie_produit3.setValue("");
    numero1.setText("");
+   
+   image_modifier.setImage(null);
    refrech();
     }
    catch(Exception e)
@@ -830,7 +929,34 @@ public class Posteur_interfaceController implements Initializable {
     }
     }
     
-    else{ controlemodifier = true;}
+    else{ controlemodifier = true;}    
+   }
+   
+   else{
+        if(controlemodifier){
+   try{
+   gs.modifierProduitimage(E,fis3,file3);
+   JOptionPane.showMessageDialog(null, "Modification avec succée");
+   nom2.setText("");
+   prix2.setText("");
+   description2.setText("");
+   categorie_produit2.setValue("");
+   categorie_produit3.setValue("");
+   numero1.setText("");
+   image_modifier.setImage(null);
+   image_path2.setText("");
+   refrech();
+    }
+   catch(Exception e)
+    {
+       System.out.println(e.getMessage());  
+    }
+    }
+    
+    else{ controlemodifier = true;}       
+   }
+   
+   
     
     }
     
@@ -875,6 +1001,12 @@ public class Posteur_interfaceController implements Initializable {
    categorie_produit2.setValue("");
    categorie_produit3.setValue("");
    numero1.setText("");
+   image_modifier.setImage(null);
+   afficher_image.setImage(null);
+   nom_proprietaire.setText("");
+   afficher_date.setText("");
+   label_num.setText("");
+   label_description1.setText("");
    refrech();
     }catch(Exception e)
     {
@@ -893,8 +1025,20 @@ public class Posteur_interfaceController implements Initializable {
                 label_description1.setText(A.getDescription());
                 label_num.setText(A.getNumero());
                 nom_proprietaire.setText(A.getNomproprietere());
-             afficher_date.setText(A.getDate1());
+                afficher_date.setText(A.getDate1());
                 idpanier.setText(A.getId());
+               GestionProduit GS = new GestionProduit();
+                int id=Integer.parseInt(A.getId());
+                 try {
+                     GS.afficherProduitimage(id);
+                 } catch (IOException ex) {
+                     Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+                 if(GestionProduit.imageproduit==null){
+                     afficher_image.setImage(null);
+                 }
+                 
+                afficher_image.setImage(GestionProduit.imageproduit);
                 prix_panier.setText(A.getPrix());
                 produit_panier.setText(A.getNom());
                 
@@ -919,7 +1063,18 @@ public class Posteur_interfaceController implements Initializable {
                 numero1.setText(E.getNumero());
                 categorie_produit2.setValue(E.getCategorie());
                 categorie_produit3.setValue(E.getEtatVente());
-               
+                int id3=Integer.parseInt(E.getId());
+                GestionProduit GS = new GestionProduit();
+                try {
+                     GS.afficherProduitimage(id3);
+                 } catch (IOException ex) {
+                     Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+                 if(GestionProduit.imageproduit==null){
+                     image_modifier.setImage(null);
+                 }
+                 
+                image_modifier.setImage(GestionProduit.imageproduit);
              }
          });
                  }
@@ -1110,6 +1265,7 @@ public class Posteur_interfaceController implements Initializable {
             tablepdp.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
                  tabledap.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
                  tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
+                 tabletel.setCellValueFactory(new PropertyValueFactory<Echange,String>("id_jobeurfg"));
                 // tableechangesposteur.setItems(dataeesp);*/
 
         Stage stage = new Stage();
@@ -1173,8 +1329,10 @@ public class Posteur_interfaceController implements Initializable {
         }
         int id=p1.getId();
     GestionProduit GS = new GestionProduit();
-   ArrayList Produit1= (ArrayList)GS.afficherProduit();
+    ArrayList Produit1 = (ArrayList)GS.afficherProduit();
     data= FXCollections.observableArrayList(Produit1);
+        
+   
    GestionProduit GS1= new GestionProduit();
     ArrayList Produit2= (ArrayList)GS1.afficherProduit1(id);
    data1= FXCollections.observableArrayList(Produit2);
@@ -1216,6 +1374,52 @@ public class Posteur_interfaceController implements Initializable {
                 tabdatem.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
                  utilisertableechange();
                 // tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
+                
+               importAction.setOnAction(e->{
+            stage.setTitle("File Chooser ");        
+            FileChooser fileChooser2 = new FileChooser();
+            fileChooser2.setTitle("Open image File");
+            file2 = fileChooser2.showOpenDialog(stage);
+            if (file2 != null) {
+            image_path.setText(file2.getAbsolutePath());
+            System.out.println(file2.getAbsolutePath()); 
+                try {
+                fis2 = new FileInputStream(file2);// file is selected using filechooser which is in last tutorial
+                 } catch (FileNotFoundException ex) {
+            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                        } try {
+                     
+                            URL url1l = file2.toURI().toURL();
+                            image_produit.setImage(new Image(url1l.toExternalForm()));
+                        } catch (MalformedURLException ex) {
+                          
+                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                        };
+            }}); 
+                
+                 importModifier.setOnAction(e->{
+            stage.setTitle("File Chooser ");        
+            FileChooser fileChooser3 = new FileChooser();
+            fileChooser3.setTitle("Open image File");
+            file3 = fileChooser3.showOpenDialog(stage);
+            if (file3 != null) {
+            image_path2.setText(file3.getAbsolutePath());
+                try {
+                fis3 = new FileInputStream(file3);// file is selected using filechooser which is in last tutorial
+                 } catch (FileNotFoundException ex) {
+            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                        } try {
+                     
+                            URL url1ll = file3.toURI().toURL();
+                            image_modifier.setImage(new Image(url1ll.toExternalForm()));
+                        } catch (MalformedURLException ex) {
+                          
+                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                        };
+            }}); 
+                
+                
+                
     }   
     
 
@@ -1327,7 +1531,7 @@ public class Posteur_interfaceController implements Initializable {
        String description=pdp.getText();
   //LocalDate locald =dap.getValue();
         String date10 =locald.toString();
-        int idjobeur=0;
+        int idjobeur=p1.getTel();
    Echange E = new Echange(nomo,nomf,description,date10,idposteur1,nomposteur,idjobeur);
   EchangeGestion es = new  EchangeGestion();
    es.ajouterEchange(E);
@@ -1336,7 +1540,7 @@ public class Posteur_interfaceController implements Initializable {
     
     facebook.setOAuthAppId("", "");
   
-    String accessTokenString = "EAAjdVZBDPFWIBAAHH2Uk0ZBkX6UWGftWZB6Bc0wOM5qLSv7wph2ZAFasgY0fDNkc1PJ5Su7MixODicTjKZCI5dqBIu77g8yAIFaM0lJZAPBo0cJumEzVSlWxiNzXjt9EuhZB4UG4yY1GlUYvCJ7DFKi3Vqa7yZClavi71qQITHtejqB2KqZB8VXYc21n0vvs00owZD";
+    String accessTokenString = "EAAjdVZBDPFWIBADMdaOnnL5xLLzy18ZCYW8yNTzAoTCZBAoZAIzh1z0HvIwSLEVKMC9VbU2BRIBdHr6WBdCcZA4cRObmcPRLOwwg49hoglYhP0fPnQd81a4Nxq4A8WP37jY14YUQ5svbqQAtzVZCd8a3nLiQtHCYj8DXl7SZCZBhCdX4xVEM9996bQWhUZCO3cEYZD";
     AccessToken at = new AccessToken(accessTokenString);
     facebook.setOAuthAccessToken(at);
         try{
@@ -1344,7 +1548,8 @@ public class Posteur_interfaceController implements Initializable {
         facebook.postStatusMessage("\n Pubilerpar:"+p1.getNom()+ "\n son numero de telephone est:"+p1.getTel()+ "\n Propositionofferte: "+E.getPropositionofferte()+ "\n Propositionsouhaitée: "+ E.getPropositionsouhaitée() +"\n Description: " + E.getDescription_echange());
       
         }
-        catch(FacebookException fex){System.out.println(fex);}
+        catch(FacebookException fex)
+        {System.out.println(fex);}
    pofp.setText("");
    posp.setText("");
    pdp.setText("");
@@ -1358,6 +1563,23 @@ public class Posteur_interfaceController implements Initializable {
         }
     }
       @FXML
+    void OnkeyTypeechange(KeyEvent event) {
+        // String msg = repos.getText().concat("%");
+          String ech =repos.getText().concat("%");
+  dataeesp.clear();
+   
+       EchangeGestion ES = new EchangeGestion();
+   ArrayList Echange= (ArrayList) ES.Rechercheprpo(ech);
+    dataeesp= FXCollections.observableArrayList(Echange);
+   tableechangesposteur.setItems(dataeesp);
+        tablepofp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
+     tableposp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionsouhaitée"));
+            tablepdp.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
+                 tabledap.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
+                 tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
+    }
+      
+    @FXML
     void rechercherechange(ActionEvent event) throws SQLException {
         
         dataeesp.clear();
@@ -1634,7 +1856,7 @@ Echange E = new Echange(id);
                 stage.show();
     }
 
-   
+
 
     @FXML
     private void favoriss4(KeyEvent event) {
@@ -1652,7 +1874,15 @@ Echange E = new Echange(id);
      c_email2.setCellValueFactory(new PropertyValueFactory <>("mailj"));
      c_specialite.setCellValueFactory(new PropertyValueFactory <>("specalite"));}
      else
-     favoris();
+     favoris();}
+    @FXML
+    private void Chosier_ph_bt(ActionEvent event) {
+       Image image1=new Image("file:image1.png");
+        image_post.setImage(null);
+        image_post.setImage(image1);
+       // image_post.setImage(new Image("file:/C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg"));
+        file_image_p.setText("C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg");
+
     }
     
 }

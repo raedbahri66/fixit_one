@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import static API.CAM.Capture;
 import GUI.*;
 import java.awt.Desktop;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
@@ -223,6 +224,15 @@ public class InscrirePosteurController implements Initializable {
                 stage.hide();
                 stage.setScene(scene);
                 stage.show();
+    }
+
+    @FXML
+    private void Chosier_ph_bt(ActionEvent event) {
+        Image image1=new Image("file:image1.png");
+        image_post.setImage(null);
+        image_post.setImage(image1);
+       // image_post.setImage(new Image("file:/C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg"));
+        file_image_p.setText("C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg");
     }
 
     

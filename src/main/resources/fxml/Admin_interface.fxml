@@ -15,28 +15,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="717.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdmininterfaceController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="717.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdmininterfaceController">
   <tabs>
     <Tab text="Gestion User">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Button layoutX="96.0" layoutY="270.0" mnemonicParsing="false" onAction="#btn_posteurgestion" text="Gestion du Posteur">
+                  <ImageView fitHeight="480.0" fitWidth="717.0" layoutX="-1.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/forum-bricolage.jpg" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="174.0" layoutY="307.0" mnemonicParsing="false" onAction="#btn_posteurgestion" text="Gestion du Posteur">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button layoutX="340.0" layoutY="270.0" mnemonicParsing="false" onAction="#btn_jobeurgestion" text="Gestion du Jobeur">
+                  <Button layoutX="411.0" layoutY="307.0" mnemonicParsing="false" onAction="#btn_jobeurgestion" text="Gestion du Jobeur">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <ImageView fitHeight="291.0" fitWidth="233.0" layoutX="74.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="291.0" fitWidth="233.0" layoutX="119.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Image/article-client-heureux.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="225.0" fitWidth="231.0" layoutX="340.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="225.0" fitWidth="231.0" layoutX="418.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Image/3702_280_420.jpg" />
                      </image>
@@ -48,12 +53,12 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="469.0" prefWidth="685.0">
                <children>
-                  <ImageView fitHeight="469.0" fitWidth="708.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="469.0" fitWidth="708.0" layoutX="4.0" opacity="0.63" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Image/bricolage-810x540.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="112.0" layoutY="53.0" text="Formulaire Service" textFill="#161717">
+                  <Label layoutX="47.0" layoutY="14.0" text="Formulaire Service">
                      <font>
                         <Font name="Arial Bold" size="36.0" />
                      </font>
@@ -169,61 +174,6 @@
                   </Label>
                   <ImageView fx:id="image_article" fitHeight="159.0" fitWidth="222.0" layoutX="409.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true" />
                </children></AnchorPane>
-         </content>
-      </Tab>
-      <Tab text="Gerer Produit">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <TableView layoutX="35.0" layoutY="30.0" prefHeight="239.0" prefWidth="288.0">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
-                    </columns>
-                  </TableView>
-                  <Button layoutX="82.0" layoutY="304.0" mnemonicParsing="false" text="Accepter">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="204.0" layoutY="304.0" mnemonicParsing="false" text="Refuser">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-               </children></AnchorPane>
-         </content>
-      </Tab>
-      <Tab text="Consulter proposition d'echange">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="407.0" prefWidth="637.0">
-               <children>
-                  <TableView layoutX="184.0" layoutY="70.0" prefHeight="255.0" prefWidth="323.0">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
-                    </columns>
-                  </TableView>
-                  <Button layoutX="240.0" layoutY="364.0" mnemonicParsing="false" text="Supprimer une proposition">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-               </children></AnchorPane>
-         </content>
-      </Tab>
-      <Tab text="Boite reclamation">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <TableView layoutX="55.0" layoutY="33.0" prefHeight="227.0" prefWidth="419.0">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
-                    </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
          </content>
       </Tab>
   </tabs>

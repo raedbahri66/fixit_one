@@ -91,6 +91,7 @@
             <Label layoutX="57.0" layoutY="374.0" text="Photo de Profil:" />
             <TextField fx:id="file_image_p" layoutX="214.0" layoutY="369.0" prefHeight="31.0" prefWidth="186.0" promptText="Choose Image" />
             <Button fx:id="image_p_btn" layoutX="400.0" layoutY="369.0" mnemonicParsing="false" text="|||" />
+            <Button layoutX="449.0" layoutY="369.0" mnemonicParsing="false" onAction="#Chosier_ph_bt" text="Choisir Photo Maintenant" />
          </children>
       </AnchorPane>
    </children>
