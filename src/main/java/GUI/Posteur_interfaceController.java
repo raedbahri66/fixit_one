@@ -5,10 +5,11 @@
  */
 package GUI;
 import API.Payment;
-import static API.Payment.Paymment;
+
 import service.GestionProduit;
 import entites.Produit;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
+import com.stripe.exception.StripeException;
 import entites.Echange;
 import entites.Favoris;
 import entites.Jobeur;
@@ -460,8 +461,22 @@ public class Posteur_interfaceController implements Initializable {
     private Label idproduitacheter;
        
    
-    
-    
+    @FXML
+    private TextField numero_carte;
+    @FXML
+    private TextField mois_validite_carte;
+    @FXML
+    private TextField year_validite_carte;
+    @FXML
+    private TextField cvc;
+    @FXML
+    private Label date_validation;
+    @FXML
+    private Label mois_validation;
+    @FXML
+    private Label card_validation;
+    @FXML
+    private Label cvc_validation;
     
     
     
@@ -620,11 +635,37 @@ public class Posteur_interfaceController implements Initializable {
     
     
        @FXML
-    void bnt_payment(ActionEvent event) {
-        
-        
-    int prix=Integer.parseInt(montant_total.getText());  
-    Paymment(prix);
+    void bnt_payment(ActionEvent event) throws StripeException {
+       
+        String cvc1=cvc.getText();
+     int mois=Integer.parseInt(mois_validite_carte.getText());
+     int year=Integer.parseInt(year_validite_carte.getText());
+     String numC=numero_carte.getText();
+    int prix=Integer.parseInt(montant_total.getText()); 
+    Payment p=new Payment(); 
+     ControleSaisie C= new ControleSaisie();
+     
+     
+          if(year_validite_carte.getText().isEmpty())
+        {canInscription = false;  date_validation.setText("Champ vide");}
+          else if(!year_validite_carte.getText().isEmpty()){ date_validation.setText("");}
+       if(mois_validite_carte.getText().isEmpty())
+        {canInscription = false;  mois_validation.setText("Champ vide");}
+          else if(!mois_validite_carte.getText().isEmpty()){ mois_validation.setText("");}
+        if(cvc.getText().isEmpty())
+        {canInscription = false;  cvc_validation.setText("Champ vide");}
+          else if(!cvc.getText().isEmpty()) {cvc_validation.setText("");}
+    if(numero_carte.getText().isEmpty())
+        {canInscription = false;  card_validation.setText("Champ vide");}
+          else if(!numero_carte.getText().isEmpty()) {card_validation.setText("");}
+    
+    
+    
+    
+    
+    if(canInscription){
+    if(p.Paymment(prix,numC,mois,year,cvc1)==true)
+    {
     String id=idproduitacheter.getText();
     Produit E = new Produit(id);
    GestionProduit gs = new  GestionProduit();
@@ -635,8 +676,30 @@ public class Posteur_interfaceController implements Initializable {
         prix_payer.setText("");
         idproduitacheter.setText("");
       montant_total.setText("");
+      numero_carte.setText("");
+      year_validite_carte.setText("");
+      mois_validite_carte.setText("");
+              cvc.setText("");
       refrech();
     }
+    else{JOptionPane.showMessageDialog(null, "Erreur de paymment veuillez verifier vos données ");}
+    }
+    
+     else{ canInscription = true;}
+  
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     public boolean controlemodifier=true;
      @FXML
