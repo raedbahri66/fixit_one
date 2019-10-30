@@ -49,7 +49,7 @@ public class CompetanceJobeurController implements Initializable {
     private ImageView image_post;
     @FXML
     private Label cv_click;
-    private static boolean a=false;
+    public static boolean a=false;
 
     /**
      * Initializes the controller class.
@@ -107,7 +107,6 @@ public class CompetanceJobeurController implements Initializable {
             p.AccepterJobeur(p1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();
-               // a=true;    
     }
 
     @FXML
@@ -118,7 +117,6 @@ public class CompetanceJobeurController implements Initializable {
             p.RefuserJobeur(p1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();
-                              //  a=true;
 
     }
     

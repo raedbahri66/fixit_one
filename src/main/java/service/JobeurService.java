@@ -37,6 +37,7 @@ import utils.ConnexionBD;
 public class JobeurService implements IJobeur{
     public static Image A1;
     public static File P1;
+     public static boolean affich=false;
     Connection c = ConnexionBD
            .getInstanceConnexionBD()
            .getConnection();
@@ -461,6 +462,8 @@ try {
             st2.executeUpdate();
             System.out.println("" + p.getCin() + " successfully Bannned!");
             JOptionPane.showMessageDialog(null, "Acc successfully Bannned");
+            affich=true;
+            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             System.err.println("" + p.getCin() + " error bannir!!");
