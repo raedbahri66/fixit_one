@@ -15,50 +15,56 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="717.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdmininterfaceController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="736.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdmininterfaceController">
   <tabs>
     <Tab text="Gestion User">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="480.0" fitWidth="717.0" layoutX="-1.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="458.0" fitWidth="1322.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Image/forum-bricolage.jpg" />
+                        <Image url="@../Image/accident_de_travail.jpg" />
                      </image>
                   </ImageView>
-                  <Button layoutX="174.0" layoutY="307.0" mnemonicParsing="false" onAction="#btn_posteurgestion" text="Gestion du Posteur">
+                  <Button layoutX="98.0" layoutY="289.0" mnemonicParsing="false" onAction="#btn_posteurgestion" text="Gestion du Posteur">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button layoutX="411.0" layoutY="307.0" mnemonicParsing="false" onAction="#btn_jobeurgestion" text="Gestion du Jobeur">
+                  <Button layoutX="440.0" layoutY="289.0" mnemonicParsing="false" onAction="#btn_jobeurgestion" text="Gestion du Jobeur">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <ImageView fitHeight="291.0" fitWidth="233.0" layoutX="119.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Image/article-client-heureux.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="225.0" fitWidth="231.0" layoutX="418.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Image/3702_280_420.jpg" />
-                     </image>
-                  </ImageView>
+                  <Button layoutX="668.0" layoutY="404.0" mnemonicParsing="false" onAction="#logout" prefHeight="22.0" prefWidth="35.0">
+                     <graphic>
+                        <ImageView fitHeight="33.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/logout.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children></AnchorPane>
       </content>
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/User-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
     </Tab>
     <Tab text="Gestion Service">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="469.0" prefWidth="685.0">
                <children>
-                  <ImageView fitHeight="469.0" fitWidth="708.0" layoutX="4.0" opacity="0.63" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="458.0" fitWidth="1322.0" layoutX="-101.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Image/bricolage-810x540.jpg" />
+                        <Image url="@../Image/accident_de_travail.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="47.0" layoutY="14.0" text="Formulaire Service">
+                  <Label layoutX="41.0" layoutY="20.0" text="Formulaire Service">
                      <font>
                         <Font name="Arial Bold" size="36.0" />
                      </font>
@@ -75,24 +81,45 @@
                   </Label>
                   <TextField fx:id="Label_nom" layoutX="209.0" layoutY="116.0" prefHeight="25.0" prefWidth="179.0" />
                   <TextArea fx:id="Label_description" layoutX="209.0" layoutY="160.0" prefHeight="116.0" prefWidth="182.0" />
-                  <Button fx:id="Btn_ajouter_service" layoutX="168.0" layoutY="332.0" mnemonicParsing="false" onAction="#ajouter_service" text="Ajouter ce Service">
+                  <Button fx:id="Btn_ajouter_service" layoutX="154.0" layoutY="332.0" mnemonicParsing="false" onAction="#ajouter_service" prefHeight="21.0" prefWidth="98.0" text="Ajouter">
                      <font>
                         <Font size="14.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/Button-Add-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button fx:id="Btn_afficher_service" layoutX="356.0" layoutY="332.0" mnemonicParsing="false" onAction="#Afficher_service" text="Afficher les Services existant">
+                  <Button fx:id="Btn_afficher_service" layoutX="299.0" layoutY="331.0" mnemonicParsing="false" onAction="#Afficher_service" prefHeight="25.0" prefWidth="231.0" text="Afficher les Services existant">
                      <font>
                         <Font size="14.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/eye-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children></AnchorPane>
       </content>
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/announcement-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
     </Tab>
       <Tab text="Gestion Article">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="438.0" prefWidth="685.0">
                <children>
-                  <ImageView fitHeight="498.0" fitWidth="747.0" layoutX="-26.0" layoutY="-27.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="515.0" fitWidth="778.0" layoutX="-26.0" layoutY="-27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Image/lire-rapidement.png" />
                      </image>
@@ -127,7 +154,7 @@
                         <Font size="32.0" />
                      </font>
                   </Label>
-                  <Button layoutX="102.0" layoutY="421.0" mnemonicParsing="false" onAction="#ajouterArticle" prefHeight="31.0" prefWidth="97.0" text="Ajouter ">
+                  <Button layoutX="110.0" layoutY="414.0" mnemonicParsing="false" onAction="#ajouterArticle" prefHeight="31.0" prefWidth="97.0" text="Ajouter ">
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -136,11 +163,11 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="220.0" layoutY="422.0" mnemonicParsing="false" onAction="#afficherarticle" prefHeight="23.0" prefWidth="127.0" text="liste des Articles">
+                  <Button layoutX="240.0" layoutY="413.0" mnemonicParsing="false" onAction="#afficherarticle" prefHeight="24.0" prefWidth="153.0" text="liste des Articles">
                      <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="27.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Image/Checklist-icon.png" />
+                              <Image url="@../Image/eye-icon.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -175,6 +202,13 @@
                   <ImageView fx:id="image_article" fitHeight="159.0" fitWidth="222.0" layoutX="409.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true" />
                </children></AnchorPane>
          </content>
+         <graphic>
+            <ImageView fitHeight="36.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/Checklist-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Tab>
   </tabs>
 </TabPane>
