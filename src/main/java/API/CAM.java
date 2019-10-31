@@ -19,7 +19,7 @@ public class CAM {
     try{
         Webcam webcam = Webcam.getDefault();
        webcam.open();
-       ImageIO.write(webcam.getImage(),"PNG",new File("image1.png"));
+       ImageIO.write(webcam.getDevice().getImage(),"png",new File("image1.png"));
        webcam.close();
 }
        catch(Exception e)

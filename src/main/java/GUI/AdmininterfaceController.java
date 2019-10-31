@@ -285,7 +285,13 @@ public class AdmininterfaceController implements Initializable {
     }
 
     @FXML
-    private void logout(ActionEvent event) {
+    private void logout(ActionEvent event) throws IOException {
+          Parent root=FXMLLoader.load(getClass().getResource("/fxml/acceuil.fxml"));
+        Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
     }
     }
     
