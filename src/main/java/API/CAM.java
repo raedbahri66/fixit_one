@@ -6,6 +6,7 @@
 package API;
 
 import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamResolution;
 import java.io.File;
 import javax.imageio.ImageIO;
 

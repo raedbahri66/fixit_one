@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -9,125 +10,247 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="919.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.InscrireJobeurController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.InscrireJobeurController">
    <children>
       <AnchorPane layoutX="14.0" layoutY="34.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
-            <ImageView fitHeight="784.0" fitWidth="1108.0" layoutX="-15.0" layoutY="-36.0" opacity="0.55" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="725.0" fitWidth="1426.0" layoutX="-584.0" layoutY="-46.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Image/bricolage-810x540.jpg" />
+                  <Image url="@../Image/korvia-image-background-tnkr-signup-2.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="55.0" layoutY="41.0" text="Identifiant(Cin):" textFill="#111010">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="56.0" layoutY="79.0" text="Nom:" textFill="#1b1919" />
-            <Label layoutX="56.0" layoutY="116.0" text="Prenom:" textFill="#2f2d2d" />
-            <Label layoutX="57.0" layoutY="160.0" text="Email" textFill="#1e1d1d" />
-            <Label layoutX="59.0" layoutY="241.0" text="Sexe:" textFill="#0d0d0d" />
-            <Label layoutX="56.0" layoutY="199.0" text="Mot de Passe:" textFill="#0d0d0d" />
-            <Label layoutX="57.0" layoutY="287.0" text="Date de naissance :" textFill="#0d0d0d" />
-            <Label layoutX="57.0" layoutY="331.0" text="Telephone:" textFill="#030303" />
-            <TextField fx:id="id_j" layoutX="213.0" layoutY="36.0" />
-            <TextField fx:id="nom_j" layoutX="213.0" layoutY="74.0" />
-            <TextField fx:id="prenom_j" layoutX="213.0" layoutY="111.0" />
-            <TextField fx:id="email_j" layoutX="213.0" layoutY="155.0" />
-            <TextField fx:id="tel_j" layoutX="213.0" layoutY="326.0" />
-            <PasswordField fx:id="pass_j" layoutX="213.0" layoutY="194.0" />
-            <ComboBox fx:id="sexe_j" layoutX="213.0" layoutY="236.0" prefHeight="31.0" prefWidth="186.0" />
-            <DatePicker fx:id="date_j" layoutX="216.0" layoutY="282.0" prefHeight="31.0" prefWidth="185.0" />
-            <Label fx:id="cin_valid" layoutX="432.0" layoutY="41.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#1e1113">
-               <font>
-                  <Font name="System Bold Italic" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="nom_valid" layoutX="432.0" layoutY="76.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides">
-               <font>
-                  <Font name="System Bold Italic" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="sex_valid" layoutX="432.0" layoutY="238.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#030303">
-               <font>
-                  <Font name="System Bold Italic" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="pass_valid" layoutX="432.0" layoutY="196.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#171616">
-               <font>
-                  <Font name="System Bold Italic" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="email_valid" layoutX="432.0" layoutY="157.0" prefHeight="28.0" prefWidth="140.0" text="Eamil is Incorrect" textFill="#1b1a1a">
-               <font>
-                  <Font name="System Bold Italic" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="prenom_valid" layoutX="432.0" layoutY="113.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#171717">
-               <font>
-                  <Font name="System Bold Italic" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="tel_valid" layoutX="432.0" layoutY="328.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#252424">
-               <font>
-                  <Font name="System Bold Italic" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="date_valid" layoutX="432.0" layoutY="284.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#222020" />
-            <Label layoutX="244.0" layoutY="-20.0" text="Inscription en tant que Jobeur">
-               <font>
-                  <Font name="System Bold Italic" size="24.0" />
-               </font>
-            </Label>
-            <Button layoutX="821.0" layoutY="-18.0" mnemonicParsing="false" onAction="#retour_bt">
-               <graphic>
-                  <ImageView fitHeight="27.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="image_post" fitHeight="157.0" fitWidth="161.0" layoutX="638.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" />
+            <GridPane layoutX="72.0" layoutY="55.0" prefHeight="516.0" prefWidth="594.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Identifiant(Cin):" textFill="#111010">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="id_j" GridPane.columnIndex="1" />
+                  <Label fx:id="cin_valid" prefHeight="28.0" prefWidth="140.0" text="Données invalides" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label text="Nom:" textFill="#1b1919" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="nom_j" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="nom_valid" prefHeight="28.0" prefWidth="140.0" text="Données invalides" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Prenom:" textFill="#2f2d2d" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="prenom_j" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="prenom_valid" prefHeight="28.0" prefWidth="140.0" text="Données invalides" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Email" textFill="#1e1d1d" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="email_j" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="email_valid" prefHeight="28.0" prefWidth="140.0" text="Eamil is Incorrect" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Mot de Passe:" textFill="#0d0d0d" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="pass_j" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="pass_valid" prefHeight="28.0" prefWidth="140.0" text="Données invalides" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Sexe:" textFill="#0d0d0d" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="sexe_j" prefHeight="31.0" prefWidth="186.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label fx:id="sex_valid" prefHeight="28.0" prefWidth="140.0" text="Données invalides" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Date de naissance :" textFill="#0d0d0d" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="date_j" prefHeight="31.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label fx:id="date_valid" prefHeight="28.0" prefWidth="140.0" text="Données invalides" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label text="Telephone:" textFill="#030303" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tel_j" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label fx:id="tel_valid" prefHeight="28.0" prefWidth="140.0" text="Données invalides" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Specialité" textFill="#1e1d1d" GridPane.rowIndex="8">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="combo_j" prefHeight="31.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <TextField fx:id="address_j" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <Label text="Addresse" textFill="#111010" GridPane.rowIndex="9">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="address_vali" prefHeight="28.0" prefWidth="140.0" text="Données invalides" GridPane.columnIndex="2" GridPane.rowIndex="9">
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Votre CV" textFill="#0d0d0d" GridPane.rowIndex="10">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="file_pdf_p1" prefHeight="31.0" prefWidth="185.0" promptText="Choose your CV in Pdf" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <Button fx:id="pdf_p_btn1" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/Documents-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Label text="Photo de Profil:" textFill="#1e1c1c" GridPane.rowIndex="11">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="file_image_p" prefHeight="31.0" prefWidth="186.0" promptText="Choose Image" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                  <Button fx:id="image_p_btn" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="11">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/Documents-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="11">
                      <image>
-                        <Image url="@../Image/arrow-back-icon.png" />
+                        <Image url="@../Image/camera-icon%20(1).png" />
                      </image>
+                     <GridPane.margin>
+                        <Insets left="50.0" />
+                     </GridPane.margin>
                   </ImageView>
-               </graphic></Button>
-            <Label layoutX="58.0" layoutY="369.0" text="Specialité" textFill="#1e1d1d">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Button layoutX="469.0" layoutY="568.0" mnemonicParsing="false" onAction="#btn_inscrirejobeur" prefHeight="44.0" prefWidth="127.0" text="S'inscrire">
-               <font>
-                  <Font name="System Italic" size="20.0" />
-               </font>
-            </Button>
-            <ComboBox fx:id="combo_j" layoutX="216.0" layoutY="366.0" prefHeight="31.0" prefWidth="185.0" />
-            <Label layoutX="58.0" layoutY="515.0" text="Photo de Profil:" textFill="#1e1c1c">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <TextField fx:id="file_image_p" layoutX="213.0" layoutY="515.0" prefHeight="31.0" prefWidth="186.0" promptText="Choose Image" />
-            <Button fx:id="image_p_btn" layoutX="397.0" layoutY="515.0" mnemonicParsing="false" text="|||" />
-            <ImageView fx:id="image_post" fitHeight="157.0" fitWidth="161.0" layoutX="614.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="58.0" layoutY="417.0" text="Addresse" textFill="#111010">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <TextField fx:id="address_j" layoutX="216.0" layoutY="412.0" />
-            <Label fx:id="address_vali" layoutX="432.0" layoutY="416.0" prefHeight="28.0" prefWidth="140.0" text="Données invalides" textFill="#252424">
-               <font>
-                  <Font name="System Bold Italic" size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="59.0" layoutY="472.0" text="Votre CV" textFill="#0d0d0d">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <TextField fx:id="file_pdf_p1" layoutX="217.0" layoutY="470.0" prefHeight="31.0" prefWidth="185.0" promptText="Choose your CV in Pdf" />
-            <Button fx:id="pdf_p_btn1" layoutX="397.0" layoutY="470.0" mnemonicParsing="false" text="|||" />
-            <Button layoutX="444.0" layoutY="515.0" mnemonicParsing="false" onAction="#Choisirph_btn" text="Prendre Photo maintenant" />
+                  <Button mnemonicParsing="false" onAction="#btn_inscrirejobeur" prefHeight="38.0" prefWidth="160.0" text="S'inscrire" GridPane.columnIndex="2" GridPane.rowIndex="13">
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/Knob-Valid-Green-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </GridPane>
          </children>
       </AnchorPane>
+      <Label layoutX="83.0" layoutY="17.0" text="Inscription en tant que Jobeur">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="730.0" layoutY="610.0" mnemonicParsing="false" onAction="#Choisirph_btn" />
+      <Button layoutX="730.0" layoutY="17.0" mnemonicParsing="false" onAction="#retour_bt">
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/arrow-back-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

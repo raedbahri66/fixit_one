@@ -29,9 +29,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
@@ -48,6 +50,8 @@ import service.PosteurService;
  * @author lenovo
  */
 public class AcceuilController implements Initializable {
+    final ToggleGroup group = new ToggleGroup();
+
             
     @FXML
     private Button Btn_SignIn;
@@ -81,8 +85,16 @@ public class AcceuilController implements Initializable {
   public ObservableList<Article> data = FXCollections.observableArrayList(articles);
     @FXML
     private Label motdepass_oub;
+    @FXML
+    private RadioButton radio_post;
+    @FXML
+    private RadioButton radio_job;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        radio_job.setToggleGroup(group);
+        radio_post.setSelected(true);
+        radio_post.setToggleGroup(group);
+                
         // TOD
           
      table_article.setItems(data);
