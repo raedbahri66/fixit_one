@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="444.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Affiche_porfilejobeurController">
+<VBox prefHeight="444.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Affiche_porfilejobeurController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="410.0" prefWidth="740.0" VBox.vgrow="ALWAYS">
       <children>
@@ -26,16 +26,16 @@
                   <Image url="@../Image/avis.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="491.0" fitWidth="751.0" layoutX="-7.0" layoutY="-15.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="544.0" fitWidth="791.0" layoutX="-7.0" layoutY="-15.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Image/Electricite3.JPG" />
                </image>
             </ImageView>
             <Label fx:id="cin_J" disable="true" layoutX="133.0" layoutY="20.0" prefHeight="17.0" prefWidth="87.0" text="Label" visible="false" />
-            <GridPane focusTraversable="true" layoutX="292.0" layoutY="102.0" prefHeight="150.0" prefWidth="405.0">
+            <GridPane focusTraversable="true" layoutX="35.0" layoutY="105.0" prefHeight="150.0" prefWidth="405.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="10.0" prefWidth="183.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="131.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="213.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="192.0" />
               </columnConstraints>
               <rowConstraints>
                   <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -65,7 +65,7 @@
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label depthTest="ENABLE" mouseTransparent="true" prefHeight="25.0" prefWidth="177.0" text="Date de naissance:" GridPane.rowIndex="2">
+                  <Label depthTest="ENABLE" mouseTransparent="true" prefHeight="25.0" prefWidth="208.0" text="Date de naissance:" GridPane.rowIndex="2">
                      <font>
                         <Font name="Arial Bold" size="21.0" />
                      </font>
@@ -85,7 +85,7 @@
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="30.0" prefWidth="68.0" text="Eamil:" GridPane.rowIndex="4">
+                  <Label prefHeight="30.0" prefWidth="68.0" text="Email:" GridPane.rowIndex="4">
                      <font>
                         <Font name="Arial Bold" size="21.0" />
                      </font>
@@ -97,30 +97,65 @@
                   </Label>
                </children>
             </GridPane>
-            <Label layoutX="199.0" layoutY="11.0" prefHeight="38.0" prefWidth="358.0" text="Je suis à votre service " textAlignment="CENTER">
+            <Label layoutX="220.0" layoutY="15.0" prefHeight="38.0" prefWidth="358.0" text="Je suis à votre service " textAlignment="CENTER">
                <font>
                   <Font name="Arial Narrow Bold" size="36.0" />
                </font>
             </Label>
-            <TextArea fx:id="Commentaire" layoutX="20.0" layoutY="312.0" opacity="0.89" prefHeight="101.0" prefWidth="226.0" promptText="Votre avis nous intersse ... " />
-            <Button fx:id="ajouter_comment" layoutX="19.0" layoutY="416.0" mnemonicParsing="false" onAction="#Ajouter_C" opacity="0.9" prefHeight="25.0" prefWidth="68.0" text="Ajouter" />
-            <Button fx:id="modifier_comment" layoutX="98.0" layoutY="416.0" mnemonicParsing="false" onAction="#Modifier_c" opacity="0.9" prefHeight="25.0" prefWidth="71.0" text="Modfier" />
-            <Button fx:id="supprimer_c" layoutX="184.0" layoutY="416.0" mnemonicParsing="false" onAction="#Supprimer_C" opacity="0.9" text="Supprimer" />
-            <Button layoutX="626.0" layoutY="16.0" mnemonicParsing="false" onAction="#Retour" prefHeight="25.0" prefWidth="70.0" text="Retour" />
-            <TableView fx:id="tab_comment" layoutX="305.0" layoutY="287.0" opacity="0.82" prefHeight="150.0" prefWidth="405.0">
+            <TextArea fx:id="Commentaire" layoutX="20.0" layoutY="312.0" opacity="0.89" prefHeight="102.0" prefWidth="287.0" promptText="Votre avis nous intersse ... " />
+            <Button fx:id="ajouter_comment" layoutX="14.0" layoutY="431.0" mnemonicParsing="false" onAction="#Ajouter_C" opacity="0.9" prefHeight="33.0" prefWidth="105.0" text="Ajouter">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/Button-Add-icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="modifier_comment" layoutX="126.0" layoutY="432.0" mnemonicParsing="false" onAction="#Modifier_c" opacity="0.9" prefHeight="33.0" prefWidth="105.0" text="Modfier">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/pencil-icon%20(1)f.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="supprimer_c" layoutX="237.0" layoutY="433.0" mnemonicParsing="false" onAction="#Supprimer_C" opacity="0.9" prefHeight="33.0" prefWidth="112.0" text="Supprimer">
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/Button-Close-icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button layoutX="701.0" layoutY="21.0" mnemonicParsing="false" onAction="#Retour" prefHeight="40.0" prefWidth="46.0">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/arrow-back-icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <TableView fx:id="tab_comment" layoutX="389.0" layoutY="328.0" opacity="0.82" prefHeight="150.0" prefWidth="358.0">
               <columns>
                 <TableColumn fx:id="Id_C" prefWidth="75.0" text="ID" visible="false" />
                 <TableColumn fx:id="Nom_Pc" prefWidth="75.0" text="Nom" />
                   <TableColumn fx:id="Prenom_PC" prefWidth="75.0" text="Prenom" />
-                  <TableColumn fx:id="Avis_PC" prefWidth="250.0" text="Avis" />
                   <TableColumn fx:id="Cin_P" prefWidth="64.0" text="CIN_P" visible="false" />
                   <TableColumn fx:id="Cin_J" prefWidth="87.0" text="CIN_J" visible="false" />
+                  <TableColumn fx:id="Avis_PC" prefWidth="250.0" text="Avis" />
               </columns>
             </TableView>
-            <Button fx:id="Btn_demande_service" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#Demander_Service" text="Demander ce Jobeur" />
+            <Button fx:id="Btn_demande_service" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#Demander_Service" text="Demander ce Jobeur">
+               <graphic>
+                  <ImageView fitHeight="42.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/11094-man-raising-hand-light-skin-tone-icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <TextField fx:id="id_com" layoutX="293.0" layoutY="189.0" prefHeight="25.0" prefWidth="68.0" visible="false" />
             <TextField fx:id="cin_posteur" layoutX="320.0" layoutY="164.0" visible="false" />
-            <RadioButton fx:id="favoris_id" layoutX="187.0" layoutY="273.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#radio_favoris" prefHeight="28.0" prefWidth="14.0" textFill="#1e1616">
+            <RadioButton fx:id="favoris_id" layoutX="714.0" layoutY="272.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#radio_favoris" prefHeight="28.0" prefWidth="14.0" textFill="#1e1616">
                <font>
                   <Font name="Book Antiqua Bold" size="13.0" />
                </font>
@@ -132,7 +167,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
             </GridPane>
-            <GridPane layoutX="20.0" layoutY="240.0" prefHeight="30.0" prefWidth="200.0">
+            <GridPane layoutX="440.0" layoutY="271.0" prefHeight="30.0" prefWidth="200.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="105.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="95.0" />
@@ -143,30 +178,20 @@
                 <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="label_top" prefHeight="25.0" prefWidth="21.0" text="5" textFill="#11b946eb">
+                  <Label fx:id="label_top" prefHeight="25.0" prefWidth="21.0" text="0" textFill="#11b946eb">
                      <font>
-                        <Font name="Bauhaus 93" size="28.0" />
+                        <Font size="28.0" />
                      </font>
                      <GridPane.margin>
                         <Insets left="50.0" />
                      </GridPane.margin>
-                  </Label>
-                  <Label prefHeight="39.0" prefWidth="53.0" text="Top" textFill="#21bc38">
-                     <font>
-                        <Font name="Bauhaus 93" size="26.0" />
-                     </font>
                   </Label>
                   <RadioButton fx:id="top" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#vote" prefHeight="18.0" prefWidth="29.0">
                      <GridPane.margin>
                         <Insets left="80.0" />
                      </GridPane.margin>
                   </RadioButton>
-                  <Label prefHeight="47.0" prefWidth="53.0" text="Flop" textFill="#f50c20e3" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="Bauhaus 93" size="25.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="label_flop" prefHeight="39.0" prefWidth="24.0" text="5" textFill="#eb1a1aec" GridPane.columnIndex="1">
+                  <Label fx:id="label_flop" prefHeight="39.0" prefWidth="24.0" text="5" textFill="#d74141ed" GridPane.columnIndex="1">
                      <font>
                         <Font name="Bauhaus 93" size="28.0" />
                      </font>
@@ -179,14 +204,24 @@
                         <Insets left="80.0" />
                      </GridPane.margin>
                   </RadioButton>
+                  <ImageView fitHeight="40.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/likeDDD.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="36.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                     <image>
+                        <Image url="@../Image/dislike-icon.png" />
+                     </image>
+                  </ImageView>
                </children>
             </GridPane>
-            <Label layoutX="19.0" layoutY="275.0" prefHeight="23.0" prefWidth="159.0" text="Ajouter aux favoris" textFill="#2a2b4deb">
-               <font>
-                  <Font name="Bauhaus 93" size="19.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="photo_profile" fitHeight="150.0" fitWidth="200.0" layoutX="20.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="photo_profile" fitHeight="167.0" fitWidth="219.0" layoutX="448.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="28.0" fitWidth="87.0" layoutX="673.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/Etoile-favoris-icon.png" />
+               </image>
+            </ImageView>
       </children>
     </AnchorPane>
   </children>

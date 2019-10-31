@@ -8,9 +8,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_choisir_jobeurController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_choisir_jobeurController">
    <children>
-      <ImageView fitHeight="412.0" fitWidth="664.0" layoutX="5.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="430.0" fitWidth="663.0" layoutX="-10.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Image/peintre.jpg" />
          </image>
@@ -27,7 +27,7 @@
             <TableColumn fx:id="column_cin" minWidth="0.0" prefWidth="23.0" text="Cin" />
         </columns>
       </TableView>
-      <TextField fx:id="Label_recherche" layoutX="233.0" layoutY="31.0" promptText="Recherche" />
+      <TextField fx:id="Label_recherche" layoutX="233.0" layoutY="31.0" onKeyReleased="#Onkeyjobeur_elec" promptText="Recherche" />
       <Button fx:id="Btn_recherche_jobeur" layoutX="403.0" layoutY="30.0" mnemonicParsing="false" onAction="#RechercheJobeur" prefHeight="25.0" prefWidth="25.0">
          <graphic>
             <ImageView fitHeight="19.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
@@ -37,7 +37,21 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="486.0" layoutY="31.0" mnemonicParsing="false" onAction="#btn_top5" prefHeight="25.0" prefWidth="60.0" text="TOP5" />
-      <Button fx:id="Btn_retour_jobeur" layoutX="574.0" layoutY="4.0" mnemonicParsing="false" onAction="#Retour" prefHeight="27.0" prefWidth="68.0" text="Retour" />
+      <Button layoutX="21.0" layoutY="11.0" mnemonicParsing="false" onAction="#btn_top5" prefHeight="21.0" prefWidth="96.0" text="TOP5">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/top-icon.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="Btn_retour_jobeur" layoutX="586.0" layoutY="12.0" mnemonicParsing="false" onAction="#Retour" prefHeight="31.0" prefWidth="48.0">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/arrow-back-icon.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
 </Pane>

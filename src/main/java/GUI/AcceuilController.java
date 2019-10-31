@@ -170,12 +170,6 @@ public class AcceuilController implements Initializable {
                 stage.show();
     }
 
-    @FXML
-    private void retour_bt(ActionEvent event) throws IOException, InterruptedException, URISyntaxException {
-               
-
-
-    }
 
     @FXML
     private void Pass_oublie(MouseEvent event) throws IOException {

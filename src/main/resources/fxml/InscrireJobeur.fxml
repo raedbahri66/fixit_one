@@ -11,27 +11,27 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.InscrireJobeurController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="919.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.InscrireJobeurController">
    <children>
       <AnchorPane layoutX="14.0" layoutY="34.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
-            <ImageView fitHeight="714.0" fitWidth="1042.0" layoutX="-116.0" layoutY="-55.0" opacity="0.38" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="784.0" fitWidth="1108.0" layoutX="-15.0" layoutY="-36.0" opacity="0.55" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Image/bricolage-810x540.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="55.0" layoutY="41.0" text="Identifiant(Cin):" textFill="WHITE">
+            <Label layoutX="55.0" layoutY="41.0" text="Identifiant(Cin):" textFill="#111010">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="56.0" layoutY="79.0" text="Nom:" textFill="WHITE" />
-            <Label layoutX="56.0" layoutY="116.0" text="Prenom:" textFill="WHITE" />
-            <Label layoutX="57.0" layoutY="160.0" text="Email" textFill="WHITE" />
-            <Label layoutX="59.0" layoutY="241.0" text="Sexe:" textFill="WHITE" />
-            <Label layoutX="56.0" layoutY="199.0" text="Mot de Passe:" textFill="WHITE" />
-            <Label layoutX="57.0" layoutY="287.0" text="Date de naissance :" textFill="WHITE" />
-            <Label layoutX="57.0" layoutY="331.0" text="Telephone:" textFill="WHITE" />
+            <Label layoutX="56.0" layoutY="79.0" text="Nom:" textFill="#1b1919" />
+            <Label layoutX="56.0" layoutY="116.0" text="Prenom:" textFill="#2f2d2d" />
+            <Label layoutX="57.0" layoutY="160.0" text="Email" textFill="#1e1d1d" />
+            <Label layoutX="59.0" layoutY="241.0" text="Sexe:" textFill="#0d0d0d" />
+            <Label layoutX="56.0" layoutY="199.0" text="Mot de Passe:" textFill="#0d0d0d" />
+            <Label layoutX="57.0" layoutY="287.0" text="Date de naissance :" textFill="#0d0d0d" />
+            <Label layoutX="57.0" layoutY="331.0" text="Telephone:" textFill="#030303" />
             <TextField fx:id="id_j" layoutX="213.0" layoutY="36.0" />
             <TextField fx:id="nom_j" layoutX="213.0" layoutY="74.0" />
             <TextField fx:id="prenom_j" layoutX="213.0" layoutY="111.0" />
@@ -81,8 +81,15 @@
                   <Font name="System Bold Italic" size="24.0" />
                </font>
             </Label>
-            <Button layoutX="659.0" layoutY="-31.0" mnemonicParsing="false" onAction="#retour_bt" text="Retour" />
-            <Label layoutX="58.0" layoutY="369.0" text="Specialité" textFill="#fcfcfc">
+            <Button layoutX="821.0" layoutY="-18.0" mnemonicParsing="false" onAction="#retour_bt">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/arrow-back-icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Label layoutX="58.0" layoutY="369.0" text="Specialité" textFill="#1e1d1d">
                <font>
                   <Font size="17.0" />
                </font>
@@ -93,15 +100,15 @@
                </font>
             </Button>
             <ComboBox fx:id="combo_j" layoutX="216.0" layoutY="366.0" prefHeight="31.0" prefWidth="185.0" />
-            <Label layoutX="58.0" layoutY="515.0" text="Photo de Profil:" textFill="WHITE">
+            <Label layoutX="58.0" layoutY="515.0" text="Photo de Profil:" textFill="#1e1c1c">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
             <TextField fx:id="file_image_p" layoutX="213.0" layoutY="515.0" prefHeight="31.0" prefWidth="186.0" promptText="Choose Image" />
             <Button fx:id="image_p_btn" layoutX="397.0" layoutY="515.0" mnemonicParsing="false" text="|||" />
-            <ImageView fx:id="image_post" fitHeight="157.0" fitWidth="161.0" layoutX="571.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="58.0" layoutY="417.0" text="Addresse" textFill="#fcfcfc">
+            <ImageView fx:id="image_post" fitHeight="157.0" fitWidth="161.0" layoutX="614.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="58.0" layoutY="417.0" text="Addresse" textFill="#111010">
                <font>
                   <Font size="17.0" />
                </font>
@@ -112,7 +119,7 @@
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="59.0" layoutY="472.0" text="Votre CV" textFill="#fcfcfc">
+            <Label layoutX="59.0" layoutY="472.0" text="Votre CV" textFill="#0d0d0d">
                <font>
                   <Font size="17.0" />
                </font>

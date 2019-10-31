@@ -283,6 +283,10 @@ public class AdmininterfaceController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
     }
+
+    @FXML
+    private void logout(ActionEvent event) {
+    }
     }
     
 
