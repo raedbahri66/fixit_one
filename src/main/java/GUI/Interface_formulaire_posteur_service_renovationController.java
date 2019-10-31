@@ -32,6 +32,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -67,11 +70,33 @@ public class Interface_formulaire_posteur_service_renovationController implement
     Posteur p = new Posteur();
     @FXML
     private Button Btn_ajout_service;
+    @FXML
+    private Label Label_saisie_adresse;
+    @FXML
+    private Label Label_saisie_date;
+    @FXML
+    private Label Label_saisie_heure;
+    @FXML
+    private Label Label_saisie_tel;
+    @FXML
+    private Label Label_saisie_description;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Label_date.setValue(NOW_LOCAL_DATE());
+        System.err.println(AcceuilController.cinlogin);
+        PosteurService p = new PosteurService();
+        Posteur p1= new Posteur();
+          try {
+              p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+              // TODO
+          } catch (SQLException ex) {
+              Logger.getLogger(Interface_formulaire_posteur_serviceController.class.getName()).log(Level.SEVERE, null, ex);
+          } catch (IOException ex) {
+              Logger.getLogger(Interface_formulaire_posteur_serviceController.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          Label_tel.setText(Integer.toString(p1.getTel()));
         // TODO
     } 
 
@@ -94,16 +119,22 @@ public class Interface_formulaire_posteur_service_renovationController implement
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         java.util.Date date9 =  sdf.parse(date8);
         if (datess.before(date9))
-        {JOptionPane.showMessageDialog(null, "Date Invalide");
+        {Label_saisie_date.setText("Date Invalide");
+        
         canInscription=false;}
         if(Label_adresse.getText().isEmpty()){
-            canInscription = false;}
+            canInscription = false;
+            Label_saisie_adresse.setText("Remplir le champ");}
         
         if(Label_heure.getText().isEmpty()){
+            Label_saisie_heure.setText("Remplir le champ");
             canInscription = false;}
         if(Label_tel.getText().isEmpty()){
+            Label_saisie_tel.setText("Remplir le champ");
             canInscription = false;}
+        
         if(Label_description.getText().isEmpty()){
+            Label_saisie_description.setText("Remplir le champ");
             canInscription = false;}
         
      
@@ -131,7 +162,7 @@ public class Interface_formulaire_posteur_service_renovationController implement
     }
     else
        {
-              JOptionPane.showMessageDialog(null, "Please fill all cases");
+            //  JOptionPane.showMessageDialog(null, "Please fill all cases");
                           canInscription = true;
 
        }

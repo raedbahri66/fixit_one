@@ -69,9 +69,9 @@ public class Gestion_tableau_jobeur {
             List<Jobeur> tablejb= new ArrayList<>();
      try{
             
-        String req2="select * from jobeur Where nom=?";
+        String req2="select * from jobeur Where nom LIKE '"+ nomj+"'";
          PreparedStatement pstm = c.prepareStatement(req2);
-         pstm.setString(1,nomj);
+         //pstm.setString(1,nomj);
          //pstm.setString(2,prenomj);
           ResultSet res=  pstm.executeQuery();
             //pstm.setString(1,ech);
@@ -129,7 +129,7 @@ public class Gestion_tableau_jobeur {
     public List<Jobeur> afficherJobeur_Plomberie() {
         
                List<Jobeur> jobeur = new ArrayList<>();
-               String job ="plombier";
+               String job ="Plombier";
                 
             
      
@@ -191,7 +191,7 @@ public class Gestion_tableau_jobeur {
     public List<Jobeur> afficherJobeur_Renovation() {
         
                List<Jobeur> jobeur = new ArrayList<>();
-               String job ="renovation";
+               String job ="Renovation";
                 
             
      
@@ -222,7 +222,7 @@ public class Gestion_tableau_jobeur {
     public List<Jobeur> afficherJobeur_Jardinage() {
         
                List<Jobeur> jobeur = new ArrayList<>();
-               String job ="jardinage";
+               String job ="Jardinage";
                 
             
      
