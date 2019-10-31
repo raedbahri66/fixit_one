@@ -13,8 +13,8 @@ import com.twilio.type.PhoneNumber;
  * @author asus
  */
 public class SMS {
-     public static final String ACCOUNT_SID = "AC6cca02057db1f4ee7117152d65f8d92f";
-  public static final String AUTH_TOKEN = "dbde7d1b5a14629d14d7fcaa72d9f3ec";
+     public static final String ACCOUNT_SID = "AC007bab1393210939e1c0fa8c54e139ed";
+  public static final String AUTH_TOKEN = "8e7f42c2086ff2372bb349b2ad8f5c07";
 
     public static void sendSms(){
   // Find your Account Sid and Token at twilio.com/user/account
@@ -23,8 +23,8 @@ public class SMS {
 
     Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
-    Message message = Message.creator(new PhoneNumber("+21623755144"),
-        new PhoneNumber("+14157499365"), 
+    Message message = Message.creator(new PhoneNumber("+21621867186"),
+        new PhoneNumber("+14847121334"), 
         "Vérifier Votre Application Fix-It ! Vous avez une Offre de Travail").create();
 
     System.out.println(message.getSid());

@@ -53,5 +53,30 @@
       <TextArea fx:id="Label_description" layoutX="285.0" layoutY="249.0" prefHeight="89.0" prefWidth="215.0" />
       <Button fx:id="Btn_ajouter_service" layoutX="392.0" layoutY="348.0" mnemonicParsing="false" onAction="#Ajouter_offre_service" text="Enregistrer" />
       <TextField fx:id="Label_heure" layoutX="288.0" layoutY="160.0" prefHeight="25.0" prefWidth="167.0" promptText="00H : 00 M : 00S" />
+      <Label fx:id="Label_saisie_adresse" layoutX="473.0" layoutY="78.0" textFill="RED">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Label_saisie_date" layoutX="488.0" layoutY="120.0" textFill="RED">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Label_saisie_heure" layoutX="486.0" layoutY="159.0" textFill="RED">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Label_saisie_tel" layoutX="487.0" layoutY="198.0" textFill="RED">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Label_saisie_description" layoutX="513.0" layoutY="252.0" textFill="RED">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
