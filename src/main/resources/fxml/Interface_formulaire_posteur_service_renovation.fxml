@@ -53,27 +53,27 @@
       <TextArea fx:id="Label_description" layoutX="285.0" layoutY="249.0" prefHeight="89.0" prefWidth="215.0" />
       <TextField fx:id="Label_heure" layoutX="288.0" layoutY="160.0" promptText="00H : 00 M : 00S" />
       <Button fx:id="Btn_ajout_service" layoutX="320.0" layoutY="353.0" mnemonicParsing="false" onAction="#btn_ajout_service" text="Enregistrer" />
-      <Label fx:id="Label_saisie_adresse" layoutX="454.0" layoutY="75.0" prefHeight="39.0" prefWidth="93.0" textFill="RED">
+      <Label fx:id="Label_saisie_adresse" layoutX="454.0" layoutY="75.0" prefHeight="39.0" prefWidth="180.0" textFill="RED">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="Label_saisie_date" layoutX="473.0" layoutY="114.0" prefHeight="39.0" prefWidth="120.0" textFill="RED">
+      <Label fx:id="Label_saisie_date" layoutX="473.0" layoutY="114.0" prefHeight="39.0" prefWidth="180.0" textFill="RED">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="Label_saisie_heure" layoutX="459.0" layoutY="156.0" prefHeight="39.0" prefWidth="127.0" textFill="RED">
+      <Label fx:id="Label_saisie_heure" layoutX="459.0" layoutY="156.0" prefHeight="39.0" prefWidth="195.0" textFill="RED">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="Label_saisie_tel" layoutX="459.0" layoutY="198.0" prefHeight="30.0" prefWidth="127.0" textFill="RED">
+      <Label fx:id="Label_saisie_tel" layoutX="459.0" layoutY="198.0" prefHeight="30.0" prefWidth="188.0" textFill="RED">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="Label_saisie_description" layoutX="511.0" layoutY="248.0" prefHeight="39.0" prefWidth="120.0" textFill="RED">
+      <Label fx:id="Label_saisie_description" layoutX="511.0" layoutY="248.0" prefHeight="39.0" prefWidth="149.0" textFill="RED">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>

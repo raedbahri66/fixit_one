@@ -53,22 +53,22 @@
       <TextArea fx:id="Label_description" layoutX="285.0" layoutY="249.0" prefHeight="89.0" prefWidth="215.0" />
       <Button fx:id="Btn_ajouter_service" layoutX="392.0" layoutY="348.0" mnemonicParsing="false" onAction="#Ajouter_offre_service" text="Enregistrer" />
       <TextField fx:id="Label_heure" layoutX="288.0" layoutY="160.0" promptText="00H : 00 M : 00S" />
-      <Label fx:id="Label_saisie_adresse" layoutX="465.0" layoutY="75.0" prefHeight="39.0" prefWidth="108.0" textFill="RED">
+      <Label fx:id="Label_saisie_adresse" layoutX="465.0" layoutY="75.0" prefHeight="39.0" prefWidth="182.0" textFill="RED">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="Label_saisie_date" layoutX="479.0" layoutY="114.0" prefHeight="39.0" prefWidth="108.0" textFill="RED">
+      <Label fx:id="Label_saisie_date" layoutX="479.0" layoutY="114.0" prefHeight="30.0" prefWidth="174.0" textFill="RED">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="Label_saisie_heure" layoutX="459.0" layoutY="153.0" prefHeight="39.0" prefWidth="149.0" textFill="RED">
+      <Label fx:id="Label_saisie_heure" layoutX="459.0" layoutY="153.0" prefHeight="39.0" prefWidth="195.0" textFill="RED">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="Label_saisie_tel" layoutX="452.0" layoutY="193.0" prefHeight="39.0" prefWidth="97.0" textFill="RED">
+      <Label fx:id="Label_saisie_tel" layoutX="452.0" layoutY="193.0" prefHeight="39.0" prefWidth="202.0" textFill="RED">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>
