@@ -397,7 +397,7 @@ public class PasswordController implements Initializable {
 "\n" +
 "            <!-- START CENTERED WHITE CONTAINER -->\n" +
 "            <table role=\"presentation\" class=\"main\">\n" +
-"                    <img src=\"https://i.imgur.com/RUjRRQ1.png\"></a>.\n" +
+"                    <img src=\"https://i.imgur.com/GrWDmjn.png\"></a>.\n" +
 "\n" +
 "              <!-- START MAIN CONTENT AREA -->\n" +
 "              <tr>\n" +
