@@ -12,9 +12,9 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_formulaire_posteur_service_jardinageController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_formulaire_posteur_service_jardinageController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="594.0" layoutX="3.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="405.0" fitWidth="739.0" layoutX="8.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Image/8aeac0e0c5_111037_jardiner-pesticides.jpg" />
          </image>
@@ -47,12 +47,12 @@
             <RadialGradient centerX="0.17777777777777776" centerY="0.5190476190476191" radius="0.5">
                <stops>
                   <Stop color="#572727" />
-                  <Stop color="WHITE" offset="1.0" />
+                  <Stop color="BLACK" offset="1.0" />
                </stops>
             </RadialGradient>
          </textFill>
       </Label>
-      <Label layoutX="5.0" layoutY="267.0" text="Description du Service souhaité :">
+      <Label layoutX="34.0" layoutY="257.0" text="Description du Service souhaité :">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -60,8 +60,33 @@
       <TextField fx:id="Label_adresse" layoutX="288.0" layoutY="82.0" />
       <DatePicker fx:id="Label_date" layoutX="285.0" layoutY="121.0" />
       <TextField fx:id="Label_tel" layoutX="288.0" layoutY="200.0" promptText="+216XXXXXXXX" />
-      <TextArea fx:id="Label_description" layoutX="285.0" layoutY="249.0" prefHeight="89.0" prefWidth="215.0" />
+      <TextArea fx:id="Label_description" layoutX="304.0" layoutY="249.0" prefHeight="89.0" prefWidth="215.0" />
       <Button fx:id="Btn_ajouter_service" layoutX="392.0" layoutY="348.0" mnemonicParsing="false" onAction="#Ajouter_offre_service" text="Enregistrer" />
       <TextField fx:id="Label_heure" layoutX="288.0" layoutY="160.0" promptText="00H : 00 M : 00S" />
+      <Label fx:id="Label_saisie_adresse" layoutX="474.0" layoutY="85.0" prefHeight="16.0" prefWidth="43.0" textFill="RED">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Label_saisie_date" layoutX="484.0" layoutY="127.0" prefHeight="16.0" prefWidth="43.0" textFill="RED">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Label_saisie_heure" layoutX="458.0" layoutY="162.0" prefHeight="16.0" prefWidth="82.0" textFill="RED">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Label_saisie_tel" layoutX="460.0" layoutY="205.0" prefHeight="16.0" prefWidth="73.0" textFill="RED">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Label_saisie_description" layoutX="533.0" layoutY="272.0" prefHeight="16.0" prefWidth="82.0" textFill="RED">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

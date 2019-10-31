@@ -119,6 +119,7 @@ public class Interface_formulaire_posteur_serviceController implements Initializ
         if(Label_tel.getText().isEmpty()){
             Label_saisie_tel.setText("Remplir le champ");
             canInscription = false;}
+        
         if(Label_description.getText().isEmpty()){
             Label_saisie_description.setText("Remplir le champ");
             canInscription = false;}

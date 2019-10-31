@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_formulaire_posteur_service_conciergerieController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="654.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_formulaire_posteur_service_conciergerieController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="594.0" layoutX="3.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="435.0" fitWidth="671.0" layoutX="1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Image/concierge.jpg" />
          </image>
@@ -53,5 +53,30 @@
       <TextArea fx:id="Label_description" layoutX="288.0" layoutY="258.0" prefHeight="89.0" prefWidth="215.0" />
       <Button fx:id="Btn_ajouter_service" layoutX="392.0" layoutY="355.0" mnemonicParsing="false" onAction="#Ajouter_offre_service" text="Enregistrer" />
       <TextField fx:id="Label_heure" layoutX="288.0" layoutY="170.0" promptText="00H : 00 M : 00S" />
+      <Label fx:id="Label_saisie_adresse" layoutX="463.0" layoutY="79.0" prefHeight="25.0" prefWidth="118.0" textFill="RED">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Label_saisie_date" layoutX="496.0" layoutY="124.0" prefHeight="16.0" prefWidth="73.0" textFill="RED">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Label_saisie_heure" layoutX="462.0" layoutY="169.0" prefHeight="25.0" prefWidth="107.0" textFill="RED">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Label_saisie_tel" layoutX="470.0" layoutY="217.0" prefHeight="30.0" prefWidth="107.0" textFill="RED">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="Label_saisie_description" layoutX="516.0" layoutY="259.0" prefHeight="38.0" prefWidth="107.0" textFill="RED">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
