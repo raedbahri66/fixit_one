@@ -437,7 +437,7 @@ public class Affiche_porfilejobeur_menageController implements Initializable {
             gestion_offre_service A1=new gestion_offre_service();
             A1.insererNomjobeur(nom_j, prenom_j,cin_jobeur);
             JOptionPane.showMessageDialog (null," Votre demande à été sauvegardée ");
-            SMS.sendSms();       
+           // SMS.sendSms();       
     }
 
     @FXML

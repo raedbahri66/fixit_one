@@ -34,6 +34,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -70,6 +71,16 @@ public class Interface_formulaire_posteur_service_menageController implements In
      */
     public boolean canInscription= true;
     Posteur p = new Posteur();
+    @FXML
+    private Label Label_saisie_adresse;
+    @FXML
+    private Label Label_saisie_date;
+    @FXML
+    private Label Label_saisie_heure;
+    @FXML
+    private Label Label_saisie_tel;
+    @FXML
+    private Label Label_saisie_description;
     
     @FXML
     void Ajouter_offre_service(ActionEvent event) throws SQLException, IOException, ParseException {
@@ -90,18 +101,23 @@ public class Interface_formulaire_posteur_service_menageController implements In
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         java.util.Date date9 =  sdf.parse(date8);
         if (datess.before(date9))
-        {JOptionPane.showMessageDialog(null, "Date Invalide");
+        {Label_saisie_date.setText("Date Invalide");
+        
         canInscription=false;}
         if(Label_adresse.getText().isEmpty()){
-            canInscription = false;}
+            canInscription = false;
+            Label_saisie_adresse.setText("Remplir le champ");}
         
         if(Label_heure.getText().isEmpty()){
+            Label_saisie_heure.setText("Remplir le champ");
             canInscription = false;}
         if(Label_tel.getText().isEmpty()){
-            canInscription = false;}
-        if(Label_description.getText().isEmpty()){
+            Label_saisie_tel.setText("Remplir le champ");
             canInscription = false;}
         
+        if(Label_description.getText().isEmpty()){
+            Label_saisie_description.setText("Remplir le champ");
+            canInscription = false;}
      
         
         
@@ -127,7 +143,7 @@ public class Interface_formulaire_posteur_service_menageController implements In
     }
     else
        {
-              JOptionPane.showMessageDialog(null, "Please fill all cases");
+            //  JOptionPane.showMessageDialog(null, "Please fill all cases");
                           canInscription = true;
 
        }

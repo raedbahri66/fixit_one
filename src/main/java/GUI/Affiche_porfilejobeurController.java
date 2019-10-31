@@ -440,7 +440,7 @@ public class Affiche_porfilejobeurController implements Initializable {
             gestion_offre_service A1=new gestion_offre_service();
             A1.insererNomjobeur(nom_j, prenom_j,cin_jobeur);
             JOptionPane.showMessageDialog (null," Votre demande à été sauvegardée ");
-            SMS.sendSms();       
+           // SMS.sendSms();       
     }
 
     @FXML
@@ -520,7 +520,7 @@ public class Affiche_porfilejobeurController implements Initializable {
              
           AfficheVOTE();
            
-          String content = nomp+" "+prenomp+"n'aime pas votre profile";
+          String content = nomp+" "+prenomp+" n'aime pas votre profile";
          /* Mail.sendMail11(A.getEmail(),"Notifacation:", content);*/
           ;}
             else
@@ -534,7 +534,7 @@ public class Affiche_porfilejobeurController implements Initializable {
           p.putVote(j);
          
           String content = nomp+" "+prenomp+"n'aime pas votre profile";
-          Mail.sendMail11(A.getEmail(),"Notifacation:", content);
+         /* Mail.sendMail11(A.getEmail(),"Notifacation:", content);*/
                   
              }
     }

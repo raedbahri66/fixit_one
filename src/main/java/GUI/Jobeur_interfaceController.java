@@ -55,6 +55,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.SortEvent;
+import javafx.scene.control.TabPane;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import service.PosteurService;
 import service.gestion_offre_service;
@@ -243,6 +248,172 @@ public class Jobeur_interfaceController implements Initializable {
     private Text label_top;
     @FXML
     private Text label_flop;
+    @FXML
+    private ImageView logout;
+    @FXML
+    private TabPane produitpane;
+    @FXML
+    private TableView<?> table;
+    @FXML
+    private TableColumn<?, ?> table_nom;
+    @FXML
+    private TableColumn<?, ?> table_id;
+    @FXML
+    private TableColumn<?, ?> table_prix;
+    @FXML
+    private TableColumn<?, ?> table_categorie;
+    @FXML
+    private TableColumn<?, ?> table_num;
+    @FXML
+    private TableColumn<?, ?> table_description;
+    @FXML
+    private TableColumn<?, ?> table_proprietere;
+    @FXML
+    private TableColumn<?, ?> table_date1;
+    @FXML
+    private ComboBox<?> combobox_filter;
+    @FXML
+    private TextField recherche_produit;
+    @FXML
+    private Label label_description1;
+    @FXML
+    private Label nom_proprietaire;
+    @FXML
+    private Label label_num;
+    @FXML
+    private Label afficher_date;
+    @FXML
+    private Button btnajouterpanier;
+    @FXML
+    private Label idpanier;
+    @FXML
+    private Label prix_panier;
+    @FXML
+    private Label produit_panier;
+    @FXML
+    private ImageView afficher_image;
+    @FXML
+    private TextField nom_produit;
+    @FXML
+    private TextField prix_produit;
+    @FXML
+    private TextArea description_produit;
+    @FXML
+    private Label statut;
+    @FXML
+    private ComboBox<?> categorie_produit;
+    @FXML
+    private TextField numero;
+    @FXML
+    private Label validation_prix;
+    @FXML
+    private Label validation_numero;
+    @FXML
+    private Label validation_produit;
+    @FXML
+    private Label validation_categorie;
+    @FXML
+    private Label validation_description;
+    @FXML
+    private Label datelocal;
+    @FXML
+    private ImageView image_produit;
+    @FXML
+    private TextField image_path;
+    @FXML
+    private Button importAction;
+    @FXML
+    private TableView<?> table1;
+    @FXML
+    private TableColumn<?, ?> table_nom1;
+    @FXML
+    private TableColumn<?, ?> table_prix1;
+    @FXML
+    private TableColumn<?, ?> table_description1;
+    @FXML
+    private TableColumn<?, ?> table_categorie1;
+    @FXML
+    private TableColumn<?, ?> table_numero1;
+    @FXML
+    private TableColumn<?, ?> table_etat_vente;
+    @FXML
+    private TableColumn<?, ?> table_etat_validation;
+    @FXML
+    private TableColumn<?, ?> table_id1;
+    @FXML
+    private TextField nom2;
+    @FXML
+    private TextField prix2;
+    @FXML
+    private Button modifier;
+    @FXML
+    private TextArea description2;
+    @FXML
+    private Label label_id;
+    @FXML
+    private Label statut2;
+    @FXML
+    private TextField numero1;
+    @FXML
+    private ComboBox<?> categorie_produit2;
+    @FXML
+    private ComboBox<?> categorie_produit3;
+    @FXML
+    private Label label_statut;
+    @FXML
+    private Label validation_produit1;
+    @FXML
+    private Label validation_prix1;
+    @FXML
+    private Label validation_description1;
+    @FXML
+    private Label validation_numero1;
+    @FXML
+    private ImageView image_modifier;
+    @FXML
+    private TextField image_path2;
+    @FXML
+    private Button importModifier;
+    @FXML
+    private Tab panier;
+    @FXML
+    private Label nom_produit_acheter;
+    @FXML
+    private Label nom_proprietaire11;
+    @FXML
+    private Label nom_proprietaire12;
+    @FXML
+    private TextField numero_carte;
+    @FXML
+    private TextField mois_validite;
+    @FXML
+    private Label montant_total;
+    @FXML
+    private Label idproduitacheter;
+    @FXML
+    private PasswordField cvc;
+    @FXML
+    private TextField year_validite;
+    @FXML
+    private Label card_validation;
+    @FXML
+    private Label mois_validation;
+    @FXML
+    private Label date_validation;
+    @FXML
+    private Label cvc_validation;
+    @FXML
+    private ImageView image_panier;
+    @FXML
+    private Label prix_payer;
+    @FXML
+    private Label frais_payment;
+    @FXML
+    private Label dollar3;
+    @FXML
+    private Label dollar2;
+    @FXML
+    private Label dollar1;
 
     @FXML
     void ajouterechange(ActionEvent event) {
@@ -310,6 +481,7 @@ public class Jobeur_interfaceController implements Initializable {
       RefreshTable();
 
     }
+    @FXML
      public void setValueformtableviewtotext()
     {
        tablemonechange.setOnMouseClicked(new EventHandler<MouseEvent>()
@@ -586,6 +758,42 @@ public class Jobeur_interfaceController implements Initializable {
         image_post.setImage(image1);
        // image_post.setImage(new Image("file:/C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg"));
         file_image_p.setText("C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg");
+    }
+
+    @FXML
+    private void logout(ActionEvent event) {
+    }
+
+    /*@FXML
+    private void clickedtable(SortEvent<C> event) {
+    }*/
+
+    @FXML
+    private void OnkeyTypedfilter(KeyEvent event) {
+    }
+
+    @FXML
+    private void btnsearchAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void ajouter_panier(ActionEvent event) {
+    }
+
+    @FXML
+    private void addaction(ActionEvent event) {
+    }
+
+    @FXML
+    private void modifierAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void SupprimerAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void bnt_payment(ActionEvent event) {
     }
     
     

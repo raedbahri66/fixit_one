@@ -209,40 +209,43 @@ public class InscrireJobeurController implements Initializable {
         ControleSaisie C= new ControleSaisie();
         if(!C.cinisValid(id_j.getText()) ){
             canInscription = false;;
-           
-        } else cin_valid.setText("Cin must contain 8 numbers");
+            cin_valid.setText("Cin Valide");
+        } else cin_valid.setText("Cin doit avoir 8 nombre");
         
         
-        if (C.cinisValid(id_j.getText()) )   cin_valid.setText("Accepted");
+        if (C.cinisValid(id_j.getText()) )   cin_valid.setText("Valide");
 
         if(nom_j.getText().isEmpty()){
             canInscription = false;
-        } else nom_valid.setText("Accepted");
+            nom_valid.setText("Données Invalide");
+        } else nom_valid.setText("Valide");
 
         if(prenom_j.getText().isEmpty()){
+            prenom_valid.setText("Données Invalide");
             canInscription = false;
-        } else prenom_valid.setText("Accepted");
+        } else prenom_valid.setText("Valide");
 
         if(!C.emailisValid(email_j.getText())){
             canInscription = false;
-        } else email_valid.setText("Email is correct");
+            email_valid.setText("Email Invalide ");
+        } else email_valid.setText("Email Valide");
         if(pass_j.getText().isEmpty()){
-            
+            pass_valid.setText("Donéées Invalide ");
             canInscription = false;
-        } else pass_valid.setText("Accepted");
+        } else pass_valid.setText("Valide");
         if(!C.cinisValid(tel_j.getText())){
             canInscription = false;
-        } else tel_valid.setText("Accepted");
+        } else tel_valid.setText("Valide");
         if(date_j.getValue().toString().isEmpty()){
             canInscription = false;
         }
-            else date_valid.setText("Accepted");
+            else date_valid.setText("Valide");
         if(sexe_j.getValue().toString().isEmpty()){
             canInscription = false;
-        } else             sex_valid.setText("Accepted");
+        } else             sex_valid.setText("Valide");
         if(address_j.toString().isEmpty()){
             canInscription = false;
-        } else             address_vali.setText("Accepted");
+        } else             address_vali.setText("Valide");
 
        if(canInscription){
            int cin = Integer.parseInt(id_j.getText());
@@ -262,7 +265,7 @@ public class InscrireJobeurController implements Initializable {
            Jobeur P1= new Jobeur (cin,nom,prenom,email,sexe,password,date,tel,job,address);
            JobeurService p = new JobeurService();
            System.out.println(fis);
-           CAM.Capture();
+          // CAM.Capture();
            
            
                       System.out.println(file);

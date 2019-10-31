@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -12,121 +15,231 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="621.0" prefWidth="804.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Jobeur_interfaceController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="808.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Jobeur_interfaceController">
   <tabs>
     <Tab text="Profil">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="616.0" prefWidth="804.0">
                <children>
+                  <ImageView fitHeight="609.0" fitWidth="925.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/propiedad-vivienda-gente-negocios-negociando-contrato-aqui-es-donde-debe-firmar_36325-2258.jpg" />
+                     </image>
+                  </ImageView>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="83.0" layoutY="188.0" prefHeight="30.0" prefWidth="49.0" text="Nom:" />
-                        <Label layoutX="83.0" layoutY="227.0" prefHeight="30.0" prefWidth="68.0" text="Prenom:" />
-                        <Label layoutX="77.0" layoutY="394.0" prefHeight="30.0" prefWidth="128.0" text="Date de naissance:" />
-                        <Label layoutX="83.0" layoutY="338.0" prefHeight="30.0" prefWidth="87.0" text="Telephone" />
-                        <Label layoutX="83.0" layoutY="284.0" prefHeight="30.0" prefWidth="68.0" text="Eamil:" />
-                        <Label fx:id="nomp_1" layoutX="207.0" layoutY="190.0" prefHeight="31.0" prefWidth="108.0" text="Label">
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="telp_1" layoutX="210.0" layoutY="340.0" prefHeight="27.0" prefWidth="116.0" text="Label">
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="emailp_1" layoutX="157.0" layoutY="286.0" prefHeight="27.0" prefWidth="181.0" text="Label">
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="prenomp_1" layoutX="210.0" layoutY="228.0" prefHeight="27.0" prefWidth="102.0" text="Label">
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="datep_1" layoutX="213.0" layoutY="396.0" prefHeight="27.0" prefWidth="110.0" text="Label">
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="tf_nom1" layoutX="324.0" layoutY="188.0" />
-                        <TextField fx:id="tf_prenom1" layoutX="324.0" layoutY="227.0" />
-                        <TextField fx:id="tef_email1" layoutX="324.0" layoutY="284.0" />
-                        <TextField fx:id="tf_tel1" layoutX="324.0" layoutY="338.0" />
-                        <DatePicker fx:id="df_date1" layoutX="323.0" layoutY="394.0" prefHeight="31.0" prefWidth="201.0" />
                         <ImageView fx:id="image_post" fitHeight="149.0" fitWidth="149.0" layoutX="70.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label layoutX="418.0" layoutY="38.0" text="Bienvenue dans Votre Espace ">
-                           <font>
-                              <Font name="System Bold Italic" size="19.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="nomp_11" layoutX="682.0" layoutY="37.0" prefHeight="31.0" prefWidth="108.0" text="Label" textFill="#7152d0">
-                           <font>
-                              <Font name="System Bold" size="21.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="81.0" layoutY="454.0" text="Photo de Profil:" />
-                        <TextField fx:id="file_image_p" layoutX="219.0" layoutY="449.0" prefHeight="31.0" prefWidth="214.0" promptText="Choose Image" />
-                        <Button fx:id="image_p_btn" layoutX="433.0" layoutY="449.0" mnemonicParsing="false" text="|||" />
                      </children>
                   </AnchorPane>
-                  <Label layoutX="85.0" layoutY="502.0" text="Votre CV:" />
-                  <TextField fx:id="file_pdf_p1" layoutX="223.0" layoutY="497.0" prefHeight="31.0" prefWidth="209.0" promptText="Choose your CV in Pdf" />
-                  <Button fx:id="pdf_p_btn1" layoutX="432.0" layoutY="497.0" mnemonicParsing="false" text="|||" />
-                  <Button layoutX="625.0" layoutY="523.0" mnemonicParsing="false" onAction="#btn_modifprofil" text="Modifier Mon Profil" />
-                  <Text layoutX="543.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="top" />
-                  <Text layoutX="612.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="flop" />
-                  <Text fx:id="label_top" layoutX="569.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
-                  <Text fx:id="label_flop" layoutX="641.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
-                  <Button layoutX="482.0" layoutY="450.0" mnemonicParsing="false" onAction="#Chosier_ph_bt" text="Choisir Photo Maintenant" />
+                  <Text fx:id="label_top" fill="#6dd774" layoutX="636.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="34.0" />
+                     </font></Text>
+                  <Text fx:id="label_flop" fill="#e14b4b" layoutX="723.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="32.0" />
+                     </font></Text>
+                  <Label layoutX="223.0" layoutY="25.0" text="Bienvenue dans Votre Espace ">
+                     <font>
+                        <Font name="System Bold Italic" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nomp_11" layoutX="489.0" layoutY="24.0" prefHeight="31.0" prefWidth="108.0" text="Label" textFill="#222222">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                  </Label>
+                  <GridPane layoutX="43.0" layoutY="135.0" prefHeight="339.0" prefWidth="719.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="219.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="260.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TextField fx:id="tf_nom1" GridPane.columnIndex="2" />
+                        <Label fx:id="nomp_1" prefHeight="31.0" prefWidth="108.0" text="Label" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="30.0" prefWidth="49.0" text="Nom:" />
+                        <TextField fx:id="tf_prenom1" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Label fx:id="prenomp_1" prefHeight="27.0" prefWidth="102.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="30.0" prefWidth="68.0" text="Prenom:" GridPane.rowIndex="1" />
+                        <TextField fx:id="tef_email1" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Label fx:id="emailp_1" prefHeight="27.0" prefWidth="181.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="30.0" prefWidth="68.0" text="Eamil:" GridPane.rowIndex="2" />
+                        <TextField fx:id="tf_tel1" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <Label fx:id="telp_1" prefHeight="27.0" prefWidth="116.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="30.0" prefWidth="87.0" text="Telephone:" GridPane.rowIndex="3" />
+                        <Label fx:id="datep_1" prefHeight="27.0" prefWidth="110.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="30.0" prefWidth="128.0" text="Date de naissance:" GridPane.rowIndex="4" />
+                        <DatePicker fx:id="df_date1" prefHeight="31.0" prefWidth="201.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <TextField fx:id="file_image_p" prefHeight="31.0" prefWidth="214.0" promptText="Choose Image" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Button fx:id="image_p_btn" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets left="205.0" />
+                           </GridPane.margin>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Image/Documents-icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button mnemonicParsing="false" onAction="#Chosier_ph_bt" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                           <graphic>
+                              <ImageView fitHeight="23.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Image/camera-icon%20(1).png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <GridPane.margin>
+                              <Insets left="50.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Label text="Photo de Profil:" GridPane.rowIndex="5" />
+                        <TextField fx:id="file_pdf_p1" prefHeight="31.0" prefWidth="209.0" promptText="Choose your CV in Pdf" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Button fx:id="pdf_p_btn1" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <GridPane.margin>
+                              <Insets left="205.0" />
+                           </GridPane.margin>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Image/Documents-icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Label text="Votre CV:" GridPane.rowIndex="6" />
+                     </children>
+                  </GridPane>
+                  <ImageView fitHeight="36.0" fitWidth="50.0" layoutX="673.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/dislike-icon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="38.0" layoutX="589.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/likeDDD.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="290.0" layoutY="515.0" mnemonicParsing="false" onAction="#btn_modifprofil" prefHeight="31.0" prefWidth="202.0" text="Modifier Mon Profil">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/pencil-icon%20(1)f.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="714.0" layoutY="507.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="44.0">
+                     <graphic>
+                        <ImageView fx:id="logout" fitHeight="33.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/logout.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children></AnchorPane>
       </content>
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/Man-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
     </Tab>
     <Tab text="Consulter les offres">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="630.0" fitWidth="768.0" layoutY="7.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="642.0" fitWidth="924.0" layoutY="-9.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Image/propiedad-vivienda-gente-negocios-negociando-contrato-aqui-es-donde-debe-firmar_36325-2258.jpg" />
                      </image>
                   </ImageView>
-                  <TableView fx:id="Table_offre_jobeur" layoutX="18.0" layoutY="95.0" opacity="0.85" prefHeight="302.0" prefWidth="358.0">
+                  <TableView fx:id="Table_offre_jobeur" layoutX="18.0" layoutY="95.0" opacity="0.85" prefHeight="303.0" prefWidth="386.0">
                     <columns>
                       <TableColumn fx:id="Column_adresse" prefWidth="75.0" text="Adresse" />
                       <TableColumn fx:id="Column_date" prefWidth="75.0" text="Date" />
                         <TableColumn fx:id="Column_heure" prefWidth="75.0" text="Heure" />
-                        <TableColumn fx:id="Column__description" prefWidth="132.0" text="Description d'offre" />
-                        <TableColumn fx:id="Column__tel" prefWidth="97.0" text="Numéro tel" visible="false" />
+                        <TableColumn fx:id="Column__description" prefWidth="151.0" text="Description d'offre" />
+                        <TableColumn fx:id="Column__tel" prefWidth="78.0" text="Numéro tel" visible="false" />
                         <TableColumn fx:id="Column_nomp" prefWidth="91.0" text="Nom Posteur" visible="false" />
                         <TableColumn fx:id="Column_prenomp" prefWidth="86.0" text="Prenom" visible="false" />
                         <TableColumn fx:id="Column_id" prefWidth="86.0" text="Id" visible="false" />
                     </columns>
                   </TableView>
-                  <Label layoutX="441.0" layoutY="153.0" text="Nom du Client :">
+                  <Label layoutX="460.0" layoutY="156.0" text="Nom du Client :">
                      <font>
                         <Font name="Arial Bold" size="22.0" />
                      </font>
                   </Label>
-                  <Label layoutX="508.0" layoutY="203.0" text="Prenom :">
+                  <Label layoutX="527.0" layoutY="206.0" text="Prenom :">
                      <font>
                         <Font name="Arial Bold" size="22.0" />
                      </font>
                   </Label>
-                  <Label layoutX="391.0" layoutY="260.0" text="Numéro Téléphone :">
+                  <Label layoutX="409.0" layoutY="264.0" prefHeight="26.0" prefWidth="223.0" text="Numéro Téléphone :">
                      <font>
                         <Font name="Arial Bold" size="22.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="Label_nomp" layoutX="604.0" layoutY="153.0" />
-                  <TextField fx:id="Label_prenomp" layoutX="607.0" layoutY="203.0" />
-                  <TextField fx:id="Label_telp" layoutX="608.0" layoutY="261.0" />
-                  <Button fx:id="Btn_accepter_offre" layoutX="593.0" layoutY="330.0" mnemonicParsing="false" onAction="#Accepter_Offre" text="Accepter" />
-                  <Button fx:id="Btn_refuser_offre" layoutX="682.0" layoutY="330.0" mnemonicParsing="false" onAction="#Refuser_Offre" text="Refuser" />
+                  <TextField fx:id="Label_nomp" layoutX="631.0" layoutY="153.0" prefHeight="31.0" prefWidth="160.0" />
+                  <TextField fx:id="Label_prenomp" layoutX="632.0" layoutY="203.0" prefHeight="31.0" prefWidth="162.0" />
+                  <TextField fx:id="Label_telp" layoutX="636.0" layoutY="261.0" prefHeight="31.0" prefWidth="159.0" />
+                  <Button fx:id="Btn_accepter_offre" layoutX="571.0" layoutY="330.0" mnemonicParsing="false" onAction="#Accepter_Offre" text="Accepter">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/Knob-Valid-Green-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="Btn_refuser_offre" layoutX="690.0" layoutY="330.0" mnemonicParsing="false" onAction="#Refuser_Offre" text="Refuser">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/Button-Close-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                   <TextField fx:id="Label_id" layoutX="423.0" layoutY="423.0" visible="false" />
                   <Label layoutX="19.0" layoutY="34.0" text="Tableau des offres">
                      <font>
@@ -140,32 +253,549 @@
                   </Label>
                </children></AnchorPane>
       </content>
+         <graphic>
+            <ImageView fitHeight="83.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/list-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
     </Tab>
-      <Tab text="Gérer équipe">
+      <Tab text="Produit">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="624.0" prefWidth="824.0">
+               <children>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="624.0" prefWidth="824.0">
+                     <children>
+                        <TabPane fx:id="produitpane" prefHeight="607.0" prefWidth="857.0" tabClosingPolicy="UNAVAILABLE">
+                           <tabs>
+                              <Tab text="Liste">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <ImageView fitHeight="567.0" fitWidth="1051.0" opacity="0.51" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Image/bricolage-et-diy-quels-outils-avoir-chez-soi.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <TableView fx:id="table" layoutX="40.0" layoutY="160.0" onSort="#clickedtable" prefHeight="300.0" prefWidth="316.0">
+                                             <columns>
+                                                <TableColumn fx:id="table_nom" prefWidth="98.0" text="Produit" />
+                                                <TableColumn fx:id="table_id" minWidth="0.0" prefWidth="48.0" text="id" visible="false" />
+                                                <TableColumn fx:id="table_prix" prefWidth="88.0" text="Prix($)" />
+                                                <TableColumn fx:id="table_categorie" prefWidth="117.0" text="Categorie" />
+                                                <TableColumn fx:id="table_num" minWidth="0.0" prefWidth="76.0" text="num" visible="false" />
+                                                <TableColumn fx:id="table_description" minWidth="0.0" prefWidth="76.0" text="desc" visible="false" />
+                                                <TableColumn fx:id="table_proprietere" prefWidth="90.0" text="propri" visible="false" />
+                                                <TableColumn fx:id="table_date1" prefWidth="117.0" text="date" visible="false" />
+                                             </columns>
+                                          </TableView>
+                                          <Label layoutX="14.0" layoutY="21.0" prefHeight="21.0" prefWidth="245.0" text="Produit a vendre:">
+                                             <font>
+                                                <Font name="System Bold" size="22.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="combobox_filter" layoutX="165.0" layoutY="97.0" prefHeight="33.0" prefWidth="163.0" promptText="Tous()" />
+                                          <Label layoutX="40.0" layoutY="94.0" prefHeight="38.0" prefWidth="101.0" text="Categorie:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="recherche_produit" layoutX="542.0" layoutY="95.0" onKeyReleased="#OnkeyTypedfilter" prefHeight="35.0" prefWidth="168.0" promptText="Recherhce" />
+                                          <Label layoutX="420.0" layoutY="378.0" prefHeight="38.0" prefWidth="87.0" text="Numero:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="405.0" layoutY="301.0" prefHeight="37.0" prefWidth="117.0" text="Publié Par:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="395.0" layoutY="419.0" prefHeight="41.0" prefWidth="113.0" text="Description:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="label_description1" alignment="TOP_LEFT" layoutX="530.0" layoutY="431.0" prefHeight="50.0" prefWidth="254.0" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold Italic" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Button layoutX="723.0" layoutY="97.0" mnemonicParsing="false" onAction="#btnsearchAction" prefHeight="31.0" prefWidth="33.0">
+                                             <graphic>
+                                                <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../Image/search-icon%20(1).png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Label fx:id="nom_proprietaire" layoutX="530.0" layoutY="305.0" prefHeight="29.0" prefWidth="143.0">
+                                             <font>
+                                                <Font name="System Bold Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="label_num" layoutX="530.0" layoutY="383.0" prefHeight="33.0" prefWidth="138.0">
+                                             <font>
+                                                <Font name="System Bold Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="413.0" layoutY="341.0" prefHeight="37.0" prefWidth="117.0" text="Publié Le:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="afficher_date" layoutX="530.0" layoutY="338.0" prefHeight="46.0" prefWidth="154.0">
+                                             <font>
+                                                <Font name="System Bold Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="btnajouterpanier" layoutX="569.0" layoutY="490.0" mnemonicParsing="false" onAction="#ajouter_panier" text="Panier">
+                                             <graphic>
+                                                <ImageView fitHeight="27.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../Image/add-item-icon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Label fx:id="idpanier" layoutX="229.0" layoutY="403.0" prefHeight="26.0" prefWidth="32.0" visible="false" />
+                                          <Label fx:id="prix_panier" layoutX="202.0" layoutY="429.0" prefHeight="21.0" prefWidth="43.0" visible="false" />
+                                          <Label fx:id="produit_panier" layoutX="311.0" layoutY="450.0" prefHeight="31.0" prefWidth="61.0" visible="false" />
+                                          <ImageView fx:id="afficher_image" fitHeight="143.0" fitWidth="189.0" layoutX="492.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Image/Checklist-icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Tab>
+                              <Tab text="Ajouter">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="323.0" prefWidth="359.0">
+                                       <children>
+                                          <ImageView fitHeight="598.0" fitWidth="1039.0" layoutX="-2.0" opacity="0.51" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Image/bricolage-et-diy-quels-outils-avoir-chez-soi.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <TextField fx:id="nom_produit" layoutX="203.0" layoutY="112.0" promptText="Champ obligatoire*" />
+                                          <TextField fx:id="prix_produit" layoutX="203.0" layoutY="174.0" promptText="Champ obligatoire*" />
+                                          <TextArea fx:id="description_produit" layoutX="204.0" layoutY="361.0" prefHeight="80.0" prefWidth="233.0" promptText="Champ obligatoire*" />
+                                          <Label layoutX="124.0" layoutY="108.0" prefHeight="40.0" prefWidth="74.0" text="Produit:">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="129.0" layoutY="171.0" prefHeight="38.0" prefWidth="64.0" text="Prix($):" textFill="#141313">
+                                             <font>
+                                                <Font name="System Bold" size="17.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="92.0" layoutY="353.0" prefHeight="38.0" prefWidth="101.0" text="Description:">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="97.0" layoutY="290.0" prefHeight="38.0" prefWidth="101.0" text="Categorie:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Button layoutX="390.0" layoutY="512.0" mnemonicParsing="false" onAction="#addaction" text="Valider">
+                                             <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../Image/Knob-Valid-Green-icon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Label fx:id="statut" layoutX="254.0" layoutY="461.0" prefHeight="42.0" prefWidth="363.0" textFill="#109a17">
+                                             <font>
+                                                <Font name="System Bold" size="17.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="categorie_produit" layoutX="204.0" layoutY="293.0" prefHeight="31.0" prefWidth="185.0" />
+                                          <Label layoutX="108.0" layoutY="229.0" prefHeight="41.0" prefWidth="89.0" text="Numero°:" textFill="#141313">
+                                             <font>
+                                                <Font name="System Bold" size="17.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="numero" layoutX="203.0" layoutY="234.0" promptText="Champ obligatoire*" />
+                                          <Label fx:id="validation_prix" layoutX="204.0" layoutY="205.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="validation_numero" layoutX="204.0" layoutY="264.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="validation_produit" layoutX="205.0" layoutY="146.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="validation_categorie" layoutX="205.0" layoutY="328.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="validation_description" layoutX="204.0" layoutY="449.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="datelocal" layoutX="109.0" layoutY="493.0" prefHeight="34.0" prefWidth="108.0" visible="false" />
+                                          <ImageView fx:id="image_produit" fitHeight="235.0" fitWidth="257.0" layoutX="524.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true" />
+                                          <TextField fx:id="image_path" layoutX="559.0" layoutY="357.0" prefHeight="27.0" prefWidth="117.0" promptText="Image" />
+                                          <Label layoutX="492.0" layoutY="353.0" prefHeight="38.0" prefWidth="64.0" text="Import:" textFill="#141313">
+                                             <font>
+                                                <Font name="System Bold" size="17.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="importAction" layoutX="695.0" layoutY="357.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="16.0">
+                                             <graphic>
+                                                <ImageView fitHeight="32.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../Image/Documents-icon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Label layoutX="53.0" layoutY="30.0" prefHeight="41.0" prefWidth="221.0" text="Ajouter Produit">
+                                             <font>
+                                                <Font name="System Bold" size="21.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                                 <graphic>
+                                    <ImageView fitHeight="32.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Image/Button-Add-icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Tab>
+                              <Tab text="Mes Produits">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <ImageView fitHeight="572.0" fitWidth="1080.0" layoutX="-2.0" layoutY="-1.0" opacity="0.51" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Image/bricolage-et-diy-quels-outils-avoir-chez-soi.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <TableView fx:id="table1" layoutX="30.0" layoutY="67.0" onSort="#setValueformtableviewtotext" prefHeight="161.0" prefWidth="467.0">
+                                             <columns>
+                                                <TableColumn fx:id="table_nom1" prefWidth="113.0" text="Produit" />
+                                                <TableColumn fx:id="table_prix1" prefWidth="100.0" text="Prix($)" />
+                                                <TableColumn fx:id="table_description1" prefWidth="159.0" text="Description" visible="false" />
+                                                <TableColumn fx:id="table_categorie1" prefWidth="150.0" text="Categorie" visible="false" />
+                                                <TableColumn fx:id="table_numero1" prefWidth="131.0" text="Numero°" />
+                                                <TableColumn fx:id="table_etat_vente" prefWidth="116.0" text="Etat" />
+                                                <TableColumn fx:id="table_etat_validation" minWidth="0.0" prefWidth="0.0" text="Statut" />
+                                                <TableColumn fx:id="table_id1" minWidth="0.0" prefWidth="0.0" text="id" />
+                                             </columns>
+                                          </TableView>
+                                          <Label layoutX="52.0" layoutY="26.0" prefHeight="41.0" prefWidth="221.0" text="Mes Produits">
+                                             <font>
+                                                <Font name="System Bold" size="21.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="30.0" layoutY="243.0" prefHeight="39.0" prefWidth="66.0" text="Produit:">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="28.0" layoutY="300.0" prefHeight="34.0" prefWidth="48.0" text="Prix:">
+                                             <font>
+                                                <Font name="System Bold" size="17.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="30.0" layoutY="351.0" prefHeight="39.0" prefWidth="139.0" text="Description:">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="nom2" layoutX="128.0" layoutY="247.0" />
+                                          <TextField fx:id="prix2" layoutX="128.0" layoutY="302.0" />
+                                          <Button fx:id="modifier" layoutX="299.0" layoutY="513.0" mnemonicParsing="false" onAction="#modifierAction" text="Modifier">
+                                             <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../Image/pencil-icon%20(1)f.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <TextArea fx:id="description2" layoutX="128.0" layoutY="362.0" prefHeight="82.0" prefWidth="187.0" />
+                                          <Label fx:id="label_id" layoutX="617.0" layoutY="451.0" prefHeight="45.0" prefWidth="65.0" visible="false" />
+                                          <Label fx:id="statut2" layoutX="245.0" layoutY="455.0" prefHeight="37.0" prefWidth="295.0" textFill="#0d8d1e">
+                                             <font>
+                                                <Font name="System Bold" size="17.0" />
+                                             </font>
+                                          </Label>
+                                          <Button layoutX="420.0" layoutY="513.0" mnemonicParsing="false" onAction="#SupprimerAction" text="Supprimer">
+                                             <graphic>
+                                                <ImageView fitHeight="23.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../Image/Button-Close-icon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Label layoutX="463.0" layoutY="297.0" prefHeight="41.0" prefWidth="89.0" text="Numero°:" textFill="#141313">
+                                             <font>
+                                                <Font name="System Bold" size="17.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="numero1" layoutX="565.0" layoutY="302.0" prefHeight="31.0" prefWidth="152.0" />
+                                          <ComboBox fx:id="categorie_produit2" layoutX="566.0" layoutY="355.0" prefWidth="150.0" />
+                                          <Label layoutX="463.0" layoutY="350.0" prefHeight="41.0" prefWidth="89.0" text="Categorie:" textFill="#141313">
+                                             <font>
+                                                <Font name="System Bold" size="17.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="465.0" layoutY="402.0" prefHeight="41.0" prefWidth="89.0" text="Etat:" textFill="#141313">
+                                             <font>
+                                                <Font name="System Bold" size="17.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="categorie_produit3" layoutX="566.0" layoutY="407.0" prefWidth="150.0" />
+                                          <Label fx:id="label_statut" layoutX="600.0" layoutY="422.0" prefHeight="28.0" prefWidth="82.0" visible="false" />
+                                          <Label fx:id="validation_produit1" layoutX="129.0" layoutY="278.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="validation_prix1" layoutX="129.0" layoutY="332.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="validation_description1" layoutX="129.0" layoutY="431.0" prefHeight="25.0" prefWidth="186.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="validation_numero1" layoutX="566.0" layoutY="331.0" prefHeight="25.0" prefWidth="155.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="image_modifier" fitHeight="154.0" fitWidth="219.0" layoutX="560.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
+                                          <TextField fx:id="image_path2" layoutX="566.0" layoutY="247.0" prefHeight="32.0" prefWidth="103.0" promptText="Image" />
+                                          <Label layoutX="464.0" layoutY="244.0" prefHeight="39.0" prefWidth="66.0" text="Import:">
+                                             <font>
+                                                <Font name="System Bold" size="17.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="importModifier" layoutX="675.0" layoutY="247.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="29.0">
+                                             <graphic>
+                                                <ImageView fitHeight="32.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../Image/Documents-icon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                                 <graphic>
+                                    <ImageView fitHeight="27.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Image/Pencil-icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Tab>
+                              <Tab fx:id="panier" text="Panier ">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <ImageView fitHeight="570.0" fitWidth="1082.0" layoutX="-1.0" layoutY="-4.0" opacity="0.51" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Image/bricolage-et-diy-quels-outils-avoir-chez-soi.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="32.0" layoutY="31.0" prefHeight="21.0" prefWidth="245.0" text="Panier">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="201.0" layoutY="77.0" prefHeight="38.0" prefWidth="101.0" text="Produit:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="232.0" layoutY="156.0" prefHeight="38.0" prefWidth="49.0" text="Prix:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="177.0" layoutY="115.0" prefHeight="38.0" prefWidth="101.0" text="Publié Par:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="nom_produit_acheter" layoutX="291.0" layoutY="81.0" prefHeight="29.0" prefWidth="123.0">
+                                             <font>
+                                                <Font name="System Bold Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="nom_proprietaire11" layoutX="291.0" layoutY="119.0" prefHeight="29.0" prefWidth="123.0">
+                                             <font>
+                                                <Font name="System Bold Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="nom_proprietaire12" layoutX="166.0" layoutY="180.0" prefHeight="29.0" prefWidth="123.0">
+                                             <font>
+                                                <Font name="System Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="numero_carte" layoutX="487.0" layoutY="321.0" promptText="Card Number" />
+                                          <Label layoutX="416.0" layoutY="318.0" prefHeight="38.0" prefWidth="101.0" text="Carte:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="322.0" layoutY="371.0" prefHeight="40.0" prefWidth="145.0" text="Date de validité:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="mois_validite" layoutX="490.0" layoutY="373.0" prefHeight="36.0" prefWidth="49.0" promptText="MM" />
+                                          <Label layoutX="420.0" layoutY="437.0" prefHeight="33.0" prefWidth="57.0" text="CVC:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="120.0" layoutY="193.0" prefHeight="39.0" prefWidth="157.0" text="Frais de payment:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="123.0" layoutY="235.0" prefHeight="42.0" prefWidth="165.0" text="Mnt Total a Payé:">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="montant_total" layoutX="290.0" layoutY="241.0" prefHeight="29.0" prefWidth="65.0">
+                                             <font>
+                                                <Font name="System Bold Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Button layoutX="539.0" layoutY="502.0" mnemonicParsing="false" onAction="#bnt_payment" text="Payer">
+                                             <graphic>
+                                                <ImageView fitHeight="23.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../Image/Coin-us-dollar-icon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Label fx:id="idproduitacheter" layoutX="109.0" layoutY="269.0" prefHeight="36.0" prefWidth="85.0" visible="false" />
+                                          <PasswordField fx:id="cvc" layoutX="490.0" layoutY="438.0" prefHeight="29.0" prefWidth="63.0" promptText="CVC" />
+                                          <TextField fx:id="year_validite" layoutX="560.0" layoutY="375.0" prefHeight="35.0" prefWidth="61.0" promptText="YYYY" />
+                                          <Label layoutX="549.0" layoutY="384.0" text="/" />
+                                          <Label fx:id="card_validation" layoutX="493.0" layoutY="345.0" prefHeight="30.0" prefWidth="284.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Bold Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="mois_validation" layoutX="493.0" layoutY="406.0" prefHeight="31.0" prefWidth="233.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Bold Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="date_validation" layoutX="627.0" layoutY="379.0" prefHeight="31.0" prefWidth="199.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Bold Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="cvc_validation" layoutX="493.0" layoutY="471.0" prefHeight="31.0" prefWidth="233.0" textFill="RED">
+                                             <font>
+                                                <Font name="System Bold Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="image_panier" fitHeight="186.0" fitWidth="240.0" layoutX="477.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Label fx:id="prix_payer" layoutX="291.0" layoutY="160.0" prefHeight="29.0" prefWidth="63.0">
+                                             <font>
+                                                <Font name="System Bold Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="frais_payment" layoutX="289.0" layoutY="198.0" prefHeight="29.0" prefWidth="66.0">
+                                             <font>
+                                                <Font name="System Bold Italic" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="dollar3" layoutX="343.0" layoutY="156.0" prefHeight="38.0" prefWidth="24.0">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="dollar2" layoutX="341.0" layoutY="194.0" prefHeight="38.0" prefWidth="24.0">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="dollar1" layoutX="341.0" layoutY="237.0" prefHeight="38.0" prefWidth="24.0">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Image/add-item-icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Tab>
+                           </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
          </content>
-      </Tab>
-      <Tab text="Annonce">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-         </content>
+         <graphic>
+            <ImageView fitHeight="34.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/Autodesk-Product-Design-Suite-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Tab>
       <Tab text="Espace Troc">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="780.0">
                <children>
-                  <TabPane layoutY="5.0" prefHeight="523.0" prefWidth="752.0" tabClosingPolicy="UNAVAILABLE">
+                  <ImageView fitHeight="714.0" fitWidth="1034.0" layoutY="5.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/photo-17.jpg" />
+                     </image>
+                  </ImageView>
+                  <TabPane layoutY="5.0" prefHeight="598.0" prefWidth="808.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                       <Tab text="Ajouter une proposition d'echange">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="262.0" prefWidth="496.0">
                                  <children>
-                                    <ImageView fitHeight="501.0" fitWidth="754.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../Image/bricolage-810x540.jpg" />
-                                       </image>
-                                    </ImageView>
                                     <DatePicker fx:id="dateajoute" layoutX="308.0" layoutY="311.0" prefHeight="25.0" prefWidth="199.0" />
                                     <Label layoutX="203.0" layoutY="155.0" prefHeight="40.0" prefWidth="94.0" text="Description:" />
                                     <Label layoutX="203.0" layoutY="315.0" text="Date d'ajout:" />
@@ -183,12 +813,7 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="403.0" prefWidth="669.0">
                                  <children>
-                                    <ImageView fitHeight="502.0" fitWidth="760.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../Image/bricolage-810x540.jpg" />
-                                       </image>
-                                    </ImageView>
-                                    <TableView fx:id="tableechanges" layoutX="-23.0" layoutY="70.0" prefHeight="380.0" prefWidth="775.0">
+                                    <TableView fx:id="tableechanges" layoutX="6.0" layoutY="60.0" prefHeight="380.0" prefWidth="792.0">
                                       <columns>
                                         <TableColumn fx:id="idechanges" prefWidth="20.0" text="id" />
                                           <TableColumn fx:id="propositionoff" prefWidth="136.0" text="propositionofferte" />
@@ -206,14 +831,9 @@
                         </Tab>
                         <Tab fx:id="nomechange" text="consulter mes propositions d'echanges">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="333.0" prefWidth="761.0">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="526.0" prefWidth="772.0">
                                  <children>
-                                    <ImageView fitHeight="505.0" fitWidth="759.0" layoutX="-1.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../Image/bricolage-810x540.jpg" />
-                                       </image>
-                                    </ImageView>
-                                    <TableView fx:id="tablemonechange" layoutX="140.0" prefHeight="200.0" prefWidth="505.0">
+                                    <TableView fx:id="tablemonechange" layoutX="17.0" prefHeight="200.0" prefWidth="706.0">
                                       <columns>
                                         <TableColumn fx:id="idechange" prefWidth="18.0" text="id" />
                                           <TableColumn fx:id="ctpf" prefWidth="109.0" text="propositionoffetre" />
@@ -241,6 +861,13 @@
                   </TabPane>
                </children></AnchorPane>
          </content>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/Arrows-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Tab>
   </tabs>
 </TabPane>

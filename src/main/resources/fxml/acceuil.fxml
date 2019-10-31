@@ -20,9 +20,9 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="499.0" fitWidth="749.0" layoutX="-4.0" layoutY="-18.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="580.0" fitWidth="1374.0" layoutX="-285.0" layoutY="-4.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Image/bricolage-810x540.jpg" />
+                        <Image url="@../Image/accident_de_travail.jpg" />
                      </image>
                   </ImageView>
                   <TableView fx:id="table_article" layoutX="191.0" layoutY="296.0" opacity="0.85" prefHeight="160.0" prefWidth="541.0">
@@ -35,69 +35,85 @@
                         <TableColumn fx:id="id1" prefWidth="38.0" text="Id" />
                      </columns>
                   </TableView>
-                  <Text fill="WHITE" fontSmoothingType="LCD" layoutX="197.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Besoin de conseils ?" underline="true" wrappingWidth="346.13671875">
+                  <Text fontSmoothingType="LCD" layoutX="197.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Besoin de conseils ?" underline="true" wrappingWidth="346.13671875">
                      <font>
                         <Font size="37.0" />
                      </font>
                   </Text>
-                  <Text fontSmoothingType="LCD" layoutX="22.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Vous facilite la vie !!" wrappingWidth="406.13671875">
-                     <font>
-                        <Font size="42.0" />
-                     </font>
-                  </Text>
-                  <Text fontSmoothingType="LCD" layoutX="103.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FIXIT">
-                     <font>
-                        <Font size="64.0" />
-                     </font>
-                  </Text>
-                  <Button layoutX="661.0" layoutY="14.0" mnemonicParsing="false" onAction="#retour_bt" text="Retour" />
+                  <ImageView fitHeight="110.0" fitWidth="175.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/75543469_2686422488081169_3567664281488982016_n.png" />
+                     </image>
+                  </ImageView>
                </children></AnchorPane>
       </content>
+         <graphic>
+            <ImageView fitHeight="68.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/home-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
     </Tab>
     <Tab text="  Login    ">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="471.0" fitWidth="747.0" layoutX="-9.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="580.0" fitWidth="1374.0" layoutX="-295.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Image/apprendre-bricolage-min.jpg" />
+                        <Image url="@../Image/accident_de_travail.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="22.0" layoutY="68.0" text="User Name(CIN)" textFill="WHITE">
+                  <Label layoutX="84.0" layoutY="138.0" text="User Name:">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font></Label>
-                  <Label layoutX="60.0" layoutY="137.0" text="Password :" textFill="#f5f5f5">
+                  <Label layoutX="92.0" layoutY="213.0" text="Password :">
                      <font>
                         <Font name="System Bold Italic" size="20.0" />
                      </font></Label>
-                  <Button fx:id="Btn_SignIn" layoutX="370.0" layoutY="226.0" mnemonicParsing="false" onAction="#Btn_SignIn" prefHeight="25.0" prefWidth="113.0" text="SignIn">
+                  <Button fx:id="Btn_SignIn" layoutX="298.0" layoutY="321.0" mnemonicParsing="false" onAction="#Btn_SignIn" prefHeight="33.0" prefWidth="142.0" text="Se connecter">
                      <font>
-                        <Font name="System Bold Italic" size="20.0" />
-                     </font></Button>
-                  <TextField fx:id="label_UserName" layoutX="187.0" layoutY="68.0" />
-                  <PasswordField fx:id="Label_Password" layoutX="187.0" layoutY="137.0" />
-                  <Label fx:id="motdepass_oub" layoutX="271.0" layoutY="189.0" onMouseClicked="#Pass_oublie" prefHeight="26.0" prefWidth="188.0" text="Mot de passe oubliée?" textFill="WHITE" underline="true">
+                        <Font name="System Italic" size="15.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/62949-locked-with-key-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <TextField fx:id="label_UserName" layoutX="277.0" layoutY="137.0" promptText="CIN" />
+                  <PasswordField fx:id="Label_Password" layoutX="277.0" layoutY="212.0" promptText="Password" />
+                  <Label fx:id="motdepass_oub" layoutX="277.0" layoutY="257.0" onMouseClicked="#Pass_oublie" prefHeight="26.0" prefWidth="188.0" text="Mot de passe oubliée?" textFill="#130794" underline="true">
                      <font>
-                        <Font name="System Bold Italic" size="18.0" />
+                        <Font name="System Italic" size="15.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="121.0" fitWidth="253.0" layoutX="427.0" layoutY="68.0" onMouseClicked="#Facebook_login" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="63.0" fitWidth="224.0" layoutX="495.0" layoutY="163.0" onMouseClicked="#Facebook_login" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Image/facebook-login-icon-10.png" />
                      </image>
                   </ImageView>
                </children></AnchorPane>
       </content>
+         <graphic>
+            <ImageView fitHeight="64.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/User-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
     </Tab>
       <Tab text="Inscription">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="462.0" fitWidth="829.0" layoutX="-81.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="580.0" fitWidth="1374.0" layoutX="-305.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Image/bricolage-et-diy-quels-outils-avoir-chez-soi.jpg" />
-                     </image></ImageView>
+                        <Image url="@../Image/accident_de_travail.jpg" />
+                     </image>
+                  </ImageView>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="8.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" />
                   <Button layoutX="28.0" layoutY="252.0" mnemonicParsing="false" onAction="#Btn_formulaire_posteur" prefHeight="66.0" prefWidth="197.0" text="J 'ai besion d' un service">
                      <font>
@@ -109,11 +125,6 @@
                         <Font name="System Italic" size="17.0" />
                      </font>
                   </Button>
-                  <Text layoutX="325.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OU" wrappingWidth="60.291015625">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Text>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="495.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true" />
                   <Text layoutX="102.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue chez Fixit">
                      <font>
@@ -123,6 +134,13 @@
                </children>
             </AnchorPane>
          </content>
+         <graphic>
+            <ImageView fitHeight="59.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/Text-Edit-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Tab>
   </tabs>
 </TabPane>
