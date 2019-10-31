@@ -202,7 +202,6 @@ public class ModiferArticleController implements Initializable {
                 
     }
 
-    @FXML
     private void actualiser(ActionEvent event) {
       afficher_article();
     }
