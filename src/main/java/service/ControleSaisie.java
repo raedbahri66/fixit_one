@@ -151,10 +151,10 @@ public class ControleSaisie {
     
     public boolean isCintUsed(int cin1)
     {
-            String cin11 = null;
+            String cin11="";
         String req1="select * from Posteur where cin="+cin1 ;   
         String req2="select * from Jobeur where cin="+cin1;
-        boolean etat= false;
+       // boolean etat= false;
         
         try {
           ResultSet res=  ste.executeQuery(req1);
@@ -169,13 +169,12 @@ public class ControleSaisie {
       } catch (SQLException ex) {
           System.out.println(ex.getMessage());
       } 
-        System.out.println("Read cin:"+cin11+"  "+cin1);
+        System.out.println("Read cin:"+cin11+"+"+cin1);
         if(cin11.equals(cin1))
-            etat= true;
-                    else etat=false;
-             return etat; 
+            return true;
+              else      return false;
 
-  
+       // System.out.println();
     }
 }
     
