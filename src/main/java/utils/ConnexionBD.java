@@ -7,8 +7,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-
-
 public class ConnexionBD {
     
     String url="jdbc:mysql://localhost:3306/fixit";
