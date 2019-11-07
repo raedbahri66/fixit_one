@@ -534,7 +534,7 @@ public class Affiche_porfilejobeurController implements Initializable {
           p.putVote(j);
          
           String content = nomp+" "+prenomp+"n'aime pas votre profile";
-         /* Mail.sendMail11(A.getEmail(),"Notifacation:", content);*/
+          Mail.sendMail11(A.getEmail(),"Notifacation:", content);
                   
              }
     }
