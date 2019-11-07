@@ -51,7 +51,7 @@
       <DatePicker fx:id="Label_date" layoutX="285.0" layoutY="121.0" />
       <TextField fx:id="Label_tel" layoutX="288.0" layoutY="200.0" promptText="+216XXXXXXXX" />
       <TextArea fx:id="Label_description" layoutX="285.0" layoutY="249.0" prefHeight="89.0" prefWidth="215.0" />
-      <TextField fx:id="Label_heure" layoutX="288.0" layoutY="160.0" promptText="00H : 00 M : 00S" />
+      <TextField fx:id="Label_heure" layoutX="288.0" layoutY="160.0" promptText="Exemple : 00H" />
       <Button fx:id="Btn_ajout_service" layoutX="320.0" layoutY="353.0" mnemonicParsing="false" onAction="#btn_ajout_service" text="Enregistrer" />
       <Label fx:id="Label_saisie_adresse" layoutX="454.0" layoutY="75.0" prefHeight="39.0" prefWidth="180.0" textFill="RED">
          <font>
