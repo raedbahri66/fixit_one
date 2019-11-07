@@ -1529,7 +1529,7 @@ public class Posteur_interfaceController implements Initializable {
    Echange E = new Echange(nomo,nomf,description,date10,idposteur1,nomposteur,idjobeur);
   EchangeGestion es = new  EchangeGestion();
    es.ajouterEchange(E);
-   JOptionPane.showMessageDialog(null, "ajout avec succes ");
+   /*JOptionPane.showMessageDialog(null, "ajout avec succes ");
   facebook4j.Facebook facebook = new FacebookFactory().getInstance();
     
     facebook.setOAuthAppId("", "");
@@ -1543,7 +1543,7 @@ public class Posteur_interfaceController implements Initializable {
       
         }
         catch(FacebookException fex)
-        {System.out.println(fex);}
+        {System.out.println(fex);}*/
    pofp.setText("");
    posp.setText("");
    pdp.setText("");
