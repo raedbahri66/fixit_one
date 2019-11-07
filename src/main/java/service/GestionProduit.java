@@ -128,7 +128,7 @@ public class GestionProduit {
     //Echange e = null;
       try {
          // String etat="non_vendu";
-         String req2="select * from produit where id LIKE '"+id+"'";
+         String req2="select * from produit INNER JOIN posteur ON produit.idposteur_fg = posteur.id where produit.id LIKE '"+id+"'";
          PreparedStatement pstm = c.prepareStatement(req2);
          //pstm.setString(1,etat);
           ResultSet res=  pstm.executeQuery();
@@ -140,7 +140,7 @@ public class GestionProduit {
                        e.setDescription(res.getString(4));
                         e.setCategorie(res.getString(5));
                          e.setNumero(res.getString(6));
-                         e.setNomproprietere(res.getString(11));
+                         e.setNomproprietere(res.getString(16));
                          e.setDate1(res.getString(13));
                           echanges.add(e);   
                           
@@ -205,7 +205,7 @@ public class GestionProduit {
       try {
           if ("Tous()".equals(cat)){
               
-           String req2="select * from produit where etat_vente=?";
+           String req2="select * from produit INNER JOIN posteur ON produit.idposteur_fg = posteur.id where etat_vente=?";
          PreparedStatement pstm = c.prepareStatement(req2);
          pstm.setString(1,etat);
           ResultSet res=  pstm.executeQuery();
@@ -217,16 +217,17 @@ public class GestionProduit {
                        e.setDescription(res.getString(4));
                         e.setCategorie(res.getString(5));
                          e.setNumero(res.getString(6));
-                         e.setNomproprietere(res.getString(11));
+                         e.setNomproprietere(res.getString(16));
                          e.setDate1(res.getString(13));
                           table1.add(e);
-                           //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
+            
+                          //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
           } 
           
           
           }
           else{
-         String req2="select * from produit Where categorie=? and etat_vente=?";
+         String req2="select * from produit INNER JOIN posteur ON produit.idposteur_fg = posteur.id Where categorie=? and etat_vente=?";
          PreparedStatement pstm = c.prepareStatement(req2);
          pstm.setString(1,cat);
          pstm.setString(2,etat);
@@ -239,7 +240,7 @@ public class GestionProduit {
                        e.setDescription(res.getString(4));
                         e.setCategorie(res.getString(5));
                          e.setNumero(res.getString(6));
-                         e.setNomproprietere(res.getString(11));
+                         e.setNomproprietere(res.getString(16));
                          e.setDate1(res.getString(13));
                           table1.add(e);
                            //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
@@ -257,7 +258,7 @@ public class GestionProduit {
     //Echange e = null;
     String etat="non_vendu";
       try {
-         String req2="select * from produit Where nomproduit LIKE '"+nom+"' and etat_vente=?" ;
+         String req2="select * from produit INNER JOIN posteur ON produit.idposteur_fg = posteur.id Where nomproduit LIKE '"+nom+"' and etat_vente=?" ;
          PreparedStatement pstm = c.prepareStatement(req2);
          pstm.setString(1,etat);
          //pstm.setString(1,nom);
@@ -270,7 +271,7 @@ public class GestionProduit {
                        e.setDescription(res.getString(4));
                         e.setCategorie(res.getString(5));
                          e.setNumero(res.getString(6));
-                         e.setNomproprietere(res.getString(11));
+                         e.setNomproprietere(res.getString(16));
                          e.setDate1(res.getString(13));
                           table1.add(e);
                            //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 

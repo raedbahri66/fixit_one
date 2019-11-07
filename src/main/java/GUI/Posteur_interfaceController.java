@@ -673,7 +673,7 @@ public class Posteur_interfaceController implements Initializable {
         
         datelocal.setText(NOW_LOCAL_DATE().toString());
         String date=datelocal.getText();
-        String nomproprietere=p1.getNom();
+        String nomproprietere="";
         String etatvalidation="non_valider";
         Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation,idposteur,idjobeur,nomproprietere,date);
         GestionProduit gs = new  GestionProduit();
