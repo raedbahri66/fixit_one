@@ -278,18 +278,6 @@
                                                 <Image url="@../Image/bricolage-et-diy-quels-outils-avoir-chez-soi.jpg" />
                                              </image>
                                           </ImageView>
-                                          <TableView fx:id="table" layoutX="40.0" layoutY="160.0" onSort="#clickedtable" prefHeight="300.0" prefWidth="316.0">
-                                             <columns>
-                                                <TableColumn fx:id="table_nom" prefWidth="98.0" text="Produit" />
-                                                <TableColumn fx:id="table_id" minWidth="0.0" prefWidth="48.0" text="id" visible="false" />
-                                                <TableColumn fx:id="table_prix" prefWidth="88.0" text="Prix($)" />
-                                                <TableColumn fx:id="table_categorie" prefWidth="117.0" text="Categorie" />
-                                                <TableColumn fx:id="table_num" minWidth="0.0" prefWidth="76.0" text="num" visible="false" />
-                                                <TableColumn fx:id="table_description" minWidth="0.0" prefWidth="76.0" text="desc" visible="false" />
-                                                <TableColumn fx:id="table_proprietere" prefWidth="90.0" text="propri" visible="false" />
-                                                <TableColumn fx:id="table_date1" prefWidth="117.0" text="date" visible="false" />
-                                             </columns>
-                                          </TableView>
                                           <Label layoutX="14.0" layoutY="21.0" prefHeight="21.0" prefWidth="245.0" text="Produit a vendre:">
                                              <font>
                                                 <Font name="System Bold" size="22.0" />
