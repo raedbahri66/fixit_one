@@ -52,7 +52,7 @@
       <TextField fx:id="Label_tel" layoutX="288.0" layoutY="200.0" prefHeight="25.0" prefWidth="167.0" promptText="+216XXXXXXXX" />
       <TextArea fx:id="Label_description" layoutX="285.0" layoutY="249.0" prefHeight="89.0" prefWidth="215.0" />
       <Button fx:id="Btn_ajouter_service" layoutX="392.0" layoutY="348.0" mnemonicParsing="false" onAction="#Ajouter_offre_service" text="Enregistrer" />
-      <TextField fx:id="Label_heure" layoutX="288.0" layoutY="160.0" prefHeight="25.0" prefWidth="167.0" promptText="00H : 00 M : 00S" />
+      <TextField fx:id="Label_heure" layoutX="288.0" layoutY="160.0" prefHeight="25.0" prefWidth="167.0" promptText="Exemple : 00h" />
       <Label fx:id="Label_saisie_adresse" layoutX="500.0" layoutY="80.0" prefHeight="30.0" prefWidth="167.0" textFill="RED">
          <font>
             <Font name="Arial Bold" size="13.0" />
