@@ -1262,7 +1262,7 @@ public class Posteur_interfaceController implements Initializable {
                  tabledap.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
                  tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
                  tabletel.setCellValueFactory(new PropertyValueFactory<Echange,String>("id_jobeurfg"));
-                // tableechangesposteur.setItems(dataeesp);*/
+              
 
         Stage stage = new Stage();
         image_p_btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -1464,11 +1464,9 @@ public class Posteur_interfaceController implements Initializable {
 
     @FXML
     private void ajouterechangep(ActionEvent event) throws SQLException, IOException, ParseException, FacebookException {
-              // boolean test= true;
+             
                 String date8 = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
-                // LocalDate locald =dap.getValue();
-                // Date dates = Date.valueOf(locald);
-      
+              
        
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         java.util.Date date9 =  sdf.parse(date8);
@@ -1536,7 +1534,7 @@ public class Posteur_interfaceController implements Initializable {
     
     facebook.setOAuthAppId("", "");
   
-    String accessTokenString = "EAAjdVZBDPFWIBABL9sQjR1jtjkfASdW9Uv2Qa7UdfGAbH5nYL97gMH1RkQ9qGulkZBZBjoQC77oY5CY69dYzA7AvdSEv8y4cFa0h8RMr0NN1OqNlLLKQELIC3dZCD4ctx9FP3t2mhrGUqN4F8KQ6hOpoh8ixJL8Nr2ZAhQ2snGRv6LjobneYyQpYZAyPZAXF16jJEBrl8et4wZDZD";
+    String accessTokenString = "EAAjdVZBDPFWIBAFczvWfwdT6hY9iHMOREAFlP3L9PSYUzvExkhQglXZC3nL5jVgcifoRZArDgDpqM3BnoWZC9TGtRzyZCN7ApjQi3VedMeX2A5fa8ZCdLigMPhI8bKtfVCXIfO9MMCZAciIVGWr04Is90b0RZCoWZAIvSdDIswnRf0gZDZD";
     AccessToken at = new AccessToken(accessTokenString);
     facebook.setOAuthAccessToken(at);
         try{
