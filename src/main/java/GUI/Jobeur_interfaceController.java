@@ -801,6 +801,10 @@ public class Jobeur_interfaceController implements Initializable {
     @FXML
     private void bnt_payment(ActionEvent event) {
     }
+
+    @FXML
+    private void clickedtable(SortEvent event) {
+    }
     
     
 }
