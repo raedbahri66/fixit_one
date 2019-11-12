@@ -30,7 +30,7 @@ public class EchangeGestion implements Iechange{
     @Override
     public void ajouterEchange(Echange E) {
                 String req1="INSERT INTO echange "
-                    + "(`proposition_offerte`,`proposition_souhaitée` ,`description_echange`,`idjobeur_fg`,`idposteurfg`,`nomposteur`,`date`) "
+                    + "(`proposition_offerte`,`proposition_souhaitée` ,`description_echange`,`numphone`,`idposteurfg`,`nomposteur`,`date`) "
                     + "VALUES (?,?,?,?,?,?,?)";
             try{
                 PreparedStatement ste = c.prepareStatement(req1);
@@ -98,7 +98,7 @@ public class EchangeGestion implements Iechange{
       
       
       try {
-         String req2="select * from echange ";
+         String req2="select * from echange INNER JOIN posteur on echange.idposteurfg=posteur.id";
          PreparedStatement pstm = c.prepareStatement(req2);
         
           ResultSet res=  pstm.executeQuery();
@@ -109,8 +109,9 @@ public class EchangeGestion implements Iechange{
               e.setPropositionsouhaitée(res.getString(3));
                      e.setDescription_echange(res.getString(4));
                      e.setId_jobeurfg(res.getInt(5));
-                     e.setNom_posteur(res.getString(10));
+                     
                          e.setDate(res.getString(11));
+                         e.setNom_posteur(res.getString(15));
                        
                        
                           echanges.add(e);
@@ -131,7 +132,7 @@ public class EchangeGestion implements Iechange{
             List<Echange> tableechange= new ArrayList<>();
      try{
             
-        String req2="select * from echange Where proposition_souhaitée LIKE'"+ech+"'";
+        String req2="select * from echange INNER JOIN posteur on echange.idposteurfg=posteur.id Where proposition_souhaitée LIKE'"+ech+"'";
          PreparedStatement pstm = c.prepareStatement(req2);
       // pstm.setString(1,ech);
           ResultSet res=  pstm.executeQuery();
@@ -142,10 +143,11 @@ public class EchangeGestion implements Iechange{
                e.setPropositionofferte(res.getString(2));
               e.setPropositionsouhaitée(res.getString(3));
                      e.setDescription_echange(res.getString(4));
-                     e.setNom_posteur(res.getString(10));
+                     e.setNom_posteur(res.getString(15));
                          e.setDate(res.getString(11));
+                         e.setId_jobeurfg(res.getInt(5));
                           tableechange.add(e);
-                           //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
+                           //echas.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
           }                
    
       }   catch (SQLException ex) {

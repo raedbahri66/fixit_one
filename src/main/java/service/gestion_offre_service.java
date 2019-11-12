@@ -114,7 +114,7 @@ public class gestion_offre_service implements IOffre{
             List<Offre> offre = new ArrayList<>();    
      // Where idposteur_fg=2' 
       try {
-          String req="select * from offre_service Where cinj="+cin_jobeur;
+          String req="select * from offre_service INNER JOIN jobeur ON offre_service.cinj = jobeur.cin Where cinj="+cin_jobeur;
       
           PreparedStatement ste = c.prepareStatement(req);
           
