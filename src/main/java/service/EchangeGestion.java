@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import utils.ConnexionBD;
 
 /**
@@ -30,23 +31,21 @@ public class EchangeGestion implements Iechange{
     @Override
     public void ajouterEchange(Echange E) {
                 String req1="INSERT INTO echange "
-                    + "(`proposition_offerte`,`proposition_souhaitée` ,`description_echange`,`numphone`,`idposteurfg`,`nomposteur`,`date`) "
-                    + "VALUES (?,?,?,?,?,?,?)";
+                    + "(`propositionofferte`,`propositionsouhaitee` ,`description_echange`,`date`) "
+                    + "VALUES (?,?,?,?)";
             try{
                 PreparedStatement ste = c.prepareStatement(req1);
             
             ste.setString(1,E.getPropositionofferte());
             ste.setString(2,E.getPropositionsouhaitée());
             ste.setString(3,E.getDescription_echange());
-             ste.setInt(5, E.getId_posteurfg());
-             //ste.setString(5, E.getPrenom_posteur());
-            ste.setString(6, E.getNom_posteur());
-            ste.setString(7, E.getDate());
-            ste.setInt(4, E.getId_jobeurfg());
+         
+            ste.setString(4, E.getDate());
+           
        
               ste.executeUpdate();
             System.out.println("Ajout de l'echange ");
-                    // JOptionPane.showMessageDialog(null,"requete execute correctement"); 
+                    JOptionPane.showMessageDialog(null,"Ajout de l'echange"); 
             } catch (SQLException e) 
             {System.err.println(e);
   
@@ -98,20 +97,20 @@ public class EchangeGestion implements Iechange{
       
       
       try {
-         String req2="select * from echange INNER JOIN posteur on echange.idposteurfg=posteur.id";
+         String req2="select * from echange ";//INNER JOIN posteur on echange.idposteurfg=posteur.id
          PreparedStatement pstm = c.prepareStatement(req2);
         
           ResultSet res=  pstm.executeQuery();
           while (res.next()) { 
               Echange e = new Echange();
               e.setId(res.getString(1));
-               e.setPropositionofferte(res.getString(2));
-              e.setPropositionsouhaitée(res.getString(3));
-                     e.setDescription_echange(res.getString(4));
-                     e.setId_jobeurfg(res.getInt(5));
+               e.setPropositionofferte(res.getString(3));
+              e.setPropositionsouhaitée(res.getString(4));
+                     e.setDescription_echange(res.getString(5));
+                    // e.setId_jobeurfg(res.getInt(5));
                      
-                         e.setDate(res.getString(11));
-                         e.setNom_posteur(res.getString(15));
+                         e.setDate(res.getString(6));
+                        // e.setNom_posteur(res.getString(10));
                        
                        
                           echanges.add(e);
@@ -132,22 +131,22 @@ public class EchangeGestion implements Iechange{
             List<Echange> tableechange= new ArrayList<>();
      try{
             
-        String req2="select * from echange INNER JOIN posteur on echange.idposteurfg=posteur.id Where proposition_souhaitée LIKE'"+ech+"'";
+        String req2="select * from echange Where propositionsouhaitee LIKE'"+ech+"'";// INNER JOIN posteur on echange.idposteurfg=posteur.id
          PreparedStatement pstm = c.prepareStatement(req2);
       // pstm.setString(1,ech);
           ResultSet res=  pstm.executeQuery();
             //pstm.setString(1,ech);
           while (res.next()) { 
               Echange e = new Echange();
-              e.setId(res.getString(1));
-               e.setPropositionofferte(res.getString(2));
-              e.setPropositionsouhaitée(res.getString(3));
-                     e.setDescription_echange(res.getString(4));
-                     e.setNom_posteur(res.getString(15));
-                         e.setDate(res.getString(11));
-                         e.setId_jobeurfg(res.getInt(5));
+             e.setId(res.getString(1));
+               e.setPropositionofferte(res.getString(3));
+              e.setPropositionsouhaitée(res.getString(4));
+                     e.setDescription_echange(res.getString(5));
+                    // e.setId_jobeurfg(res.getInt(5));
+                     
+                         e.setDate(res.getString(6));
                           tableechange.add(e);
-                           //echas.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
+                         
           }                
    
       }   catch (SQLException ex) {
