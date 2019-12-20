@@ -614,7 +614,7 @@ public class Jobeur_interfaceController implements Initializable {
         prenomp_1.setText(p1.getPrenom());
         emailp_1.setText(p1.getEmail());
         telp_1.setText(Integer.toString(p1.getTel()));
-         datep_1.setText(p1.getDate_naissance().toString());
+        datep_1.setText(p1.getDate_naissance().toString());
         image_post.setImage(JobeurService.A1);
          System.out.println(JobeurService.A1);
         datep_1.setText(p1.getDate_naissance().toString());

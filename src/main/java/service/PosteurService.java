@@ -248,10 +248,9 @@ try {
     @Override
     public String login(int cin1,String password1)
     {
-        String req1="select * from Posteur where cin="+cin1 +" and password="+password1;   
-        String req2="select * from Jobeur where cin="+cin1 +" and password="+password1;
-        String req3="select * from admin where cin="+cin1 +" and password="+password1;   
-        
+        String req1="select * from user where username="+cin1 +" and password="+password1 +" and roles LIKE '%POSTEUR%'";   
+        String req2="select * from user where username="+cin1 +" and password="+password1+" and roles LIKE '%JOBEUR%'";
+        String req3="select * from user where username="+cin1 +" and password="+password1+" and roles LIKE '%ADMIN%'"; 
         String role = "fault";
         System.out.println(req1);
         try {
@@ -282,8 +281,8 @@ try {
     @Override
     public String BannirRaison(int cin1,String password1)
     {
-        String req1="select * from Posteur where cin="+cin1 +" and password="+password1;   
-        String req2="select * from Jobeur where cin="+cin1 +" and password="+password1;        
+        String req1="select * from user where username="+cin1 +" and password="+password1;   
+        String req2="select * from user where username="+cin1 +" and password="+password1;        
         String raison = "fault";
         try {
           ResultSet res=  ste.executeQuery(req1);
