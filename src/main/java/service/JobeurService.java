@@ -53,7 +53,7 @@ public class JobeurService implements IJobeur{
     
     @Override
     public void creerJobeur(Jobeur p, FileInputStream fis, File file) {
-         String req1 = "insert into jobeur (cin, nom, prenom, email, sexe, password, date_naissance, tel, role, job, address, etat, image_j) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+         String req1 = "insert into user (username, nom, prenom, email, sexe, password, date_naissance, tel, role, job, address, etat, image_j) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ste = c.prepareStatement(req1);
             ste.setInt(1, p.getCin());
@@ -100,7 +100,7 @@ public class JobeurService implements IJobeur{
     
     @Override
     public void creerJobeur(Jobeur p, FileInputStream fis, File file, FileInputStream fis1, File file1) {
-         String req1 = "insert into jobeur (cin, nom, prenom, email, sexe, password, date_naissance, tel, role, job, address, etat, image_j, cv) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+         String req1 = "insert into user (username, nom, prenom, email, sexe, password, date_naissance, tel, role, job, address, etat, image_j, cv) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ste = c.prepareStatement(req1);
             ste.setInt(1, p.getCin());
@@ -129,7 +129,7 @@ public class JobeurService implements IJobeur{
         }
     }
     public void creerJobeur(Jobeur p) {
-         String req1 = "insert into jobeur (cin, nom, prenom, email, sexe, password, date_naissance, tel, role, job, address, etat ) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+         String req1 = "insert into user (cin, nom, prenom, email, sexe, password, date_naissance, tel, role, job, address, etat ) values (?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ste = c.prepareStatement(req1);
             ste.setInt(1, p.getCin());
