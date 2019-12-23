@@ -55,7 +55,7 @@ public class PosteurService implements iPosteur{
 
     @Override
     public void creerPosteur(Posteur p,FileInputStream fis,File file) {
-            String req1 = "insert into posteur (cin, nom, prenom, email, sexe, password, date_naissance, tel, role, etat, image_p) values (?,?,?,?,?,?,?,?,?,?,?)";
+            String req1 = "insert into user (username, nom, prenom, email, sexe, password, date_naissance, tel, roles, etat, image_p) values (?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ste = c.prepareStatement(req1);
             ste.setInt(1, p.getCin());
@@ -66,7 +66,7 @@ public class PosteurService implements iPosteur{
             ste.setString(6, p.getPassword());
             ste.setDate(7, (Date) p.getDate_naissance());
             ste.setInt(8, p.getTel());
-            ste.setString(9, "Posteur");
+            ste.setString(9, "POSTEUR");
             ste.setString(10, "Active");
             ste.setBinaryStream(11, (InputStream)fis, (int)file.length());
             
@@ -82,7 +82,7 @@ public class PosteurService implements iPosteur{
     }
     @Override
     public void creerPosteur(Posteur p) {
-            String req1 = "insert into posteur (cin, nom, prenom, email, sexe, password, date_naissance, tel, role, etat) values (?,?,?,?,?,?,?,?,?,?)";
+            String req1 = "insert into user (username, nom, prenom, email, sexe, password, date_naissance, tel, roles, etat) values (?,?,?,?,?,?,?,?,?,?)";
         try {
            
             PreparedStatement ste = c.prepareStatement(req1);
@@ -111,8 +111,8 @@ public class PosteurService implements iPosteur{
     @Override
     public void modifierPosteur(Posteur p) {
 try {
-            String update = "UPDATE posteur SET  cin = ? , nom = ? , prenom = ? , email = ? ,sexe = ? ,"
-                    + "password = ? , date_naissance = ? , tel = ? WHERE cin = ? ";
+            String update = "UPDATE user SET  username = ? , nom = ? , prenom = ? , email = ? ,sexe = ? ,"
+                    + "password = ? , date_naissance = ? , tel = ? WHERE username = ? ";
             PreparedStatement st2 = c.prepareStatement(update);
             st2.setInt(1, p.getCin());
             st2.setString(2, p.getNom());
@@ -137,7 +137,7 @@ try {
     @Override
     public void BannirPosteur(Posteur p) {
 try {
-            String update = "UPDATE posteur SET  cin = ?, etat = ?, role= ? WHERE cin = ? ";
+            String update = "UPDATE user SET  username = ?, etat = ?, role= ? WHERE username = ? ";
             PreparedStatement st2 = c.prepareStatement(update);
             st2.setInt(1, p.getCin());
             st2.setString(2, "banned");
@@ -155,8 +155,8 @@ try {
     @Override
     public void supprimerPosteur(Posteur p) {
 try {
-            String req1="delete from Posteur where"
-                    + " cin=?";
+            String req1="delete from user where"
+                    + " username=?";
        
       PreparedStatement ps = c.prepareStatement(req1);
             ps.setInt(1, p.getCin());
@@ -172,15 +172,13 @@ try {
     public List<Posteur> afficherPosteur() {
         List<Posteur> posteurs = new ArrayList<>();
       Posteur p = null ;
-      String req2="select * from Posteur";
+      String req2="select * from user where roles LIKE '%POSTEUR%'";
       try {
-         
-         
           ResultSet res=  ste.executeQuery(req2);
           while (res.next()) { 
               p = new Posteur();
                       p.setId( res.getInt("id"));
-                      p.setCin(res.getInt("cin") );
+                      p.setCin(res.getInt("username") );
                       p.setNom(res.getString("nom"));
                       p.setPrenom(res.getString("prenom"));
                       p.setEmail(res.getString("email"));
@@ -188,7 +186,7 @@ try {
                       p.setPassword(res.getString("password"));
                       p.setDate_naissance(res.getDate("date_naissance"));
                       p.setTel(res.getInt("tel"));
-                      p.setRole(res.getString("role"));
+                      p.setRole(res.getString("roles"));
                       p.setEtat(res.getString("etat"));
  posteurs.add(p);
              
@@ -203,12 +201,12 @@ try {
     public Posteur getPosteurInfobyCin(int cin1) throws FileNotFoundException, SQLException, IOException
     {
         Posteur p = new Posteur();
-      String req2="select * from Posteur where cin="+cin1;   
+      String req2="select * from user where username="+cin1;   
       try {
           ResultSet res=  ste.executeQuery(req2);
           while (res.next()) { 
                       p.setId( res.getInt("id"));
-                      p.setCin(res.getInt("cin") );
+                      p.setCin(res.getInt("username") );
                       p.setNom(res.getString("nom"));
                       p.setPrenom(res.getString("prenom"));
                       p.setEmail(res.getString("email"));
@@ -216,7 +214,7 @@ try {
                       p.setPassword(res.getString("password"));
                       p.setDate_naissance(res.getDate("date_naissance"));
                       p.setTel(res.getInt("tel"));
-                      p.setRole(res.getString("role"));
+                      p.setRole(res.getString("roles"));
                       p.setEtat(res.getString("etat")); 
                       
                       System.out.println(res.getBytes("image_p"));
@@ -302,7 +300,7 @@ try {
     @Override
     public void modifierProfil(Posteur p, InputStream fis, File file ) {
         try {
-            String update = "UPDATE posteur SET  cin = ? , nom = ? , prenom = ? , email = ?, date_naissance = ? , tel = ?, image_p= ? WHERE cin = ? ";
+            String update = "UPDATE user SET  username = ? , nom = ? , prenom = ? , email = ?, date_naissance = ? , tel = ?, image_p= ? WHERE username = ? ";
             PreparedStatement st2 = c.prepareStatement(update);
             st2.setInt(1, p.getCin());
             st2.setString(2, p.getNom());
@@ -322,6 +320,29 @@ try {
         }
     
     }
+    
+    public void modifierProfil(Posteur p ) {
+        try {
+            String update = "UPDATE user SET  username = ? , nom = ? , prenom = ? , email = ?, date_naissance = ? , tel = ? WHERE username = ? ";
+            PreparedStatement st2 = c.prepareStatement(update);
+            st2.setInt(1, p.getCin());
+            st2.setString(2, p.getNom());
+            st2.setString(3, p.getPrenom());
+            st2.setString(4, p.getEmail());
+            st2.setDate(5, p.getDate_naissance());
+            st2.setInt(6, p.getTel());
+            st2.setInt(7, p.getCin());
+
+            st2.executeUpdate();
+            System.out.println("" + p.getCin() + " successfully modified!");
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            System.err.println("" + p.getCin() + " error modification!!");
+        }
+    
+    }
+    
     @Override
     public List<Posteur> afficherPosteurbynNom(String choix,String nom) throws SQLException {
         List<Posteur> posteurs = new ArrayList<>();
@@ -330,14 +351,14 @@ try {
       nom1="'"+nom+"%'";
      System.out.println(nom1);
 
-      String req1="select * from Posteur where "+choix+" LIKE "+nom1;
+      String req1="select * from user where roles LIKE '%POSTEUR%' and "+choix+" LIKE "+nom1;
       System.out.println(req1);
       ResultSet res=  ste.executeQuery(req1);
           //ResultSet res=  ste.executeQuery(req2);
           while (res.next()) { 
               p = new Posteur();
                       p.setId( res.getInt("id"));
-                      p.setCin(res.getInt("cin") );
+                      p.setCin(res.getInt("username") );
                       p.setNom(res.getString("nom"));
                       p.setPrenom(res.getString("prenom"));
                       p.setEmail(res.getString("email"));
@@ -345,7 +366,7 @@ try {
                       p.setPassword(res.getString("password"));
                       p.setDate_naissance(res.getDate("date_naissance"));
                       p.setTel(res.getInt("tel"));
-                      p.setRole(res.getString("role"));
+                      p.setRole(res.getString("roles"));
                       p.setEtat(res.getString("etat"));
  posteurs.add(p);
               System.out.println(posteurs);
@@ -359,14 +380,14 @@ try {
       Posteur p = null ;
       String nom1="";
       nom1="'"+nom+"%'";
-      String req1="select * from Posteur where etat LIKE "+nom1;
+      String req1="select * from user where roles LIKE '%POSTEUR%' and etat LIKE "+nom1;
       System.out.println(req1);
       ResultSet res=  ste.executeQuery(req1);
           //ResultSet res=  ste.executeQuery(req2);
           while (res.next()) { 
               p = new Posteur();
                       p.setId( res.getInt("id"));
-                      p.setCin(res.getInt("cin") );
+                      p.setCin(res.getInt("username") );
                       p.setNom(res.getString("nom"));
                       p.setPrenom(res.getString("prenom"));
                       p.setEmail(res.getString("email"));
@@ -374,7 +395,7 @@ try {
                       p.setPassword(res.getString("password"));
                       p.setDate_naissance(res.getDate("date_naissance"));
                       p.setTel(res.getInt("tel"));
-                      p.setRole(res.getString("role"));
+                      p.setRole(res.getString("roles"));
                       p.setEtat(res.getString("etat"));
  posteurs.add(p);
           }
@@ -384,8 +405,8 @@ try {
     @Override
     public String Emailget(int cin1) throws SQLException
     {
-        String req1="select * from Posteur where cin="+cin1;   
-        String req2="select * from jobeur where cin="+cin1 ;
+        String req1="select * from user where roles LIKE '%POSTEUR%' and username="+cin1;   
+        String req2="select * from user where roles LIKE '%JOBEUR%' and username="+cin1 ;
          
         
         String email = "fault";
@@ -408,8 +429,8 @@ try {
     @Override
     public String Passwordget(int cin1) throws SQLException
     {
-        String req1="select * from Posteur where cin="+cin1;   
-        String req2="select * from Jobeur where cin="+cin1 ;
+        String req1="select * from user where username="+cin1;   
+        String req2="select * from user where username="+cin1 ;
          
         
         String password = "fault";
@@ -431,7 +452,7 @@ try {
     }
     @Override
     public void creerPosteurByFb(Posteur p) {
-         String req1 = "insert into Posteur (cin, nom, prenom, email) values (?,?,?,?)";
+         String req1 = "insert into user (username, nom, prenom, email) values (?,?,?,?)";
         try {
             PreparedStatement ste = c.prepareStatement(req1);
             ste.setInt(1, p.getCin());

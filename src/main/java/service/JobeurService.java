@@ -222,7 +222,7 @@ public class JobeurService implements IJobeur{
     public void modifierJobeur(Jobeur p) {
         try {
             String update = "UPDATE user SET  username = ? , nom = ? , prenom = ? , email = ? ,sexe = ? ,"
-                    + "password = ? , date_naissance = ? , tel = ?,specialite=? ,address=? WHERE cin = ? ";
+                    + "password = ? , date_naissance = ? , tel = ?,specialite=? ,address=? WHERE username = ? ";
             PreparedStatement st2 = c.prepareStatement(update);
             st2.setInt(1, p.getCin());
             st2.setString(2, p.getNom());
@@ -298,7 +298,7 @@ public class JobeurService implements IJobeur{
     public List<Jobeur> afficherJobeur() {
         List<Jobeur> jobeurs = new ArrayList<>();
       Jobeur p = null ;
-      String req2="select * from username";
+      String req2="select * from username where roles LIKE '%JOBEUR%'";
       try {
          
          
@@ -332,7 +332,7 @@ public class JobeurService implements IJobeur{
     public List<Jobeur> afficherJobeurbyEtat(String nom) throws SQLException {
         List<Jobeur> jobeurs = new ArrayList<>();
       Jobeur p=null;
-      String req1="select * from user where etat LIKE '"+nom+"'";;
+      String req1="select * from user where roles LIKE '%JOBEUR%' and etat LIKE '"+nom+"'";;
       System.out.println(req1);
       ResultSet res=  ste.executeQuery(req1);
           //ResultSet res=  ste.executeQuery(req2);
@@ -360,7 +360,7 @@ public class JobeurService implements IJobeur{
       Jobeur p=null;
       ResultSet res;
         try {
-            String req1="select * from user where role LIKE '"+role+"'";;
+            String req1="select * from user where roles LIKE '"+role+"'";;
             res = ste.executeQuery(req1);
             while (res.next()) { 
               p = new Jobeur();
@@ -391,7 +391,7 @@ public class JobeurService implements IJobeur{
       Jobeur p=null;
       ResultSet res;
         try {
-            String req1="select * from user where address LIKE '"+address+"'";;
+            String req1="select * from user where roles LIKE '%JOBEUR%' and address LIKE '"+address+"'";;
             res = ste.executeQuery(req1);
             while (res.next()) { 
               p = new Jobeur();
@@ -425,7 +425,7 @@ public class JobeurService implements IJobeur{
       nom1="'"+nom+"%'";
      System.out.println(nom1);*/
 
-      String req1="select * from user where "+choix+" LIKE '"+nom+"'";
+      String req1="select * from user where roles LIKE '%JOBEUR%' and "+choix+" LIKE '"+nom+"'";
       System.out.println(req1);
       ResultSet res=  ste.executeQuery(req1);
           //ResultSet res=  ste.executeQuery(req2);
