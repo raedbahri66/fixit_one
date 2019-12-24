@@ -1260,8 +1260,8 @@ public class Posteur_interfaceController implements Initializable {
      tableposp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionsouhaitée"));
             tablepdp.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
                  tabledap.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
-                // tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
-                // tabletel.setCellValueFactory(new PropertyValueFactory<Echange,String>("id_jobeurfg"));
+                tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
+                tabletel.setCellValueFactory(new PropertyValueFactory<Echange,String>("id_jobeurfg"));
               
 
         Stage stage = new Stage();
@@ -1518,6 +1518,7 @@ public class Posteur_interfaceController implements Initializable {
           Posteur p1= new Posteur();
         p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
         int idposteur1=p1.getId();
+                //System.out.println(idposteur1);
         String nomposteur =p1.getNom();
         //String prenomposteur=p1.getPrenom();
           String nomo=pofp.getText();
