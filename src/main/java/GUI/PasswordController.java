@@ -17,7 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javax.mail.MessagingException;
+//import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 import service.ControleSaisie;
 import service.PosteurService;
@@ -41,9 +41,9 @@ public class PasswordController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
+//MessagingException,
     @FXML
-    private void Motdepasse_oublie(ActionEvent event) throws SQLException, MessagingException, InterruptedException {
+    private void Motdepasse_oublie(ActionEvent event) throws SQLException,  InterruptedException {
         PosteurService P= new PosteurService();
         int  cin1= Integer.parseInt(cin_v.getText());
         String email= P.Emailget(cin1);

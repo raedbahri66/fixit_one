@@ -6,17 +6,17 @@
 package API;
 
 import GUI.AcceuilController;
-import com.restfb.DefaultFacebookClient;
+/*import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.FacebookClient.AccessToken;
 import com.restfb.Parameter;
 import com.restfb.Version;
 import com.restfb.scope.FacebookPermissions;
 import com.restfb.scope.ScopeBuilder;
-import com.restfb.types.User;
+import com.restfb.types.User;*/
 import entites.Posteur;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.chrome.ChromeDriver;
 import service.ControleSaisie;
 import service.JobeurService;
 import service.PosteurService;
@@ -39,7 +39,7 @@ public class FB {
     String authUrl = "https://graph.facebook.com/oauth/authorize?type=user_agent&client_id="+appId+"&redirect_uri="+domain+"&scope=email";
     System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 
-    WebDriver driver = new ChromeDriver();
+   /* WebDriver driver = new ChromeDriver();
     driver.get(authUrl);
     String accessToken;
     String accessToken2="";
@@ -88,7 +88,7 @@ public class FB {
             }
             
         }
-    }
+    }*/
     
 }
 
