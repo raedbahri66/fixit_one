@@ -7,7 +7,6 @@ package GUI;
 
 import API.Mail;
 import API.SMS;
-import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import entites.Article;
 import entites.Commentaire;
 import entites.Jobeur;
@@ -494,10 +493,10 @@ public class Affiche_porfilejobeur_conciergerieController implements Initializab
           p.putVote(j);
              AfficheVOTE();}
       }}
-
+//,MessagingException
 
     @FXML
-    private void vote_dislike(ActionEvent event) throws SQLException, IOException,MessagingException {
+    private void vote_dislike(ActionEvent event) throws SQLException, IOException {
      
      Jobeur A=new Jobeur();
      A=Interface_choisir_jobeur_conciergerieController.jco;
@@ -522,7 +521,7 @@ public class Affiche_porfilejobeur_conciergerieController implements Initializab
           AfficheVOTE();
            
           String content = nomp+" "+prenomp+"n'aime pas votre profile";
-//          Mail.sendMail11(A.getEmail(),"Notifacation:", content);
+          Mail.sendMail11(A.getEmail(),"Notifacation:", content);
           ;}
             else
            v1.ajouterVotedislike(v);
@@ -535,7 +534,7 @@ public class Affiche_porfilejobeur_conciergerieController implements Initializab
           p.putVote(j);
          
           String content = nomp+" "+prenomp+"n'aime pas votre profile";
-//          Mail.sendMail11(A.getEmail(),"Notifacation:", content);
+          Mail.sendMail11(A.getEmail(),"Notifacation:", content);
                   
              }
     }

@@ -111,27 +111,27 @@
             <version>5.1.46</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.controlsfx/controlsfx -->
-        <dependency>
+       <!-- <dependency>
             <groupId>org.controlsfx</groupId>
             <artifactId>controlsfx</artifactId>
             <version>8.40.14</version>
-        </dependency>
+        </dependency>-->
         <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 
-<dependency>
+<!--<dependency>
                 <groupId>com.sun.mail</groupId>
                 <artifactId>javax.mail</artifactId>
                 <version>1.6.2</version>
-            </dependency>
+            </dependency>-->
             <!-- https://mvnrepository.com/artifact/com.restfb/restfb -->
-<dependency>
+<!--<dependency>
     <groupId>com.restfb</groupId>
     <artifactId>restfb</artifactId>
     <version>2.26.0</version>
-</dependency>
+</dependency>-->
 
 <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-<dependency>
+<!--<dependency>
     <groupId>org.seleniumhq.selenium</groupId>
     <artifactId>selenium-java</artifactId>
     <version>3.141.59</version>
@@ -145,7 +145,7 @@
   <groupId>com.stripe</groupId>
   <artifactId>stripe-java</artifactId>
   <version>14.3.0</version>
-</dependency>
+</dependency>-->
 
 <!-- https://mvnrepository.com/artifact/org.json/json -->
 <dependency>
@@ -154,11 +154,11 @@
     <version>20180813</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
-<dependency>
+<!--<dependency>
     <groupId>com.googlecode.json-simple</groupId>
     <artifactId>json-simple</artifactId>
     <version>1.1</version>
-</dependency>
+</dependency>-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
@@ -171,16 +171,16 @@
             <version>1.30.1</version>
             <type>jar</type>
         </dependency>
-                    <dependency>
-
+           <dependency>
             <groupId>org.facebook4j</groupId>
             <artifactId>facebook4j-core</artifactId>
             <version>[2.4,)</version>
-        </dependency>
-        <dependency>
+            </dependency>
+        <!--<dependency>
             <groupId>com.github.sarxos</groupId>
             <artifactId>webcam-capture</artifactId>
             <version>0.3.12</version>
-        </dependency>
+        </dependency>-->
+        
     </dependencies>
 </project>

@@ -5,8 +5,8 @@
  */
 package API;
 
-import com.github.sarxos.webcam.Webcam;
-import com.github.sarxos.webcam.WebcamResolution;
+//import com.github.sarxos.webcam.Webcam;
+//import com.github.sarxos.webcam.WebcamResolution;
 import java.io.File;
 import javax.imageio.ImageIO;
 
@@ -17,7 +17,7 @@ import javax.imageio.ImageIO;
 public class CAM {
     public static void Capture()
     {
-    try{
+   /* try{
         Webcam webcam = Webcam.getDefault();
        webcam.open();
        ImageIO.write(webcam.getDevice().getImage(),"png",new File("image1.png"));
@@ -27,6 +27,7 @@ public class CAM {
        {
            e.printStackTrace();
        }
+    */ 
     }
-    
+   
 }

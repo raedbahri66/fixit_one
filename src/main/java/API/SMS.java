@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package API;
-import com.twilio.Twilio;
+/*import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
-import com.twilio.type.PhoneNumber;
+import com.twilio.type.PhoneNumber;*/
 
 /**
  *
@@ -19,7 +19,7 @@ public class SMS {
     public static void sendSms(){
   // Find your Account Sid and Token at twilio.com/user/account
  
-
+/*
 
     Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
@@ -27,7 +27,7 @@ public class SMS {
         new PhoneNumber("+14847121334"), 
         "Vérifier Votre Application Fix-It ! Vous avez une Offre de Travail").create();
 
-    System.out.println(message.getSid());
+    System.out.println(message.getSid());*/
   }
 
     
