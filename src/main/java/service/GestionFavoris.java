@@ -103,24 +103,25 @@ public class GestionFavoris implements IFavoris{
     }
 
     @Override
-    public List<Favoris> afficherfavoris(int cin_posteur1) {
+    public List<Favoris> afficherfavoris(int id_posteur1) {
            List<Favoris> favoriss = new ArrayList<>();
            Favoris F = null ; 
      
       try {
-        String req="select * from favoris where cin_posteur="+cin_posteur1;
-        ResultSet res= ste.executeQuery(req);
+//        String req="select * from favoris INNER JOIN user where cin_posteur="+cin_posteur1;
+         String req1="select * from user INNER JOIN favoris where idjobeur_fg=user.id and idposteur_fg="+id_posteur1;
+        ResultSet res= ste.executeQuery(req1);
           while (res.next()) { 
                 F= new Favoris();
                 F.setId(res.getInt(1));
-                F.setCin_posteur(res.getInt(2));
-                F.setCin_jobeur(res.getInt(3));
-                F.setNomj(res.getString(4));
-                F.setPrenomj(res.getString(5));
-                F.setDatej(res.getString(6));
-                F.setTelej(res.getString(7));
-                F.setMailj(res.getString(8));
-                F.setSpecalite(res.getString(9));
+//                F.setCin_posteur(res.getInt(2));
+//                F.setCin_jobeur(res.getInt(3));
+                F.setNomj(res.getString(13));
+                F.setPrenomj(res.getString(19));
+                F.setDatej(res.getString(18));
+                F.setTelej(res.getString(15));
+                F.setMailj(res.getString(4));
+                F.setSpecalite(res.getString(17));
                 favoriss.add(F);  
           }
       } catch (SQLException ex) {
@@ -130,25 +131,25 @@ public class GestionFavoris implements IFavoris{
         
     }
     
-    public List<Favoris> recherchefavoris(int cin_posteur1,String nom) {
+    public List<Favoris> recherchefavoris(int id_posteur1,String nom) {
            List<Favoris> favoriss = new ArrayList<>();
            Favoris F = null ; 
      
       try {
-        String req="select * from favoris where cin_posteur="+cin_posteur1+" and like'"+nom+"'";
-        ResultSet res= ste.executeQuery(req);
+        String req1="select * from user INNER JOIN favoris where idjobeur_fg=user.id and idposteur_fg="+id_posteur1+" and nom like'"+nom+"'";
+        ResultSet res= ste.executeQuery(req1);
           while (res.next()) { 
                 F= new Favoris();
                 F.setId(res.getInt(1));
-                F.setCin_posteur(res.getInt(2));
-                F.setCin_jobeur(res.getInt(3));
-                F.setNomj(res.getString(4));
-                F.setPrenomj(res.getString(5));
-                F.setDatej(res.getString(6));
-                F.setTelej(res.getString(7));
-                F.setMailj(res.getString(8));
-                F.setSpecalite(res.getString(9));
-                favoriss.add(F);  
+//                F.setCin_posteur(res.getInt(2));
+//                F.setCin_jobeur(res.getInt(3));
+                F.setNomj(res.getString(13));
+                F.setPrenomj(res.getString(19));
+                F.setDatej(res.getString(18));
+                F.setTelej(res.getString(15));
+                F.setMailj(res.getString(4));
+                F.setSpecalite(res.getString(17));
+                favoriss.add(F);
           }
       } catch (SQLException ex) {
           System.out.println(ex.getMessage());
