@@ -30,7 +30,7 @@ public class EchangeGestion implements Iechange{
     @Override
     public void ajouterEchange(Echange E) {
                 String req1="INSERT INTO echange "
-                    + "(`proposition_offerte`,`proposition_souhaitée` ,`description_echange`,`idjobeur_fg`,`idposteurfg`,`nomposteur`,`date`) "
+                    + "(`proposition_offerte`,`proposition_souhaitée` ,`description_echange`,`numphone`,`idposteurfg`,`nomposteur`,`date`) "
                     + "VALUES (?,?,?,?,?,?,?)";
             try{
                 PreparedStatement ste = c.prepareStatement(req1);

@@ -11,7 +11,6 @@ import service.GestionProduit;
 import entites.Produit;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
 import com.stripe.exception.StripeException;
-import com.stripe.exception.StripeException;
 import entites.Echange;
 import entites.Favoris;
 import entites.Jobeur;
@@ -1443,9 +1442,9 @@ public class Posteur_interfaceController implements Initializable {
         if(!file_image_p.getText().isEmpty()){
         p.modifierProfil(p1,fis,file);
         file_image_p.setText(""); 
-        image_post.setImage(null);
+        //image_post.setImage(null);
         }
-        else {p.modifierPosteur(p1);}
+        else {p.modifierProfil(p1);}
         JOptionPane.showMessageDialog(null, "Account edited Successfull");
         nomp_1.setText(p1.getNom());
         nomp_11.setText(p1.getNom());
@@ -1530,7 +1529,7 @@ public class Posteur_interfaceController implements Initializable {
    Echange E = new Echange(nomo,nomf,description,date10,idposteur1,nomposteur,idjobeur);
   EchangeGestion es = new  EchangeGestion();
    es.ajouterEchange(E);
-   JOptionPane.showMessageDialog(null, "ajout avec succes ");
+   /*JOptionPane.showMessageDialog(null, "ajout avec succes ");
   facebook4j.Facebook facebook = new FacebookFactory().getInstance();
     
     facebook.setOAuthAppId("", "");
@@ -1544,7 +1543,7 @@ public class Posteur_interfaceController implements Initializable {
       
         }
         catch(FacebookException fex)
-        {System.out.println(fex);}
+        {System.out.println(fex);}*/
    pofp.setText("");
    posp.setText("");
    pdp.setText("");
