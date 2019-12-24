@@ -48,7 +48,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
-import org.controlsfx.control.textfield.TextFields;
+//import org.controlsfx.control.textfield.TextFields;
 import service.ControleSaisie;
 import service.JobeurService;
 import service.PosteurService;
@@ -479,7 +479,7 @@ public class JobeurgestionController implements Initializable{
             "Zriba"
 
         };
-        TextFields.bindAutoCompletion(filter_field1, possible_ville);
+//        TextFields.bindAutoCompletion(filter_field1, possible_ville);
 
         
             active_filter.setToggleGroup(group);
