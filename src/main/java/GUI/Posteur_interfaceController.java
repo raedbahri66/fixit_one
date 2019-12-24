@@ -670,12 +670,12 @@ public class Posteur_interfaceController implements Initializable {
         String num=numero.getText();
         String etatvente="non_vendu";
         int idjobeur = 0;
-        
+        int categ=2;
         datelocal.setText(NOW_LOCAL_DATE().toString());
-        String date=datelocal.getText();
+        String date="2019-12-24";
         String nomproprietere="";
         String etatvalidation="non_valider";
-        Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation,idposteur,idjobeur,nomproprietere,date);
+        Produit E = new Produit(nom,prix,desc,categ,num,etatvente,etatvalidation,idposteur,date);
         GestionProduit gs = new  GestionProduit();
         gs.ajouterProduit(E);
           JOptionPane.showMessageDialog(null, "Produit Ajouter avec succée");
@@ -702,12 +702,12 @@ public class Posteur_interfaceController implements Initializable {
         String num=numero.getText();
         String etatvente="non_vendu";
         int idjobeur = 0;
-        
+         int categ=2;
         datelocal.setText(NOW_LOCAL_DATE().toString());
-        String date=datelocal.getText();
+        String date="2019-12-24";
         String nomproprietere=p1.getNom();
         String etatvalidation="non_valider";
-        Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation,idposteur,idjobeur,nomproprietere,date);
+        Produit E = new Produit(nom,prix,desc,categ,num,etatvente,etatvalidation,idposteur,date);
         GestionProduit gs = new  GestionProduit();
         gs.ajouterProduitimage(E,fis2,file2);
           JOptionPane.showMessageDialog(null, "Produit Ajouter avec succée");
@@ -870,7 +870,8 @@ public class Posteur_interfaceController implements Initializable {
    String id=label_id.getText();
    String num=numero1.getText();
    String statut=label_statut.getText();
-   String categorie=categorie_produit2.getValue().toString();
+   //String categorie=categorie_produit2.getValue().toString();
+   int categorie=2;
    String etat=categorie_produit3.getValue().toString();
    Produit E = new Produit(id,nom,prix,description,categorie,num,etat,statut);
    GestionProduit gs = new  GestionProduit();
@@ -1057,7 +1058,7 @@ public class Posteur_interfaceController implements Initializable {
                 label_id.setText(E.getId());
                 prix2.setText(E.getPrix());
                 numero1.setText(E.getNumero());
-                categorie_produit2.setValue(E.getCategorie());
+                //categorie_produit2.setValue(E.getCategorie());
                 categorie_produit3.setValue(E.getEtatVente());
                 int id3=Integer.parseInt(E.getId());
                 GestionProduit GS = new GestionProduit();
