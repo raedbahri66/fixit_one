@@ -53,7 +53,6 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
-import org.apache.commons.logging.Log;
 
 
 import utils.ConnexionBD;
@@ -286,6 +285,7 @@ static String json = "";
         String line1 = null;
 
     // Making HTTP request
+    // Making HTTP request
     try {
         // defaultHttpClient
         DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -307,12 +307,11 @@ static String json = "";
         BufferedReader reader = new BufferedReader(new InputStreamReader(
                 is, "iso-8859-1"), 8);
         StringBuilder sb = new StringBuilder();
-                String line = null;
-
+        String line = null;
         while ((line = reader.readLine()) != null) {
             sb.append(line + "\n");
             line1=line;
-            System.out.println("raed s "+line);
+            System.out.println(line);
         }
         is.close();
         json = sb.toString();
@@ -328,6 +327,8 @@ static String json = "";
     }
 
     // return JSON String
+
+
     return line1;
 
 }
@@ -336,26 +337,26 @@ static String json = "";
     {
         
      
-        String json = getJSONFromUrl("http://localhost/fixitweb1/web/app_dev.php/login" + cin1 + "/" + password1);
+        String json = getJSONFromUrl("http://localhost/fixitweb1/web/app_dev.php/login/" + cin1 + "/" + password1);
         System.out.println("fff  "+json);
         String req1="select * from user where username="+cin1 +" and password="+password1 +" and roles LIKE '%POSTEUR%'";
         String req2="select * from user where username="+cin1 +" and password="+password1+" and roles LIKE '%JOBEUR%'";
         String req3="select * from user where username="+cin1 +" and password="+password1+" and roles LIKE '%ADMIN%'";
         String role = "fault";
-        System.out.println(req1);
-        try {
+        
+         try {
             ResultSet res=  ste.executeQuery(req1);
-            if (res.next()) {
+            if (res.next() || json.toLowerCase().contains("posteur")) {
                 role= "Posteur_interface";
                 if(res.getString("etat").equals("banned")) role="banned";
             }
             ResultSet res1=  ste.executeQuery(req2);
-            if (res1.next()) {
+            if (res1.next() || json.toLowerCase().contains("jobeur")) {
                 role= "Jobeur_interface";
                 if(res1.getString("etat").equals("banned")) role="banned";
             }
             ResultSet res2=  ste.executeQuery(req3);
-            if (res2.next()) {
+            if (res2.next() || json.toLowerCase().contains("admin")) {
                 role= "Admin_interface";
             }
             
