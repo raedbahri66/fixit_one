@@ -10,7 +10,7 @@ import API.Payment;
 import service.GestionProduit;
 import entites.Produit;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
-import com.stripe.exception.StripeException;
+//import com.stripe.exception.StripeException;
 import entites.Echange;
 import entites.Favoris;
 import entites.Jobeur;
@@ -63,9 +63,9 @@ import service.JobeurService;
 import service.PosteurService;
 import entites.Offre;
 import entites.annonce;
-import facebook4j.FacebookException;
+/*import facebook4j.FacebookException;
 import facebook4j.FacebookFactory;
-import facebook4j.auth.AccessToken;
+import facebook4j.auth.AccessToken;*/
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -768,10 +768,10 @@ public class Posteur_interfaceController implements Initializable {
     
     
     
-    
+    //throws StripeException
     public boolean controlepayment=true;
        @FXML
-    void bnt_payment(ActionEvent event) throws StripeException {
+    void bnt_payment(ActionEvent event)  {
        
      ControleSaisie C= new ControleSaisie();
         
@@ -1260,8 +1260,8 @@ public class Posteur_interfaceController implements Initializable {
      tableposp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionsouhaitée"));
             tablepdp.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
                  tabledap.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
-                tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
-                tabletel.setCellValueFactory(new PropertyValueFactory<Echange,String>("id_jobeurfg"));
+                 tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
+                 tabletel.setCellValueFactory(new PropertyValueFactory<Echange,String>("id_jobeurfg"));
               
 
         Stage stage = new Stage();
@@ -1461,9 +1461,9 @@ public class Posteur_interfaceController implements Initializable {
         }
         
     }
-
+//, FacebookException
     @FXML
-    private void ajouterechangep(ActionEvent event) throws SQLException, IOException, ParseException, FacebookException {
+    private void ajouterechangep(ActionEvent event) throws SQLException, IOException, ParseException {
              
                 String date8 = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
               
@@ -1518,7 +1518,6 @@ public class Posteur_interfaceController implements Initializable {
           Posteur p1= new Posteur();
         p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
         int idposteur1=p1.getId();
-                //System.out.println(idposteur1);
         String nomposteur =p1.getNom();
         //String prenomposteur=p1.getPrenom();
           String nomo=pofp.getText();
@@ -1571,7 +1570,7 @@ public class Posteur_interfaceController implements Initializable {
      tableposp.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionsouhaitée"));
             tablepdp.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
                  tabledap.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
-                // tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
+                 tablenpos.setCellValueFactory(new PropertyValueFactory<Echange,String>("nom_posteur"));
     }
       
     @FXML

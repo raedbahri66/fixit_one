@@ -42,7 +42,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javax.mail.MessagingException;
+//import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 import service.Articlegestion;
 import service.CommentaireService;
@@ -494,9 +494,9 @@ public class Affiche_porfilejobeurController implements Initializable {
              AfficheVOTE();}
       }}
 
-
+//,MessagingException
     @FXML
-    private void vote_dislike(ActionEvent event) throws SQLException, IOException,MessagingException {
+    private void vote_dislike(ActionEvent event) throws SQLException, IOException {
      
      Jobeur A=new Jobeur();
      A=Interface_choisir_jobeurController.j1;
