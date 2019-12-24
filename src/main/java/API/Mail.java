@@ -6,22 +6,22 @@
 package API;
 
 import java.util.Properties;
-import javax.mail.Message;
+/*import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage;*/
 
 
 /**
  *
  * @author lenovo
  */
-
+//throws MessagingException
 public class Mail {
-    public static void sendMail11(String to,String sujet,String contenu) throws MessagingException{
+    public static void sendMail11(String to,String sujet,String contenu) {
     
         
         String login = "fixitapplication@aol.com";
@@ -35,7 +35,7 @@ public class Mail {
         prop.put("mail.smtp.port", "587");
         prop.put("mail.smtp.auth", "true");
         prop.put("mail.smtp.ssl.trust", "smtp.aol.com");
-        
+       /* 
         Session session = Session.getInstance(prop,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
@@ -57,7 +57,7 @@ public class Mail {
         transport.sendMessage(msg, msg.getAllRecipients());
         transport.close();
     
-          
+          */
         
         
     }

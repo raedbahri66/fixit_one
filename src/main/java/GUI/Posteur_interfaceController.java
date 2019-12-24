@@ -10,7 +10,7 @@ import API.Payment;
 import service.GestionProduit;
 import entites.Produit;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
-import com.stripe.exception.StripeException;
+//import com.stripe.exception.StripeException;
 import entites.Echange;
 import entites.Favoris;
 import entites.Jobeur;
@@ -63,9 +63,9 @@ import service.JobeurService;
 import service.PosteurService;
 import entites.Offre;
 import entites.annonce;
-import facebook4j.FacebookException;
+/*import facebook4j.FacebookException;
 import facebook4j.FacebookFactory;
-import facebook4j.auth.AccessToken;
+import facebook4j.auth.AccessToken;*/
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -670,12 +670,12 @@ public class Posteur_interfaceController implements Initializable {
         String num=numero.getText();
         String etatvente="non_vendu";
         int idjobeur = 0;
-        
+        int categ=2;
         datelocal.setText(NOW_LOCAL_DATE().toString());
-        String date=datelocal.getText();
+        String date="2019-12-24";
         String nomproprietere="";
         String etatvalidation="non_valider";
-        Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation,idposteur,idjobeur,nomproprietere,date);
+        Produit E = new Produit(nom,prix,desc,categ,num,etatvente,etatvalidation,idposteur,date);
         GestionProduit gs = new  GestionProduit();
         gs.ajouterProduit(E);
           JOptionPane.showMessageDialog(null, "Produit Ajouter avec succée");
@@ -702,12 +702,12 @@ public class Posteur_interfaceController implements Initializable {
         String num=numero.getText();
         String etatvente="non_vendu";
         int idjobeur = 0;
-        
+         int categ=2;
         datelocal.setText(NOW_LOCAL_DATE().toString());
-        String date=datelocal.getText();
+        String date="2019-12-24";
         String nomproprietere=p1.getNom();
         String etatvalidation="non_valider";
-        Produit E = new Produit(nom,prix,desc,categorie,num,etatvente,etatvalidation,idposteur,idjobeur,nomproprietere,date);
+        Produit E = new Produit(nom,prix,desc,categ,num,etatvente,etatvalidation,idposteur,date);
         GestionProduit gs = new  GestionProduit();
         gs.ajouterProduitimage(E,fis2,file2);
           JOptionPane.showMessageDialog(null, "Produit Ajouter avec succée");
@@ -768,10 +768,10 @@ public class Posteur_interfaceController implements Initializable {
     
     
     
-    
+    //throws StripeException
     public boolean controlepayment=true;
        @FXML
-    void bnt_payment(ActionEvent event) throws StripeException {
+    void bnt_payment(ActionEvent event)  {
        
      ControleSaisie C= new ControleSaisie();
         
@@ -870,7 +870,8 @@ public class Posteur_interfaceController implements Initializable {
    String id=label_id.getText();
    String num=numero1.getText();
    String statut=label_statut.getText();
-   String categorie=categorie_produit2.getValue().toString();
+   //String categorie=categorie_produit2.getValue().toString();
+   int categorie=2;
    String etat=categorie_produit3.getValue().toString();
    Produit E = new Produit(id,nom,prix,description,categorie,num,etat,statut);
    GestionProduit gs = new  GestionProduit();
@@ -1057,7 +1058,7 @@ public class Posteur_interfaceController implements Initializable {
                 label_id.setText(E.getId());
                 prix2.setText(E.getPrix());
                 numero1.setText(E.getNumero());
-                categorie_produit2.setValue(E.getCategorie());
+                //categorie_produit2.setValue(E.getCategorie());
                 categorie_produit3.setValue(E.getEtatVente());
                 int id3=Integer.parseInt(E.getId());
                 GestionProduit GS = new GestionProduit();
@@ -1461,9 +1462,9 @@ public class Posteur_interfaceController implements Initializable {
         }
         
     }
-
+//, FacebookException
     @FXML
-    private void ajouterechangep(ActionEvent event) throws SQLException, IOException, ParseException, FacebookException {
+    private void ajouterechangep(ActionEvent event) throws SQLException, IOException, ParseException {
              
                 String date8 = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
               

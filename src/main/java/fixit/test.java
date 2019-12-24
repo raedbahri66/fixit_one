@@ -6,8 +6,7 @@
 package fixit;
 
 import API.Mail;
-import javax.mail.MessagingException;
-import javax.mail.MessagingException;
+//import javax.mail.MessagingException;
 
 /**
  *
@@ -16,9 +15,9 @@ import javax.mail.MessagingException;
 public class test 
         
 {
-    public static void main(String[] args) throws MessagingException {
+   /* public static void main(String[] args) throws MessagingException {
        // Mail.sendMail("noussair.hamrit@esprit.tn", "183JMT2782", "Savva", "labesssss hhhh");
-    }
+    }*/
     
     
 }

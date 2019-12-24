@@ -12,7 +12,7 @@ public class Produit {
     private String nom;
     private String prix ;
     private String description;
-    private String categorie;
+    private int categorie;
     private String numero;
     private String etatVente;
     private String etatValidation;
@@ -25,7 +25,7 @@ public class Produit {
     public Produit() {
     }
 
-    public Produit(String id, String nom, String prix, String description, String categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg, String nomproprietere, String date1) {
+    public Produit(String id, String nom, String prix, String description, int categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg, String nomproprietere, String date1) {
         this.id = id;
         this.nom = nom;
         this.prix = prix;
@@ -40,7 +40,7 @@ public class Produit {
         this.date1 = date1;
     }
 
-    public Produit(String nom, String prix, String description, String categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg, String nomproprietere, String date1) {
+    public Produit(String nom, String prix, String description, int categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg, String nomproprietere, String date1) {
         this.nom = nom;
         this.prix = prix;
         this.description = description;
@@ -54,7 +54,7 @@ public class Produit {
         this.date1 = date1;
     }
 
-    public Produit(String nom, String prix, String description, String categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg, String nomproprietere) {
+    public Produit(String nom, String prix, String description, int categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg, String nomproprietere) {
         this.nom = nom;
         this.prix = prix;
         this.description = description;
@@ -67,7 +67,7 @@ public class Produit {
         this.nomproprietere = nomproprietere;
     }
 
-    public Produit(String id, String nom, String prix, String description, String categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg) {
+    public Produit(String id, String nom, String prix, String description, int categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg) {
         this.id = id;
         this.nom = nom;
         this.prix = prix;
@@ -80,7 +80,7 @@ public class Produit {
         this.idJobeurfg = idJobeurfg;
     }
 
-    public Produit(String id, String nom, String prix, String description, String categorie, String numero) {
+    public Produit(String id, String nom, String prix, String description, int categorie, String numero) {
         this.id = id;
         this.nom = nom;
         this.prix = prix;
@@ -89,7 +89,7 @@ public class Produit {
         this.numero = numero;
     }
 
-    public Produit(String nom, String prix, String description, String categorie, String numero, String etatVente, String etatValidation) {
+    public Produit(String nom, String prix, String description, int categorie, String numero, String etatVente, String etatValidation) {
         this.nom = nom;
         this.prix = prix;
         this.description = description;
@@ -99,7 +99,7 @@ public class Produit {
         this.etatValidation = etatValidation;
     }
 
-    public Produit(String nom, String prix, String description, String categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg) {
+    public Produit(String nom, String prix, String description, int categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg) {
         this.nom = nom;
         this.prix = prix;
         this.description = description;
@@ -111,7 +111,7 @@ public class Produit {
         this.idJobeurfg = idJobeurfg;
     }
 
-    public Produit(String id, String nom, String prix, String description, String categorie, String numero, String etatVente, String etatValidation) {
+    public Produit(String id, String nom, String prix, String description, int categorie, String numero, String etatVente, String etatValidation) {
         this.id = id;
         this.nom = nom;
         this.prix = prix;
@@ -120,13 +120,25 @@ public class Produit {
         this.numero = numero;
         this.etatVente = etatVente;
         this.etatValidation = etatValidation;
+    }
+
+    public Produit(String nom, String prix, String description, int categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, String date1) {
+        this.nom = nom;
+        this.prix = prix;
+        this.description = description;
+        this.categorie = categorie;
+        this.numero = numero;
+        this.etatVente = etatVente;
+        this.etatValidation = etatValidation;
+        this.idPosteurfg = idPosteurfg;
+        this.date1 = date1;
     }
 
   
 
 
 
-    public Produit(String nom, String prix, String description, String categorie, String numero) {
+    public Produit(String nom, String prix, String description, int categorie, String numero) {
         this.nom = nom;
         this.prix = prix;
         this.description = description;
@@ -268,11 +280,11 @@ public class Produit {
         this.description = description;
     }
 
-    public String getCategorie() {
+    public int getCategorie() {
         return categorie;
     }
 
-    public void setCategorie(String categorie) {
+    public void setCategorie(int categorie) {
         this.categorie = categorie;
     }
 
