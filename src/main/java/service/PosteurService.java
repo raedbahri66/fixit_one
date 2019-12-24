@@ -10,14 +10,29 @@ package service;
 
 import entites.Jobeur;
 import entites.Posteur;
+import facebook4j.internal.org.json.JSONException;
+import facebook4j.internal.org.json.JSONObject;
 import iService.iPosteur;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -30,6 +45,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.image.Image;
 import javax.swing.JOptionPane;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.Reader;
+import java.net.URL;
+import java.nio.charset.Charset;
+import org.apache.commons.logging.Log;
+
+
 import utils.ConnexionBD;
 
 /**
@@ -243,36 +269,102 @@ try {
         return p; 
     }
     
+    
+    private static String readAll(Reader rd) throws IOException {
+    StringBuilder sb = new StringBuilder();
+    int cp;
+    while ((cp = rd.read()) != -1) {
+      sb.append((char) cp);
+    }
+    return sb.toString();
+  }
+
+  static InputStream is = null;
+static JSONObject jObj = null;
+static String json = "";
+  public String getJSONFromUrl(String url) {
+        String line1 = null;
+
+    // Making HTTP request
+    try {
+        // defaultHttpClient
+        DefaultHttpClient httpClient = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(url);
+
+        HttpResponse httpResponse = httpClient.execute(httpPost);
+        HttpEntity httpEntity = httpResponse.getEntity();
+        is = httpEntity.getContent();
+
+    } catch (UnsupportedEncodingException e) {
+        e.printStackTrace();
+    } catch (ClientProtocolException e) {
+        e.printStackTrace();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    try {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(
+                is, "iso-8859-1"), 8);
+        StringBuilder sb = new StringBuilder();
+                String line = null;
+
+        while ((line = reader.readLine()) != null) {
+            sb.append(line + "\n");
+            line1=line;
+            System.out.println("raed s "+line);
+        }
+        is.close();
+        json = sb.toString();
+
+    } catch (Exception e) {
+    }
+
+    // try parse the string to a JSON object
+    try {
+        jObj = new JSONObject(json);
+    } catch (JSONException e) {
+        System.out.println("error on parse data in jsonparser.java");
+    }
+
+    // return JSON String
+    return line1;
+
+}
     @Override
     public String login(int cin1,String password1)
     {
-        String req1="select * from user where username="+cin1 +" and password="+password1 +" and roles LIKE '%POSTEUR%'";   
+        
+     
+        String json = getJSONFromUrl("http://localhost/fixitweb1/web/app_dev.php/login" + cin1 + "/" + password1);
+        System.out.println("fff  "+json);
+        String req1="select * from user where username="+cin1 +" and password="+password1 +" and roles LIKE '%POSTEUR%'";
         String req2="select * from user where username="+cin1 +" and password="+password1+" and roles LIKE '%JOBEUR%'";
-        String req3="select * from user where username="+cin1 +" and password="+password1+" and roles LIKE '%ADMIN%'"; 
+        String req3="select * from user where username="+cin1 +" and password="+password1+" and roles LIKE '%ADMIN%'";
         String role = "fault";
         System.out.println(req1);
         try {
-          ResultSet res=  ste.executeQuery(req1);
-          if (res.next()) { 
-              role= "Posteur_interface";
-              if(res.getString("etat").equals("banned")) role="banned";
-              }   
-          ResultSet res1=  ste.executeQuery(req2);
-          if (res1.next()) { 
-              role= "Jobeur_interface";
-              if(res1.getString("etat").equals("banned")) role="banned";
-              }
-       ResultSet res2=  ste.executeQuery(req3);
-          if (res2.next()) { 
-              role= "Admin_interface";
-              }
-         
-              
-      } catch (SQLException ex) {
-          System.out.println(ex.getMessage());
-      } 
+            ResultSet res=  ste.executeQuery(req1);
+            if (res.next()) {
+                role= "Posteur_interface";
+                if(res.getString("etat").equals("banned")) role="banned";
+            }
+            ResultSet res1=  ste.executeQuery(req2);
+            if (res1.next()) {
+                role= "Jobeur_interface";
+                if(res1.getString("etat").equals("banned")) role="banned";
+            }
+            ResultSet res2=  ste.executeQuery(req3);
+            if (res2.next()) {
+                role= "Admin_interface";
+            }
+            
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
         System.out.println(role);
-       return role; 
+        return role; 
     }
 
     
