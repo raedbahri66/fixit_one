@@ -1442,9 +1442,9 @@ public class Posteur_interfaceController implements Initializable {
         if(!file_image_p.getText().isEmpty()){
         p.modifierProfil(p1,fis,file);
         file_image_p.setText(""); 
-        image_post.setImage(null);
+        //image_post.setImage(null);
         }
-        else {p.modifierPosteur(p1);}
+        else {p.modifierProfil(p1);}
         JOptionPane.showMessageDialog(null, "Account edited Successfull");
         nomp_1.setText(p1.getNom());
         nomp_11.setText(p1.getNom());

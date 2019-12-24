@@ -557,7 +557,7 @@ public class JobeurgestionController implements Initializable{
                     cinsupp_t.setText(Integer.toString(p0.getCin()));
                 }
                 
-                else if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 1){
+                else if (event.getButton().equals(MouseButton.MIDDLE) && event.getClickCount() == 1){
                     Jobeur p0 = new Jobeur();
                     p0=(Jobeur) table_post.getItems().get(table_post.getSelectionModel().getSelectedIndex());
                     int cin1=p0.getCin();

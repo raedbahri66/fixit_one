@@ -53,7 +53,7 @@ public class JobeurService implements IJobeur{
     
     @Override
     public void creerJobeur(Jobeur p, FileInputStream fis, File file) {
-         String req1 = "insert into jobeur (cin, nom, prenom, email, sexe, password, date_naissance, tel, role, job, address, etat, image_j) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+         String req1 = "insert into user (username, nom, prenom, email, sexe, password, date_naissance, tel, roles, specialite, address, etat, image_j) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ste = c.prepareStatement(req1);
             ste.setInt(1, p.getCin());
@@ -64,7 +64,7 @@ public class JobeurService implements IJobeur{
             ste.setString(6, p.getPassword());
             ste.setDate(7, (Date) p.getDate_naissance());
             ste.setInt(8, p.getTel());
-            ste.setString(9, "Jobeur");
+            ste.setString(9, "JOBEUR");
             ste.setString(10, p.getJob());
             ste.setString(11, p.getAddress());
             ste.setString(12, "Attente");
@@ -82,7 +82,7 @@ public class JobeurService implements IJobeur{
     
     @Override
     public void creerJobeurByFb(Jobeur p) {
-         String req1 = "insert into jobeur (cin, nom, prenom, email) values (?,?,?,?)";
+         String req1 = "insert into user (username, nom, prenom, email) values (?,?,?,?)";
         try {
             PreparedStatement ste = c.prepareStatement(req1);
             ste.setInt(1, p.getCin());
@@ -100,7 +100,7 @@ public class JobeurService implements IJobeur{
     
     @Override
     public void creerJobeur(Jobeur p, FileInputStream fis, File file, FileInputStream fis1, File file1) {
-         String req1 = "insert into jobeur (cin, nom, prenom, email, sexe, password, date_naissance, tel, role, job, address, etat, image_j, cv) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+         String req1 = "insert into user (username, nom, prenom, email, sexe, password, date_naissance, tel, roles, specialite, address, etat, image_j, cv) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ste = c.prepareStatement(req1);
             ste.setInt(1, p.getCin());
@@ -111,7 +111,7 @@ public class JobeurService implements IJobeur{
             ste.setString(6, p.getPassword());
             ste.setDate(7, (Date) p.getDate_naissance());
             ste.setInt(8, p.getTel());
-            ste.setString(9, "Jobeur");
+            ste.setString(9, "JOBEUR");
             ste.setString(10, p.getJob());
             ste.setString(11, p.getAddress());
             ste.setString(12, "Attente");
@@ -129,7 +129,7 @@ public class JobeurService implements IJobeur{
         }
     }
     public void creerJobeur(Jobeur p) {
-         String req1 = "insert into jobeur (cin, nom, prenom, email, sexe, password, date_naissance, tel, role, job, address, etat ) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+         String req1 = "insert into user (username, nom, prenom, email, sexe, password, date_naissance, tel, roles, specialite, address, etat ) values (?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ste = c.prepareStatement(req1);
             ste.setInt(1, p.getCin());
@@ -140,7 +140,7 @@ public class JobeurService implements IJobeur{
             ste.setString(6, p.getPassword());
             ste.setDate(7, (Date) p.getDate_naissance());
             ste.setInt(8, p.getTel());
-            ste.setString(9, "Jobeur");
+            ste.setString(9, "JOBEUR");
             ste.setString(10, p.getJob());
             ste.setString(11, p.getAddress());
             ste.setString(12, "Attente");
@@ -162,12 +162,12 @@ public class JobeurService implements IJobeur{
     public Jobeur getJobeurInfobyCin(int cin1) throws FileNotFoundException, SQLException, IOException
     {
         Jobeur p = new Jobeur();
-      String req2="select * from jobeur where cin="+cin1;   
+      String req2="select * from user where username="+cin1;   
       try {
           ResultSet res=  ste.executeQuery(req2);
           while (res.next()) { 
                       p.setId( res.getInt("id"));
-                      p.setCin(res.getInt("cin") );
+                      p.setCin(res.getInt("username") );
                       p.setNom(res.getString("nom"));
                       p.setPrenom(res.getString("prenom"));
                       p.setEmail(res.getString("email"));
@@ -175,9 +175,9 @@ public class JobeurService implements IJobeur{
                       p.setPassword(res.getString("password"));
                       p.setDate_naissance(res.getDate("date_naissance"));
                       p.setTel(res.getInt("tel"));
-                      p.setRole(res.getString("role"));
+                      p.setRole(res.getString("roles"));
                       p.setEtat(res.getString("etat")); 
-                      p.setJob(res.getString("job"));
+                      p.setJob(res.getString("specialite"));
                       p.setAddress(res.getString("address"));
                       
                       System.out.println(res.getBytes("image_j"));
@@ -221,8 +221,8 @@ public class JobeurService implements IJobeur{
     @Override
     public void modifierJobeur(Jobeur p) {
         try {
-            String update = "UPDATE jobeur SET  cin = ? , nom = ? , prenom = ? , email = ? ,sexe = ? ,"
-                    + "password = ? , date_naissance = ? , tel = ?,job=? ,address=? WHERE cin = ? ";
+            String update = "UPDATE user SET  username = ? , nom = ? , prenom = ? , email = ? ,sexe = ? ,"
+                    + "password = ? , date_naissance = ? , tel = ?,specialite=? ,address=? WHERE username = ? ";
             PreparedStatement st2 = c.prepareStatement(update);
             st2.setInt(1, p.getCin());
             st2.setString(2, p.getNom());
@@ -248,7 +248,7 @@ public class JobeurService implements IJobeur{
     @Override
     public void AccepterJobeur(Jobeur p) {
         try {
-            String update = "UPDATE jobeur SET  cin = ?, etat=? WHERE cin = ? ";
+            String update = "UPDATE user SET  username = ?, etat=? WHERE username = ? ";
             PreparedStatement st2 = c.prepareStatement(update);
             st2.setInt(1, p.getCin());
             st2.setString(2, "Accepte");
@@ -264,7 +264,7 @@ public class JobeurService implements IJobeur{
     @Override
     public void RefuserJobeur(Jobeur p) {
         try {
-            String update = "UPDATE jobeur SET  cin = ?, etat=? WHERE cin = ? ";
+            String update = "UPDATE user SET  username = ?, etat=? WHERE username = ? ";
             PreparedStatement st2 = c.prepareStatement(update);
             st2.setInt(1, p.getCin());
             st2.setString(2, "Refuse");
@@ -281,8 +281,8 @@ public class JobeurService implements IJobeur{
     @Override
     public void supprimerJobeur(Jobeur p) {
         try {
-            String req1="delete from jobeur where"
-                    + " cin=?";
+            String req1="delete from user where"
+                    + " username=?";
        
       PreparedStatement ps = c.prepareStatement(req1);
             ps.setInt(1, p.getCin());
@@ -298,7 +298,7 @@ public class JobeurService implements IJobeur{
     public List<Jobeur> afficherJobeur() {
         List<Jobeur> jobeurs = new ArrayList<>();
       Jobeur p = null ;
-      String req2="select * from jobeur";
+      String req2="select * from username where roles LIKE '%JOBEUR%'";
       try {
          
          
@@ -306,7 +306,7 @@ public class JobeurService implements IJobeur{
           while (res.next()) { 
               p = new Jobeur();
                       p.setId( res.getInt("id"));
-                      p.setCin(res.getInt("cin") );
+                      p.setCin(res.getInt("username") );
                       p.setNom(res.getString("nom"));
                       p.setPrenom(res.getString("prenom"));
                       p.setEmail(res.getString("email"));
@@ -314,10 +314,10 @@ public class JobeurService implements IJobeur{
                       p.setPassword(res.getString("password"));
                       p.setDate_naissance(res.getDate("date_naissance"));
                       p.setTel(res.getInt("tel"));
-                      p.setRole(res.getString("role"));
+                      p.setRole(res.getString("roles"));
                       p.setEtat(res.getString("etat"));
                       p.setAddress(res.getString("address"));
-                      p.setJob(res.getString("job"));
+                      p.setJob(res.getString("specialite"));
 
  jobeurs.add(p);
   }
@@ -332,14 +332,14 @@ public class JobeurService implements IJobeur{
     public List<Jobeur> afficherJobeurbyEtat(String nom) throws SQLException {
         List<Jobeur> jobeurs = new ArrayList<>();
       Jobeur p=null;
-      String req1="select * from jobeur where etat LIKE '"+nom+"'";;
+      String req1="select * from user where roles LIKE '%JOBEUR%' and etat LIKE '"+nom+"'";;
       System.out.println(req1);
       ResultSet res=  ste.executeQuery(req1);
           //ResultSet res=  ste.executeQuery(req2);
           while (res.next()) { 
               p = new Jobeur();
                       p.setId( res.getInt("id"));
-                      p.setCin(res.getInt("cin") );
+                      p.setCin(res.getInt("username") );
                       p.setNom(res.getString("nom"));
                       p.setPrenom(res.getString("prenom"));
                       p.setEmail(res.getString("email"));
@@ -347,10 +347,10 @@ public class JobeurService implements IJobeur{
                       p.setPassword(res.getString("password"));
                       p.setDate_naissance(res.getDate("date_naissance"));
                       p.setTel(res.getInt("tel"));
-                      p.setRole(res.getString("role"));
+                      p.setRole(res.getString("roles"));
                       p.setEtat(res.getString("etat"));
                       p.setAddress(res.getString("address"));
-                      p.setJob(res.getString("job"));
+                      p.setJob(res.getString("specialite"));
  jobeurs.add(p);
           }
      return jobeurs;
@@ -360,12 +360,12 @@ public class JobeurService implements IJobeur{
       Jobeur p=null;
       ResultSet res;
         try {
-            String req1="select * from jobeur where role LIKE '"+role+"'";;
+            String req1="select * from user where roles LIKE '"+role+"'";;
             res = ste.executeQuery(req1);
             while (res.next()) { 
               p = new Jobeur();
                       p.setId( res.getInt("id"));
-                      p.setCin(res.getInt("cin") );
+                      p.setCin(res.getInt("username") );
                       p.setNom(res.getString("nom"));
                       p.setPrenom(res.getString("prenom"));
                       p.setEmail(res.getString("email"));
@@ -373,10 +373,10 @@ public class JobeurService implements IJobeur{
                       p.setPassword(res.getString("password"));
                       p.setDate_naissance(res.getDate("date_naissance"));
                       p.setTel(res.getInt("tel"));
-                      p.setRole(res.getString("role"));
+                      p.setRole(res.getString("roles"));
                       p.setEtat(res.getString("etat"));
                       p.setAddress(res.getString("address"));
-                      p.setJob(res.getString("job"));
+                      p.setJob(res.getString("specialite"));
  jobeurs.add(p);
             }
         } catch (SQLException ex) {
@@ -391,12 +391,12 @@ public class JobeurService implements IJobeur{
       Jobeur p=null;
       ResultSet res;
         try {
-            String req1="select * from jobeur where address LIKE '"+address+"'";;
+            String req1="select * from user where roles LIKE '%JOBEUR%' and address LIKE '"+address+"'";;
             res = ste.executeQuery(req1);
             while (res.next()) { 
               p = new Jobeur();
                       p.setId( res.getInt("id"));
-                      p.setCin(res.getInt("cin") );
+                      p.setCin(res.getInt("username") );
                       p.setNom(res.getString("nom"));
                       p.setPrenom(res.getString("prenom"));
                       p.setEmail(res.getString("email"));
@@ -404,10 +404,10 @@ public class JobeurService implements IJobeur{
                       p.setPassword(res.getString("password"));
                       p.setDate_naissance(res.getDate("date_naissance"));
                       p.setTel(res.getInt("tel"));
-                      p.setRole(res.getString("role"));
+                      p.setRole(res.getString("roles"));
                       p.setEtat(res.getString("etat"));
                       p.setAddress(res.getString("address"));
-                      p.setJob(res.getString("job"));
+                      p.setJob(res.getString("specialite"));
  jobeurs.add(p);
             }
         } catch (SQLException ex) {
@@ -425,14 +425,14 @@ public class JobeurService implements IJobeur{
       nom1="'"+nom+"%'";
      System.out.println(nom1);*/
 
-      String req1="select * from jobeur where "+choix+" LIKE '"+nom+"'";
+      String req1="select * from user where roles LIKE '%JOBEUR%' and "+choix+" LIKE '"+nom+"'";
       System.out.println(req1);
       ResultSet res=  ste.executeQuery(req1);
           //ResultSet res=  ste.executeQuery(req2);
           while (res.next()) { 
               p = new Jobeur();
                      p.setId( res.getInt("id"));
-                      p.setCin(res.getInt("cin") );
+                      p.setCin(res.getInt("username") );
                       p.setNom(res.getString("nom"));
                       p.setPrenom(res.getString("prenom"));
                       p.setEmail(res.getString("email"));
@@ -440,10 +440,10 @@ public class JobeurService implements IJobeur{
                       p.setPassword(res.getString("password"));
                       p.setDate_naissance(res.getDate("date_naissance"));
                       p.setTel(res.getInt("tel"));
-                      p.setRole(res.getString("role"));
+                      p.setRole(res.getString("roles"));
                       p.setEtat(res.getString("etat"));
                       p.setAddress(res.getString("address"));
-                      p.setJob(res.getString("job"));
+                      p.setJob(res.getString("specialite"));
  jobeurs.add(p);
         
           }
@@ -453,7 +453,7 @@ public class JobeurService implements IJobeur{
     @Override
     public void BannirJobeur(Jobeur p) {
 try {
-            String update = "UPDATE jobeur SET  cin = ?, etat = ?, role= ? WHERE cin = ? ";
+            String update = "UPDATE user SET  username = ?, etat = ?, role= ? WHERE username = ? ";
             PreparedStatement st2 = c.prepareStatement(update);
             st2.setInt(1, p.getCin());
             st2.setString(2, "banned");
@@ -473,7 +473,7 @@ try {
     @Override
     public void modifierProfil(Jobeur p, InputStream fis, File file) {
          try {
-            String update = "UPDATE jobeur SET  cin = ? , nom = ? , prenom = ? , email = ?, date_naissance = ? , tel = ?, image_j= ? WHERE cin = ? ";
+            String update = "UPDATE user SET  username = ? , nom = ? , prenom = ? , email = ?, date_naissance = ? , tel = ?, image_j= ? WHERE username = ? ";
             PreparedStatement st2 = c.prepareStatement(update);
             st2.setInt(1, p.getCin());
             st2.setString(2, p.getNom());
@@ -495,7 +495,7 @@ try {
     @Override
     public void modifierProfil(Jobeur p, InputStream fis, File file,InputStream pdf, File pdff) {
          try {
-            String update = "UPDATE jobeur SET  cin = ? , nom = ? , prenom = ? , email = ?, date_naissance = ? , tel = ?, image_j= ?, cv=? WHERE cin = ? ";
+            String update = "UPDATE user SET  username = ? , nom = ? , prenom = ? , email = ?, date_naissance = ? , tel = ?, image_j= ?, cv=? WHERE username = ? ";
             PreparedStatement st2 = c.prepareStatement(update);
             st2.setInt(1, p.getCin());
             st2.setString(2, p.getNom());
@@ -519,7 +519,7 @@ try {
     @Override
     public void putVote(Jobeur j)  
     {  try {
-        String update ="UPDATE jobeur SET  `like` = ?, `dislike`= ? WHERE cin = ? ";
+        String update ="UPDATE user SET  `like` = ?, `dislike`= ? WHERE username = ? ";
             PreparedStatement st2 = c.prepareStatement(update);
             st2.setInt(1, j.getNb_like());
             st2.setInt(2, j.getNb_dislike());
@@ -535,7 +535,7 @@ try {
     public List<Jobeur> top5() throws SQLException {
         List<Jobeur> jobeurs = new ArrayList<>();
       Jobeur p = null ;
-      String req2="select * from jobeur order by `like` DESC limit 5";
+      String req2="select * from user order by `like` DESC limit 5";
      
          
          
@@ -543,7 +543,7 @@ try {
           while (res.next()) { 
               p = new Jobeur();
                       p.setId( res.getInt("id"));
-                      p.setCin(res.getInt("cin") );
+                      p.setCin(res.getInt("username"));
                       p.setNom(res.getString("nom"));
                       p.setPrenom(res.getString("prenom"));
                       p.setEmail(res.getString("email"));
@@ -551,10 +551,10 @@ try {
                       p.setPassword(res.getString("password"));
                       p.setDate_naissance(res.getDate("date_naissance"));
                       p.setTel(res.getInt("tel"));
-                      p.setRole(res.getString("role"));
+                      p.setRole(res.getString("roles"));
                       p.setEtat(res.getString("etat"));
                       p.setAddress(res.getString("address"));
-                      p.setJob(res.getString("job"));
+                      p.setJob(res.getString("specialite"));
                       p.setNb_like(res.getInt("like"));
 
  jobeurs.add(p);
