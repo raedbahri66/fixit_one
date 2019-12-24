@@ -5,14 +5,12 @@
  */
 package entites;
 
-import java.sql.Date;
-import service.PosteurService;
 /**
  *
- * @author asus
+ * @author Asus
  */
 public class Offre {
-    private String id;
+     private String id;
     private String adresse;
     private String Date_debut;
     private String heure;
@@ -20,11 +18,47 @@ public class Offre {
     private String tel;
     private String etatoffre;
     private String Specialite;
-    
-    private String Nomservice;
+
+    public Offre(String adresse, String Date_debut, String heure, String description_offre, String tel, String etatoffre, String Specialite) {
+        this.adresse = adresse;
+        this.Date_debut = Date_debut;
+        this.heure = heure;
+        this.description_offre = description_offre;
+        this.tel = tel;
+        this.etatoffre = etatoffre;
+        this.Specialite = Specialite;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
+    }
+
+    public String getDate_debut() {
+        return Date_debut;
+    }
+
+    public void setDate_debut(String Date_debut) {
+        this.Date_debut = Date_debut;
+    }
+
+    public String getHeure() {
+        return heure;
+    }
+
+    public void setHeure(String heure) {
+        this.heure = heure;
     }
 
     public String getDescription_offre() {
@@ -35,35 +69,20 @@ public class Offre {
         this.description_offre = description_offre;
     }
 
-    public void setDate_debut(String Date_debut) {
-        this.Date_debut = Date_debut;
+    public String getTel() {
+        return tel;
     }
 
     public void setTel(String tel) {
         this.tel = tel;
     }
 
-    public String getTel() {
-        return tel;
-    }
-    
-
-    public void setHeure(String heure) {
-        this.heure = heure;
+    public String getEtatoffre() {
+        return etatoffre;
     }
 
-    public String getHeure() {
-        return heure;
-    }
-
-    
-
-    public String getDate_debut() {
-        return Date_debut;
-    }
-
-    public String getAdresse() {
-        return adresse;
+    public void setEtatoffre(String etatoffre) {
+        this.etatoffre = etatoffre;
     }
 
     public String getSpecialite() {
@@ -74,66 +93,7 @@ public class Offre {
         this.Specialite = Specialite;
     }
 
-   
-
-   
-
-
-   
-    public Offre()
-            
-    {
-        super();
+    public Offre() {
     }
-    
-
-     public Offre(String adresse, String Date_debut , String heure ,String tel,String description_offre,String etatoffre,String Specialite) {
-        super();
-       this.adresse = adresse;
-       this.Date_debut = Date_debut;
-       this.heure = heure;
-       this.tel = tel;
-       this.description_offre = description_offre;
-       this.etatoffre=etatoffre;
-       this.Specialite=Specialite;
-       
-        
-    }
-
-    public void setEtatoffre(String etatoffre) {
-        this.etatoffre = etatoffre;
-    }
-
-  
-
-    public String getEtatoffre() {
-        return etatoffre;
-    }
-
-   
-
-    public String getNomservice() {
-        return Nomservice;
-    }
-
-    public void setNomservice(String Nomservice) {
-        this.Nomservice = Nomservice;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-   
-    
-    
-     
-     
-     
-    
     
 }
