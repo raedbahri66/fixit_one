@@ -49,7 +49,7 @@ public class GestionProduit {
             ste.setString(1,E.getNom());
             ste.setString(2,E.getPrix());
             ste.setString(3, E.getDescription());
-            ste.setString(4, E.getCategorie());
+            ste.setInt(4, E.getCategorie());
             ste.setString(5, E.getNumero());
             ste.setString(6, E.getEtatVente());
             ste.setString(7, E.getEtatValidation());
@@ -68,8 +68,8 @@ public class GestionProduit {
     }
      public void ajouterProduit(Produit E) {
         String req1="INSERT INTO `produit` "
-                    + "(`nomproduit`, `prix`,`description`, `categorie`, `num`, `etat_vente`, `etat_validation`, `idposteur_fg`, `idjobeur_fg`,`nom_proprietere`,`date_produit`) "
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                    + "(`nomproduit`, `prix`,`description`, `num`, `etat_vente`, `etat_validation`, `idposteur_fg`,`date_produit`,`idcategorie_fg`) "
+                    + "VALUES (?,?,?,?,?,?,?,?,?)";
             try{
                 PreparedStatement ste = c.prepareStatement(req1);
             
@@ -77,14 +77,12 @@ public class GestionProduit {
             ste.setString(1,E.getNom());
             ste.setString(2,E.getPrix());
             ste.setString(3, E.getDescription());
-            ste.setString(4, E.getCategorie());
-            ste.setString(5, E.getNumero());
-            ste.setString(6, E.getEtatVente());
-            ste.setString(7, E.getEtatValidation());
-            ste.setInt(8, E.getIdPosteurfg());
-            ste.setInt(9, E.getIdJobeurfg());
-            ste.setString(10, E.getNomproprietere());
-            ste.setString(11, E.getDate1());
+            ste.setInt(9, E.getCategorie());
+            ste.setString(4, E.getNumero());
+            ste.setString(5, E.getEtatVente());
+            ste.setString(6, E.getEtatValidation());
+            ste.setInt(7, E.getIdPosteurfg());
+            ste.setString(8, E.getDate1());
               ste.executeUpdate();
             System.out.println("Ajouter avec sucées ");
                     // JOptionPane.showMessageDialog(null,"requete execute correctement"); 
@@ -110,7 +108,7 @@ public class GestionProduit {
                      e.setPrix(res.getString(3));
                      e.setNom(res.getString(2));
                        e.setDescription(res.getString(4));
-                        e.setCategorie(res.getString(5));
+                        e.setCategorie(res.getInt(5));
                          e.setNumero(res.getString(6));
                          e.setNomproprietere(res.getString(16));
                          e.setDate1(res.getString(13));
@@ -138,7 +136,7 @@ public class GestionProduit {
                      e.setPrix(res.getString(3));
                      e.setNom(res.getString(2));
                        e.setDescription(res.getString(4));
-                        e.setCategorie(res.getString(5));
+                        e.setCategorie(res.getInt(5));
                          e.setNumero(res.getString(6));
                          e.setNomproprietere(res.getString(16));
                          e.setDate1(res.getString(13));
@@ -184,7 +182,7 @@ public class GestionProduit {
                      e.setPrix(res.getString(3));
                      e.setNom(res.getString(2));
                        e.setDescription(res.getString(4));
-                        e.setCategorie(res.getString(5));
+                        e.setCategorie(res.getInt(5));
                          e.setNumero(res.getString(6));
                           e.setEtatVente(res.getString(7));
                          e.setEtatValidation(res.getString(8));
@@ -215,7 +213,7 @@ public class GestionProduit {
                      e.setPrix(res.getString(3));
                      e.setNom(res.getString(2));
                        e.setDescription(res.getString(4));
-                        e.setCategorie(res.getString(5));
+                        e.setCategorie(res.getInt(5));
                          e.setNumero(res.getString(6));
                          e.setNomproprietere(res.getString(16));
                          e.setDate1(res.getString(13));
@@ -238,7 +236,7 @@ public class GestionProduit {
                      e.setPrix(res.getString(3));
                      e.setNom(res.getString(2));
                        e.setDescription(res.getString(4));
-                        e.setCategorie(res.getString(5));
+                        e.setCategorie(res.getInt(5));
                          e.setNumero(res.getString(6));
                          e.setNomproprietere(res.getString(16));
                          e.setDate1(res.getString(13));
@@ -269,7 +267,7 @@ public class GestionProduit {
                      e.setPrix(res.getString(3));
                      e.setNom(res.getString(2));
                        e.setDescription(res.getString(4));
-                        e.setCategorie(res.getString(5));
+                        e.setCategorie(res.getInt(5));
                          e.setNumero(res.getString(6));
                          e.setNomproprietere(res.getString(16));
                          e.setDate1(res.getString(13));
@@ -296,7 +294,7 @@ public class GestionProduit {
           ste.setString(1,E.getNom());
             ste.setString(3,E.getDescription());
             ste.setString(2,E.getPrix());
-              ste.setString(4,E.getCategorie());
+              ste.setInt(4,E.getCategorie());
               ste.setString(5,E.getNumero());
               ste.setString(6,E.getEtatVente());
              ste.executeUpdate();
@@ -317,7 +315,7 @@ public class GestionProduit {
           ste.setString(1,E.getNom());
             ste.setString(3,E.getDescription());
             ste.setString(2,E.getPrix());
-              ste.setString(4,E.getCategorie());
+              ste.setInt(4,E.getCategorie());
               ste.setString(5,E.getNumero());
               ste.setString(6,E.getEtatVente());
               ste.setBinaryStream(7, (InputStream)fis, (int)file.length());
