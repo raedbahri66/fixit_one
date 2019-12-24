@@ -7,6 +7,7 @@ package GUI;
 
 import API.Mail;
 import API.SMS;
+import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import entites.Article;
 import entites.Commentaire;
 import entites.Jobeur;
@@ -42,7 +43,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javax.mail.MessagingException;
+//import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 import service.Articlegestion;
 import service.CommentaireService;
@@ -521,7 +522,7 @@ public class Affiche_porfilejobeur_conciergerieController implements Initializab
           AfficheVOTE();
            
           String content = nomp+" "+prenomp+"n'aime pas votre profile";
-          Mail.sendMail11(A.getEmail(),"Notifacation:", content);
+//          Mail.sendMail11(A.getEmail(),"Notifacation:", content);
           ;}
             else
            v1.ajouterVotedislike(v);
@@ -534,7 +535,7 @@ public class Affiche_porfilejobeur_conciergerieController implements Initializab
           p.putVote(j);
          
           String content = nomp+" "+prenomp+"n'aime pas votre profile";
-          Mail.sendMail11(A.getEmail(),"Notifacation:", content);
+//          Mail.sendMail11(A.getEmail(),"Notifacation:", content);
                   
              }
     }
