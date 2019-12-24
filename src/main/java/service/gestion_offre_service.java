@@ -43,7 +43,7 @@ public class gestion_offre_service implements IOffre{
 
     public void creerOffre(Offre O) {
         
-       String req1 = "insert into offre_service (adress,date,heure,description_offre,tel,idposteur_fg,etat_offre,nomp_fg,prenomp_fg,nomservice_fg) values (?,?,?,?,?,?,?,?,?,?)";
+       String req1 = "insert into offre_service (adress,date,heure,description_offre,tel,etat_offre,Specialite) values (?,?,?,?,?,?,?,?)";
         String req2="SELECT MAX(id) AS max_id FROM `offre_service`";
         PreparedStatement ste1;
         try {
@@ -66,12 +66,9 @@ public class gestion_offre_service implements IOffre{
             ste.setString(2, O.getDate_debut());
             ste.setString(3, O.getHeure());
             ste.setString(5, O.getDescription_offre());
-            ste.setString(4, O.getTel());   
-            ste.setInt(6,O.getIposteurfg());
-            ste.setString(7, O.getEtatoffre());
-            ste.setString(8,O.getNomposteur());
-            ste.setString(9,O.getPrenomposteur());
-            ste.setString(10,O.getNomservice());
+            ste.setString(4, O.getTel());  
+            ste.setString(6, O.getEtatoffre());
+            ste.setString(7,O.getSpecialite());
             
             
 
@@ -127,8 +124,7 @@ public class gestion_offre_service implements IOffre{
                 a.setHeure(res.getString("heure"));
                 a.setDescription_offre(res.getString("description_offre"));
                 a.setTel(res.getString("tel"));
-                a.setNomposteur(res.getString("nomp_fg"));
-                a.setPrenomposteur(res.getString("prenomp_fg"));
+               
                 a.setId(res.getString("id"));
                 
               offre.add(a);

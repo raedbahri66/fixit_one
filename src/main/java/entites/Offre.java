@@ -19,9 +19,8 @@ public class Offre {
     private String description_offre;
     private String tel;
     private String etatoffre;
-    private int iposteurfg;
-    private String prenomposteur;
-    private String nomposteur;
+    private String Specialite;
+    
     private String Nomservice;
 
     public void setAdresse(String adresse) {
@@ -67,50 +66,37 @@ public class Offre {
         return adresse;
     }
 
-    public void setNomposteur(String nomposteur) {
-        this.nomposteur = nomposteur;
+    public String getSpecialite() {
+        return Specialite;
     }
 
-    public void setPrenomposteur(String prenomposteur) {
-        this.prenomposteur = prenomposteur;
+    public void setSpecialite(String Specialite) {
+        this.Specialite = Specialite;
     }
 
-    public String getNomposteur() {
-        return nomposteur;
-    }
+   
 
-    public String getPrenomposteur() {
-        return prenomposteur;
-    }
+   
+
+
+   
     public Offre()
             
     {
         super();
     }
     
-     public Offre(String adresse, String Date_debut , String heure ,String tel,String description_offre) {
+
+     public Offre(String adresse, String Date_debut , String heure ,String tel,String description_offre,String etatoffre,String Specialite) {
         super();
        this.adresse = adresse;
-      
-       this.Date_debut = Date_debut;
-       this.heure = heure;
-       this.tel = tel;
-        this.description_offre = description_offre;
-        
-    }
-     public Offre(String adresse, String Date_debut , String heure ,String tel,String description_offre,Integer iposteurfg,String etatoffre,String nomposteur,String prenomposteur,String Nomservice) {
-        super();
-       this.adresse = adresse;
-       
        this.Date_debut = Date_debut;
        this.heure = heure;
        this.tel = tel;
        this.description_offre = description_offre;
-       this.iposteurfg=iposteurfg;
        this.etatoffre=etatoffre;
-       this.nomposteur=nomposteur;
-       this.prenomposteur=prenomposteur;
-       this.Nomservice=Nomservice;
+       this.Specialite=Specialite;
+       
         
     }
 
@@ -118,18 +104,13 @@ public class Offre {
         this.etatoffre = etatoffre;
     }
 
-    public void setIposteurfg(int iposteurfg) {
-        this.iposteurfg = iposteurfg;
-    }
+  
 
     public String getEtatoffre() {
         return etatoffre;
     }
 
-    public int getIposteurfg() {
-        return iposteurfg;
-        
-    }
+   
 
     public String getNomservice() {
         return Nomservice;

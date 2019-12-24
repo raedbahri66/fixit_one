@@ -133,10 +133,10 @@ public class Interface_formulaire_posteur_serviceController implements Initializ
         String Description = Label_description.getText();
         String Tel = Label_tel.getText();
         String Heure =Label_heure.getText();
-        String Nomservice ="Electricité";
+        String Specialite ="Electricité";
        
          String date = LCD.toString();
-         Offre O = new Offre(adresse,date ,Heure ,Description,Tel,idposteur,etatoffre,nomposteur,prenomposteur,Nomservice);
+         Offre O = new Offre(adresse,date ,Heure ,Description,Tel,etatoffre,Specialite);
         gestion_offre_service g = new gestion_offre_service();
               g.creerOffre(O);
               JOptionPane.showMessageDialog(null, "votre details du service sont enregistré");

@@ -7,6 +7,7 @@ package fixit;
 
 import API.Mail;
 import javax.mail.MessagingException;
+import javax.mail.MessagingException;
 
 /**
  *
