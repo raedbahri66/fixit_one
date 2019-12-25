@@ -43,7 +43,7 @@ public class gestion_offre_service{
 
     public void creerOffre(Offre O) {
         
-       String req1 = "INSERT INTO `offre_service` (`adress`, `date`, `heure`, `description_offre`, `etat_offre`, `tel`, `Specialite`) VALUES (?,?,?,?,?,?,?)";
+       String req1 = "INSERT INTO `offre_service` (`adress`, `date`, `heure`, `description_offre`, `etat_offre`, `tel`, `Specialite`,`idposteur_fg`) VALUES (?,?,?,?,?,?,?,?)";
        String req2="SELECT MAX(id) AS max_id FROM `offre_service`";
       
       /*  PreparedStatement ste1;
@@ -70,6 +70,7 @@ public class gestion_offre_service{
             ste.setString(6, O.getEtatoffre());
             ste.setString(5, O.getTel()); 
             ste.setString(7, O.getSpecialite());
+            ste.setInt(8, O.getIdposteur());
             
             
 

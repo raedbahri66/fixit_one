@@ -93,7 +93,7 @@ public class Interface_formulaire_posteur_serviceController implements Initializ
         Posteur p1= new Posteur();
         p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
         
-        
+    
         int idposteur=p1.getId();
    
         String etatoffre="En-attente";
@@ -135,7 +135,7 @@ public class Interface_formulaire_posteur_serviceController implements Initializ
         String Specialite ="Electriciter";
        
          String date = LCD.toString();
-         Offre O = new Offre(adresse,date,Heure ,Description,etatoffre,Tel,Specialite);
+         Offre O = new Offre(adresse,date,Heure ,Description,etatoffre,Tel,Specialite,idposteur);
          gestion_offre_service g = new gestion_offre_service();
             try {
                 g.creerOffre(O);

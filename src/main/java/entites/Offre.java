@@ -18,6 +18,7 @@ public class Offre {
     private String tel;
     private String etatoffre;
     private String Specialite;
+    private int idposteur;
 
     public Offre(String adresse, String Date_debut, String heure, String description_offre, String tel, String etatoffre, String Specialite) {
         this.adresse = adresse;
@@ -94,6 +95,25 @@ public class Offre {
     }
 
     public Offre() {
+    }
+
+    public Offre(String adresse, String Date_debut, String heure, String description_offre, String tel, String etatoffre, String Specialite, int idposteur) {
+        this.adresse = adresse;
+        this.Date_debut = Date_debut;
+        this.heure = heure;
+        this.description_offre = description_offre;
+        this.tel = tel;
+        this.etatoffre = etatoffre;
+        this.Specialite = Specialite;
+        this.idposteur = idposteur;
+    }
+
+    public int getIdposteur() {
+        return idposteur;
+    }
+
+    public void setIdposteur(int idposteur) {
+        this.idposteur = idposteur;
     }
     
 }
