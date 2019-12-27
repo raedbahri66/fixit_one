@@ -5,27 +5,61 @@
  */
 package entites;
 
-import java.sql.Date;
-import service.PosteurService;
 /**
  *
- * @author asus
+ * @author Asus
  */
 public class Offre {
-    private String id;
+     private String id;
     private String adresse;
     private String Date_debut;
     private String heure;
     private String description_offre;
     private String tel;
     private String etatoffre;
-    private int iposteurfg;
-    private String prenomposteur;
-    private String nomposteur;
-    private String Nomservice;
+    private String Specialite;
+    private int idposteur;
+
+    public Offre(String adresse, String Date_debut, String heure, String description_offre, String tel, String etatoffre, String Specialite) {
+        this.adresse = adresse;
+        this.Date_debut = Date_debut;
+        this.heure = heure;
+        this.description_offre = description_offre;
+        this.tel = tel;
+        this.etatoffre = etatoffre;
+        this.Specialite = Specialite;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
+    }
+
+    public String getDate_debut() {
+        return Date_debut;
+    }
+
+    public void setDate_debut(String Date_debut) {
+        this.Date_debut = Date_debut;
+    }
+
+    public String getHeure() {
+        return heure;
+    }
+
+    public void setHeure(String heure) {
+        this.heure = heure;
     }
 
     public String getDescription_offre() {
@@ -36,123 +70,50 @@ public class Offre {
         this.description_offre = description_offre;
     }
 
-    public void setDate_debut(String Date_debut) {
-        this.Date_debut = Date_debut;
+    public String getTel() {
+        return tel;
     }
 
     public void setTel(String tel) {
         this.tel = tel;
     }
 
-    public String getTel() {
-        return tel;
-    }
-    
-
-    public void setHeure(String heure) {
-        this.heure = heure;
-    }
-
-    public String getHeure() {
-        return heure;
-    }
-
-    
-
-    public String getDate_debut() {
-        return Date_debut;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setNomposteur(String nomposteur) {
-        this.nomposteur = nomposteur;
-    }
-
-    public void setPrenomposteur(String prenomposteur) {
-        this.prenomposteur = prenomposteur;
-    }
-
-    public String getNomposteur() {
-        return nomposteur;
-    }
-
-    public String getPrenomposteur() {
-        return prenomposteur;
-    }
-    public Offre()
-            
-    {
-        super();
-    }
-    
-     public Offre(String adresse, String Date_debut , String heure ,String tel,String description_offre) {
-        super();
-       this.adresse = adresse;
-      
-       this.Date_debut = Date_debut;
-       this.heure = heure;
-       this.tel = tel;
-        this.description_offre = description_offre;
-        
-    }
-     public Offre(String adresse, String Date_debut , String heure ,String tel,String description_offre,Integer iposteurfg,String etatoffre,String nomposteur,String prenomposteur,String Nomservice) {
-        super();
-       this.adresse = adresse;
-       
-       this.Date_debut = Date_debut;
-       this.heure = heure;
-       this.tel = tel;
-       this.description_offre = description_offre;
-       this.iposteurfg=iposteurfg;
-       this.etatoffre=etatoffre;
-       this.nomposteur=nomposteur;
-       this.prenomposteur=prenomposteur;
-       this.Nomservice=Nomservice;
-        
+    public String getEtatoffre() {
+        return etatoffre;
     }
 
     public void setEtatoffre(String etatoffre) {
         this.etatoffre = etatoffre;
     }
 
-    public void setIposteurfg(int iposteurfg) {
-        this.iposteurfg = iposteurfg;
+    public String getSpecialite() {
+        return Specialite;
     }
 
-    public String getEtatoffre() {
-        return etatoffre;
+    public void setSpecialite(String Specialite) {
+        this.Specialite = Specialite;
     }
 
-    public int getIposteurfg() {
-        return iposteurfg;
-        
+    public Offre() {
     }
 
-    public String getNomservice() {
-        return Nomservice;
+    public Offre(String adresse, String Date_debut, String heure, String description_offre, String tel, String etatoffre, String Specialite, int idposteur) {
+        this.adresse = adresse;
+        this.Date_debut = Date_debut;
+        this.heure = heure;
+        this.description_offre = description_offre;
+        this.tel = tel;
+        this.etatoffre = etatoffre;
+        this.Specialite = Specialite;
+        this.idposteur = idposteur;
     }
 
-    public void setNomservice(String Nomservice) {
-        this.Nomservice = Nomservice;
+    public int getIdposteur() {
+        return idposteur;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdposteur(int idposteur) {
+        this.idposteur = idposteur;
     }
-
-    public String getId() {
-        return id;
-    }
-
-   
-    
-    
-     
-     
-     
-    
     
 }
