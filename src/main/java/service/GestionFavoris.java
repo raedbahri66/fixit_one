@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -34,22 +35,17 @@ public class GestionFavoris implements IFavoris{
         }
     }
 
+  
     @Override
     public void ajouterFavoris(Favoris A) {
         
     
       String req="INSERT INTO `favoris` "
-                    + "(`cin_posteur`,`cin_jobeur`,`nomj`, `prenomj`,`datej`,`telej`,`mailj`,`specalite`) "
-                    + "VALUES (?,?,?,?,?,?,?,?)";
+                    + "(`idjobeur_fg`,`idposteur_fg`) "
+                    + "VALUES (?,?)";
             try{ PreparedStatement ste = c.prepareStatement(req);
             ste.setInt(1,A.getCin_posteur());
             ste.setInt(2,A.getCin_jobeur());
-            ste.setString(3,A.getNomj());
-            ste.setString(4,A.getPrenomj());
-            ste.setString(5,A.getDatej());
-            ste.setString(6,A.getTelej());
-            ste.setString(7,A.getMailj());
-            ste.setString(8,A.getSpecalite());
             ste.executeUpdate();
             JOptionPane.showMessageDialog(null," jobuer ajouté à votre liste favoris "); 
 
@@ -61,7 +57,7 @@ public class GestionFavoris implements IFavoris{
     public void supprimerFavoris(Favoris A) {
            try {
             String req1="delete from favoris where"
-                    + " cin_jobeur=?";
+                    + " idjobeur_fg=?";
        
       PreparedStatement ps = c.prepareStatement(req1);
             ps.setInt(1,A.getCin_jobeur());
@@ -74,7 +70,7 @@ public class GestionFavoris implements IFavoris{
     
     
     }
-   
+
 
     @Override
     public List<Favoris> afficherfavoris() {

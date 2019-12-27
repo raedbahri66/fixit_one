@@ -36,25 +36,25 @@ public class Gestion_tableau_jobeur {
     public List<Jobeur> afficherJobeur_Electricien() {
         
                List<Jobeur> jobeur = new ArrayList<>();
-               String job ="Electricien";
+               String job ="Electriciter";
                 
             
      
       try {
-          String req="SELECT * FROM jobeur WHERE job=?";
+          String req="SELECT * FROM user WHERE specialite=?";
           PreparedStatement ste = c.prepareStatement(req);
           ste.setString(1,job);
           ResultSet res= ste.executeQuery();
           while (res.next()) { 
                Jobeur a = new Jobeur() ;
-                a.setCin(res.getInt("cin"));
+                a.setCin(res.getInt("username"));
                 a.setNom(res.getString("nom"));
                 a.setPrenom(res.getString("prenom"));
                 a.setEmail(res.getString("email"));
                 a.setSexe(res.getString("sexe"));
                 a.setDate_naissance(res.getDate("date_naissance"));
                 a.setTel(res.getInt("tel"));
-                a.setJob(res.getString("job"));
+                a.setJob(res.getString("specialite"));
                 
                 
               jobeur.add(a);

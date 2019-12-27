@@ -414,20 +414,35 @@ public class Affiche_porfilejobeurController implements Initializable {
     }
 
     private void favoris(ActionEvent event) {
-       Jobeur A=new Jobeur();
-       
-       GestionFavoris f1=new GestionFavoris();
-       A=Interface_choisir_jobeurController.j1;
-       int cin_posteur=AcceuilController.cinlogin;
-       int cin_jobeur=A.getCin();
-       String nomj=A.getNom();
-       String prenomJ=A.getPrenom();
-       String date=A.getDate_naissance().toLocalDate().toString();
-       String tele= String.valueOf(A.getTel());
-       String mail=A.getEmail(); 
-       String specalité=A.getJob();
-     Favoris F =new Favoris(cin_posteur,cin_jobeur,nomj,prenomJ,date,tele,mail,specalité);
-     f1.ajouterFavoris(F); 
+         try {
+             Jobeur A=new Jobeur();
+             
+             GestionFavoris f1=new GestionFavoris();
+             A=Interface_choisir_jobeurController.j1;
+             int cin_posteur=AcceuilController.cinlogin;
+             int cin_jobeur=A.getCin();
+             PosteurService p = new PosteurService();
+             Posteur pposteur= new Posteur();
+             Posteur pjobeur= new Posteur();
+             pposteur= p.getPosteurInfobyCin(AcceuilController.cinlogin);
+             pjobeur=p.getPosteurInfobyCin(cin_jobeur);
+            int idpo= pposteur.getTel();
+            int idj=pjobeur.getTel();
+             System.out.println("-------"+idpo);
+             System.out.println("*****"+idj);
+//       String nomj=A.getNom();
+//       String prenomJ=A.getPrenom();
+//       String date=A.getDate_naissance().toLocalDate().toString();
+//       String tele= String.valueOf(A.getTel());
+//       String mail=A.getEmail(); 
+//       String specalité=A.getJob();
+             Favoris F =new Favoris(idpo,idj);
+             f1.ajouterFavoris(F); 
+         } catch (SQLException ex) {
+             Logger.getLogger(Affiche_porfilejobeurController.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (IOException ex) {
+             Logger.getLogger(Affiche_porfilejobeurController.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
 
     @FXML
@@ -445,22 +460,36 @@ public class Affiche_porfilejobeurController implements Initializable {
 
     @FXML
     private void radio_favoris(ActionEvent event) {
-       Jobeur A=new Jobeur();
-       GestionFavoris f1=new GestionFavoris();
-       A=Interface_choisir_jobeurController.j1;
-       int cin_posteur=AcceuilController.cinlogin;
-       int cin_jobeur=A.getCin();
-       String nomj=A.getNom();
-       String prenomJ=A.getPrenom();
-       String date=A.getDate_naissance().toLocalDate().toString();
-       String tele= String.valueOf(A.getTel());
-       String mail=A.getEmail(); 
-       String specalité=A.getJob();
-     Favoris F =new Favoris(cin_posteur,cin_jobeur,nomj,prenomJ,date,tele,mail,specalité);
-     if(favoris_id.isSelected())
-     f1.ajouterFavoris(F); 
-     else
-     f1.supprimerFavoris(F);
+         try {
+             Jobeur A=new Jobeur();
+             GestionFavoris f1=new GestionFavoris();
+             A=Interface_choisir_jobeurController.j1;
+             int cin_jobeur=A.getCin();
+             PosteurService p = new PosteurService();
+             Posteur pposteur= new Posteur();
+             Posteur pjobeur= new Posteur();
+             pposteur= p.getPosteurInfobyCin(AcceuilController.cinlogin);
+             pjobeur=p.getPosteurInfobyCin(cin_jobeur);
+             int idpo= pposteur.getId();
+             int idj=pjobeur.getId();
+             System.out.println("-------"+idpo);
+             System.out.println("*****"+idj);
+             String nomj=A.getNom();
+             String prenomJ=A.getPrenom();
+             String date=A.getDate_naissance().toLocalDate().toString();
+             String tele= String.valueOf(A.getTel());
+             String mail=A.getEmail();
+             String specalité=A.getJob();
+             Favoris F =new Favoris(idpo,idj);
+             if(favoris_id.isSelected())
+                 f1.ajouterFavoris(F);
+             else
+                 f1.supprimerFavoris(F);
+         } catch (SQLException ex) {
+             Logger.getLogger(Affiche_porfilejobeurController.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (IOException ex) {
+             Logger.getLogger(Affiche_porfilejobeurController.class.getName()).log(Level.SEVERE, null, ex);
+         }
         
     }
 
