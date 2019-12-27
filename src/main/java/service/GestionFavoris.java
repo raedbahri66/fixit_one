@@ -74,6 +74,7 @@ public class GestionFavoris implements IFavoris{
     
     
     }
+   
 
     @Override
     public List<Favoris> afficherfavoris() {
