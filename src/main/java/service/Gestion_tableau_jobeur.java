@@ -97,64 +97,64 @@ public class Gestion_tableau_jobeur {
       }
     public List<Jobeur> afficherJobeur_Menage() {
         
-               List<Jobeur> jobeur = new ArrayList<>();
+                  List<Jobeur> jobeur = new ArrayList<>();
                String job ="Menage";
                 
             
      
       try {
-          String req="SELECT * FROM jobeur WHERE job=?";
+          String req="SELECT * FROM user WHERE specialite=?";
           PreparedStatement ste = c.prepareStatement(req);
           ste.setString(1,job);
           ResultSet res= ste.executeQuery();
           while (res.next()) { 
                Jobeur a = new Jobeur() ;
-                a.setCin(res.getInt("cin"));
+                a.setCin(res.getInt("username"));
                 a.setNom(res.getString("nom"));
                 a.setPrenom(res.getString("prenom"));
                 a.setEmail(res.getString("email"));
                 a.setSexe(res.getString("sexe"));
                 a.setDate_naissance(res.getDate("date_naissance"));
                 a.setTel(res.getInt("tel"));
-                a.setJob(res.getString("job"));
+                a.setJob(res.getString("specialite"));
                 
                 
               jobeur.add(a);
           }
       } catch (SQLException ex) {
           System.out.println(ex.getMessage());
-      } return jobeur;    
+      } return jobeur;  
      // TODO
     }
     public List<Jobeur> afficherJobeur_Plomberie() {
         
-               List<Jobeur> jobeur = new ArrayList<>();
+                List<Jobeur> jobeur = new ArrayList<>();
                String job ="Plombier";
                 
             
      
       try {
-          String req="SELECT * FROM jobeur WHERE job=?";
+          String req="SELECT * FROM user WHERE specialite=?";
           PreparedStatement ste = c.prepareStatement(req);
           ste.setString(1,job);
           ResultSet res= ste.executeQuery();
           while (res.next()) { 
                Jobeur a = new Jobeur() ;
-                a.setCin(res.getInt("cin"));
+                a.setCin(res.getInt("username"));
                 a.setNom(res.getString("nom"));
                 a.setPrenom(res.getString("prenom"));
                 a.setEmail(res.getString("email"));
                 a.setSexe(res.getString("sexe"));
                 a.setDate_naissance(res.getDate("date_naissance"));
                 a.setTel(res.getInt("tel"));
-                a.setJob(res.getString("job"));
+                a.setJob(res.getString("specialite"));
                 
                 
               jobeur.add(a);
           }
       } catch (SQLException ex) {
           System.out.println(ex.getMessage());
-      } return jobeur;    
+      } return jobeur;  
      // TODO
     }
     public List<Jobeur> afficherJobeur_Conciergerie() {
@@ -165,28 +165,27 @@ public class Gestion_tableau_jobeur {
             
      
       try {
-          String req="SELECT * FROM jobeur WHERE job=?";
+          String req="SELECT * FROM user WHERE specialite=?";
           PreparedStatement ste = c.prepareStatement(req);
           ste.setString(1,job);
           ResultSet res= ste.executeQuery();
           while (res.next()) { 
                Jobeur a = new Jobeur() ;
-                a.setCin(res.getInt("cin"));
+                a.setCin(res.getInt("username"));
                 a.setNom(res.getString("nom"));
                 a.setPrenom(res.getString("prenom"));
                 a.setEmail(res.getString("email"));
                 a.setSexe(res.getString("sexe"));
                 a.setDate_naissance(res.getDate("date_naissance"));
                 a.setTel(res.getInt("tel"));
-                a.setJob(res.getString("job"));
+                a.setJob(res.getString("specialite"));
                 
                 
               jobeur.add(a);
           }
       } catch (SQLException ex) {
           System.out.println(ex.getMessage());
-      } return jobeur;    
-     // TODO
+      } return jobeur;  
     }
     public List<Jobeur> afficherJobeur_Renovation() {
         
@@ -196,51 +195,51 @@ public class Gestion_tableau_jobeur {
             
      
       try {
-          String req="SELECT * FROM jobeur WHERE job=?";
+          String req="SELECT * FROM user WHERE specialite=?";
           PreparedStatement ste = c.prepareStatement(req);
           ste.setString(1,job);
           ResultSet res= ste.executeQuery();
           while (res.next()) { 
                Jobeur a = new Jobeur() ;
-                a.setCin(res.getInt("cin"));
+                a.setCin(res.getInt("username"));
                 a.setNom(res.getString("nom"));
                 a.setPrenom(res.getString("prenom"));
                 a.setEmail(res.getString("email"));
                 a.setSexe(res.getString("sexe"));
                 a.setDate_naissance(res.getDate("date_naissance"));
                 a.setTel(res.getInt("tel"));
-                a.setJob(res.getString("job"));
+                a.setJob(res.getString("specialite"));
                 
                 
               jobeur.add(a);
           }
       } catch (SQLException ex) {
           System.out.println(ex.getMessage());
-      } return jobeur;    
+      } return jobeur;     
      // TODO
     }
     public List<Jobeur> afficherJobeur_Jardinage() {
         
-               List<Jobeur> jobeur = new ArrayList<>();
+              List<Jobeur> jobeur = new ArrayList<>();
                String job ="Jardinage";
                 
             
      
       try {
-          String req="SELECT * FROM jobeur WHERE job=?";
+          String req="SELECT * FROM user WHERE specialite=?";
           PreparedStatement ste = c.prepareStatement(req);
           ste.setString(1,job);
           ResultSet res= ste.executeQuery();
           while (res.next()) { 
                Jobeur a = new Jobeur() ;
-                a.setCin(res.getInt("cin"));
+                a.setCin(res.getInt("username"));
                 a.setNom(res.getString("nom"));
                 a.setPrenom(res.getString("prenom"));
                 a.setEmail(res.getString("email"));
                 a.setSexe(res.getString("sexe"));
                 a.setDate_naissance(res.getDate("date_naissance"));
                 a.setTel(res.getInt("tel"));
-                a.setJob(res.getString("job"));
+                a.setJob(res.getString("specialite"));
                 
                 
               jobeur.add(a);
