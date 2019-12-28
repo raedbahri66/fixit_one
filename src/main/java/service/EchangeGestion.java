@@ -31,8 +31,8 @@ public class EchangeGestion implements Iechange{
     @Override
     public void ajouterEchange(Echange E) {
                 String req1="INSERT INTO echange "
-                    + "(`propositionofferte`,`propositionsouhaitee` ,`description_echange`,`date`,`idposteurfg`) "
-                    + "VALUES (?,?,?,?,?)";
+                    + "(`propositionofferte`,`propositionsouhaitee` ,`description_echange`,`date`,`idposteurfg`,`etat_validation`) "
+                    + "VALUES (?,?,?,?,?,?)";
             try{
                 PreparedStatement ste = c.prepareStatement(req1);
             
@@ -42,6 +42,7 @@ public class EchangeGestion implements Iechange{
          
             ste.setString(4, E.getDate());
              ste.setInt(5, E.getId_posteurfg());
+                ste.setString(6,E.getNom_posteur());
                 //System.out.println(E.getId_posteurfg());
            
        

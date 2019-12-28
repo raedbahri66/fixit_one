@@ -515,6 +515,7 @@ public class Posteur_interfaceController implements Initializable {
     @FXML
     private TextField recherche_favoris1;
     
+    
        @FXML
     void voirpdffrancais(ActionEvent event) {
  try
@@ -574,6 +575,7 @@ public class Posteur_interfaceController implements Initializable {
   
    public void favoris(){
     GestionFavoris gf = new GestionFavoris ();
+    
    ArrayList<Favoris> favroiss= (ArrayList<Favoris>) gf.afficherfavoris(AcceuilController.cinlogin);  
    ObservableList<Favoris> data = FXCollections.observableArrayList(favroiss);
        System.out.println(data);
@@ -1519,7 +1521,7 @@ public class Posteur_interfaceController implements Initializable {
           Posteur p1= new Posteur();
         p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
         int idposteur1=p1.getId();
-        String nomposteur =p1.getNom();
+        String nomposteur ="noncommand";
         //String prenomposteur=p1.getPrenom();
           String nomo=pofp.getText();
      String nomf=posp.getText();
