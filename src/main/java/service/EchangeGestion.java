@@ -110,10 +110,10 @@ public class EchangeGestion implements Iechange{
                e.setPropositionofferte(res.getString(3));
               e.setPropositionsouhaitée(res.getString(4));
                      e.setDescription_echange(res.getString(5));
-                    e.setId_jobeurfg(res.getInt(22));
+                    e.setId_jobeurfg(res.getInt(23));
                      
                          e.setDate(res.getString(6));
-                        e.setNom_posteur(res.getString(20));
+                        e.setNom_posteur(res.getString(21));
                        
                        
                           echanges.add(e);
@@ -148,8 +148,8 @@ public class EchangeGestion implements Iechange{
                     // e.setId_jobeurfg(res.getInt(5));
                      
                          e.setDate(res.getString(6));
-                          e.setId_jobeurfg(res.getInt(22));
-                            e.setNom_posteur(res.getString(20));
+                          e.setId_jobeurfg(res.getInt(23));
+                            e.setNom_posteur(res.getString(21));
                           tableechange.add(e);
                          
           }                
