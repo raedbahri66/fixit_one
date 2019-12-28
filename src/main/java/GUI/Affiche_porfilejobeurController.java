@@ -115,6 +115,7 @@ public class Affiche_porfilejobeurController implements Initializable {
      CommentaireService c1=new CommentaireService();
      ArrayList<Commentaire> commentaires= (ArrayList<Commentaire>) c1.afficherCommentaire();
      public  ObservableList<Commentaire>data = FXCollections.observableArrayList(commentaires); 
+    private Jobeur A;
     
    
     public void AfficheVOTE(){
@@ -130,20 +131,30 @@ public class Affiche_porfilejobeurController implements Initializable {
         label_flop.setText(String.valueOf(nbdislike));
     }
      
-       public boolean verfication(){
+       public boolean verfication() throws SQLException, IOException{
         String cin_p=cin_posteur.getText();
         int cin_p1 =Integer.parseInt(cin_p);
         int cinlog=AcceuilController.cinlogin;
-        if(cinlog==cin_p1){
+          Posteur a =new Posteur();
+           a=p.getPosteurInfobyid(cin_p1);
+           System.out.println("------------"+cinlog);
+           System.out.println("---------"+a.getCin());
+        if(cinlog==a.getCin()){
             return true;
           
         }
         return false;
         
     }
-     public void afficher(){
+     public void afficher() throws SQLException, IOException{
+         A=Interface_choisir_jobeurController.j1;
+             int cin_jobeur=A.getCin();
+             PosteurService p = new PosteurService();
+             Posteur pposteur= new Posteur();
+             pposteur= p.getPosteurInfobyCin(cin_jobeur);
+              int idpo= pposteur.getId();
      CommentaireService c1=new CommentaireService();
-     ArrayList<Commentaire> commentaires= (ArrayList<Commentaire>) c1.afficherCommentaire();
+     ArrayList<Commentaire> commentaires= (ArrayList<Commentaire>) c1.afficherCommentaire(idpo);
      ObservableList<Commentaire>data = FXCollections.observableArrayList(commentaires); 
      tab_comment.getItems().clear();
      tab_comment.setItems(data);
@@ -160,20 +171,25 @@ public class Affiche_porfilejobeurController implements Initializable {
      {
          @Override
          public void handle(MouseEvent event) {
-         Commentaire c = (Commentaire) tab_comment.getItems().get(tab_comment.getSelectionModel().getSelectedIndex());
-         id_com.setText( String.valueOf((c.getId())));
-         
-         cin_posteur.setText(String.valueOf(c.getId_posteur()));  
-         if(verfication()){
-           ajouter_comment.setVisible(false);
-            modifier_comment.setVisible (true);
-            supprimer_c.setVisible(true);
-           Commentaire.setText(c.getDescription());}
-           else{
-            ajouter_comment.setVisible(true);
-            modifier_comment.setVisible (false);
-            supprimer_c.setVisible(false);
-           }
+             try {
+                 Commentaire c = (Commentaire) tab_comment.getItems().get(tab_comment.getSelectionModel().getSelectedIndex());
+                 id_com.setText( String.valueOf((c.getId())));
+                 
+                 cin_posteur.setText(String.valueOf(c.getId_posteur()));
+                 if(verfication()){
+                     ajouter_comment.setVisible(false);
+                     modifier_comment.setVisible (true);
+                     supprimer_c.setVisible(true);
+                     Commentaire.setText(c.getDescription());}
+                 else{
+                     ajouter_comment.setVisible(true);
+                     modifier_comment.setVisible (false);
+                     supprimer_c.setVisible(false);
+                 } } catch (SQLException ex) {
+                 Logger.getLogger(Affiche_porfilejobeurController.class.getName()).log(Level.SEVERE, null, ex);
+             } catch (IOException ex) {
+                 Logger.getLogger(Affiche_porfilejobeurController.class.getName()).log(Level.SEVERE, null, ex);
+             }
         
          
                
@@ -192,6 +208,20 @@ public class Affiche_porfilejobeurController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             // TODO
+            GestionFavoris f1=new GestionFavoris();
+             A=Interface_choisir_jobeurController.j1;
+             int cin_jobeur=A.getCin();
+             PosteurService p = new PosteurService();
+             Posteur pposteur= new Posteur();
+             Posteur pjobeur= new Posteur();
+             pposteur= p.getPosteurInfobyCin(AcceuilController.cinlogin);
+             pjobeur=p.getPosteurInfobyCin(cin_jobeur);
+             int idpo= pposteur.getId();
+             int idj=pjobeur.getId();
+             if(f1.verificationfavoris(idpo, idj))
+            favoris_id.setSelected(true);
+             else
+            favoris_id.setSelected(false);
             top.setToggleGroup(vote);
             flop.setToggleGroup(vote);
             afficher();
@@ -300,7 +330,7 @@ public class Affiche_porfilejobeurController implements Initializable {
     }    
 
     @FXML
-    private void Ajouter_C(ActionEvent event) {
+    private void Ajouter_C(ActionEvent event) throws SQLException, IOException {
         if(Commentaire.getText().isEmpty()){
            Commentaire.setVisible(true);
             canAjout = false;
@@ -325,9 +355,15 @@ public class Affiche_porfilejobeurController implements Initializable {
         Jobeur A=new Jobeur();
         A=Interface_choisir_jobeurController.j1;
         int cin_j=A.getCin();
+        Posteur pposteur,pjobeur=new Posteur();
+        pposteur= p.getPosteurInfobyCin(AcceuilController.cinlogin);
+        pjobeur=p.getPosteurInfobyCin(cin_j);
         System.out.println("cinjobeur"+cin_j);
+        int idpo= pposteur.getId();
+        int idj=pjobeur.getId(); System.out.println("*******-"+idpo);
+        System.out.println("*******-"+idj);
         String commentaire=Commentaire.getText(); 
-        Commentaire c = new Commentaire(cin_j,cin_P,nom_P2,prenom_P,commentaire);
+        Commentaire c = new Commentaire(idj,idpo,commentaire);
         CommentaireService c1=new CommentaireService();
         c1.ajoutercCommentaire(c);
       }
@@ -335,7 +371,7 @@ public class Affiche_porfilejobeurController implements Initializable {
     }
 
     @FXML
-    private void Modifier_c(ActionEvent event) {
+    private void Modifier_c(ActionEvent event) throws SQLException, IOException {
     String id=id_com.getText();
     int id3=Integer.parseInt(id);
     String comment=Commentaire.getText();
@@ -364,36 +400,42 @@ public class Affiche_porfilejobeurController implements Initializable {
 
     @FXML
     private void Supprimer_C(ActionEvent event) {
-     String id=id_com.getText();
-    int id3=Integer.parseInt(id);
-    
-
-     Commentaire c = new Commentaire(id3);
-     CommentaireService c1=new CommentaireService();
-                    if(verfication()){
-
-      
-        try {
-             if(JOptionPane.showConfirmDialog(null,"attention vous avez supprimer votre commentaire,est ce que tu et sure?"
-                     ,"supprimer etudient",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
-             {
-             c1.supprimerCommentaire(c);
-             JOptionPane.showMessageDialog(null,"commentaire supprimé");
-             ajouter_comment.setVisible(true);
-            modifier_comment.setVisible (false);
-            supprimer_c.setVisible(false);
-             }
+         try {
+             String id=id_com.getText();
+             int id3=Integer.parseInt(id);
              
-            else { JOptionPane.showMessageDialog(null,"suppression annuler ");}
-        
-        }catch (Exception e){JOptionPane.showMessageDialog(null,"erreur de supprimer \n"+e.getMessage());}
-                    }
- else JOptionPane.showMessageDialog(null," attention choisissiez votre commenatire svp");
-    
-        afficher();
-        ajouter_comment.setVisible(true);
-        modifier_comment.setVisible (false);
-        supprimer_c.setVisible(false);
+             
+             Commentaire c = new Commentaire(id3);
+             CommentaireService c1=new CommentaireService();
+             if(verfication()){
+                 
+                 
+                 try {
+                     if(JOptionPane.showConfirmDialog(null,"attention vous avez supprimer votre commentaire,est ce que tu et sure?"
+                             ,"supprimer etudient",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
+                     {
+                         c1.supprimerCommentaire(c);
+                         JOptionPane.showMessageDialog(null,"commentaire supprimé");
+                         ajouter_comment.setVisible(true);
+                         modifier_comment.setVisible (false);
+                         supprimer_c.setVisible(false);
+                     }
+                     
+                     else { JOptionPane.showMessageDialog(null,"suppression annuler ");}
+                     
+                 }catch (Exception e){JOptionPane.showMessageDialog(null,"erreur de supprimer \n"+e.getMessage());}
+             }
+             else JOptionPane.showMessageDialog(null," attention choisissiez votre commenatire svp");
+             
+             afficher();
+             ajouter_comment.setVisible(true);
+             modifier_comment.setVisible (false);
+             supprimer_c.setVisible(false);
+         } catch (SQLException ex) {
+             Logger.getLogger(Affiche_porfilejobeurController.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (IOException ex) {
+             Logger.getLogger(Affiche_porfilejobeurController.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
 
     @FXML

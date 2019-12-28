@@ -44,14 +44,22 @@ public class GestionFavoris implements IFavoris{
                     + "(`idjobeur_fg`,`idposteur_fg`) "
                     + "VALUES (?,?)";
             try{ PreparedStatement ste = c.prepareStatement(req);
-            ste.setInt(1,A.getCin_posteur());
-            ste.setInt(2,A.getCin_jobeur());
+            ste.setInt(1,A.getCin_jobeur());
+            ste.setInt(2,A.getCin_posteur());
             ste.executeUpdate();
             JOptionPane.showMessageDialog(null," jobuer ajouté à votre liste favoris "); 
 
         } catch (SQLException e) {System.err.println(e);
     JOptionPane.showMessageDialog(null,"error ");
         }}
+     public boolean verificationfavoris(int cin_p,int cin_j) throws SQLException{
+         String req="select * from favoris where idposteur_fg="+cin_p+" and idjobeur_fg="+cin_j;
+         System.out.println("zzzzzzzzz"+req); 
+         ResultSet res=  ste.executeQuery(req);
+          if (res.next()) {
+           return true;
+          }  return false;
+     }
 
     @Override
     public void supprimerFavoris(Favoris A) {
@@ -154,4 +162,5 @@ public class GestionFavoris implements IFavoris{
      return favoriss;
         
     }
+    
 }

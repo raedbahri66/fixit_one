@@ -561,5 +561,49 @@ static String json = "";
         }
     }
     
+     public Posteur getPosteurInfobyid(int id) throws FileNotFoundException, SQLException, IOException
+    {
+        Posteur p = new Posteur();
+      String req2="select * from user where id="+id;   
+      try {
+          ResultSet res=  ste.executeQuery(req2);
+          while (res.next()) { 
+                      p.setId( res.getInt("id"));
+                      p.setCin(res.getInt("username") );
+                      p.setNom(res.getString("nom"));
+                      p.setPrenom(res.getString("prenom"));
+                      p.setEmail(res.getString("email"));
+                      p.setSexe(res.getString("sexe"));
+                      p.setPassword(res.getString("password"));
+                      p.setDate_naissance(res.getDate("date_naissance"));
+                      p.setTel(res.getInt("tel"));
+                      p.setRole(res.getString("roles"));
+                      p.setEtat(res.getString("etat")); 
+                      
+                      System.out.println(res.getBytes("image_p"));
+                      if(res.getBytes("image_p") != null)
+                      {
+                          InputStream is = res.getBinaryStream("image_p");
+                      OutputStream os = new FileOutputStream( new File("img.jpg"));
+                      byte[] content = new byte[2048];
+                      int size = 0;
+                     while((size = is.read(content)) != -1){
+                          os.write(content, 0, size);
+                      }
+                     Image image1=new Image("file:img.jpg");
+               A1=image1;
+               System.out.println(A1);
+                      
+                        }
+                      
+          }
+          
+               
+          
+      } catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+      } 
+        return p; 
+    }
     
 }
