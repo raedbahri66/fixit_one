@@ -45,6 +45,7 @@ import javax.swing.JOptionPane;
 import service.Articlegestion;
 import service.CommentaireService;
 import service.*;
+import static service.gestion_offre_service.id_offre;
 
 /**
  * FXML Controller class
@@ -428,14 +429,24 @@ public class Affiche_porfilejobeur_menageController implements Initializable {
     }
 
     @FXML
-    private void Demander_Service(ActionEvent event) {
-            Jobeur A=new Jobeur();
-            A=Interface_choisir_jobeur_menageController.jm;
-            String nom_j=A.getNom();
-            String prenom_j=A.getPrenom();
-            int cin_jobeur=A.getCin();
+    private void Demander_Service(ActionEvent event) throws SQLException, IOException {
+          Jobeur A=new Jobeur();
+             
+             GestionFavoris f1=new GestionFavoris();
+             A=Interface_choisir_jobeurController.j1;
+             int cin_posteur=AcceuilController.cinlogin;
+             int cin_jobeur=A.getCin();
+             PosteurService p = new PosteurService();
+             Posteur pposteur= new Posteur();
+             Posteur pjobeur= new Posteur();
+             pjobeur=p.getPosteurInfobyCin(cin_jobeur);
+            int idpo= pposteur.getTel();
+            int idj2=pjobeur.getId();
+            
+            System.out.println("aaaslemaaaaa"+idj2);
+            System.out.println("hetha id offre service"+id_offre);
             gestion_offre_service A1=new gestion_offre_service();
-            A1.insererNomjobeur(nom_j, prenom_j,cin_jobeur);
+            A1.insererNomjobeur(idj2);
             JOptionPane.showMessageDialog (null," Votre demande à été sauvegardée ");
             SMS.sendSms();       
     }

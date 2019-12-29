@@ -46,7 +46,7 @@ public class gestion_offre_service{
        String req1 = "INSERT INTO `offre_service` (`adress`, `date`, `heure`, `description_offre`, `etat_offre`, `tel`, `Specialite`,`idposteur_fg`) VALUES (?,?,?,?,?,?,?,?)";
        String req2="SELECT MAX(id) AS max_id FROM `offre_service`";
       
-      /*  PreparedStatement ste1;
+        PreparedStatement ste1;
        try {
             ste1 = c.prepareStatement(req2);
              //ste.setInt(1,id);
@@ -57,7 +57,7 @@ public class gestion_offre_service{
           }
         } catch (SQLException ex) {
             Logger.getLogger(gestion_offre_service.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
          
        try {
         
@@ -137,14 +137,13 @@ public class gestion_offre_service{
       } return offre; 
     }
     
-     public void insererNomjobeur(String nomj,String prenomj,Integer cin_jobeur) {
-        String req1 = "UPDATE `offre_service` SET `nomj_fg`=?,`prenomj_fg`=?,`cinj`=? WHERE id="+id_offre;
+     public void insererNomjobeur(Integer idj2) {
+        String req1 = "INSERT INTO `offre_service` (`idjobeur_fg`) VALUES (?) WHERE id="+id_offre;
         try {
             System.out.println(id_offre);
             PreparedStatement ste = c.prepareStatement(req1);
-            ste.setString(1, nomj);
-            ste.setString(2, prenomj);
-            ste.setInt(3, cin_jobeur);
+            ste.setInt(1, idj2);
+           
             
             
             
