@@ -95,6 +95,12 @@ public class Commentaire {
     public String toString() {
         return "Commentaire{" + "nomp=" + nomp + ", prenomp=" + prenomp + ", description=" + description + '}';
     }
+
+    public Commentaire(int id_jobeur, int id_posteur, String description) {
+        this.id_jobeur = id_jobeur;
+        this.id_posteur = id_posteur;
+        this.description = description;
+    }
     
    
 }

@@ -42,14 +42,14 @@ Connection c = ConnexionBD.getInstanceConnexionBD().getConnection();
     public void ajoutercCommentaire(Commentaire A) {
         
             String req1="INSERT INTO `commentaire` "
-                    + "(`idjobeur_fg`,`idposteur_fg`,`nomp_fg`, `prenomp_fg`,`description_com`) "
-                    + "VALUES (?,?,?,?,?)";
+                    + "(`idjobeur_fg`,`idposteur_fg`,`description_com`) "
+                    + "VALUES (?,?,?)";
             try{ PreparedStatement ste = c.prepareStatement(req1);
             ste.setInt(1,A.getId_jobeur());
             ste.setInt(2,A.getId_posteur());
-            ste.setString(3,A.getNomp());
-            ste.setString(4,A.getPrenomp());
-            ste.setString(5,A.getDescription());
+//            ste.setString(3,A.getNomp());
+//            ste.setString(4,A.getPrenomp());
+            ste.setString(3,A.getDescription());
             ste.executeUpdate();
             JOptionPane.showMessageDialog(null," commentair ajouté "); 
 
@@ -109,6 +109,30 @@ Connection c = ConnexionBD.getInstanceConnexionBD().getConnection();
                 a.setNomp(res.getString("nomp_fg"));
                 a.setPrenomp(res.getString("prenomp_fg"));
                 a.setDescription(res.getString("description_com"));
+ commentaires.add(a);  
+          }
+      } catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+      }    
+     return commentaires;
+    
+    }
+     public List<Commentaire> afficherCommentaire(int id_posteur1) {
+    List<Commentaire> commentaires = new ArrayList<>();
+           Commentaire a = null ; 
+     
+      try {
+        String req=" select * from commentaire INNER JOIN user where  user.id="
+                + "(select idposteur_fg from commentaire INNER JOIN user where user.id="+id_posteur1+")";
+        ResultSet res= ste.executeQuery(req);
+          while (res.next()) { 
+                a= new Commentaire();
+                a.setId(res.getInt("id"));
+                a.setId_jobeur(res.getInt("idjobeur_fg"));
+                a.setId_posteur(res.getInt("idposteur_fg"));
+                a.setNomp(res.getString(19));
+                a.setPrenomp(res.getString(25));
+                a.setDescription(res.getString(6));
  commentaires.add(a);  
           }
       } catch (SQLException ex) {

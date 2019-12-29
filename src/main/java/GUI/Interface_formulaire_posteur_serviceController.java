@@ -93,11 +93,10 @@ public class Interface_formulaire_posteur_serviceController implements Initializ
         Posteur p1= new Posteur();
         p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
         
-        
+    
         int idposteur=p1.getId();
-        String nomposteur=p1.getNom();
-        String prenomposteur=p1.getPrenom();
-        String etatoffre="en-attente";
+   
+        String etatoffre="En-attente";
         String date8 = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
          LocalDate LCD =Label_date.getValue();
          Date datess = Date.valueOf(LCD);
@@ -133,12 +132,17 @@ public class Interface_formulaire_posteur_serviceController implements Initializ
         String Description = Label_description.getText();
         String Tel = Label_tel.getText();
         String Heure =Label_heure.getText();
-        String Nomservice ="Electricité";
+        String Specialite ="Electriciter";
        
          String date = LCD.toString();
-         Offre O = new Offre(adresse,date ,Heure ,Description,Tel,idposteur,etatoffre,nomposteur,prenomposteur,Nomservice);
-        gestion_offre_service g = new gestion_offre_service();
-              g.creerOffre(O);
+         Offre O = new Offre(adresse,date,Heure ,Description,etatoffre,Tel,Specialite,idposteur);
+         gestion_offre_service g = new gestion_offre_service();
+            try {
+                g.creerOffre(O);
+            } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "offre non insérer");
+            }
+              
               JOptionPane.showMessageDialog(null, "votre details du service sont enregistré");
                Parent root=FXMLLoader.load(getClass().getResource("/fxml/Interface_choisir_jobeur.fxml"));
         Scene scene = new Scene(root);

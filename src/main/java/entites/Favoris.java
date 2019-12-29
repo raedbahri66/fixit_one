@@ -34,6 +34,11 @@ public class Favoris {
         this.id = id;
     }
 
+    public Favoris(int cin_posteur, int cin_jobeur) {
+        this.cin_posteur = cin_posteur;
+        this.cin_jobeur = cin_jobeur;
+    }
+
  
 
     public Favoris(int cin_posteur,int cin_jobeur, String nomj, String prenomj, String datej, String telej, String mailj, String specalite) {

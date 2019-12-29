@@ -97,10 +97,10 @@ public class GestionProduit {
     List<Produit> echanges= new ArrayList<>();
     //Echange e = null;
       try {
-          String etat="non_vendu";
-         String req2="select * from produit INNER JOIN posteur ON produit.idposteur_fg = posteur.id where etat_vente=?";
+          //String etat="non_vendu";
+         String req2="select * from produit INNER JOIN user ON produit.idposteur_fg = user.id";
          PreparedStatement pstm = c.prepareStatement(req2);
-         pstm.setString(1,etat);
+         //pstm.setString(1,etat);
           ResultSet res=  pstm.executeQuery();
           while (res.next()) { 
               Produit e = new Produit();
@@ -108,10 +108,10 @@ public class GestionProduit {
                      e.setPrix(res.getString(3));
                      e.setNom(res.getString(2));
                        e.setDescription(res.getString(4));
-                        e.setCategorie(res.getInt(5));
-                         e.setNumero(res.getString(6));
-                         e.setNomproprietere(res.getString(16));
-                         e.setDate1(res.getString(13));
+                       e.setCategorie(res.getInt(12));
+                         e.setNumero(res.getString(5));
+                         e.setNomproprietere(res.getString(25));
+                         e.setDate1(res.getString(11));
                           echanges.add(e);             
           } 
     }catch (SQLException ex) {

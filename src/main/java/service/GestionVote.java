@@ -47,7 +47,7 @@ public class GestionVote implements IVote{
             ste.setString(4,A.getPrenomp());
             ste.setInt(5,A.getNb_like()+1);
             ste.executeUpdate();
-            JOptionPane.showMessageDialog(null," vote ajouté  "); 
+       
         } catch (SQLException e) {System.err.println(e);
     JOptionPane.showMessageDialog(null,"error ");
         }

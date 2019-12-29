@@ -721,8 +721,7 @@ public class Jobeur_interfaceController implements Initializable {
          @Override
          public void handle(MouseEvent event) {
          Offre S = Table_offre_jobeur.getItems().get(Table_offre_jobeur.getSelectionModel().getSelectedIndex());
-         Label_nomp.setText(S.getNomposteur());
-         Label_prenomp.setText(S.getPrenomposteur());
+        
          Label_telp.setText(S.getTel());
          Label_id.setText(S.getId());
              

@@ -78,6 +78,7 @@ import javafx.scene.input.MouseButton;
 import static service.GestionProduit.imageproduit;
 import service.gestion_offre_service;
 import service.gestionannonce;
+import sun.net.www.http.PosterOutputStream;
 
 /**
  * FXML Controller class
@@ -571,12 +572,21 @@ public class Posteur_interfaceController implements Initializable {
         LocalDate localDate = LocalDate.parse(date , formatter);
         return localDate;
     }
- 
-  
+   
    public void favoris(){
+       
     GestionFavoris gf = new GestionFavoris ();
-    
-   ArrayList<Favoris> favroiss= (ArrayList<Favoris>) gf.afficherfavoris(AcceuilController.cinlogin);  
+    PosteurService p = new PosteurService();
+          Posteur p1= new Posteur();
+        try {
+            p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+        } catch (SQLException ex) {
+            Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int idposteur1=p1.getId();
+   ArrayList<Favoris> favroiss= (ArrayList<Favoris>) gf.afficherfavoris(idposteur1);  
    ObservableList<Favoris> data = FXCollections.observableArrayList(favroiss);
        System.out.println(data);
      favrois.setItems(data);
@@ -1866,8 +1876,18 @@ Echange E = new Echange(id);
     private void favoriss4(KeyEvent event) {
         if(!recherche_favoris1.getText().isEmpty()){
         String recher =recherche_favoris1.getText().concat("%");
+         PosteurService p = new PosteurService();
+          Posteur p1= new Posteur();
+        try {
+            p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+        } catch (SQLException ex) {
+            Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int idposteur1=p1.getId();
       GestionFavoris gf = new GestionFavoris ();
-   ArrayList<Favoris> favroiss= (ArrayList<Favoris>) gf.recherchefavoris(AcceuilController.cinlogin,recher);  
+   ArrayList<Favoris> favroiss= (ArrayList<Favoris>) gf.recherchefavoris(idposteur1,recher);  
    ObservableList<Favoris> data = FXCollections.observableArrayList(favroiss);
        System.out.println(data);
      favrois.setItems(data);
