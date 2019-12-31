@@ -109,12 +109,12 @@ public class gestion_offre_service{
       } return offre; 
     }
     
-    public List<Offre> afficherOffre_Jobeur(int cin_jobeur) {
+    public List<Offre> afficherOffre_Jobeur(int o) {
         
             List<Offre> offre = new ArrayList<>();    
      // Where idposteur_fg=2' 
       try {
-          String req="select * from offre_service INNER JOIN jobeur ON offre_service.cinj = jobeur.cin Where cinj="+cin_jobeur;
+          String req="select * from offre_service Where idjobeur_fg="+o;
       
           PreparedStatement ste = c.prepareStatement(req);
           
@@ -138,7 +138,7 @@ public class gestion_offre_service{
     }
     
      public void insererNomjobeur(Integer idj2) {
-        String req1 = "INSERT INTO `offre_service` (`idjobeur_fg`) VALUES (?) WHERE id="+id_offre;
+        String req1 = "UPDATE `offre_service` SET`idjobeur_fg`=? WHERE `id`="+id_offre;
         try {
             System.out.println(id_offre);
             PreparedStatement ste = c.prepareStatement(req1);

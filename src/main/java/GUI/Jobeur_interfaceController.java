@@ -697,11 +697,15 @@ public class Jobeur_interfaceController implements Initializable {
     
     public void afficher_offre_jobeur() throws SQLException, IOException
     {
-       
+       PosteurService p = new PosteurService();
+            Posteur p1= new Posteur();
+            p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+            int o =p1.getId();
+            System.out.println("Aaaasléma ena oussama "+o);
            
             int  cin_jobeur=AcceuilController.cinlogin;
              gestion_offre_service gos = new gestion_offre_service();
-    ArrayList<Offre> offre3= (ArrayList) gos.afficherOffre_Jobeur(cin_jobeur);
+    ArrayList<Offre> offre3= (ArrayList) gos.afficherOffre_Jobeur(o);
     ObservableList<Offre> data6 = FXCollections.observableArrayList(offre3);
        //gos.afficherOffre_Jobeur(cin_jobeur);
         Table_offre_jobeur.setItems(data6);

@@ -1697,7 +1697,7 @@ Echange E = new Echange(id);
      Column_heure.setCellValueFactory(new PropertyValueFactory <Offre,String>("heure"));
      Column_description.setCellValueFactory(new PropertyValueFactory <Offre,String>("description_offre"));
      Column_etat.setCellValueFactory(new PropertyValueFactory <Offre,String>("etatoffre"));
-     Column_Nomservice.setCellValueFactory(new PropertyValueFactory <Offre,String>("Nomservice"));
+     Column_Nomservice.setCellValueFactory(new PropertyValueFactory <Offre,String>("Specialite"));
    
     }
      
