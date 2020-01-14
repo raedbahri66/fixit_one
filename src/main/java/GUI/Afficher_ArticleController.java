@@ -56,11 +56,27 @@ public class Afficher_ArticleController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
+        
+        
         A=AcceuilController.A1;
         int id=(A.getId());
         Articlegestion a1=new Articlegestion();
+   
+
         image_article.setImage(AcceuilController.m);
-        image_article.setImage(new Image("file:imgage_article.jpg"));
+          String url2;
+        try {
+            url2 = a1.get_image1(id);
+              Image image1=new Image(url2);
+              image_article.setImage(new Image(url2));
+        } catch (SQLException ex) {
+            Logger.getLogger(Afficher_ArticleController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Afficher_ArticleController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+      
+        
         System.out.println(A);
         tiitre_article.setText(A.getNom_article());
         desc_artcile.setText(A.getDescriptionarticle());
