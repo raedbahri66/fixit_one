@@ -618,7 +618,7 @@ public class Posteur_interfaceController implements Initializable {
          table_id.setCellValueFactory(new PropertyValueFactory<Produit,String>("id"));
             table_description.setCellValueFactory(new PropertyValueFactory<Produit,String>("description"));
                 table_prix.setCellValueFactory(new PropertyValueFactory<Produit,String>("prix"));
-                table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
+                table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("Nomcategorie"));
                 table_num.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
                 table_proprietere.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom_proprietere"));
                 table_date1.setCellValueFactory(new PropertyValueFactory<Produit,String>("date1"));
@@ -682,13 +682,16 @@ public class Posteur_interfaceController implements Initializable {
         String num=numero.getText();
         String etatvente="non_vendu";
         int idjobeur = 0;
-        int categ=2;
         datelocal.setText(NOW_LOCAL_DATE().toString());
         String date="2019-12-24";
         String nomproprietere="";
         String etatvalidation="non_valider";
-        Produit E = new Produit(nom,prix,desc,categ,num,etatvente,etatvalidation,idposteur,date);
+        
+        
         GestionProduit gs = new  GestionProduit();
+        int cat=gs.RechercheIdCategorie(categorie);
+        System.out.println(cat);
+        Produit E = new Produit(nom,prix,desc,cat,num,etatvente,etatvalidation,idposteur,date);
         gs.ajouterProduit(E);
           JOptionPane.showMessageDialog(null, "Produit Ajouter avec succée");
         nom_produit.setText("");
@@ -882,7 +885,7 @@ public class Posteur_interfaceController implements Initializable {
    String id=label_id.getText();
    String num=numero1.getText();
    String statut=label_statut.getText();
-   //String categorie=categorie_produit2.getValue().toString();
+   String categorie1=categorie_produit2.getValue().toString();
    int categorie=2;
    String etat=categorie_produit3.getValue().toString();
    Produit E = new Produit(id,nom,prix,description,categorie,num,etat,statut);
@@ -920,7 +923,7 @@ public class Posteur_interfaceController implements Initializable {
    if (image_path2.getText().isEmpty()){
        if(controlemodifier){
    try{
-   gs.modifierProduit(E);
+   gs.modifierProduit(E,categorie1);
    JOptionPane.showMessageDialog(null, "Modification avec succée");
    nom2.setText("");
    prix2.setText("");
@@ -944,7 +947,7 @@ public class Posteur_interfaceController implements Initializable {
    else{
         if(controlemodifier){
    try{
-   gs.modifierProduitimage(E,fis3,file3);
+   gs.modifierProduitimage(E,fis3,file3,categorie1);
    JOptionPane.showMessageDialog(null, "Modification avec succée");
    nom2.setText("");
    prix2.setText("");
@@ -978,14 +981,17 @@ public class Posteur_interfaceController implements Initializable {
      String cat =combobox_filter.getValue().toString();
          GestionProduit GS = new GestionProduit();
          // Produit E = new Produit(cat);
-   ArrayList Produit1= (ArrayList)GS.RechercheCategorie(cat);
+       int cat1=GS.RechercheIdCategorie(cat);
+        System.out.println(cat);
+        System.out.println(cat1);
+   ArrayList Produit1= (ArrayList)GS.RechercheCategorie(cat1,cat);
     data= FXCollections.observableArrayList(Produit1);
       table.setItems(data);
         table_nom.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom"));
          table_id.setCellValueFactory(new PropertyValueFactory<Produit,String>("id"));
             table_description.setCellValueFactory(new PropertyValueFactory<Produit,String>("description"));
                 table_prix.setCellValueFactory(new PropertyValueFactory<Produit,String>("prix"));
-                table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
+                table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("Nomcategorie"));
                 table_num.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
                 table_proprietere.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom_proprietere"));
                 table_date1.setCellValueFactory(new PropertyValueFactory<Produit,String>("date1"));
@@ -1070,7 +1076,7 @@ public class Posteur_interfaceController implements Initializable {
                 label_id.setText(E.getId());
                 prix2.setText(E.getPrix());
                 numero1.setText(E.getNumero());
-                //categorie_produit2.setValue(E.getCategorie());
+                categorie_produit2.setValue(E.getNomcategorie());
                 categorie_produit3.setValue(E.getEtatVente());
                 int id3=Integer.parseInt(E.getId());
                 GestionProduit GS = new GestionProduit();
@@ -1180,6 +1186,7 @@ public class Posteur_interfaceController implements Initializable {
      */
     
       EchangeGestion es = new  EchangeGestion();
+      
        ArrayList Echange= (ArrayList)es.afficherEchange(); 
     
            public ObservableList dataeesp= FXCollections.observableArrayList(Echange);
@@ -1340,8 +1347,9 @@ public class Posteur_interfaceController implements Initializable {
     GestionProduit GS = new GestionProduit();
     ArrayList Produit1 = (ArrayList)GS.afficherProduit();
     data= FXCollections.observableArrayList(Produit1);
-        
-   
+        System.out.println(Produit1);    
+   System.out.println(Produit1);   
+   System.out.println(Produit1);   
    GestionProduit GS1= new GestionProduit();
     ArrayList Produit2= (ArrayList)GS1.afficherProduit1(id);
    data1= FXCollections.observableArrayList(Produit2);
@@ -1350,7 +1358,7 @@ public class Posteur_interfaceController implements Initializable {
          table_id.setCellValueFactory(new PropertyValueFactory<Produit,String>("id"));
             table_description.setCellValueFactory(new PropertyValueFactory<Produit,String>("description"));
                 table_prix.setCellValueFactory(new PropertyValueFactory<Produit,String>("prix"));
-                table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
+                table_categorie.setCellValueFactory(new PropertyValueFactory<Produit,String>("Nomcategorie"));
                 table_num.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
                 table_proprietere.setCellValueFactory(new PropertyValueFactory<Produit,String>("nom_proprietere"));
                 table_date1.setCellValueFactory(new PropertyValueFactory<Produit,String>("date1"));
@@ -1361,18 +1369,22 @@ public class Posteur_interfaceController implements Initializable {
           table_id1.setCellValueFactory(new PropertyValueFactory<Produit,String>("id"));
             table_description1.setCellValueFactory(new PropertyValueFactory<Produit,String>("description"));
                  table_prix1.setCellValueFactory(new PropertyValueFactory<Produit,String>("prix"));
-                   table_categorie1.setCellValueFactory(new PropertyValueFactory<Produit,String>("categorie"));
+                   table_categorie1.setCellValueFactory(new PropertyValueFactory<Produit,String>("Nomcategorie"));
                  table_numero1.setCellValueFactory(new PropertyValueFactory<Produit,String>("numero"));
                  table_etat_vente.setCellValueFactory(new PropertyValueFactory<Produit,String>("etatVente"));
                  table_etat_validation.setCellValueFactory(new PropertyValueFactory<Produit,String>("etatValidation"));
                  setValueformtableviewtotext();
- 
-                 categorie_produit.getItems().addAll("Autre","Jardinage","Electricité","Batimmant","Informatique","Electromenager");
-                 categorie_produit2.getItems().addAll("Autre","Jardinage","Electricité","Batimmant","Informatique","Electromenager");
+                  
+                  GestionProduit cat = new  GestionProduit();
+        ArrayList categorie= (ArrayList)cat.afficherCategorie();
+        System.out.println(categorie);
+                 categorie_produit.getItems().addAll(categorie);
+                 categorie_produit2.getItems().addAll(categorie);
                  categorie_produit3.getItems().addAll("non_vendu","vendu");
-                 combobox_filter.getItems().addAll("Tous()","Autre","Jardinage","Electricité","Batimmant","Informatique","Electromenager");
+                 combobox_filter.getItems().addAll("Tous");
+                 combobox_filter.getItems().addAll(categorie);
                  categorie_produit.setValue("Autre");
-                 combobox_filter.setValue("Tous()");
+                 combobox_filter.setValue("Tous");
         ArrayList Echange2= (ArrayList)es.affichermesEchange(id); 
         ObservableList datames= FXCollections.observableArrayList(Echange2);
             tablemesproposition.setItems(datames);

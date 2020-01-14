@@ -1,4 +1,5 @@
 package service;
+import entites.Categorie;
 import entites.Produit;
 import java.io.File;
 import java.io.FileInputStream;
@@ -96,6 +97,7 @@ public class GestionProduit {
         
     List<Produit> echanges= new ArrayList<>();
     //Echange e = null;
+    String nom=new String();
       try {
           //String etat="non_vendu";
          String req2="select * from produit INNER JOIN user ON produit.idposteur_fg = user.id";
@@ -103,12 +105,19 @@ public class GestionProduit {
          //pstm.setString(1,etat);
           ResultSet res=  pstm.executeQuery();
           while (res.next()) { 
+                 String req3= "Select * from categorie Where id=? ";
+                  PreparedStatement pstm1 = c.prepareStatement(req3);
+                  pstm1.setInt(1,res.getInt(12));
+                  ResultSet res1=  pstm1.executeQuery();
+                  while (res1.next()) { 
+                 nom=(res1.getString(2));
+                     }
               Produit e = new Produit();
                e.setId(res.getString(1));
                      e.setPrix(res.getString(3));
                      e.setNom(res.getString(2));
                        e.setDescription(res.getString(4));
-                       e.setCategorie(res.getInt(12));
+                       e.setNomcategorie(nom);
                          e.setNumero(res.getString(5));
                          e.setNomproprietere(res.getString(25));
                          e.setDate1(res.getString(11));
@@ -171,21 +180,31 @@ public class GestionProduit {
         
        List<Produit> table1= new ArrayList<>();
     //Echange e = null;
+    String nom=new String();
       try {
          String req2="select * from produit Where idposteur_fg=? ";
          PreparedStatement pstm = c.prepareStatement(req2);
         pstm.setInt(1,id);
           ResultSet res=  pstm.executeQuery();
           while (res.next()) { 
+               String req3= "Select * from categorie Where id=? ";
+                  PreparedStatement pstm1 = c.prepareStatement(req3);
+                  pstm1.setInt(1,res.getInt(12));
+                  ResultSet res1=  pstm1.executeQuery();
+                  while (res1.next()) { 
+                 nom=(res1.getString(2));
+                     }
+                  
+                  
               Produit e = new Produit();
                e.setId(res.getString(1));
                      e.setPrix(res.getString(3));
                      e.setNom(res.getString(2));
                        e.setDescription(res.getString(4));
-                        e.setCategorie(res.getInt(5));
-                         e.setNumero(res.getString(6));
-                          e.setEtatVente(res.getString(7));
-                         e.setEtatValidation(res.getString(8));
+                        e.setNomcategorie(nom);
+                         e.setNumero(res.getString(5));
+                          e.setEtatVente(res.getString(6));
+                         e.setEtatValidation(res.getString(7));
                           table1.add(e);
                           
           } 
@@ -195,84 +214,105 @@ public class GestionProduit {
      return table1;
     }
      
-       public List<Produit> RechercheCategorie(String cat) {
+     
+     
+       public List<Produit> RechercheCategorie(int catint,String cat) {
         
        List<Produit> table1= new ArrayList<>();
     //Echange e = null;
+    String nom=new String();
     String etat="non_vendu";
       try {
-          if ("Tous()".equals(cat)){
+          if ("Tous".equals(cat)){
               
-           String req2="select * from produit INNER JOIN posteur ON produit.idposteur_fg = posteur.id where etat_vente=?";
+            //String etat="non_vendu";
+         String req2="select * from produit INNER JOIN user ON produit.idposteur_fg = user.id";
          PreparedStatement pstm = c.prepareStatement(req2);
-         pstm.setString(1,etat);
+         //pstm.setString(1,etat);
           ResultSet res=  pstm.executeQuery();
           while (res.next()) { 
+                 String req3= "Select * from categorie Where id=? ";
+                  PreparedStatement pstm1 = c.prepareStatement(req3);
+                  pstm1.setInt(1,res.getInt(12));
+                  ResultSet res1=  pstm1.executeQuery();
+                  while (res1.next()) { 
+                 nom=(res1.getString(2));
+                     }
               Produit e = new Produit();
                e.setId(res.getString(1));
                      e.setPrix(res.getString(3));
                      e.setNom(res.getString(2));
                        e.setDescription(res.getString(4));
-                        e.setCategorie(res.getInt(5));
-                         e.setNumero(res.getString(6));
-                         e.setNomproprietere(res.getString(16));
-                         e.setDate1(res.getString(13));
-                          table1.add(e);
-            
-                          //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
+                       e.setNomcategorie(nom);
+                         e.setNumero(res.getString(5));
+                         e.setNomproprietere(res.getString(25));
+                         e.setDate1(res.getString(11));
+                          table1.add(e);            
           } 
           
           
           }
           else{
-         String req2="select * from produit INNER JOIN posteur ON produit.idposteur_fg = posteur.id Where categorie=? and etat_vente=?";
+         //String etat="non_vendu";
+         String req2="select * from produit INNER JOIN user ON produit.idposteur_fg = user.id Where idcategorie_fg=?";
          PreparedStatement pstm = c.prepareStatement(req2);
-         pstm.setString(1,cat);
-         pstm.setString(2,etat);
+         pstm.setInt(1,catint);
           ResultSet res=  pstm.executeQuery();
           while (res.next()) { 
+                 String req3= "Select * from categorie Where id=? ";
+                  PreparedStatement pstm1 = c.prepareStatement(req3);
+                  pstm1.setInt(1,catint);
+                  ResultSet res1=  pstm1.executeQuery();
+                  while (res1.next()) { 
+                 nom=(res1.getString(2));
+                     }
               Produit e = new Produit();
                e.setId(res.getString(1));
                      e.setPrix(res.getString(3));
                      e.setNom(res.getString(2));
                        e.setDescription(res.getString(4));
-                        e.setCategorie(res.getInt(5));
-                         e.setNumero(res.getString(6));
-                         e.setNomproprietere(res.getString(16));
-                         e.setDate1(res.getString(13));
-                          table1.add(e);
-                           //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
-                           }
+                       e.setNomcategorie(nom);
+                         e.setNumero(res.getString(5));
+                         e.setNomproprietere(res.getString(25));
+                         e.setDate1(res.getString(11));
+                          table1.add(e);            
           } 
+          }
     }catch (SQLException ex) {
           System.out.println(ex.getMessage());
       }   
      return table1;
     }
      
-      public List<Produit> RechercheNom(String nom) {
+      public List<Produit> RechercheNom(String nom1) {
         
        List<Produit> table1= new ArrayList<>();
     //Echange e = null;
+    String nom=new String();
     String etat="non_vendu";
       try {
-         String req2="select * from produit INNER JOIN posteur ON produit.idposteur_fg = posteur.id Where nomproduit LIKE '"+nom+"' and etat_vente=?" ;
+         String req2="select * from produit INNER JOIN user ON produit.idposteur_fg = user.id Where nomproduit LIKE '"+nom1+"' " ;
          PreparedStatement pstm = c.prepareStatement(req2);
-         pstm.setString(1,etat);
-         //pstm.setString(1,nom);
+         
           ResultSet res=  pstm.executeQuery();
           while (res.next()) { 
+                String req3= "Select * from categorie Where id=? ";
+                  PreparedStatement pstm1 = c.prepareStatement(req3);
+                  pstm1.setInt(1,res.getInt(12));
+                  ResultSet res1=  pstm1.executeQuery();
+                  while (res1.next()) { 
+                 nom=(res1.getString(2));
+                     }
               Produit e = new Produit();
                e.setId(res.getString(1));
                      e.setPrix(res.getString(3));
                      e.setNom(res.getString(2));
                        e.setDescription(res.getString(4));
-                        e.setCategorie(res.getInt(5));
-                         e.setNumero(res.getString(6));
-                         e.setNomproprietere(res.getString(16));
-                         e.setDate1(res.getString(13));
-                          table1.add(e);
-                           //echanges.add(new Echange(res.getString(2),res.getString(3),res.getDate(10))); 
+                       e.setNomcategorie(nom);
+                         e.setNumero(res.getString(5));
+                         e.setNomproprietere(res.getString(25));
+                         e.setDate1(res.getString(11));
+                          table1.add(e);        
                            }
           } 
     catch (SQLException ex) {
@@ -285,16 +325,24 @@ public class GestionProduit {
      
      
      
-     public void modifierProduit(Produit E) {
-    String req= "update produit SET  nomproduit=?,prix=?,description=?,categorie=?,num=?,etat_vente=? Where id=? ";
-    
+     public void modifierProduit(Produit E,String categorie1) {
+    String req= "update produit SET  nomproduit=?,prix=?,description=?,idcategorie_fg=?,num=?,etat_vente=? Where id=? ";
+     String req1= "Select * from categorie Where categorie=? ";
+      int e = 0  ;
    try { 
+      
+         PreparedStatement pstm = c.prepareStatement(req1);
+         pstm.setString(1,categorie1);
+          ResultSet res=  pstm.executeQuery();
+          while (res.next()) { 
+                 e=(res.getInt(1));
+                 }
           PreparedStatement ste = c.prepareStatement(req);
            ste.setString(7,E.getId());
           ste.setString(1,E.getNom());
             ste.setString(3,E.getDescription());
             ste.setString(2,E.getPrix());
-              ste.setInt(4,E.getCategorie());
+              ste.setInt(4,e);
               ste.setString(5,E.getNumero());
               ste.setString(6,E.getEtatVente());
              ste.executeUpdate();
@@ -306,10 +354,17 @@ public class GestionProduit {
     }
     }
      
-      public void modifierProduitimage(Produit E, InputStream fis, File file) {
+      public void modifierProduitimage(Produit E, InputStream fis, File file,String categorie1) {
     String req= "update produit SET  nomproduit=?,prix=?,description=?,categorie=?,num=?,etat_vente=?,image_produit=? Where id=? ";
-    
+    String req1= "Select * from categorie Where categorie=? ";
+      int e = 0  ;
    try { 
+        PreparedStatement pstm = c.prepareStatement(req1);
+         pstm.setString(1,categorie1);
+          ResultSet res=  pstm.executeQuery();
+          while (res.next()) { 
+                 e=(res.getInt(1));
+                 }
           PreparedStatement ste = c.prepareStatement(req);
            ste.setString(8,E.getId());
           ste.setString(1,E.getNom());
@@ -375,8 +430,46 @@ public class GestionProduit {
     }
     }
 
+  public List<String> afficherCategorie() {
+        
+       List<String> table1= new ArrayList<>();
+    //Echange e = null;
+      try {
+         String req2="select * from categorie ";
+         PreparedStatement pstm = c.prepareStatement(req2);
+        //pstm.setInt(1,id);
+          ResultSet res=  pstm.executeQuery();
+          while (res.next()) { 
+              String e = new String();
+                        e=(res.getString(2));
+                          table1.add(e);
+                          
+          } 
+    }catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+      }   
+     return table1;
+    }
+     
+     
   
-     
-     
+ 
+
+   public int RechercheIdCategorie(String categorie) {
+      int e = 0  ;
+      try {
+         String req= "Select * from categorie Where categorie=? ";
+         PreparedStatement pstm = c.prepareStatement(req);
+         pstm.setString(1,categorie);
+          ResultSet res=  pstm.executeQuery();
+          while (res.next()) { 
+                 e=(res.getInt(1));
+                 }
+          } 
+    catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+      }   
+     return e;
+    }
      
 }

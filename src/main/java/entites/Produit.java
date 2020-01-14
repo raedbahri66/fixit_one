@@ -13,6 +13,7 @@ public class Produit {
     private String prix ;
     private String description;
     private int categorie;
+    private String Nomcategorie;
     private String numero;
     private String etatVente;
     private String etatValidation;
@@ -25,6 +26,24 @@ public class Produit {
     public Produit() {
     }
 
+    public Produit(String id, String nom, String prix, String description, int categorie, String Nomcategorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg, String nomproprietere, String date1, String panier) {
+        this.id = id;
+        this.nom = nom;
+        this.prix = prix;
+        this.description = description;
+        this.categorie = categorie;
+        this.Nomcategorie = Nomcategorie;
+        this.numero = numero;
+        this.etatVente = etatVente;
+        this.etatValidation = etatValidation;
+        this.idPosteurfg = idPosteurfg;
+        this.idJobeurfg = idJobeurfg;
+        this.nomproprietere = nomproprietere;
+        this.date1 = date1;
+        this.panier = panier;
+    }
+
+    
     public Produit(String id, String nom, String prix, String description, int categorie, String numero, String etatVente, String etatValidation, int idPosteurfg, int idJobeurfg, String nomproprietere, String date1) {
         this.id = id;
         this.nom = nom;
@@ -342,6 +361,14 @@ public class Produit {
 
     public void setDate1(String date1) {
         this.date1 = date1;
+    }
+
+    public String getNomcategorie() {
+        return Nomcategorie;
+    }
+
+    public void setNomcategorie(String Nomcategorie) {
+        this.Nomcategorie = Nomcategorie;
     }
 
 
