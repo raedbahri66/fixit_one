@@ -163,8 +163,7 @@ public class GestionProduit {
                      while((size = is.read(content)) != -1){
                           os.write(content, 0, size);
                       }*/
-                          String url2="http://localhost/fixitweb1/web/upload/"+res.getString(10);
-                 
+                     String url2="http://localhost/fixitweb1/web/upload/"+res.getString(10);
                      Image image1=new Image(url2);
                imageproduit=image1;
                         }
@@ -357,8 +356,8 @@ public class GestionProduit {
     }
     }
      
-      public void modifierProduitimage(Produit E, InputStream fis, File file,String categorie1) {
-    String req= "update produit SET  nomproduit=?,prix=?,description=?,categorie=?,num=?,etat_vente=?,image_produit=? Where id=? ";
+      public void modifierProduitimage(Produit E, String fis, File file,String categorie1) {
+    String req= "update produit SET  nomproduit=?,prix=?,description=?,idcategorie_fg=?,num=?,etat_vente=?,image_produit=? Where id=? ";
     String req1= "Select * from categorie Where categorie=? ";
       int e = 0  ;
    try { 
@@ -373,10 +372,10 @@ public class GestionProduit {
           ste.setString(1,E.getNom());
             ste.setString(3,E.getDescription());
             ste.setString(2,E.getPrix());
-              ste.setInt(4,E.getCategorie());
+              ste.setInt(4,e);
               ste.setString(5,E.getNumero());
               ste.setString(6,E.getEtatVente());
-              ste.setBinaryStream(7, (InputStream)fis, (int)file.length());
+              ste.setString(7,fis);
              ste.executeUpdate();
            
           

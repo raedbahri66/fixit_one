@@ -63,6 +63,9 @@ import service.JobeurService;
 import service.PosteurService;
 import entites.Offre;
 import entites.annonce;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 /*import facebook4j.FacebookException;
 import facebook4j.FacebookFactory;
 import facebook4j.auth.AccessToken;*/
@@ -494,8 +497,10 @@ public class Posteur_interfaceController implements Initializable {
     @FXML
     private Button importAction;
     private String fis2;
+    private FileInputStream fis22;
     private File file2;
-    private FileInputStream fis3;
+    private String fis3;
+    private FileInputStream fis33;
     private File file3;
     @FXML
     private ImageView afficher_image;
@@ -1404,14 +1409,33 @@ public class Posteur_interfaceController implements Initializable {
             if (file2 != null) {
             image_path.setText(file2.getName());
             System.out.println(file2.getName()); 
-                fis2 = new String(file2.getName());// file is selected using filechooser which is in last tutorial
+                fis2 = new String(file2.getName());
+                try {
+                    fis22 = new FileInputStream(file2);// file is selected using filechooser which is in last tutorial
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                          try {
-                     
                             URL url1l = file2.toURI().toURL();
                             image_produit.setImage(new Image(url1l.toExternalForm()));
-                        } catch (MalformedURLException ex) {
-                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
-                        };
+                             //setBinaryStream(6, (InputStream)fis22, (int)file2.length());
+                            InputStream is = fis22;
+                            String url2="C:\\wamp64\\www\\fixitweb1\\web\\upload\\"+fis2;
+                            OutputStream os = new FileOutputStream( new File(url2));
+                      byte[] content = new byte[2048];
+                      int size = 0;
+                     while((size = is.read(content)) != -1){
+                          os.write(content, 0, size);
+                      }
+  
+                        }
+                         catch (MalformedURLException ex) {
+                } catch (FileNotFoundException ex) { 
+                    Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+;
             }}); 
                 
                  importModifier.setOnAction(e->{
@@ -1421,18 +1445,36 @@ public class Posteur_interfaceController implements Initializable {
             file3 = fileChooser3.showOpenDialog(stage);
             if (file3 != null) {
             image_path2.setText(file3.getAbsolutePath());
+               
+                fis3 = new String(file3.getName());// file is selected using filechooser which is in last tutorial
                 try {
-                fis3 = new FileInputStream(file3);// file is selected using filechooser which is in last tutorial
-                 } catch (FileNotFoundException ex) {
-            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
-                        } try {
+                    fis33 = new FileInputStream(file3);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            try {
                      
                             URL url1ll = file3.toURI().toURL();
                             image_modifier.setImage(new Image(url1ll.toExternalForm()));
+                            InputStream is = fis33;
+                            String url2="C:\\wamp64\\www\\fixitweb1\\web\\upload\\"+fis3;
+                            OutputStream os = new FileOutputStream( new File(url2));
+                      byte[] content = new byte[2048];
+                      int size = 0;
+                     while((size = is.read(content)) != -1){
+                          os.write(content, 0, size);
+                      }
+                            
+                            
                         } catch (MalformedURLException ex) {
                           
                             Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
-                        };
+                        } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+;
             }}); 
                 
                 
