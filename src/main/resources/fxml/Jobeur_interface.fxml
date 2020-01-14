@@ -194,16 +194,13 @@
                         <Image url="@../Image/propiedad-vivienda-gente-negocios-negociando-contrato-aqui-es-donde-debe-firmar_36325-2258.jpg" />
                      </image>
                   </ImageView>
-                  <TableView fx:id="Table_offre_jobeur" layoutX="18.0" layoutY="95.0" opacity="0.85" prefHeight="303.0" prefWidth="386.0">
+                  <TableView fx:id="Table_offre_jobeur" layoutX="6.0" layoutY="83.0" opacity="0.85" prefHeight="303.0" prefWidth="427.0">
                     <columns>
                       <TableColumn fx:id="Column_adresse" prefWidth="75.0" text="Adresse" />
-                      <TableColumn fx:id="Column_date" prefWidth="75.0" text="Date" />
-                        <TableColumn fx:id="Column_heure" prefWidth="75.0" text="Heure" />
-                        <TableColumn fx:id="Column__description" prefWidth="151.0" text="Description d'offre" />
-                        <TableColumn fx:id="Column__tel" prefWidth="78.0" text="Numéro tel" visible="false" />
-                        <TableColumn fx:id="Column_nomp" prefWidth="91.0" text="Nom Posteur" visible="false" />
-                        <TableColumn fx:id="Column_prenomp" prefWidth="86.0" text="Prenom" visible="false" />
-                        <TableColumn fx:id="Column_id" prefWidth="86.0" text="Id" visible="false" />
+                      <TableColumn fx:id="Column_date" prefWidth="68.0" text="Date" />
+                        <TableColumn fx:id="Column_heure" prefWidth="66.0" text="Heure" />
+                        <TableColumn fx:id="Column__description" prefWidth="133.0" text="Description d'offre" />
+                        <TableColumn fx:id="Column__etat" prefWidth="112.0" text="Etat" />
                     </columns>
                   </TableView>
                   <Label layoutX="460.0" layoutY="156.0" text="Nom du Client :">
@@ -216,13 +213,13 @@
                         <Font name="Arial Bold" size="22.0" />
                      </font>
                   </Label>
-                  <Label layoutX="409.0" layoutY="264.0" prefHeight="26.0" prefWidth="223.0" text="Numéro Téléphone :">
+                  <Label layoutX="464.0" layoutY="264.0" prefHeight="26.0" prefWidth="223.0" text="N° Téléphone :">
                      <font>
                         <Font name="Arial Bold" size="22.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="Label_nomp" layoutX="631.0" layoutY="153.0" prefHeight="31.0" prefWidth="160.0" />
-                  <TextField fx:id="Label_prenomp" layoutX="632.0" layoutY="203.0" prefHeight="31.0" prefWidth="162.0" />
+                  <TextField fx:id="Label_nomposteur" layoutX="631.0" layoutY="153.0" prefHeight="31.0" prefWidth="160.0" />
+                  <TextField fx:id="Label_prenomposteur" layoutX="632.0" layoutY="203.0" prefHeight="31.0" prefWidth="162.0" />
                   <TextField fx:id="Label_telp" layoutX="636.0" layoutY="261.0" prefHeight="31.0" prefWidth="159.0" />
                   <Button fx:id="Btn_accepter_offre" layoutX="571.0" layoutY="330.0" mnemonicParsing="false" onAction="#Accepter_Offre" text="Accepter">
                      <graphic>

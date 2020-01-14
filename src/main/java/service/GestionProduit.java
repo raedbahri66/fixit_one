@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,10 +40,10 @@ public class GestionProduit {
     }
     
          
-    public void ajouterProduitimage(Produit E,FileInputStream fis, File file) {
-        String req1="INSERT INTO `produit` "
-                    + "(`nomproduit`, `prix`,`description`, `categorie`, `num`, `etat_vente`, `etat_validation`, `idposteur_fg`, `idjobeur_fg`,`nom_proprietere`,`date_produit`,`image_produit`) "
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+    public void ajouterProduitimage(Produit E,String fis, File file) {
+       String req1="INSERT INTO `produit` "
+                    + "(`nomproduit`, `prix`,`description`, `num`, `etat_vente`, `etat_validation`, `idposteur_fg`,`image_produit`,`date_produit`,`idcategorie_fg`) "
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?)";
             try{
                 PreparedStatement ste = c.prepareStatement(req1);
             
@@ -50,15 +51,15 @@ public class GestionProduit {
             ste.setString(1,E.getNom());
             ste.setString(2,E.getPrix());
             ste.setString(3, E.getDescription());
-            ste.setInt(4, E.getCategorie());
-            ste.setString(5, E.getNumero());
-            ste.setString(6, E.getEtatVente());
-            ste.setString(7, E.getEtatValidation());
-            ste.setInt(8, E.getIdPosteurfg());
-            ste.setInt(9, E.getIdJobeurfg());
-            ste.setString(10, E.getNomproprietere());
-            ste.setString(11, E.getDate1());
-            ste.setBinaryStream(12, (InputStream)fis, (int)file.length());
+            ste.setInt(10, 2);
+            ste.setString(4, E.getNumero());
+            ste.setString(5, E.getEtatVente());
+            ste.setString(6, E.getEtatValidation());
+            ste.setInt(7, E.getIdPosteurfg());
+            //ste.setInt(9, E.getIdJobeurfg());
+           // ste.setString(10, E.getNomproprietere());
+            ste.setString(9, E.getDate1());
+            ste.setString(8,fis);
               ste.executeUpdate();
             System.out.println("Ajouter avec sucées ");
                     // JOptionPane.showMessageDialog(null,"requete execute correctement"); 
@@ -135,7 +136,7 @@ public class GestionProduit {
     //Echange e = null;
       try {
          // String etat="non_vendu";
-         String req2="select * from produit INNER JOIN posteur ON produit.idposteur_fg = posteur.id where produit.id LIKE '"+id+"'";
+         String req2="select * from produit INNER JOIN user ON produit.idposteur_fg = user.id where produit.id LIKE '"+id+"'";
          PreparedStatement pstm = c.prepareStatement(req2);
          //pstm.setString(1,etat);
           ResultSet res=  pstm.executeQuery();
@@ -145,24 +146,25 @@ public class GestionProduit {
                      e.setPrix(res.getString(3));
                      e.setNom(res.getString(2));
                        e.setDescription(res.getString(4));
-                        e.setCategorie(res.getInt(5));
-                         e.setNumero(res.getString(6));
-                         e.setNomproprietere(res.getString(16));
-                         e.setDate1(res.getString(13));
+                        e.setCategorie(res.getInt(12));
+                         e.setNumero(res.getString(5));
+                         e.setNomproprietere(res.getString(25));
+                         e.setDate1(res.getString(11));
                           echanges.add(e);   
                           
                           
                           
-                    if(res.getBytes("image_produit") != null)
+                    if(res.getString(10) != null)
                       {
-                          InputStream is = res.getBinaryStream("image_produit");
+                     /*InputStream is = res.getBinaryStream("image_produit");
                       OutputStream os = new FileOutputStream( new File("produit.jpg"));
                       byte[] content = new byte[2048];
                       int size = 0;
                      while((size = is.read(content)) != -1){
                           os.write(content, 0, size);
-                      }
-                     Image image1=new Image("file:produit.jpg");
+                      }*/
+                     String url2="http://localhost/fixitweb1/web/upload/"+res.getString(10);
+                     Image image1=new Image(url2);
                imageproduit=image1;
                         }
                     else imageproduit=null;
@@ -354,8 +356,8 @@ public class GestionProduit {
     }
     }
      
-      public void modifierProduitimage(Produit E, InputStream fis, File file,String categorie1) {
-    String req= "update produit SET  nomproduit=?,prix=?,description=?,categorie=?,num=?,etat_vente=?,image_produit=? Where id=? ";
+      public void modifierProduitimage(Produit E, String fis, File file,String categorie1) {
+    String req= "update produit SET  nomproduit=?,prix=?,description=?,idcategorie_fg=?,num=?,etat_vente=?,image_produit=? Where id=? ";
     String req1= "Select * from categorie Where categorie=? ";
       int e = 0  ;
    try { 
@@ -370,10 +372,10 @@ public class GestionProduit {
           ste.setString(1,E.getNom());
             ste.setString(3,E.getDescription());
             ste.setString(2,E.getPrix());
-              ste.setInt(4,E.getCategorie());
+              ste.setInt(4,e);
               ste.setString(5,E.getNumero());
               ste.setString(6,E.getEtatVente());
-              ste.setBinaryStream(7, (InputStream)fis, (int)file.length());
+              ste.setString(7,fis);
              ste.executeUpdate();
            
           

@@ -51,6 +51,7 @@ import entites.Offre;
 import javafx.scene.text.Text;
 import service.GestionVote;
 import entites.Service;
+import java.util.Iterator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -69,7 +70,6 @@ import service.gestion_offre_service;
  *
  * @author lenovo
  */
-
 public class Jobeur_interfaceController implements Initializable {
 
     /**
@@ -118,7 +118,7 @@ public class Jobeur_interfaceController implements Initializable {
     private TableColumn<Echange, String> propositionsou;
 
     @FXML
-    private TableColumn<Echange, String>Descriptionechanges;
+    private TableColumn<Echange, String> Descriptionechanges;
 
     @FXML
     private TableColumn<Echange, String> dateechanges;
@@ -148,7 +148,7 @@ public class Jobeur_interfaceController implements Initializable {
     private TableColumn<Echange, String> ctps;
 
     @FXML
-    private TableColumn<Echange, String>Descriptionechange;
+    private TableColumn<Echange, String> Descriptionechange;
 
     @FXML
     private TableColumn<Echange, String> dateechange;
@@ -177,7 +177,7 @@ public class Jobeur_interfaceController implements Initializable {
     private File file;
     private FileInputStream pdf;
     private File pdff;
-    
+
     @FXML
     private TableView<Offre> Table_offre_jobeur;
 
@@ -192,6 +192,8 @@ public class Jobeur_interfaceController implements Initializable {
 
     @FXML
     private TableColumn<Offre, String> Column__description;
+    @FXML
+    private TableColumn<Offre, String> Column__etat;
 
     @FXML
     private TableColumn<Offre, String> Column__tel;
@@ -202,15 +204,19 @@ public class Jobeur_interfaceController implements Initializable {
     @FXML
     private TableColumn<Offre, String> Column_prenomp;
     @FXML
-    private TableColumn<Offre,Integer> Column_id;
+    private TableColumn<Offre, Integer> Column_id;
+    @FXML
+    private TextField Label_nomposteur;
 
+    @FXML
+    private TextField Label_prenomposteur;
 
-       Echange E=new Echange();
-    
-      EchangeGestion es = new  EchangeGestion();
-       ArrayList Echange= (ArrayList)es.afficherEchange(); 
-         public ObservableList data= FXCollections.observableArrayList(Echange);
-          public ObservableList data1= FXCollections.observableArrayList(Echange);
+    Echange E = new Echange();
+
+    EchangeGestion es = new EchangeGestion();
+    ArrayList Echange = (ArrayList) es.afficherEchange();
+    public ObservableList data = FXCollections.observableArrayList(Echange);
+    public ObservableList data1 = FXCollections.observableArrayList(Echange);
     @FXML
     private Label nomp_1;
     @FXML
@@ -239,7 +245,7 @@ public class Jobeur_interfaceController implements Initializable {
     private TextField file_image_p;
     @FXML
     private Button image_p_btn;
-    private boolean canModif=true;
+    private boolean canModif = true;
     @FXML
     private TextField file_pdf_p1;
     @FXML
@@ -417,193 +423,174 @@ public class Jobeur_interfaceController implements Initializable {
 
     @FXML
     void ajouterechange(ActionEvent event) {
-          String nomo=apof.getText();
-     String nomf=apos.getText();
-       String description=Descriptionpro.getText();
-    
-   
-   
-  
-  LocalDate locald =dateajoute.getValue();
-        String date =locald.toString();
-   Echange E = new Echange(nomo,nomf,description,date);
-  EchangeGestion es = new  EchangeGestion();
-   es.ajouterEchange(E);
-   JOptionPane.showMessageDialog(null, "ajout avec succes");
-    
-            
-    
+        String nomo = apof.getText();
+        String nomf = apos.getText();
+        String description = Descriptionpro.getText();
+
+        LocalDate locald = dateajoute.getValue();
+        String date = locald.toString();
+        Echange E = new Echange(nomo, nomf, description, date);
+        EchangeGestion es = new EchangeGestion();
+        es.ajouterEchange(E);
+        JOptionPane.showMessageDialog(null, "ajout avec succes");
 
     }
 
     @FXML
     void modifierechange(ActionEvent event) {
-             String id1=idmp.getText();
-   String nom1=mpf.getText();
-    String nom2=mps.getText();
-   
-   String description=mde.getText();
-  LocalDate locald =mda.getValue();
-        String date1 =locald.toString();
-        
-        Echange E = new Echange(id1,nom1,nom2,description,date1);
-   EchangeGestion es = new  EchangeGestion();
-   try{
-   es.modifierEchange(E);
-     JOptionPane.showMessageDialog(null, "modifications avec sucess");
-    }catch(Exception e)
-    {
-       System.out.println(e.getMessage());  
-    }
-   //RefreshTable() ;*/
-   
+        String id1 = idmp.getText();
+        String nom1 = mpf.getText();
+        String nom2 = mps.getText();
+
+        String description = mde.getText();
+        LocalDate locald = mda.getValue();
+        String date1 = locald.toString();
+
+        Echange E = new Echange(id1, nom1, nom2, description, date1);
+        EchangeGestion es = new EchangeGestion();
+        try {
+            es.modifierEchange(E);
+            JOptionPane.showMessageDialog(null, "modifications avec sucess");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        //RefreshTable() ;*/
 
     }
 
-       public void RefreshTable() 
-    {
-       data.clear();
-   es.afficherEchange();
-    ArrayList Echange= (ArrayList)es.afficherEchange(); 
-        data= FXCollections.observableArrayList(Echange);
+    public void RefreshTable() {
+        data.clear();
+        es.afficherEchange();
+        ArrayList Echange = (ArrayList) es.afficherEchange();
+        data = FXCollections.observableArrayList(Echange);
         tablemonechange.setItems(data);
-        
-        
+
     }
+
     @FXML
     void supprimerechange(ActionEvent event) {
-          String id1= idmp.getText();
-        Echange E= new Echange();
+        String id1 = idmp.getText();
+        Echange E = new Echange();
         E.setId(id1);
-       
-        es.supprimerEchange(E); 
+
+        es.supprimerEchange(E);
         JOptionPane.showMessageDialog(null, "supp avec sucess ");
-      RefreshTable();
+        RefreshTable();
 
     }
+
     @FXML
-     public void setValueformtableviewtotext()
-    {
-       tablemonechange.setOnMouseClicked(new EventHandler<MouseEvent>()
-         {
-             @Override
-             public void handle(MouseEvent event) {
-                  Echange E=tablemonechange.getItems().get(tablemonechange.getSelectionModel().getSelectedIndex());
+    public void setValueformtableviewtotext() {
+        tablemonechange.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Echange E = tablemonechange.getItems().get(tablemonechange.getSelectionModel().getSelectedIndex());
                 idmp.setText(E.getId());
                 mpf.setText(E.getPropositionofferte());
-         mps.setText(E.getPropositionsouhaitée());
-        
-                 mde.setText(E.getDescription_echange());
-                
-                   String date1=E.getDate(); 
-                   LocalDate date2 = LocalDate.parse(date1);
-                   mda.setValue(date2);
-     //String date1=date.toString();
-        
-                           
-          
-             }
-         });
-                 }
-    
+                mps.setText(E.getPropositionsouhaitée());
+
+                mde.setText(E.getDescription_echange());
+
+                String date1 = E.getDate();
+                LocalDate date2 = LocalDate.parse(date1);
+                mda.setValue(date2);
+                //String date1=date.toString();
+
+            }
+        });
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         /////Oussama//
-     try {
-         afficher_offre_jobeur();
-     } catch (SQLException ex) {
-         Logger.getLogger(Jobeur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
-     } catch (IOException ex) {
-         Logger.getLogger(Jobeur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
-     }
-     b();
-       //Oussama//
-       //tableechanges.setItems(data);
-                         idechanges.setCellValueFactory(new PropertyValueFactory<Echange,String>("id"));
-         propositionoff.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
-         propositionsou.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionsouhaitée"));
-            Descriptionechanges.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
-                 dateechanges.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
-                    tableechanges.setItems(data);
-                 tablemonechange.setItems(data1);
-                 idechange.setCellValueFactory(new PropertyValueFactory<Echange,String>("id"));
-                  ctpf.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionofferte"));
-                   ctps.setCellValueFactory(new PropertyValueFactory<Echange,String>("propositionsouhaitée"));
-                  Descriptionechange.setCellValueFactory(new PropertyValueFactory<Echange,String>("description_echange"));
-                  dateechange.setCellValueFactory(new PropertyValueFactory<Echange,String>("date"));
-                  setValueformtableviewtotext();
-      //////////////////////////////////////////////Raed Bahri///////////////////////////////
-              Stage stage = new Stage();
+        try {
+            afficher_offre_jobeur();
+        } catch (SQLException ex) {
+            Logger.getLogger(Jobeur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Jobeur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        b();
+        //Oussama//
+        //tableechanges.setItems(data);
+        idechanges.setCellValueFactory(new PropertyValueFactory<Echange, String>("id"));
+        propositionoff.setCellValueFactory(new PropertyValueFactory<Echange, String>("propositionofferte"));
+        propositionsou.setCellValueFactory(new PropertyValueFactory<Echange, String>("propositionsouhaitée"));
+        Descriptionechanges.setCellValueFactory(new PropertyValueFactory<Echange, String>("description_echange"));
+        dateechanges.setCellValueFactory(new PropertyValueFactory<Echange, String>("date"));
+        tableechanges.setItems(data);
+        tablemonechange.setItems(data1);
+        idechange.setCellValueFactory(new PropertyValueFactory<Echange, String>("id"));
+        ctpf.setCellValueFactory(new PropertyValueFactory<Echange, String>("propositionofferte"));
+        ctps.setCellValueFactory(new PropertyValueFactory<Echange, String>("propositionsouhaitée"));
+        Descriptionechange.setCellValueFactory(new PropertyValueFactory<Echange, String>("description_echange"));
+        dateechange.setCellValueFactory(new PropertyValueFactory<Echange, String>("date"));
+        setValueformtableviewtotext();
+        //////////////////////////////////////////////Raed Bahri///////////////////////////////
+        Stage stage = new Stage();
 
-      image_p_btn.setOnAction(e->{
-                    stage.setTitle("File Chooser ");
-                    
+        image_p_btn.setOnAction(e -> {
+            stage.setTitle("File Chooser ");
+
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Open image File");
-            
-                         file = fileChooser.showOpenDialog(stage);
-                        if (file != null) {
-                                file_image_p.setText(file.getAbsolutePath());
-                                System.out.println(file.getAbsolutePath()); 
-                        try {
-                            fis = new FileInputStream(file);// file is selected using filechooser which is in last tutorial
-                        } catch (FileNotFoundException ex) {
-                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        try {
-                            //     Image image=  new Image(file.toURI().toString());
-                            URL url1 = file.toURI().toURL();
-                            System.out.println(new Image(url1.toExternalForm()));
-                            image_post.setImage(new Image(url1.toExternalForm()));
-                        } catch (MalformedURLException ex) {
-                          
-                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
 
-                                
+            file = fileChooser.showOpenDialog(stage);
+            if (file != null) {
+                file_image_p.setText(file.getAbsolutePath());
+                System.out.println(file.getAbsolutePath());
+                try {
+                    fis = new FileInputStream(file);// file is selected using filechooser which is in last tutorial
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    //     Image image=  new Image(file.toURI().toString());
+                    URL url1 = file.toURI().toURL();
+                    System.out.println(new Image(url1.toExternalForm()));
+                    image_post.setImage(new Image(url1.toExternalForm()));
+                } catch (MalformedURLException ex) {
 
-    }
+                    Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
 
         });
-      pdf_p_btn1.setOnAction(e->{
-                    stage.setTitle("File Chooser ");
-                    
+        pdf_p_btn1.setOnAction(e -> {
+            stage.setTitle("File Chooser ");
+
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Open Pdf File");
-            
-                         pdff = fileChooser.showOpenDialog(stage);
-                        if (pdff != null) {
-                                file_pdf_p1.setText(pdff.getAbsolutePath());
-                                System.out.println(pdff.getAbsolutePath()); 
-                        try {
-                            pdf = new FileInputStream(pdff);// file is selected using filechooser which is in last tutorial
-                        } catch (FileNotFoundException ex) {
-                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
 
+            pdff = fileChooser.showOpenDialog(stage);
+            if (pdff != null) {
+                file_pdf_p1.setText(pdff.getAbsolutePath());
+                System.out.println(pdff.getAbsolutePath());
+                try {
+                    pdf = new FileInputStream(pdff);// file is selected using filechooser which is in last tutorial
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
-                        try {
-                            //     Image image=  new Image(file.toURI().toString());
-                            URL url1 = pdff.toURI().toURL();
-                            System.out.println(new File(url1.toExternalForm()));
-                           // image_post.setImage(new Image(url1.toExternalForm()));
-                        } catch (MalformedURLException ex) {
-                          
-                            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                try {
+                    //     Image image=  new Image(file.toURI().toString());
+                    URL url1 = pdff.toURI().toURL();
+                    System.out.println(new File(url1.toExternalForm()));
+                    // image_post.setImage(new Image(url1.toExternalForm()));
+                } catch (MalformedURLException ex) {
 
-                                
+                    Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
-    };
-            
+            };
 
         });
-      df_date1.setValue(NOW_LOCAL_DATE());
+        df_date1.setValue(NOW_LOCAL_DATE());
 
         System.err.println(AcceuilController.cinlogin);
         JobeurService p = new JobeurService();
-        Jobeur p1= new Jobeur();
+        Jobeur p1 = new Jobeur();
         try {
             p1 = p.getJobeurInfobyCin(AcceuilController.cinlogin);
         } catch (SQLException | IOException ex) {
@@ -616,167 +603,186 @@ public class Jobeur_interfaceController implements Initializable {
         telp_1.setText(Integer.toString(p1.getTel()));
         datep_1.setText(p1.getDate_naissance().toString());
         image_post.setImage(JobeurService.A1);
-         System.out.println(JobeurService.A1);
+        System.out.println(JobeurService.A1);
         datep_1.setText(p1.getDate_naissance().toString());
-        
-        GestionVote v1 =new GestionVote();
-         int nblike = v1.countlike(AcceuilController.cinlogin);
-         int nbdislike = v1.countdislik(AcceuilController.cinlogin);
+
+        GestionVote v1 = new GestionVote();
+        int nblike = v1.countlike(AcceuilController.cinlogin);
+        int nbdislike = v1.countdislik(AcceuilController.cinlogin);
         label_top.setText(String.valueOf(nblike));
         label_flop.setText(String.valueOf(nbdislike));
-       Jobeur j=new Jobeur(nblike,nbdislike,AcceuilController.cinlogin);
-       p.putVote(j);
+        Jobeur j = new Jobeur(nblike, nbdislike, AcceuilController.cinlogin);
+        p.putVote(j);
         try {
             System.out.println(p.top5());
-             } catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(Jobeur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
-            
-            ///////////////////////////Raed bahri*//////////////////////////////////
-            /*   Table_offre_jobeur.setOnMouseClicked((MouseEvent event) -> {
-            if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
-            
-            
-            GestionVote v1 =new GestionVote();
-            int nblike = v1.countlike(AcceuilController.cinlogin);
-            int nbdislike = v1.countdislik(AcceuilController.cinlogin);
-            label_top.setText(String.valueOf(nblike));
-            label_flop.setText(String.valueOf(nbdislike));
-            Parent root = null;
-            try {
-            root = FXMLLoader.load(getClass().getResource("/fxml/Validation_offre.fxml"));
-            } catch (IOException ex) {
-            Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Scene scene = new Scene(root);
-            //  Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            // stage.hide();
-            stage.setScene(scene);
-            stage.show();
-            
-            }}); */     
-       
+    }
 
+    ///////////////////////////Raed bahri*//////////////////////////////////
+            /*   Table_offre_jobeur.setOnMouseClicked((MouseEvent event) -> {
+     if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2){
+            
+            
+     GestionVote v1 =new GestionVote();
+     int nblike = v1.countlike(AcceuilController.cinlogin);
+     int nbdislike = v1.countdislik(AcceuilController.cinlogin);
+     label_top.setText(String.valueOf(nblike));
+     label_flop.setText(String.valueOf(nbdislike));
+     Parent root = null;
+     try {
+     root = FXMLLoader.load(getClass().getResource("/fxml/Validation_offre.fxml"));
+     } catch (IOException ex) {
+     Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+     }
+     Scene scene = new Scene(root);
+     //  Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+     // stage.hide();
+     stage.setScene(scene);
+     stage.show();
+            
+     }}); */
     @FXML
     private void btn_modifprofil(ActionEvent event) {
-        if(tf_nom1.getText().isEmpty()){
+        if (tf_nom1.getText().isEmpty()) {
             canModif = false;
         }
-        if(tf_prenom1.getText().isEmpty()){
+        if (tf_prenom1.getText().isEmpty()) {
             canModif = false;
         }
-        if(tf_tel1.getText().isEmpty()){
+        if (tf_tel1.getText().isEmpty()) {
             canModif = false;
         }
-        if(tef_email1.getText().isEmpty()){
+        if (tef_email1.getText().isEmpty()) {
             canModif = false;
         }
-        if(canModif)
-        {
-        LocalDate locald = df_date1.getValue();
-        Date date = Date.valueOf(locald);
-        JobeurService p = new JobeurService();
-        Jobeur p1= new Jobeur(AcceuilController.cinlogin, tf_nom1.getText(), tf_prenom1.getText(), tef_email1.getText(), date, Integer.parseInt(tf_tel1.getText()));
-        p.modifierProfil(p1,fis,file,pdf,pdff);
-        JOptionPane.showMessageDialog(null, "Account edited Successfull");
-        nomp_1.setText(p1.getNom());
-        nomp_11.setText(p1.getNom());
-        prenomp_1.setText(p1.getPrenom());
-        emailp_1.setText(p1.getEmail());
-        telp_1.setText(Integer.toString(p1.getTel()));
-        datep_1.setText(p1.getDate_naissance().toString());
-        //numero.setText(Integer.toString(p1.getTel()));
-        }
-        else 
-        {
+        if (canModif) {
+            LocalDate locald = df_date1.getValue();
+            Date date = Date.valueOf(locald);
+            JobeurService p = new JobeurService();
+            Jobeur p1 = new Jobeur(AcceuilController.cinlogin, tf_nom1.getText(), tf_prenom1.getText(), tef_email1.getText(), date, Integer.parseInt(tf_tel1.getText()));
+            p.modifierProfil(p1, fis, file, pdf, pdff);
+            JOptionPane.showMessageDialog(null, "Account edited Successfull");
+            nomp_1.setText(p1.getNom());
+            nomp_11.setText(p1.getNom());
+            prenomp_1.setText(p1.getPrenom());
+            emailp_1.setText(p1.getEmail());
+            telp_1.setText(Integer.toString(p1.getTel()));
+            datep_1.setText(p1.getDate_naissance().toString());
+            //numero.setText(Integer.toString(p1.getTel()));
+        } else {
             JOptionPane.showMessageDialog(null, "Please fill all cases");
-                          canModif = true;
+            canModif = true;
         }
     }
-    
-    public void afficher_offre_jobeur() throws SQLException, IOException
-    {
-       PosteurService p = new PosteurService();
-            Posteur p1= new Posteur();
-            p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
-            int o =p1.getId();
-            System.out.println("Aaaasléma ena oussama "+o);
-           
-            int  cin_jobeur=AcceuilController.cinlogin;
-             gestion_offre_service gos = new gestion_offre_service();
-    ArrayList<Offre> offre3= (ArrayList) gos.afficherOffre_Jobeur(o);
-    ObservableList<Offre> data6 = FXCollections.observableArrayList(offre3);
-       //gos.afficherOffre_Jobeur(cin_jobeur);
+
+    public void afficher_offre_jobeur() throws SQLException, IOException {
+        PosteurService p = new PosteurService();
+        Posteur p1 = new Posteur();
+        p1 = p.getPosteurInfobyCin(AcceuilController.cinlogin);
+        int o = p1.getId();
+        System.out.println("Aaaasléma ena oussama " + o);
+
+        int cin_jobeur = AcceuilController.cinlogin;
+        gestion_offre_service gos = new gestion_offre_service();
+        ArrayList<Offre> offre3 = (ArrayList) gos.afficherOffre_Jobeur(o);
+        ObservableList<Offre> data6 = FXCollections.observableArrayList(offre3);
+        //gos.afficherOffre_Jobeur(cin_jobeur);
         Table_offre_jobeur.setItems(data6);
-     Column_adresse.setCellValueFactory(new PropertyValueFactory <Offre,String>("adresse"));
-     Column_date.setCellValueFactory(new PropertyValueFactory <Offre,String>("Date_debut"));
-     Column_heure.setCellValueFactory(new PropertyValueFactory <Offre,String>("heure"));
-     Column__description.setCellValueFactory(new PropertyValueFactory <Offre,String>("description_offre"));
-     Column__tel.setCellValueFactory(new PropertyValueFactory <Offre,String>("tel"));
-     Column_nomp.setCellValueFactory(new PropertyValueFactory <Offre,String>("nomposteur"));
-     Column_prenomp.setCellValueFactory(new PropertyValueFactory <Offre,String>("prenomposteur"));
-     Column_id.setCellValueFactory(new PropertyValueFactory <Offre,Integer>("id"));
-   
+        Column_adresse.setCellValueFactory(new PropertyValueFactory<Offre, String>("adresse"));
+        Column_date.setCellValueFactory(new PropertyValueFactory<Offre, String>("Date_debut"));
+        Column_heure.setCellValueFactory(new PropertyValueFactory<Offre, String>("heure"));
+        Column__description.setCellValueFactory(new PropertyValueFactory<Offre, String>("description_offre"));
+        Column__etat.setCellValueFactory(new PropertyValueFactory<Offre, String>("etatoffre"));
+        // Column__tel.setCellValueFactory(new PropertyValueFactory <Offre,String>("tel"));
+        //  Column_nomp.setCellValueFactory(new PropertyValueFactory <Offre,String>("nomposteur"));
+        // Column_prenomp.setCellValueFactory(new PropertyValueFactory <Offre,String>("prenomposteur"));
+        // Column_id.setCellValueFactory(new PropertyValueFactory <Offre,Integer>("idposteurfg"));
+
     }
-     public void b() {
-     Table_offre_jobeur.setOnMouseClicked(new EventHandler<MouseEvent>()
-     {
-         @Override
-         public void handle(MouseEvent event) {
-         Offre S = Table_offre_jobeur.getItems().get(Table_offre_jobeur.getSelectionModel().getSelectedIndex());
-        
-         Label_telp.setText(S.getTel());
-         Label_id.setText(S.getId());
-             
-         }
-     });
-             }
-       @FXML
-    void Accepter_Offre(ActionEvent event) throws SQLException {
-        String idoffre =Label_id.getText();
-         gestion_offre_service A1=new gestion_offre_service();
-            A1.Accepter_Offre_service(idoffre);
-            JOptionPane.showMessageDialog (null," L'offre est Accepté ");
+
+    public void b() {
+        Table_offre_jobeur.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                String nomp;
+                String prenomp;
+                int telp;
+            @Override
+            public void handle(MouseEvent event) {
+                Offre S = Table_offre_jobeur.getItems().get(Table_offre_jobeur.getSelectionModel().getSelectedIndex());
+                int idp = S.getIdposteur();
+                System.out.println("aaaslema"+idp);
+                PosteurService gos = new PosteurService();
+                    try {
+                     Posteur P = gos.getPosteurInfobyid(idp);
+                        
+//                ArrayList<Posteur> p1 = (ArrayList) gos.afficherp(idp);
+//              for(Posteur d:p1)
+//                {
+//                   nomp=d.getNom();
+//                   prenomp=d.getPrenom();
+//                   telp=d.getTel();
+//                    System.out.println(nomp);
+//                }
+                System.out.println(P.getNom());
+                Label_nomposteur.setText(P.getNom());
+                Label_prenomposteur.setText(P.getPrenom());
+                int a=P.getTel();
+               String tel= String.valueOf(a);
+                Label_telp.setText(tel);
+//
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Jobeur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Jobeur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            }
+        });
+    }
+
+    @FXML
+    void Accepter_Offre(ActionEvent event) throws SQLException, IOException {
+        String idoffre = Label_id.getText();
+        gestion_offre_service A1 = new gestion_offre_service();
+        A1.Accepter_Offre_service(idoffre);
+        afficher_offre_jobeur();
+        JOptionPane.showMessageDialog(null, " L'offre est Accepté ");
 
     }
 
     @FXML
-    void Refuser_Offre(ActionEvent event) throws SQLException {
-        String idoffre =Label_id.getText();
-         gestion_offre_service A1=new gestion_offre_service();
-            A1.Refuser_Offre_service(idoffre);
-            JOptionPane.showMessageDialog (null," L'offre est Refusé ");
+    void Refuser_Offre(ActionEvent event) throws SQLException, IOException {
+        String idoffre = Label_id.getText();
+        gestion_offre_service A1 = new gestion_offre_service();
+        A1.Refuser_Offre_service(idoffre);
+        afficher_offre_jobeur();
+        JOptionPane.showMessageDialog(null, " L'offre est Refusé ");
 
     }
-     
-     
 
     // Oussama//
-
     @FXML
     private void Chosier_ph_bt(ActionEvent event) {
-        Image image1=new Image("file:image1.png");
+        Image image1 = new Image("file:image1.png");
         image_post.setImage(null);
         image_post.setImage(image1);
-       // image_post.setImage(new Image("file:/C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg"));
+        // image_post.setImage(new Image("file:/C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg"));
         file_image_p.setText("C:/Users/lenovo/Documents/NetBeansProjects/Fixit_one/image1.jpg");
     }
 
     @FXML
     private void logout(ActionEvent event) throws IOException {
-          Parent root=FXMLLoader.load(getClass().getResource("/fxml/acceuil.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/acceuil.fxml"));
         Scene scene = new Scene(root);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.hide();
-                stage.setScene(scene);
-                stage.show();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.hide();
+        stage.setScene(scene);
+        stage.show();
     }
 
     /*@FXML
-    private void clickedtable(SortEvent<C> event) {
-    }*/
-
+     private void clickedtable(SortEvent<C> event) {
+     }*/
     @FXML
     private void OnkeyTypedfilter(KeyEvent event) {
     }
@@ -808,6 +814,5 @@ public class Jobeur_interfaceController implements Initializable {
     @FXML
     private void clickedtable(SortEvent event) {
     }
-    
-    
+
 }
