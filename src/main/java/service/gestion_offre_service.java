@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import service.PosteurService;
 import utils.ConnexionBD;
 import entites.Offre;
+import entites.Posteur;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -126,9 +127,10 @@ public class gestion_offre_service{
                 a.setDate_debut(res.getString("date"));
                 a.setHeure(res.getString("heure"));
                 a.setDescription_offre(res.getString("description_offre"));
-                a.setTel(res.getString("tel"));
+              //  a.setTel(res.getString("tel"));
+                a.setEtatoffre(res.getString("etat_offre"));
                
-                a.setId(res.getString("id"));
+                a.setIdposteur(res.getInt("idposteur_fg"));
                 
               offre.add(a);
           }
@@ -179,6 +181,7 @@ public class gestion_offre_service{
             Logger.getLogger(gestion_offre_service.class.getName()).log(Level.SEVERE, null, ex);
         }
      } 
+     
     
     
 }
