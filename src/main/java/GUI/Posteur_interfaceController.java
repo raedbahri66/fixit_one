@@ -493,7 +493,7 @@ public class Posteur_interfaceController implements Initializable {
     private TextField image_path;
     @FXML
     private Button importAction;
-    private FileInputStream fis2;
+    private String fis2;
     private File file2;
     private FileInputStream fis3;
     private File file3;
@@ -683,7 +683,7 @@ public class Posteur_interfaceController implements Initializable {
         String etatvente="non_vendu";
         int idjobeur = 0;
         datelocal.setText(NOW_LOCAL_DATE().toString());
-        String date="2019-12-24";
+        String date=NOW_LOCAL_DATE().toString();
         String nomproprietere="";
         String etatvalidation="non_valider";
         
@@ -719,7 +719,7 @@ public class Posteur_interfaceController implements Initializable {
         int idjobeur = 0;
          int categ=2;
         datelocal.setText(NOW_LOCAL_DATE().toString());
-        String date="2019-12-24";
+        String date=NOW_LOCAL_DATE().toString();
         String nomproprietere=p1.getNom();
         String etatvalidation="non_valider";
         Produit E = new Produit(nom,prix,desc,categ,num,etatvente,etatvalidation,idposteur,date);
@@ -1402,18 +1402,14 @@ public class Posteur_interfaceController implements Initializable {
             fileChooser2.setTitle("Open image File");
             file2 = fileChooser2.showOpenDialog(stage);
             if (file2 != null) {
-            image_path.setText(file2.getAbsolutePath());
-            System.out.println(file2.getAbsolutePath()); 
-                try {
-                fis2 = new FileInputStream(file2);// file is selected using filechooser which is in last tutorial
-                 } catch (FileNotFoundException ex) {
-            Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
-                        } try {
+            image_path.setText(file2.getName());
+            System.out.println(file2.getName()); 
+                fis2 = new String(file2.getName());// file is selected using filechooser which is in last tutorial
+                         try {
                      
                             URL url1l = file2.toURI().toURL();
                             image_produit.setImage(new Image(url1l.toExternalForm()));
                         } catch (MalformedURLException ex) {
-                          
                             Logger.getLogger(InscrirePosteurController.class.getName()).log(Level.SEVERE, null, ex);
                         };
             }}); 
