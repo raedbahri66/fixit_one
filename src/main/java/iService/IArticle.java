@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface IArticle {
     public void ajouterArticle(Article A,FileInputStream fis,File file);
-    public void ajouterArticle(Article A);
+    public void ajouterArticle(Article A,String fis3);
     public void modifierArticle(Article A);
     public void supprimerArticle(Article A);
     public List<Article> afficherArticle();

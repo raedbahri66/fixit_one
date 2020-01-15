@@ -12,8 +12,11 @@ import entites.Posteur;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import service.gestion_service;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Date;
@@ -95,7 +98,7 @@ public class AdmininterfaceController implements Initializable {
     private ImageView image_article;
     private FileInputStream fis;
     private File file;
-    
+    String fis3 ;
     /****date de aujourdhui****/
   public static final LocalDate NOW_LOCAL_DATE (){
         String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
@@ -118,29 +121,43 @@ public class AdmininterfaceController implements Initializable {
         ArrayList<Posteur> pers=(ArrayList<Posteur>) p.afficherPosteur();
          Stage stage = new Stage();
          
-    image_a_btn.setOnAction(e->{
+   
+     image_a_btn.setOnAction(e->{
             stage.setTitle("File Chooser ");        
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Open image File");
-            file = fileChooser.showOpenDialog(stage);
+            FileChooser fileChooser2 = new FileChooser();
+            fileChooser2.setTitle("Open image File");
+            file = fileChooser2.showOpenDialog(stage);
             if (file != null) {
-            file_image_A.setText(file.getAbsolutePath());
-            System.out.println(file.getAbsolutePath()); 
+          file_image_A.setText(file.getName());
+            System.out.println(file.getName()); 
+               fis3 = new String(file.getName());
                 try {
-                fis = new FileInputStream(file);// file is selected using filechooser which is in last tutorial
-                 } catch (FileNotFoundException ex) {
-            Logger.getLogger(AdmininterfaceController.class.getName()).log(Level.SEVERE, null, ex);
-                        } try {
-                     
-                            URL url1 = file.toURI().toURL();
-                            System.out.println(url1);
-                            System.out.println("zzz"+url1.toExternalForm());
-                            image_article.setImage(new Image(url1.toExternalForm()));
-                        } catch (MalformedURLException ex) {
-                          
-                            Logger.getLogger(AdmininterfaceController.class.getName()).log(Level.SEVERE, null, ex);
-                        };
-            }});
+                    fis = new FileInputStream(file);// file is selected using filechooser which is in last tutorial
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                         try {
+                            URL url1l = file.toURI().toURL();
+                           image_article .setImage(new Image(url1l.toExternalForm()));
+                             //setBinaryStream(6, (InputStream)fis22, (int)file2.length());
+                            InputStream is = fis;
+                            String url2="D:\\wamp64\\www\\fixitweb1\\web\\upload\\"+fis3;
+                            OutputStream os = new FileOutputStream( new File(url2));
+                      byte[] content = new byte[2048];
+                      int size = 0;
+                     while((size = is.read(content)) != -1){
+                          os.write(content, 0, size);
+                      }
+  
+                        }
+                         catch (MalformedURLException ex) {
+                } catch (FileNotFoundException ex) { 
+                    Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Posteur_interfaceController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+;
+            }}); 
     
         // TODO
         /******ayeeeeed***///
@@ -202,7 +219,7 @@ public class AdmininterfaceController implements Initializable {
                 String categorie=(String) categories.getValue();
                 Article a = new Article(nom,descriptionart,date,categorie,sources);
                 Articlegestion a1=new Articlegestion();
-                a1.ajouterArticle(a);
+                a1.ajouterArticle(a,fis3);
                 nomarticle.setText("");
                 descriptionarticle.setText("");
                 source.setText("");
@@ -218,7 +235,8 @@ public class AdmininterfaceController implements Initializable {
    String categorie=(String) categories.getValue();
    Article a = new Article(nom,descriptionart,date,categorie,sources);
    Articlegestion a1=new Articlegestion();
-   a1.ajouterArticle(a,fis,file);
+   a1.ajouterArticle(a,fis3);
+        System.out.println(fis3);
    nomarticle.setText("");
    descriptionarticle.setText("");
    source.setText("");

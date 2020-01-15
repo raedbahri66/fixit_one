@@ -122,6 +122,12 @@ Connection c = ConnexionBD.getInstanceConnexionBD().getConnection();
            Commentaire a = null ; 
      
       try {
+          
+
+
+        
+//          String req =" select * from commentaire INNER JOIN user where user.id="+id_posteur1;
+  
         String req=" select * from commentaire INNER JOIN user where  user.id="
                 + "(select idposteur_fg from commentaire INNER JOIN user where user.id="+id_posteur1+")";
         ResultSet res= ste.executeQuery(req);

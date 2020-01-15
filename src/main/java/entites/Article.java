@@ -21,6 +21,24 @@ public class Article {
     private Date  date_article;
     private String categorie;
     private String sources;
+    private String iamge;
+
+    public Article(String nom_article, String descriptionarticle, Date date_article, String categorie, String sources, String iamge) {
+        this.nom_article = nom_article;
+        this.descriptionarticle = descriptionarticle;
+        this.date_article = date_article;
+        this.categorie = categorie;
+        this.sources = sources;
+        this.iamge = iamge;
+    }
+
+    public String getIamge() {
+        return iamge;
+    }
+
+    public void setIamge(String iamge) {
+        this.iamge = iamge;
+    }
       public Article() {
     }
 

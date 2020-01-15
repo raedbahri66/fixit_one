@@ -50,8 +50,8 @@ public class Articlegestion implements IArticle{
     }
      @Override
     public void ajouterArticle(Article A, FileInputStream fis, File file) {
-         String req1="INSERT INTO `article` "
-                    + "(`nom_article`, `description_article`,`date_article`,`categorie`,`source`,`image_art`) "
+         String req1="INSERT INTO article "
+                    + "(nom_article, description_article,`date_article`,`categorie`,`source`,`image_art`) "
                     + "VALUES (?,?,?,?,?,?)";
             try{ PreparedStatement ste = c.prepareStatement(req1);
             ste.setString(1,A.getNom_article());
@@ -71,17 +71,18 @@ public class Articlegestion implements IArticle{
  
  
    @Override
-    public void ajouterArticle(Article A) {
+    public void ajouterArticle(Article A,String fis3) {
  
-            String req1="INSERT INTO `article` "
-                    + "(`nom_article`, `description_article`,date_article,`categorie`,`source`) "
-                    + "VALUES (?,?,?,?,?)";
+            String req1="INSERT INTO article "
+                    + "(nom_article, description_article,date_article,`categorie`,`source`,`image_art`) "
+                    + "VALUES (?,?,?,?,?,?)";
             try{ PreparedStatement ste = c.prepareStatement(req1);
             ste.setString(1,A.getNom_article());
             ste.setString(2,A.getDescriptionarticle());
              ste.setDate(3, (Date) A.getDate_article());
             ste.setString(4,A.getCategorie());
             ste.setString(5,A.getSources());
+             ste.setString(6,fis3);
               ste.executeUpdate();
             System.out.println("Ajout article Complete");
                      JOptionPane.showMessageDialog(null," artcile ajouté "); 
@@ -128,7 +129,7 @@ public class Articlegestion implements IArticle{
 
         } catch (SQLException ex) {
             Logger.getLogger(Articlegestion.class.getName()).log(Level.SEVERE, null, ex);
-        }//To change body of generated methods, choose Tools | Templates.//To change body of generated methods, choose Tools | Templates.
+        }//To change body of generated methods, choose Tools | Templates.//To change body of generated methods, choose Tools | Templates.//To change body of generated methods, choose Tools | Templates.//To change body of generated methods, choose Tools | Templates.//To change body of generated methods, choose Tools | Templates.//To change body of generated methods, choose Tools | Templates.//To change body of generated methods, choose Tools | Templates.//To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -163,26 +164,43 @@ public class Articlegestion implements IArticle{
         String req="select * from article where id="+id;
           ResultSet res=  ste.executeQuery(req);
           while (res.next()) { 
-          if(res.getBytes("image_art") != null)
+          if(res.getString("image_art") != null)
          {
-                      InputStream is = res.getBinaryStream("image_art");
-                      OutputStream os = new FileOutputStream( new File("imgage_article.jpg"));
-                      byte[] content = new byte[2048];
-                      int size = 0;
-                      while((size = is.read(content)) != -1){
-                          os.write(content, 0, size);
-                      }
-                     Image image1=new Image("file:img_article.jpg");
+//                      InputStream is = res.getBinaryStream("image_art");
+//                      OutputStream os = new FileOutputStream( new File("imgage_article.jpg"));
+//                      byte[] content = new byte[2048];
+//                      int size = 0;
+//                      while((size = is.read(content)) != -1){
+//                          os.write(content, 0, size);
+//                      }
+                    String url2="http://localhost/fixitweb1/web/upload/"+res.getString("image_art");
+                     Image image1=new Image(url2);
                     imgS=image1;   
                       System.out.println(imgS);
-                      }
+                      }else imgS=null;
     
           } return imgS;
       }
+      public String get_image1 (int id) throws SQLException, FileNotFoundException, IOException{
+        String req="select * from article where id="+id;
+         String url2=null;
+          ResultSet res=  ste.executeQuery(req);
+          while (res.next()) { 
+          if(res.getString("image_art") != null)
+         {
+//                      InputStream is = res.getBinaryStream("image_art");
+//                      OutputStream os = new FileOutputStream( new File("imgage_article.jpg"));
+//                      byte[] content = new byte[2048];
+//                      int size = 0;
+//                      while((size = is.read(content)) != -1){
+//                          os.write(content, 0, size);
+//                      }
+                    url2="http://localhost/fixitweb1/web/upload/"+res.getString("image_art");
+                     Image image1=new Image(url2);
+                    imgS=image1;   
+                      System.out.println(imgS);
+                      }else imgS=null;
+    
+          } return url2;
+      }
 }
-          
-
-     
- 
-     
- 
