@@ -141,7 +141,7 @@ public class AdmininterfaceController implements Initializable {
                            image_article .setImage(new Image(url1l.toExternalForm()));
                              //setBinaryStream(6, (InputStream)fis22, (int)file2.length());
                             InputStream is = fis;
-                            String url2="D:\\wamp64\\www\\fixitweb1\\web\\upload\\"+fis3;
+                            String url2="C:\\wamp64\\www\\fixitweb1\\web\\upload\\"+fis3;
                             OutputStream os = new FileOutputStream( new File(url2));
                       byte[] content = new byte[2048];
                       int size = 0;
