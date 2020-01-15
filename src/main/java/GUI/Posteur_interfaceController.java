@@ -10,7 +10,7 @@ import API.Payment;
 import service.GestionProduit;
 import entites.Produit;
 import static GUI.PosteurgestionController.NOW_LOCAL_DATE;
-//import com.stripe.exception.StripeException;
+import com.stripe.exception.StripeException;
 import entites.Echange;
 import entites.Favoris;
 import entites.Jobeur;
@@ -843,9 +843,11 @@ public class Posteur_interfaceController implements Initializable {
     if(p.Paymment(prix,numC,mois2,year2,cvc1)==true)
     {
     String id=idproduitacheter.getText();
+    int idd=Integer.parseInt(id);
     Produit E = new Produit(id);
    GestionProduit gs = new  GestionProduit();
-     gs.modifierEtatProduit(E);
+     //gs.modifierEtatProduit(E);
+     gs.supprimerProduitId(idd);
       JOptionPane.showMessageDialog(null, "Paymment effectuer avec succeés");
       nom_produit_acheter.setText("");
         nom_proprietaire11.setText("");
@@ -862,6 +864,8 @@ public class Posteur_interfaceController implements Initializable {
               dollar2.setText("");
               dollar3.setText("");
       refrech();
+      
+      
     }
     else{JOptionPane.showMessageDialog(null, "Erreur de paymment veuillez verifier vos données ");}
     

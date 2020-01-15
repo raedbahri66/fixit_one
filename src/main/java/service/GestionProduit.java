@@ -418,6 +418,19 @@ public class GestionProduit {
     }
     }
      
+      
+         public void supprimerProduitId(int id) {
+    String req= "delete from produit Where id=? ";
+    
+   try { 
+          PreparedStatement ste = c.prepareStatement(req);
+           ste.setInt(1,id);   
+             ste.executeUpdate();
+    }catch(SQLException ex)
+    {
+    System.out.println(ex.getMessage());
+    }
+    }
      
         public void supprimerProduit(Produit E) {
     String req= "delete from produit Where id=? ";
