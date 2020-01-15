@@ -63,6 +63,9 @@ import service.JobeurService;
 import service.PosteurService;
 import entites.Offre;
 import entites.annonce;
+import facebook4j.FacebookException;
+import facebook4j.FacebookFactory;
+import facebook4j.auth.AccessToken;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -1530,7 +1533,7 @@ public class Posteur_interfaceController implements Initializable {
     }
 //, FacebookException
     @FXML
-    private void ajouterechangep(ActionEvent event) throws SQLException, IOException, ParseException {
+    private void ajouterechangep(ActionEvent event) throws SQLException, IOException, ParseException, FacebookException {
              
                 String date8 = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
               
@@ -1596,12 +1599,12 @@ public class Posteur_interfaceController implements Initializable {
    Echange E = new Echange(nomo,nomf,description,date10,idposteur1,nomposteur,idjobeur);
   EchangeGestion es = new  EchangeGestion();
    es.ajouterEchange(E);
-   /*JOptionPane.showMessageDialog(null, "ajout avec succes ");
-  facebook4j.Facebook facebook = new FacebookFactory().getInstance();
+   JOptionPane.showMessageDialog(null, "ajout avec succes ");
+ /* facebook4j.Facebook facebook = new FacebookFactory().getInstance();
     
     facebook.setOAuthAppId("", "");
   
-    String accessTokenString = "EAAjdVZBDPFWIBAFczvWfwdT6hY9iHMOREAFlP3L9PSYUzvExkhQglXZC3nL5jVgcifoRZArDgDpqM3BnoWZC9TGtRzyZCN7ApjQi3VedMeX2A5fa8ZCdLigMPhI8bKtfVCXIfO9MMCZAciIVGWr04Is90b0RZCoWZAIvSdDIswnRf0gZDZD";
+    String accessTokenString = "EAAiQjpPEiO4BAIUnZCnE8Kbv6C3sgCc2DQ2m8ShZAZAqAJKSfFa3C5nlTZBLbOAeW8Xc2AbJBa2MGqKxDApAvh7ksaXHWvZAg1AVVqADHUqPYuroS6tWDmMZC0opMGhUmKeJIknj2pmk3ZBA1ZBDBhIyBJZBCDAmTl5ssFGBPb8zZBKYHlkb1dB9LUZBzfb5cjFZBhAZD";
     AccessToken at = new AccessToken(accessTokenString);
     facebook.setOAuthAccessToken(at);
         try{
