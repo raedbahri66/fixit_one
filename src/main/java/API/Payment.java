@@ -5,14 +5,14 @@
  */
 package API;
 
-/*import com.stripe.Stripe;
+import com.stripe.Stripe;
 import com.stripe.exception.AuthenticationException;
 import com.stripe.exception.CardException;
 import com.stripe.exception.InvalidRequestException;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
 import com.stripe.model.Customer;
-import com.stripe.model.Token;*/
+import com.stripe.model.Token;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -26,7 +26,7 @@ public class Payment {
      public boolean Paymment(int montant,String numCarte,int expm,int expy,String cvc) 
      {
          
-       /*  try {
+        try {
              Stripe.apiKey="sk_test_oVuHuDAcqZWXYhYCVpyaFt4s00qbcibbMK";
              int montants=montant*100;  
              Map <String,Object> tokenParameter  = new HashMap <String,Object>();
@@ -52,7 +52,7 @@ public class Payment {
         
          return false;
          }
-           */ 
+           
             
          return true; 
 
